@@ -1,0 +1,2 @@
+# pinCollage
+Pinterest clone project
