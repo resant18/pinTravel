@@ -13,3 +13,64 @@
  *= require_tree .
  *= require_self
  */
+
+ :root {
+  --color-surface: white;
+  --color-solid: black;
+  --color-pBj: #333;
+  --color-primary: red;
+  --border-color: "#8e8e8e";
+}
+
+html, body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    color: rgb(33, 25, 34);
+    font-size: 12px;
+}
+
+html {
+    text-size-adjust: none;
+}
+
+
+
+
+/* html {
+  background: var(--color-surface);
+  color: var(--color-solid);
+}
+input[type=text], input[type=email], input[type=password] { 
+    cursor: text;
+    border-color: var(--border-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 8px 14px;
+    color: var(--color-pBj);
+    background-color: var(--color-surface);
+    width: 100%;
+    letter-spacing: -.4px;
+    font-size: 16px;
+    min-height: 40px;
+    -webkit-font-smoothing: antialiased;
+}
+
+button, input {
+    overflow: visible;
+    line-height: normal;
+}
+
+
+
+button {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border: 0;
+  padding: 8px 16px;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  width: 100%;
+} */

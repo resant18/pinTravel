@@ -1,3 +1,159 @@
 // Place all the styles related to the api/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .splash {
+//     bottom: 0px;
+//     left: 0px;
+//     right: 0px;
+//     top: 0px;
+//     position: absolute;
+//     overflow: auto;
+//     display: flex;
+//     flex-direction: column;
+// }
+
+// .session-form {
+//     flex: 1 1 0%;
+// }
+
+// #signup {
+//     background-color: rgb(255, 255, 255);
+//     border-radius: 8px;
+//     position: relative;
+//     text-align: center;
+//     width: 640px;
+//     margin: auto;
+//     min-height: initial;
+//     box-shadow: rgba(0, 0, 0, 0.45) 0px 2px 10px;
+//     padding-bottom: 55px;
+// }
+
+// .signup-top {
+//     min-height: 400px;
+//     padding: 20px 10px;
+// }
+
+// .logo {
+//     height: 45px;
+//     margin: 5px auto;
+//     width: 45px;
+// }
+
+// .signup-bottom {
+
+// }
+
+// .logo-svg {
+//     background-image: url("/logo.png");
+//     width: 45px;
+//     height: 45px;
+// }
+
+// .title {
+//     margin: 0px auto 25px;
+//     width: 355px;
+// }
+
+// .title h3 {
+//     color: rgb(51, 51, 51);
+//     font-size: 32px;
+//     font-weight: bold;
+//     -webkit-font-smoothing: antialiased;
+//     letter-spacing: -1.2px;
+// }
+
+// .sub-title h3 {
+//     text-align: center;
+//     color: rgb(51, 51, 51);
+//     font-size: 16px;
+//     font-weight: normal;
+//     margin: -15px 0px 20px;
+//     width: 270px;
+// }
+
+// .form-container {
+//     margin: 0px auto;
+//     position: relative;
+//     text-align: center;
+// }
+
+// .form-content {
+//     margin: 0px auto;
+//     width: 268px;
+// }
+
+.form-container {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    overflow: hidden;
+}
+
+.data-grid-wrapper {
+    max-width: 2500px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    position: absolute;
+    overflow: hidden;
+    padding: 24px 20px;
+    background-image: url('/data-grid-image-high.png');
+    background-size: cover;
+}
+
+.data-grid-image {
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    position: fixed;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+
+    background-image: url('/logo.png');
+    width: 72px;
+    height: 72px;
+    margin: 5px auto;
+}
+
+.modal-child {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-form-container {
+    background: white;
+    width: 400px;
+    min-height: 533px;
+    border-radius: 8px;
+    align-self: center;
+    padding-top: 10px;
+}
+
+.login-form-box {
+    color: rgb(51, 51, 51);
+    .title {    
+        font-size: 32px;
+        font-weight: bold;
+        -webkit-font-smoothing: antialiased;
+        letter-spacing: -1.2px;
+        margin: 0px auto 25px;
+        width: 355px;        
+    }
+    .sub-title {
+        text-align: center;        
+        font-size: 16px;
+        font-weight: normal;
+        margin: -15px 0px 20px;
+    }
+}
