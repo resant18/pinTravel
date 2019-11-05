@@ -20,7 +20,7 @@ class SessionForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-    }
+    }    
 
     renderErrors() {        
         return (
@@ -48,31 +48,31 @@ class SessionForm extends React.Component {
                                 <p className="title">Welcome to PinTravel</p>
                                 <p className="sub-title">Find new travel destination to pin</p>
                             </div>
-
-                            <div className="input-field">                                
-                                <input type="text"                            
-                                    value={this.state.email}
-                                    onChange={this.update('email')}
-                                    className="login-input"
-                                    placeholder="Email"
-                                    aria-invalid="false"
-                                />
+                            <div className="form-fields">
+                                <div className="input-field">                                
+                                    <input type="text"                            
+                                        value={this.state.email}
+                                        onChange={this.update('email')}
+                                        className="login-input"
+                                        placeholder="Email"
+                                        aria-invalid="false"
+                                    />
+                                </div>
+                                <div className="input-field">
+                                    <input type="password"
+                                        value={this.state.password}
+                                        onChange={this.update('password')}
+                                        className="login-input"
+                                        placeholder={passwordHolder}
+                                        aria-invalid="false"
+                                    />
+                                </div>
+                                <div>                                                 
+                                    <button className="form-submit-button" type="submit">{ formType }</button>
+                                </div>
                             </div>
-                            <div className="input-field">
-                                <input type="password"
-                                    value={this.state.password}
-                                    onChange={this.update('password')}
-                                    className="login-input"
-                                    placeholder={passwordHolder}
-                                    aria-invalid="false"
-                                />
-                            </div>
-                            <div>                                                 
-                                <input className="form-submit-button" type="submit" value={formType} />                                                            
-                            </div>
-                            {/* <p className="or">OR</p>
-                            <br />
-                            <button className="bottom-button" onClick={this.props.switchModal}>{button}</button> */}
+                            <p>OR</p>                            
+                            <button className="bottom-button" onClick={this.props.switchAction}>{ formType === "Sign up" ? "Log in" : "Sign up" }</button>
                         </form>
                         <div className="errors">{this.renderErrors()}</div>
                     </div>

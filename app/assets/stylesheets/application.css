@@ -18,7 +18,8 @@
   --color-surface: white;
   --color-solid: black;
   --color-pBj: #333;
-  --color-primary: red;
+  --color-primary: #005c9d;
+  --color-secondary: #28b1ff;
   --border-color: "#8e8e8e";
 }
 
@@ -32,7 +33,32 @@ html {
     text-size-adjust: none;
 }
 
+button, input {
+    overflow: visible;
+    line-height: normal;
+}
 
+
+
+button {
+    border: 0px;
+    height: 36px;
+    display: inline-block;
+    border-radius: 4px;
+    -webkit-font-smoothing: antialiased;
+    padding: 0px 18px;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    margin-top: 10px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    width: 100%;
+} 
 
 
 /* html {

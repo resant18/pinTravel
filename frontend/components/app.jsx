@@ -8,14 +8,17 @@ import {
     HashRouter
 } from 'react-router-dom';
 
+import Modal from './modal/modal';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
-    <div>        
+    <div>  
+        <Modal />      
         <main id="maincontent">
             <Switch>
+                <AuthRoute exact path="/" component={LogInFormContainer} />
                 <AuthRoute exact path="/login" component={LogInFormContainer} />
                 <AuthRoute exact path="/signup" component={SignUpFormContainer} />
                 {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} />
