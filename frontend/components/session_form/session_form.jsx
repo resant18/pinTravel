@@ -5,9 +5,9 @@ class SessionForm extends React.Component {
         super(props);
         this.state = {
             email: '',
-            password: '',
+            password: '',            
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);        
     }
 
     update(field) {
@@ -16,11 +16,42 @@ class SessionForm extends React.Component {
         });
     }
 
+    parseUserName() {
+        const email = this.state.email;
+        const idx = email.indexOf('@');
+        
+        const username = email.slice(0, idx);
+        const dotIdx = username.indexOf('.');        
+
+        let firstName, lastName;
+        if (dotIdx !== -1) {
+            firstName = username.slice(0, dotIdx);
+            lastName = username.slice(dotIdx + 1, username.length - 1);
+        } else {
+            firstName = username;
+            lastName = '';
+        }
+        
+        return { first_name: firstName, last_name: lastName }
+    }
+
     handleSubmit(e) {
         e.preventDefault();
-        const user = Object.assign({}, this.state);
+
+        let username, user;
+        
+        if (this.props.formType === "Sign up") {
+            username = this.parseUserName();           
+            user = Object.assign({}, this.state, username);
+        } else {                     
+            user = Object.assign({}, this.state);
+        }
         this.props.processForm(user);
     }    
+
+    componentWillUnmount() {
+        this.props.clearErrors();
+    }
 
     renderErrors() {        
         return (
@@ -33,18 +64,18 @@ class SessionForm extends React.Component {
             </ul>
         );
     }
-
+    
     render() {
-        const { passwordHolder, formType } = this.props;
+        const { passwordHolder, formType } = this.props;        
         return (
             <div className="form-container">
-                <div className="data-grid-wrapper" />                
-                <div className="data-grid-image" />
-                <div className="modal-child">
+                <div className="data-grid-images" />                
+                <div className="data-grid-opacity" />
+                <div className="modal-content">
                     <div className="login-form-container">
                         <form onSubmit={this.handleSubmit} className="login-form-box">
                             <div className="logo" />
-                            <div>
+                            <div>                                
                                 <p className="title">Welcome to PinTravel</p>
                                 <p className="sub-title">Find new travel destination to pin</p>
                             </div>
@@ -68,11 +99,12 @@ class SessionForm extends React.Component {
                                     />
                                 </div>
                                 <div>                                                 
-                                    <button className="form-submit-button" type="submit">{ formType }</button>
+                                    <button className="form-submit-button" type="submit">{ formType }</button>                                    
                                 </div>
                             </div>
                             <p>OR</p>                            
                             <button className="bottom-button" onClick={this.props.switchAction}>{ formType === "Sign up" ? "Log in" : "Sign up" }</button>
+                            
                         </form>
                         <div className="errors">{this.renderErrors()}</div>
                     </div>
