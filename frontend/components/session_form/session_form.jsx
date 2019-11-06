@@ -1,4 +1,5 @@
 import React from 'react';
+import { isBlank, isValidInput } from '../../../app/assets/javascripts/validation';
 
 class SessionForm extends React.Component {
     constructor(props) {
@@ -8,7 +9,7 @@ class SessionForm extends React.Component {
             password: '',            
         };
         this.handleSubmit = this.handleSubmit.bind(this);        
-    }
+    }    
 
     update(field) {
         return e => this.setState({
@@ -35,18 +36,62 @@ class SessionForm extends React.Component {
         return { first_name: firstName, last_name: lastName }
     }
 
+    formValidation() {        
+        let emailInput = document.getElementById('input-email');
+        let passwordInput = document.getElementById('input-password');
+        let errorText = '';        
+
+        if (isBlank(emailInput.value)) {
+            const div = document.createElement('div');
+            div.id = 'error-email';
+            div.classList.add('error-text');
+            errorText = `You missed a spot! Don't forget to add your email.`;
+            div.innerHTML = errorText;  
+            
+            if (document.getElementById('error-email') !== null) {                
+                document.getElementById('error-email').remove();
+            }
+            emailInput.parentNode.appendChild(div);
+            return false;
+        } else if (!isValidInput(emailInput.value, 'email')) {
+            const div = document.createElement('div');
+            div.id = 'error-email';
+            div.classList.add('error-text');
+            errorText = `Hmm...that doesn't look like an email address`;
+            div.innerHTML = errorText;
+            if (document.getElementById('error-email') !== null) {
+                document.getElementById('error-email').remove();
+            }
+            emailInput.parentNode.appendChild(div);
+            return false;
+        } else if (!isValidInput(passwordInput.value, 'password')) {
+            const div = document.createElement('div');
+            div.id = 'error-password';
+            div.classList.add('error-text');
+            errorText = `Your password is too short! You need 6+ characters.`;
+            div.innerHTML = errorText;
+            if (document.getElementById('error-password') !== null) {
+                document.getElementById('error-password').remove();
+            }
+            passwordInput.parentNode.appendChild(div);            
+            return false;
+        }
+
+        return true;
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
         let username, user;
         
-        if (this.props.formType === "Sign up") {
+        if (this.props.formType === 'Sign up') {
             username = this.parseUserName();           
             user = Object.assign({}, this.state, username);
         } else {                     
             user = Object.assign({}, this.state);
         }
-        this.props.processForm(user);
+        if (this.formValidation()) this.props.processForm(user);
     }    
 
     componentWillUnmount() {
@@ -79,32 +124,39 @@ class SessionForm extends React.Component {
                                 <p className="title">Welcome to PinTravel</p>
                                 <p className="sub-title">Find new travel destination to pin</p>
                             </div>
-                            <div className="form-fields">
-                                <div className="input-field">                                
-                                    <input type="text"                            
-                                        value={this.state.email}
-                                        onChange={this.update('email')}
-                                        className="login-input"
-                                        placeholder="Email"
-                                        aria-invalid="false"
-                                    />
+                            <div className="form-fields-wrapper">
+                                <div className="form-fields">
+                                    <div className="input-field">                                
+                                        <input type="text"  
+                                            id="input-email"                          
+                                            value={this.state.email}
+                                            onChange={this.update('email')}
+                                            className="login-input"
+                                            placeholder="Email"
+                                            aria-invalid="false"                                            
+                                        />
+                                    </div>
+                                    <div className="input-field">
+                                        <input type="password"
+                                            id="input-password"
+                                            value={this.state.password}
+                                            onChange={this.update('password')}
+                                            className="login-input"
+                                            placeholder={passwordHolder}
+                                            aria-invalid="false"                                            
+                                        />
+                                    </div>
+                                    <div>                                                 
+                                        <button className="form-submit-button" type="submit">{ formType }</button>                                    
+                                    </div>
                                 </div>
-                                <div className="input-field">
-                                    <input type="password"
-                                        value={this.state.password}
-                                        onChange={this.update('password')}
-                                        className="login-input"
-                                        placeholder={passwordHolder}
-                                        aria-invalid="false"
-                                    />
-                                </div>
-                                <div>                                                 
-                                    <button className="form-submit-button" type="submit">{ formType }</button>                                    
-                                </div>
+                                <p>OR</p>                            
+                                <button className="bottom-button" onClick={this.props.switchAction}>{ formType === "Sign up" ? "Log in" : "Sign up" }</button>
+                                <span>
+                                    By continuing, you agree to Pinterest's <a data-test-id="tos" href="#" target="_blank">Terms of Service</a>, 
+                                    <a data-test-id="privacy" href="#" target="_blank">Privacy Policy</a>
+                                </span>
                             </div>
-                            <p>OR</p>                            
-                            <button className="bottom-button" onClick={this.props.switchAction}>{ formType === "Sign up" ? "Log in" : "Sign up" }</button>
-                            
                         </form>
                         <div className="errors">{this.renderErrors()}</div>
                     </div>
