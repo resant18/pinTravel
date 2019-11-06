@@ -1,0 +1,29 @@
+.navbar {  
+    display: flex;  
+    width: 100%;
+    height: 56px;
+    align-items: center;
+    flex-direction: row;
+    .logo {
+        width: 48px;
+        height: 48px;
+        background: content-box;
+        background-color: transparent;
+        border-radius: 50%;
+        justify-content: center;
+        padding: 4px;
+        
+    }
+}
+
+.logo-wrapper {
+    a {
+        color: #333;
+        text-decoration: none;
+
+    }
+}
+
+.search {
+    flex: 1;
+}

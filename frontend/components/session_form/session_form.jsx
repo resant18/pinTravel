@@ -91,7 +91,7 @@ class SessionForm extends React.Component {
         } else {                     
             user = Object.assign({}, this.state);
         }
-        if (this.formValidation()) this.props.processForm(user);
+        if (this.formValidation()) this.props.processForm(user).then(this.props.hideModal);
     }    
 
     componentWillUnmount() {

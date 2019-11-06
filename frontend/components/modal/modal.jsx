@@ -9,9 +9,11 @@ const Modal = ({ modal, hideModal }) => {
         return null;
     }
     let component;
+    // let sessionClassName;
     switch (modal) {
         case 'login':
             component = <LoginFormContainer />;
+            // sessionClassName = "image-background: url('/data-grid')"
             break;
         case 'signup':
             component = <SignupFormContainer />;

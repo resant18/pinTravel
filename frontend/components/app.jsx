@@ -1,5 +1,5 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+
 import {
     Route,
     Redirect,
@@ -9,22 +9,22 @@ import {
 } from 'react-router-dom';
 
 import Modal from './modal/modal';
+import NavBarContainer from './navbar/navbar_container';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import Dashboard from './modal/dashboard';
 
 const App = () => (
     <div>                  
-        <Modal />      
-        <main id="maincontent">
-            <Switch>
-                {/* <AuthRoute exact path="/" component={SignUpFormContainer} />
-                <AuthRoute exact path="/login" component={LogInFormContainer} />
-                <AuthRoute exact path="/signup" component={SignUpFormContainer} /> */}
-                {/* <ProtectedRoute exact path="/benches/new" component={BenchFormContainer} />
-                <Route path="/benches/:benchId" component={BenchShowContainer} />
-                <Route exact path="/" component={SearchContainer} /> */}
-            </Switch>
+        <Modal />              
+        <main id="maincontent">            
+            <Switch>                
+                <Route path="/" component={NavBarContainer} />
+            </Switch>           
+            {/* <Switch>
+                <Route exact path="/users/:username/boards" component={BoardIndexContainer} />
+            </Switch> */}
         </main>
     </div>
 );
