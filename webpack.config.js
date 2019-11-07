@@ -1,6 +1,6 @@
 module.exports = {
   context: __dirname,
-  entry: "./frontend/pin_collage.jsx",
+  entry: "./frontend/pin_travel.jsx",
   output: {
     path: require("path").resolve(__dirname, "app", "assets", "javascripts"),
     filename: "bundle.js"

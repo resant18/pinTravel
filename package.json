@@ -1,5 +1,5 @@
 {
-  "name": "pinCollage",
+  "name": "pinTravel",
   "version": "1.0.0",
   "description": "A clone website of Pinterest",
   "main": "index.js",
@@ -18,15 +18,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/resant18/pinCollage.git"
+    "url": "git+https://github.com/resant18/pinTravel.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/resant18/pinCollage/issues"
+    "url": "https://github.com/resant18/pinTravel/issues"
   },
-  "homepage": "https://github.com/resant18/pinCollage#readme",
+  "homepage": "https://github.com/resant18/pinTravel#readme",
   "dependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
