@@ -1,29 +1,100 @@
 .navbar {  
-    display: flex;  
+    top: 0px;
+    // background-color: rgb(255, 255, 255);
+    // border-bottom: 1px solid rgb(204, 204, 204);
+    // width: 100%;
+    // z-index: 675;
+    position: fixed;
+    // display: flex;
+    // flex-direction: column;
+
+    background: white;
+    display: flex;    
+    align-items: center;
     width: 100%;
     height: 56px;
-    align-items: center;
-    flex-direction: row;
-    .logo {
-        width: 48px;
-        height: 48px;
-        background: content-box;
-        background-color: transparent;
-        border-radius: 50%;
-        justify-content: center;
-        padding: 4px;
+    padding: 4px 0px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    font-size: 16px;
         
+    
+
+    .navbar-content {
+        padding: 4px 12px;   
+        width: 100%;
+        display: flex;
+        flex: 1 1 auto;     
+        min-height: 0;
+        min-width: 0;
+        flex-direction: row;        
+        justify-content: space-between;
+
+        span.username {
+            
+        }
+
+        span.pin-travel {   
+            margin-left: 10px;         
+            align-items: center;
+            font-weight: 700;
+            color: #333;
+            // padding-bottom: 5px;
+            font-size: 1.5em;
+        }
+
+        .left-nav {
+            display: flex;
+            align-items: center;
+            // font-weight: 700;
+            // color: #b5b5b5;
+            // padding-bottom: 5px;
+            // width: 25%;
+        }
+
+        .right-nav {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            color: #b5b5b5;
+            padding-bottom: 5px;
+            width: 20%;
+            span.username {
+                margin-left: 10px;
+                color: #333;
+            }
+            a {
+                // margin-left: 15px;                
+                img.user-img {
+                    width: 30px;
+                    height: 30px;
+                }                
+            }            
+        }
+
+
+        a {
+            text-decoration: none;
+            padding: 12px;
+            img {
+                width: 48px;
+                height: 48px;
+                // background-image: url('/logo.png');
+                background: content-box;
+                ;
+            }
+            &:hover, &:focus {
+                background: transparent;
+                background-color:#faf9f9;
+                border-radius: 999px;
+                transition: transform 0.2s ease-out 0s;
+                color: #262626;
+                padding: 12px;
+            }
+            &:active, &:hover {
+                outline: 0;
+            }
+        }        
     }
-}
+}       
 
-.logo-wrapper {
-    a {
-        color: #333;
-        text-decoration: none;
-
-    }
-}
-
-.search {
-    flex: 1;
-}

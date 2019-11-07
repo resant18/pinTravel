@@ -10,6 +10,7 @@ import {
 
 import Modal from './modal/modal';
 import NavBarContainer from './navbar/navbar_container';
+import BoardIndexContainer from './board/board_index_container';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
@@ -19,7 +20,8 @@ const App = () => (
     <div>                  
         <Modal />              
         <main id="maincontent">            
-            <Switch>                
+            <Switch>        
+                <Route exact path="/:userId" component={BoardIndexContainer} />        
                 <Route path="/" component={NavBarContainer} />
             </Switch>           
             {/* <Switch>

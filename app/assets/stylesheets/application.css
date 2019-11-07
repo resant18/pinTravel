@@ -43,6 +43,12 @@ html {
     text-size-adjust: none;
 }
 
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
 button, input {
     overflow: visible;
     line-height: normal;
@@ -89,6 +95,10 @@ input[type=text]:focus, input[type=password]:focus {
 
 div {
     box-sizing: border-box;
+}
+
+:focus {
+    outline: -webkit-focus-ring-color auto 5px;
 }
 
 li {
