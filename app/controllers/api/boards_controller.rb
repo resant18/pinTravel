@@ -3,9 +3,9 @@ class Api::BoardsController < ApplicationController
 
     def index
         debugger
-        username = params[:id]
-        if username
-            @boards = User.joins(:boards).find_by(first_name: params[:username]).boards
+        
+        if params[:id]
+            @boards = User.includes(:boards).find(params[:id]).boards
         else
             @boards = current_user.boards
         end

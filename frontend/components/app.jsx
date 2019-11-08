@@ -18,16 +18,14 @@ import Dashboard from './modal/dashboard';
 
 const App = () => (
     <div>                  
-        <Modal />              
-        <main id="maincontent">            
-            <Switch>        
-                <Route exact path="/:userId" component={BoardIndexContainer} />        
-                <Route path="/" component={NavBarContainer} />
-            </Switch>           
-            {/* <Switch>
-                <Route exact path="/users/:username/boards" component={BoardIndexContainer} />
-            </Switch> */}
-        </main>
+        <Modal />                                 
+        <Switch>                        
+            <Route path="/" component={NavBarContainer} />
+        </Switch>           
+        <Switch>
+            {/* <Route exact path="/:id/boards" component={BoardIndexContainer} /> */}
+            <ProtectedRoute path="/users/:id" component={BoardIndexContainer} />
+        </Switch>
     </div>
 );
 

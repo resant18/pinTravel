@@ -17,9 +17,9 @@ const NavBar = (props) => {
                     </div>
                     <div className="right-nav">
                         <a aria-current="page" href="#/">Home</a>
-                        <a href={`#/${props.currentUsername.first_name}`}>
+                        <a href={`/users/${props.currentUser.id}`}>
                             <img className="user-img" src="https://s.pinimg.com/images/user/default_280.png" />                            
-                            <span className="username">{props.currentUsername.first_name}</span>
+                            <span className="username">{props.currentUser.first_name}</span>
                         </a>
                         
                         <a className="logout-button" onClick={() => props.logout().then(props.showModal)} >Log out </a>

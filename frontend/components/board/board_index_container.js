@@ -5,7 +5,7 @@ import { fetchUserBoards } from '../../actions/board_action';
 import BoardIndex from "./board_index";
 
 const mapStateToProps = (state, ownProps) => {  
-  debugger
+  //debugger
   return {
     boards: Object.values(state.entities.boards || []),
     //currentId: ownProps.userId || ownProps.match.params.id,

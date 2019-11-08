@@ -8,7 +8,7 @@ class BoardIndex extends React.Component {
     }
 
     componentDidMount() {
-        debugger
+        //debugger
         this.props.fetchUserBoards(this.props.currentUserId);
         //this.props.requestUser(this.props.loggedInUser);
     }
@@ -27,16 +27,24 @@ class BoardIndex extends React.Component {
         //     );
         // }
 
-        let boards = this.props.boards.filter(board => board.user_id == this.props.currentUserId);
+        const { boards, currentUserId } = this.props;
+
+        let userBoards = boards.filter(board => board.user_id == currentUserId);
         // const boardPins = values(this.props.boards.)
         // debugger
 
-        return (            
-            <div className="user-profile-content">
-                <div className="board-index">
-                    {"Board Index Item"}
+        return (   
+            <main>
+                <div className="user-profile-content">
+                    <div className="board-index">
+                        {
+                            userBoards.map( board => {
+                                { board.name }
+                            })
+                        }
+                    </div>
                 </div>
-            </div>
+            </main>         
         )
     }
 }
