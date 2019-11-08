@@ -1,0 +1,31 @@
+// Large screens 
+@media all and (min-width: 1024px) {
+    // Home is dissapear
+    // column count: 4 columns grid
+    html, body {
+        font-size: 12pt;
+    }
+    .user-profile-container {
+        max-width: 1024px;
+    }
+    .masonry {
+        column-count: 4
+    }
+
+}
+
+// Medium screen
+@media all and (max-width: 1023px) and (min-width: 768px) {    
+    // 3 columns grid
+    .masonry {
+        column-count: 3
+    }
+}
+
+// Small screen
+@media all and (max-width: 767px) and (min-width: 540px) {    
+    // 2 columns grid
+    .masonry {
+        column-count: 2
+    }
+}

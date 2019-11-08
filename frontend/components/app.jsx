@@ -10,6 +10,7 @@ import {
 
 import Modal from './modal/modal';
 import NavBarContainer from './navbar/navbar_container';
+import UserProfileContainer from './user/user_profile_container';
 import BoardIndexContainer from './board/board_index_container';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LogInFormContainer from './session_form/login_form_container';
@@ -24,7 +25,7 @@ const App = () => (
         </Switch>           
         <Switch>
             {/* <Route exact path="/:id/boards" component={BoardIndexContainer} /> */}
-            <ProtectedRoute path="/users/:id" component={BoardIndexContainer} />
+            <Route path="/:username" component={UserProfileContainer} />
         </Switch>
     </div>
 );

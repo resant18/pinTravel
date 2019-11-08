@@ -17,10 +17,10 @@ const NavBar = (props) => {
                     </div>
                     <div className="right-nav">
                         <a aria-current="page" href="#/">Home</a>
-                        <a href={`/users/${props.currentUser.id}`}>
+                        <Link to={`/${props.currentUser.username}`}>
                             <img className="user-img" src="https://s.pinimg.com/images/user/default_280.png" />                            
-                            <span className="username">{props.currentUser.first_name}</span>
-                        </a>
+                            <span className="fname">{props.currentUser.first_name}</span>
+                        </Link>
                         
                         <a className="logout-button" onClick={() => props.logout().then(props.showModal)} >Log out </a>
                     </div>

@@ -27,12 +27,6 @@
   --color-text: rgb(51, 51, 51);  
 }
 
-@media all and (max-width: 600px) {
-    .navbar {
-        flex-wrap: wrap;
-    }
-}
-
 html, body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",Helvetica,"ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro",メイリオ,Meiryo,"ＭＳ Ｐゴシック",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     color: rgb(33, 25, 34);
@@ -43,10 +37,10 @@ html {
     text-size-adjust: none;
 }
 
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
+h5 {
+    color: #333;
+    letter-spacing: -.4px;
+    font-size: 36px;
 }
 
 button, input {
