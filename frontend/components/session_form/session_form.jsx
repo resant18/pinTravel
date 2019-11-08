@@ -1,5 +1,7 @@
 import React from 'react';
-import { isBlank, isValidInput } from '../../../app/assets/javascripts/validation';
+// import { isBlank, isValidInput } from './inputValidation';
+
+
 
 class SessionForm extends React.Component {
     constructor(props) {

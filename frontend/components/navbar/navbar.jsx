@@ -11,7 +11,7 @@ const NavBar = (props) => {
                 <div className="navbar-content">
                     <div className="left-nav">
                         <a className="active" aria-current="page" href="#/">
-                            <img className="logo" src="/logo.png" />                        
+                            <img className="logo" src={window.logo} />                        
                         </a>                    
                         <a><span className="pin-travel">PinTravel</span></a>
                     </div>
