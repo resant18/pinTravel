@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-    def create
+    def create    
         @user = User.new(user_params)
 
         if @user.save
@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
     end
 
     def show                
-        @user = User.find_by(username: params[:id])
+        @user = User.includes(:boards).find_by(username: params[:id])
         render :show
     end
 

@@ -1,7 +1,7 @@
 import {
   RECEIVE_BOARD_ERRORS,
   CLEAR_BOARD_ERRORS
-} from '../actions/board_action';
+} from '../actions/board_actions';
 
 export default (state = [], action) => {
   Object.freeze(state);
@@ -9,8 +9,9 @@ export default (state = [], action) => {
   switch (action.type) {
     case RECEIVE_BOARD_ERRORS:
       return action.errors;
-    case CLEAR_BOARD_ERRORS:
-      return [];
+      // return action.errors.error_message || [];
+    // case CLEAR_BOARD_ERRORS:
+    //   return [];
     default:
       return state;
   }

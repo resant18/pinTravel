@@ -15,6 +15,7 @@ class User < ApplicationRecord
     after_initialize :ensure_session_token
 
     has_many :boards
+    has_many :pins, through: :boards
 
     attr_reader :password
 

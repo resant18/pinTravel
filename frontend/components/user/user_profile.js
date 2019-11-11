@@ -1,59 +1,96 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
 import BoardIndexContainer from "../board/board_index_container";
 // import PinIndexContainer from "../pin/pin_index_container";
 
-class UserProfile extends React.Component {
-    constructor(props) {
+class UserProfile extends React.Component {  
+    constructor(props) {      
         super(props);
         this.state = {
-            tabItem: "board"
-        };
+            tabItem: 'board',   
+            showDropDown: false,         
+        };      
+        
+        this.displayProfileToolbar = this.displayProfileToolbar.bind(this);
+        this.toggleDropDown = this.toggleDropDown.bind(this);        
+        this.showModal = this.showModal.bind(this);
     }
 
-  componentDidMount() {        
-    this.props.fetchUser(this.props.currentUsername);    
-    console.log(this.props);
+  componentDidMount() {               
+    this.props.fetchUser(this.props.username);           
   }
-
-
-//   getDerivedStateFromProps(props, state) {
-//     // debugger
-//     if (this.props.userId != nextProps.match.params.id) {
-//       this.props.requestUser(nextProps.match.params.id);
-//       this.props.requestAllBoards();
-//       this.props.requestUserPins(this.props.userId);
-//     }
-//   }
 
   handleClick(type) {
     return e => this.setState({ tabItem: [type] })      
   }
 
-  render() {
-    // debugger
-    // if (this.props.loading) {
-    //   return <div></div>;
-    // }
-    const { currentUsername } = this.props;
-      
-    let currentComponent;
-    // debugger
-    // if (this.props.path === `/users/${this.props.userId}`) {
-    //   currentComponent = <BoardIndexContainer userId={this.props.userId} />;
-    // } else {
-    //   currentComponent = <div></div>;
-    // }
+  toggleDropDown(e) {
+    e.preventDefault();
+
+    document.getElementById("drop-down").classList.toggle("show");
+  }
+
+  showModal(e) {
+    debugger
+    this.props.showModal('create-board');
+  }
+
+  displayProfileToolbar() {    
+    if (this.props.user === this.props.currentUser) {
+      return (
+        <nav className="profile-toolbar">
+          <div onClick={this.toggleDropDown}>
+            <svg
+              className="gUZ B9u U9O kVc"
+              height="24"
+              width="24"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              aria-label=""
+              role="img"
+            >
+              <path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path>
+            </svg>
+            <div
+              id="drop-down"
+              className="drop-down"
+            >
+              <div className="frame">
+                <div className="list" role="list">
+                  <div title="Create board" className="create-board" onClick={this.showModal}>
+                    Create board
+                  </div>
+                  <div title="Create pin" className="create-pin" >
+                    Create Pin
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      );
+    }
+  }
+
+  render() {        
+  //   // if (this.props.loading) {
+  //   //   return <div></div>;
+  //   // }
+    let userProfileName;
+    const { user, boards } = this.props;    
+        
+    if (user) {       
+        userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);
+    }    
 
     return (
-      <div className="user-profile-page">
+      <section className="user-profile-page">
         <div className="tilted-pins"></div>
         <div className="user-profile-container">
           <div className="user-avatar">
             <div className="-pos">
               <div className="-shadow-wrapper">
                 <img
-                  alt={currentUsername}
+                  alt={userProfileName}
                   className="user-profile-image"
                   src={window.userProfile}
                 />
@@ -62,34 +99,25 @@ class UserProfile extends React.Component {
           </div>
           <div className="user-profile-detail">
             <div className="user-profile-name">
-              <h5>{currentUsername}</h5>
+              <h5>{userProfileName}</h5>
             </div>
             <div className="user-boards-pins-count">
               <div className="boards-count">
-                <p>Boards</p>
-                <p>5</p>
+                <p className="boards-count-title">Boards</p>
+                <p className="boards-count-number">{boards.length}</p>
               </div>
               <div className="pins-count">
-                <p>Pins</p>
-                <p>25</p>
+                <p className="boards-count-title">Pins</p>
+                <p className="boards-count-number">25</p>
               </div>
             </div>
           </div>
-          <div className="add-board">
-            <button aria-label="Add Board" type="button">
-              <div>
-                <div className="add-board-svg">
-                  <svg height="16" width="16" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img" >
-                    <path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path>
-                  </svg>
-                </div>
-              </div>
-            </button>
-          </div>
+          { this.displayProfileToolbar() }
         </div>
-      </div>
+        <BoardIndexContainer user={user} boards={boards}/>        
+      </section>
     );
-  }
+   }
 }
 
 export default UserProfile;

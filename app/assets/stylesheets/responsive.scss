@@ -7,25 +7,20 @@
     }
     .user-profile-container {
         max-width: 1024px;
+    }    
+    .b-item-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
-    .masonry {
-        column-count: 4
-    }
-
 }
 
 // Medium screen
 @media all and (max-width: 1023px) and (min-width: 768px) {    
     // 3 columns grid
-    .masonry {
-        column-count: 3
-    }
+    
 }
 
 // Small screen
 @media all and (max-width: 767px) and (min-width: 540px) {    
     // 2 columns grid
-    .masonry {
-        column-count: 2
-    }
+    
 }

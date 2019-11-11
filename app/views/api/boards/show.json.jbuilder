@@ -1,4 +1,16 @@
-json.extract! @board, :id, :name, :user_id
-# json.pins_by_board @board.pins
-# json.pin_count @board.pins.count
-# json.board_author_icon @board.user.image_url
+json.user do
+  json.partial! 'api/users/user', user: @board.user
+end
+
+json.board do
+  json.partial! 'api/boards/board', board: @board
+end
+
+# json.pins do
+#   @board.pin_joins.each do |pinjoin|
+#     json.set! pinjoin.id do
+#       json.partial! 'api/pins/pin', pinjoin: pinjoin
+#     end
+#   end
+# end
+

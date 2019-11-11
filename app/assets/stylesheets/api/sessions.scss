@@ -16,12 +16,13 @@
     right: 0;
     bottom: 0;
     top: 0;
+    z-index: 1;
     position: absolute;
     overflow: hidden;
     padding: 24px 20px;
     // background-image: url('/data-grid-image-high.png');
     background-image: image-url('data-grid-image-high');
-    background-size: cover;
+    background-size: cover;    
 }
 
 .data-grid-opacity {
@@ -29,6 +30,7 @@
     left: 0px;
     right: 0px;
     top: 0px;
+    z-index: 1;
     position: fixed;
     overflow: auto;
     display: flex;
@@ -101,13 +103,45 @@
 .input-field {
     text-align: center;
     margin-bottom: 1em;
-    // cursor: text;
-    // font-size: 16px;
-    // width: 100%;
-    // border-radius: 4px;
-    // border-style: solid;
-    // border-width: 1px;
-    // padding: 8px 14px;
-    // letter-spacing: -.4px;
-    
+}
+
+.drop-down {    
+    stroke: rgb(239, 239, 239);
+    visibility: hidden;
+    top: 50px;
+    right: 0px;    
+    position: absolute;
+    .frame{
+        background-color: white;
+        color: white;
+        width: 230px;
+        min-height: 40px;
+        max-height: 90vh;
+        max-width: 90vw;
+        border: 1px solid;
+        box-shadow: 0 3px 6px rgba(0,0,0,.18);
+        outline: none;
+        border-radius: 8px;
+        .list {
+            overflow: hidden;
+            cursor: pointer;
+            .create-board, .create-pin {
+                color: #333;
+                padding: 16px;
+                font-size: 16px;
+                font-weight: 700;
+                letter-spacing: -.4px;
+                hyphens: auto;
+                word-wrap: break-word;
+            }
+        }
+    }
+}
+
+.show {
+    visibility: visible;
+}
+
+.create-board, .create-pin {
+    cursor: pointer;    
 }

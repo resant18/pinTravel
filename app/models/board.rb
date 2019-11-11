@@ -4,4 +4,5 @@ class Board < ApplicationRecord
     validates :secret, inclusion: [true, false]
 
     belongs_to :user
+    has_many :pins
 end

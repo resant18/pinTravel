@@ -45,13 +45,31 @@
                     width: 30px;
                     height: 30px;
                 }                
-            }            
+            }   
+            .button {
+                width: 128px;
+                height: 40px; 
+                padding: 0;  
+                line-height: 36px;                  
+            }  
+            .prim {
+                margin-right: 20px;
+            }  
+            .prim:focus, .prim:hover {
+                background-color: #005c9d;
+                border-radius: 4px;           
+            }
+            .sec:focus, .sec:hover {
+                background-color: #28b1ff;
+                border-radius: 4px;           
+            }
         }
 
 
         a {
             text-decoration: none;
             padding: 12px;
+            cursor: pointer;
             img {
                 width: 48px;
                 height: 48px;

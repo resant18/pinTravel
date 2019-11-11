@@ -1,33 +1,57 @@
 import React from 'react';
-import { Redirect, Link, NavLink } from 'react-router-dom';
+import { Redirect, Route, Link, NavLink } from 'react-router-dom';
 //import SearchBarContainer from '../search_bar/searchBarContainer';
 
 
-const NavBar = (props) => {
-    if (!props.loggedInUser) return null;
-    return (
-        <header>
-            <nav className="navbar">
-                <div className="navbar-content">
-                    <div className="left-nav">
-                        <a className="active" aria-current="page" href="#/">
-                            <img className="logo" src={window.logo} />                        
-                        </a>                    
-                        <a><span className="pin-travel">PinTravel</span></a>
+const NavBar = (props) => {         
+    if (props.loggedIn)
+        return (
+            <header>
+                <nav className="navbar">
+                    <div className="navbar-content">
+                        <div className="left-nav">
+                            <a className="active" aria-current="page" href="#/">
+                                <img className="logo" src={window.logo} />                        
+                            </a>                    
+                            <a><span className="pin-travel">Pintravel</span></a>
+                        </div>
+                        <div className="right-nav">
+                            <a aria-current="page" href="#/">Home</a>
+                            <Link to={`/${props.currentUser.username}`}>
+                                <img className="user-img" 
+                                    src="https://s.pinimg.com/images/user/default_280.png" />                            
+                                <span className="fname">{props.currentUser.first_name}</span>
+                            </Link>
+                            
+                            <Link to="/" onClick={props.logout} >Log out</Link>
+                        </div>
                     </div>
-                    <div className="right-nav">
-                        <a aria-current="page" href="#/">Home</a>
-                        <Link to={`/${props.currentUser.username}`}>
-                            <img className="user-img" src="https://s.pinimg.com/images/user/default_280.png" />                            
-                            <span className="fname">{props.currentUser.first_name}</span>
-                        </Link>
-                        
-                        <a className="logout-button" onClick={() => props.logout().then(props.showModal)} >Log out </a>
+                </nav>
+            </header>
+        )
+    else 
+        return (
+            <header>
+                <nav className="navbar">
+                    <div className="navbar-content">
+                        <div className="left-nav">
+                            <a className="active" aria-current="page" href="#/">
+                                <img className="logo" src={window.logo} />
+                            </a>
+                            <a><span className="pin-travel">Pintravel</span></a>
+                        </div>
+                        <div className="right-nav">                               
+                            <Link to='/' className='button prim'>
+                                Sign Up
+                            </Link>
+                            <Link to='/' className='button sec'>
+                                Login
+                            </Link>                            
+                        </div>
                     </div>
-                </div>
-            </nav>
-        </header>
-    );
+                </nav>
+            </header>
+        );
 }
 
 export default NavBar;
