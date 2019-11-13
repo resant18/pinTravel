@@ -105,19 +105,26 @@ class UserProfile extends React.Component {
     )
   }
 
+
   render() {
     //   // if (this.props.loading) {
     //   //   return <div></div>;
     //   // }
 
-    let userProfileName;
-    const { user, boards, pins, pinIds} = this.props;
 
-    const userPins = Object.values(pins).filter(pin => pinIds.includes(pin.pin_id));
+    const { currentUser, username, user, boards, pins, pinIds} = this.props;    
 
     if (!user) return null;
-    userProfileName =
+
+    const userPins = Object.values(pins).filter(pin =>
+      pinIds.includes(pin.pin_id)
+    );
+
+    let userProfileName =
       user.first_name + " " + (user.last_name === null ? "" : user.last_name);
+    
+    const permitted = (username === currentUser.username);    
+
     return (
       <div>
         <section className="user-profile-page">
@@ -154,7 +161,7 @@ class UserProfile extends React.Component {
         </section>
         <section className="tab-list">{this.displayTabList()}</section>
         <section className="boards">
-          <BoardIndex user={user} boards={boards} pins={userPins} />
+          <BoardIndex user={user} boards={boards} pins={userPins} permitted = {permitted} showModal={this.props.showModal}/>
         </section>
       </div>
     );

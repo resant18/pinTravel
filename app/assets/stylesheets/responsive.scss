@@ -9,13 +9,14 @@
         max-width: 1024px;
     }    
     .b-item-wrapper {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));        
     }
 }
 
 // Medium screen
 @media all and (max-width: 1023px) and (min-width: 768px) {    
     // 3 columns grid
+    
     
 }
 

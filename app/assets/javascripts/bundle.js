@@ -867,22 +867,29 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var _this$props = this.props,
           boards = _this$props.boards,
-          pins = _this$props.pins;
+          pins = _this$props.pins,
+          permitted = _this$props.permitted,
+          showModal = _this$props.showModal;
       if (!boards) return null;
       var userBoards = boards.map(function (board, i) {
         var board_pins = pins.filter(function (pin) {
           return pin.board_id === board.id;
         });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "b-item-content",
           key: board.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           board: board,
-          pins: board_pins
+          pins: board_pins,
+          permitted: permitted,
+          showModal: showModal.bind(_this)
         }));
       });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "b-item-wrapper"
       }, userBoards);
     }
@@ -906,9 +913,8 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -918,13 +924,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -934,16 +941,142 @@ function (_React$Component) {
   _inherits(BoardIndexItem, _React$Component);
 
   function BoardIndexItem(props) {
+    var _this;
+
     _classCallCheck(this, BoardIndexItem);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BoardIndexItem).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardIndexItem).call(this, props));
+    _this.state = {
+      visible: false
+    };
+    _this.displayBoardCover = _this.displayBoardCover.bind(_assertThisInitialized(_this));
+    _this.displayDefaultBoardCover = _this.displayDefaultBoardCover.bind(_assertThisInitialized(_this));
+    _this.toggleEdit = _this.toggleEdit.bind(_assertThisInitialized(_this));
+    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(BoardIndexItem, [{
-    key: "render",
-    value: function render() {
-      var _React$createElement, _React$createElement2, _React$createElement3, _React$createElement4, _React$createElement5, _React$createElement6;
-
+    key: "displayDefaultBoardCover",
+    value: function displayDefaultBoardCover() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-cover"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '50%',
+          height: '100%'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          width: '100%',
+          height: '100%'
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "border-line",
+        style: {
+          width: '25%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '75%'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '25%'
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          width: '25%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '50%'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '50%'
+        }
+      })));
+    }
+  }, {
+    key: "displayBoardCoverPins",
+    value: function displayBoardCoverPins() {
+      var halfStyle = {
+        width: '50%',
+        flex: '1 1 auto'
+      };
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-cover"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '50%',
+          height: '100%'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          width: '100%',
+          height: '100%'
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "border-line",
+        style: {
+          width: '25%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '75%'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '25%'
+        }
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        style: {
+          width: '25%',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '50%'
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-item border-line",
+        style: {
+          width: '100%',
+          height: '50%'
+        }
+      })));
+    }
+  }, {
+    key: "displayBoardCover",
+    value: function displayBoardCover() {
       // const BoardIndexItem = ({board, pins}) => {           
       //     let itemsHeight = [0, 0, 0];
       //     for (let i = 0; i++; i < 6) {
@@ -956,45 +1089,70 @@ function (_React$Component) {
       //         img.height = height;
       //     }
       // const bg = 'http://localhost:3000/assets/pins/1-e54d52a0560338a4dc13217859b079fd38697d3f4094781125ffbdb589f070de.jpg'; 
-      var imgStyle = {
-        // backgroundImage: `url(${bg})`
-        backgroundColor: 'black'
-      };
+      // const imgStyle = {
+      //     // backgroundImage: `url(${bg})`
+      //     backgroundColor: 'black',
+      //     width: '20px',
+      //     height: '20px'
+      // }
+      // const { pins } = this.props;
+      // const pinDetail = Object.values(pins).map(pin =>
+      //     (                                
+      //         <div className="m-item-frame" key={pin.id}>                    
+      //             <img className="m-item" className="m-content" style={imgStyle} />
+      //         </div>
+      //     )
+      // );
+      return this.displayDefaultBoardCover();
+    }
+  }, {
+    key: "toggleEdit",
+    value: function toggleEdit() {
+      this.setState({
+        visible: !this.visible
+      });
+    }
+  }, {
+    key: "displayEdit",
+    value: function displayEdit() {
+      if (this.state.visible && this.props.permitted) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: this.showModal,
+          className: "b-index-link"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          "class": "gUZ B9u U9O kVc",
+          height: "20",
+          width: "20",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
+        })));
+      }
+    }
+  }, {
+    key: "showModal",
+    value: function showModal(e) {
+      this.props.showModal('edit-board', this.props.board.id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
       var _this$props = this.props,
           board = _this$props.board,
           pins = _this$props.pins;
-      var totalPins = Object.keys(pins).length;
+      var pinCount = Object.values(pins).length;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "b-item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "m-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "masonry"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "m-item-frame"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", (_React$createElement = {
-        className: "m-item"
-      }, _defineProperty(_React$createElement, "className", "m-content"), _defineProperty(_React$createElement, "style", imgStyle), _React$createElement))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "m-item-frame"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", (_React$createElement2 = {
-        className: "m-item"
-      }, _defineProperty(_React$createElement2, "className", "m-content"), _defineProperty(_React$createElement2, "style", imgStyle), _React$createElement2))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "m-item-frame"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", (_React$createElement3 = {
-        className: "m-item"
-      }, _defineProperty(_React$createElement3, "className", "m-content"), _defineProperty(_React$createElement3, "style", imgStyle), _React$createElement3))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "m-item-frame"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", (_React$createElement4 = {
-        className: "m-item"
-      }, _defineProperty(_React$createElement4, "className", "m-content"), _defineProperty(_React$createElement4, "style", imgStyle), _React$createElement4))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "m-item-frame"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", (_React$createElement5 = {
-        className: "m-item"
-      }, _defineProperty(_React$createElement5, "className", "m-content"), _defineProperty(_React$createElement5, "style", imgStyle), _React$createElement5))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "m-item-frame"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", (_React$createElement6 = {
-        className: "m-item"
-      }, _defineProperty(_React$createElement6, "className", "m-content"), _defineProperty(_React$createElement6, "style", imgStyle), _React$createElement6))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, totalPins, " ", totalPins > 1 ? "Pins" : "Pin")));
+        className: "b-item",
+        onMouseEnter: this.toggleEdit,
+        onMouseLeave: this.toggleEdit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/boards/".concat(board.id)
+      }, this.displayBoardCover(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? "Pins" : "Pin"))));
     }
   }]);
 
@@ -1980,17 +2138,19 @@ function (_React$Component) {
       //   // if (this.props.loading) {
       //   //   return <div></div>;
       //   // }
-      var userProfileName;
       var _this$props = this.props,
+          currentUser = _this$props.currentUser,
+          username = _this$props.username,
           user = _this$props.user,
           boards = _this$props.boards,
           pins = _this$props.pins,
           pinIds = _this$props.pinIds;
+      if (!user) return null;
       var userPins = Object.values(pins).filter(function (pin) {
         return pinIds.includes(pin.pin_id);
       });
-      if (!user) return null;
-      userProfileName = user.first_name + " " + (user.last_name === null ? "" : user.last_name);
+      var userProfileName = user.first_name + " " + (user.last_name === null ? "" : user.last_name);
+      var permitted = username === currentUser.username;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2032,7 +2192,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
         user: user,
         boards: boards,
-        pins: userPins
+        pins: userPins,
+        permitted: permitted,
+        showModal: this.props.showModal
       })));
     }
   }]);
