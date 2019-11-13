@@ -1869,7 +1869,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
     _this.state = {
-      tabItem: 'board',
+      tabItem: "board",
       showDropDown: false
     };
     _this.displayProfileToolbar = _this.displayProfileToolbar.bind(_assertThisInitialized(_this));
@@ -1956,9 +1956,10 @@ function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           boards = _this$props.boards,
-          pins = _this$props.pins;
+          pins = _this$props.pins; // const userPins = Object.values(pins).filter(pin => pinIds.includes(pin.id));
+
       if (!user) return null;
-      userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);
+      userProfileName = user.first_name + " " + (user.last_name === null ? "" : user.last_name);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2030,7 +2031,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var username = ownProps.match.params.username;
   var user = state.entities.users[username];
   var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user);
-  var pins = Object.values(state.entities.pins); // const pinIds = user["pin_ids"];  
+  var pins = Object.values(state.entities.pins); // const pinIds = user ? user["pin_ids"] || [];  
   // const userPins = selectUserPins(state.entities, pinIds); 
 
   return {
@@ -2038,6 +2039,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     username: username,
     user: user,
     boards: boards,
+    // pinIds,
     // userPins,
     pins: pins
   };

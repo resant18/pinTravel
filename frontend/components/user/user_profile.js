@@ -2,26 +2,25 @@ import React from "react";
 import BoardIndex from "../board/board_index";
 // import PinIndexContainer from "../pin/pin_index_container";
 
-class UserProfile extends React.Component {  
-    constructor(props) {      
-        super(props);
-        this.state = {
-            tabItem: 'board',   
-            showDropDown: false,         
-        };      
-        
-        this.displayProfileToolbar = this.displayProfileToolbar.bind(this);
-        this.toggleDropDown = this.toggleDropDown.bind(this);        
-        this.showModal = this.showModal.bind(this);
-    }
+class UserProfile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tabItem: "board",
+      showDropDown: false
+    };
 
-  componentDidMount() {                       
-    this.props.fetchUser(this.props.username);           
-    
+    this.displayProfileToolbar = this.displayProfileToolbar.bind(this);
+    this.toggleDropDown = this.toggleDropDown.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchUser(this.props.username);
   }
 
   handleClick(type) {
-    return e => this.setState({ tabItem: [type] })      
+    return e => this.setState({ tabItem: [type] });
   }
 
   toggleDropDown(e) {
@@ -34,7 +33,7 @@ class UserProfile extends React.Component {
     return e => this.props.showModal(modal);
   }
 
-  displayProfileToolbar() {    
+  displayProfileToolbar() {
     if (this.props.user === this.props.currentUser) {
       return (
         <nav className="profile-toolbar">
@@ -76,16 +75,19 @@ class UserProfile extends React.Component {
     }
   }
 
-  render() {        
-  //   // if (this.props.loading) {
-  //   //   return <div></div>;
-  //   // }
-    
+  render() {
+    //   // if (this.props.loading) {
+    //   //   return <div></div>;
+    //   // }
+
     let userProfileName;
-    const { user, boards, pins} = this.props;    
+    const { user, boards, pins} = this.props;
+
+    // const userPins = Object.values(pins).filter(pin => pinIds.includes(pin.id));
 
     if (!user) return null;
-    userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);      
+    userProfileName =
+      user.first_name + " " + (user.last_name === null ? "" : user.last_name);
     return (
       <section className="user-profile-page">
         <div className="tilted-pins"></div>
@@ -121,7 +123,7 @@ class UserProfile extends React.Component {
         <BoardIndex user={user} boards={boards} pins={pins} />
       </section>
     );
-   }
+  }
 }
 
 export default UserProfile;

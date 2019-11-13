@@ -11,7 +11,8 @@ const mapStateToProps = (state, ownProps) => {
   const boards = selectUserBoards(state.entities, user);
 
   const pins = Object.values(state.entities.pins);
-  // const pinIds = user["pin_ids"];  
+  
+  // const pinIds = user ? user["pin_ids"] || [];  
   // const userPins = selectUserPins(state.entities, pinIds); 
 
   
@@ -21,6 +22,7 @@ const mapStateToProps = (state, ownProps) => {
     username,
     user,
     boards,
+    // pinIds,
     // userPins,
     pins
   };
