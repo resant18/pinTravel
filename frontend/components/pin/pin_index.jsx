@@ -5,7 +5,7 @@ import Spinner from '../spinner.jsx';
 class PinIndex extends React.Component {
     constructor(props) {
         super(props);
-        // debugger
+        // 
         this.state = {
             loading: true,
         }
@@ -13,14 +13,14 @@ class PinIndex extends React.Component {
     }
 
     componentDidMount() {
-        // debugger
+        // 
         this.props.requestUserPins(this.props.userId);
         this.props.requestUserBoards(this.props.currentId);
     }
 
 
     render() {
-        // debugger
+        // 
         if (this.state.loading) {
             return (
                 <Spinner state={this.state} />
@@ -45,7 +45,7 @@ class PinIndex extends React.Component {
 
         for (var i = 0; i < this.props.pins.length; i++) {
             // for (var i = 0; i < 12; i++) {
-            // debugger
+            // 
             if (i === 0 && this.props.currentId == this.props.userId) {
                 col2.push(this.props.pins[i]);
                 continue;

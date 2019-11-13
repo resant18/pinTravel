@@ -8,20 +8,36 @@ class BoardIndex extends React.Component {
     }
 
     componentDidMount() {
-        //debugger
+        //
         //this.props.fetchUserBoards(this.props.user[0].id);
         //this.props.requestUser(this.props.loggedInUser);
     }
 
     render() {        
-        const { boards } = this.props;
+        const { boards, pins } = this.props;
 
-        return (   
+        if (!boards) return null;
+        
+        const userBoards = boards.map((board, i) => {
+            const board_pins = pins.filter(pin => pin.board_id === board.id);
+
+            return (   
+                
+                                            
+                        <div key={board.id}> 
+                            <BoardIndexItem board={board} pins={board_pins}/> 
+                        </div>
+                    
+                
+            )
+        });
+
+        return (
             <section className="b-item-wrapper">
                 {
-                    boards.map(board => <BoardIndexItem board={board} />)
+                   userBoards
                 }
-            </section>         
+            </section>     
         )
     }
 }

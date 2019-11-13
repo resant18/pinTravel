@@ -2,12 +2,12 @@ class Api::BoardsController < ApplicationController
     before_action :require_logged_in, only: [:create, :edit, :update, :destroy]
 
     def index
-        @boards = Board.all.includes(:user)
+        @boards = Board.all.includes(:user, :boards_pins, :pins)
         render "api/boards/index"
     end
 
     def show
-        @board = Board.includes(:user).find(params[:id])
+        @board = Board.includes(:user, :boards_pins, :pins).find(params[:id])
         render "api/boards/show"
     end
 

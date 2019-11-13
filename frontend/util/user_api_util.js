@@ -1,4 +1,5 @@
 export const fetchUser = username => {
+  
     return (
     $.ajax({
         method: "GET",

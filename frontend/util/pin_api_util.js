@@ -1,31 +1,31 @@
-export const fetchAllPins = page => {
+export const fetchAllPins = () => {
   return $.ajax({
     method: "GET",
-    url: `api/all_pins`,
+    url: `api/boards_pins`
+  });
+};
+
+export const fetchPinsFeed = page => {
+  return $.ajax({
+    method: "GET",
+    url: `api/boards_pins/feeds`,
     data: { page }
   });
 };
 
-export const fetchBoardPins = (id, page) => {
+export const fetchUserPins = (userId, page) => {
   return $.ajax({
     method: "GET",
-    url: `api/board_pins/${id}`,
+    url: `api/users/${userId}/pins`,
     data: { page }
   });
 };
 
-export const fetchUserPins = (username, page) => {
+export const fetchBoardPins = (boardId, page) => {
   return $.ajax({
     method: "GET",
-    url: `api/user_pins/${username}`,
+    url: `api/boards/${boardId}/pins`,
     data: { page }
-  });
-};
-
-export const fetchPins = () => {
-  return $.ajax({
-    method: "GET",
-    url: `api/pin_joins`
   });
 };
 
@@ -36,28 +36,28 @@ export const fetchPin = id => {
   });
 };
 
-export const createPin = (formData, id) => {
+export const createPin = (formData) => {
   return $.ajax({
     method: "POST",
-    url: `api/boards/${id}/pins`,
+    url: `api/pins`,
     data: formData,
     contentType: false,
     processData: false
   });
 };
 
-export const createPinJoin = (pin, id) => {
-  return $.ajax({
-    method: "POST",
-    url: `api/boards/${id}/pin_joins`,
-    data: { pin }
-  });
-};
+// export const createPinJoin = (pin, id) => {
+//   return $.ajax({
+//     method: "POST",
+//     url: `api/boards/${id}/pin_joins`,
+//     data: { pin }
+//   });
+// };
 
 export const updatePin = pin => {
   return $.ajax({
     method: "PATCH",
-    url: `api/pin_joins/${pin.id}`,
+    url: `api/pins/${pin.id}`,
     data: { pin }
   });
 };
@@ -65,6 +65,6 @@ export const updatePin = pin => {
 export const deletePin = id => {
   return $.ajax({
     method: "DELETE",
-    url: `api/pin_joins/${id}`
+    url: `api/pin/${id}`
   });
 };

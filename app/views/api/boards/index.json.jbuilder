@@ -11,11 +11,11 @@
     end
   end
 
-  # json.pins do
-  #   board.pin_joins.each do |pinjoin|
-  #     json.set! pinjoin.id do
-  #       json.partial! 'api/pins/pin', pinjoin: pinjoin
-  #     end
-  #   end
-  # end
+  json.pins do
+    board.boards_pins.each do |board_pin|
+      json.set! board_pin.id do
+        json.partial! 'api/pins/pin', board_pin: board_pin
+      end
+    end
+  end
 end

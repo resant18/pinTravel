@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { hideModal } from '../../actions/modal_actions';
+import BoardCreateContainer from '../../components/board/board_create_container';
 
 const Modal = ({ modal, hideModal }) => {       
     if (!modal || modal === 'login' || modal === 'signup') {
@@ -11,7 +12,10 @@ const Modal = ({ modal, hideModal }) => {
 
     switch (modal) {        
         case 'create_board':
-            component = <BoardFormContainer />
+            component = <BoardCreateContainer />
+            break;
+        case 'create-pin':
+            component = <BoardCreateContainer />
             break;
         default:
             return null;

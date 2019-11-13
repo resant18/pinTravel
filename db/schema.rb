@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_014033) do
+ActiveRecord::Schema.define(version: 2019_11_12_053051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "board_pins", force: :cascade do |t|
+    t.integer "board_id", null: false
+    t.integer "pin_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_board_pins_on_board_id"
+    t.index ["pin_id"], name: "index_board_pins_on_pin_id"
+  end
 
   create_table "boards", force: :cascade do |t|
     t.string "name", null: false
@@ -32,11 +41,10 @@ ActiveRecord::Schema.define(version: 2019_11_09_014033) do
     t.string "name", default: ""
     t.string "detail", default: ""
     t.decimal "lat", default: "0.0"
-    t.decimal "lng", default: "0.0"''
-    t.integer "board_id", null: false
+    t.decimal "lng", default: "0.0"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["board_id"], name: "index_pins_on_board_id"
+    t.string "link_url"
   end
 
   create_table "users", force: :cascade do |t|

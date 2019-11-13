@@ -14,14 +14,14 @@ class SessionForm extends React.Component {
         this.handleDemoUser = this.handleDemoUser.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);   
         this.handleChange = this.handleChange.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);        
     }  
     
     componentWillUnmount() {
         this.props.clearErrors();
     }
 
-    _getUserName() {
+    _getUserInfo() {
         const email = this.state.email;
         const idx = email.indexOf('@');
         
@@ -38,7 +38,7 @@ class SessionForm extends React.Component {
         }
 
         this.setState({ first_name: firstName, last_name: lastName });        
-        return { first_name: firstName, last_name: lastName }
+        return { username: firstName, first_name: firstName, last_name: lastName }
     }
 
     _validateForm() {        
@@ -124,39 +124,40 @@ class SessionForm extends React.Component {
         )
     }
 
-    handleSubmit(e) {        
+    handleSubmit(e) {
         e.preventDefault();
-        
-        let username, user, newState;        
+
+        let user;
         const email = document.getElementById('input-email').value;
         const password = document.getElementById('input-password').value;
-        
+        const newState = { email, password }
+
+        this.setState(newState);
         if (this.props.formType === 'Sign up') {
-            username = this._getUserName();  
-            newState = {email, password, username}                                
-        } else {                     
-            newState = {email, password}
+            const userInfo = this._getUserInfo();
+            const { username, first_name, last_name } = userInfo;
+            user = { email, password, username, first_name, last_name };
+        } else {
+            user = Object.assign({}, this.state);
         }
 
-        this.setState(newState);            
-        user = Object.assign({}, this.state);
-        
 
-        if (this._validateForm()) {                       
-            this.props.processForm(user)
-                .then ( user => {                    
+
+        if (this._validateForm()) {
+            this.props.processForm(user)                                
+                .then ( user => {                                           
                     this.props.hideModal();
                     return user;                                  
                 })                
-                .then( user => {                    
+                .then( user => {                                        
                     this.props.history.push(`/${user.currentUser.username}`)
                 })
         }
-    }   
-    
-    handleChange(e) {
-        e.preventDefault();
-        const { name, value } = e.target;
+    }
+
+    handleChange(event) {
+        event.preventDefault();
+        const { name, value } = event.target;
 
         this.setState({ [name]: value });
     }
@@ -173,6 +174,10 @@ class SessionForm extends React.Component {
     
     render() {
         const { passwordHolder, formType } = this.props;   
+
+        const divStyle = {
+            display: 'none',
+        };
         
         return (
             <div className="form-container">
@@ -198,6 +203,7 @@ class SessionForm extends React.Component {
                                             placeholder="Email"
                                             aria-invalid="false"                                            
                                         />
+                                        <div id="error-email" className="error-text" style={divStyle}></div>
                                     </div>
                                     <div className="input-field">
                                         <input type="password"

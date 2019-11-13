@@ -1,5 +1,5 @@
 import React from "react";
-import BoardIndexContainer from "../board/board_index_container";
+import BoardIndex from "../board/board_index";
 // import PinIndexContainer from "../pin/pin_index_container";
 
 class UserProfile extends React.Component {  
@@ -15,8 +15,9 @@ class UserProfile extends React.Component {
         this.showModal = this.showModal.bind(this);
     }
 
-  componentDidMount() {               
+  componentDidMount() {                       
     this.props.fetchUser(this.props.username);           
+    
   }
 
   handleClick(type) {
@@ -29,9 +30,8 @@ class UserProfile extends React.Component {
     document.getElementById("drop-down").classList.toggle("show");
   }
 
-  showModal(e) {
-    debugger
-    this.props.showModal('create-board');
+  showModal(modal) {
+    return e => this.props.showModal(modal);
   }
 
   displayProfileToolbar() {    
@@ -50,16 +50,21 @@ class UserProfile extends React.Component {
             >
               <path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path>
             </svg>
-            <div
-              id="drop-down"
-              className="drop-down"
-            >
+            <div id="drop-down" className="drop-down">
               <div className="frame">
                 <div className="list" role="list">
-                  <div title="Create board" className="create-board" onClick={this.showModal}>
+                  <div
+                    title="Create board"
+                    className="create-board"
+                    onClick={this.showModal("create-board")}
+                  >
                     Create board
                   </div>
-                  <div title="Create pin" className="create-pin" >
+                  <div
+                    title="Create pin"
+                    className="create-pin"
+                    onClick={this.showModal("create-pin")}
+                  >
                     Create Pin
                   </div>
                 </div>
@@ -75,13 +80,12 @@ class UserProfile extends React.Component {
   //   // if (this.props.loading) {
   //   //   return <div></div>;
   //   // }
+    
     let userProfileName;
-    const { user, boards } = this.props;    
-        
-    if (user) {       
-        userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);
-    }    
+    const { user, boards, pins} = this.props;    
 
+    if (!user) return null;
+    userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);      
     return (
       <section className="user-profile-page">
         <div className="tilted-pins"></div>
@@ -108,13 +112,13 @@ class UserProfile extends React.Component {
               </div>
               <div className="pins-count">
                 <p className="boards-count-title">Pins</p>
-                <p className="boards-count-number">25</p>
+                <p className="boards-count-number">{pins.length}</p>
               </div>
             </div>
           </div>
-          { this.displayProfileToolbar() }
+          {this.displayProfileToolbar()}
         </div>
-        <BoardIndexContainer user={user} boards={boards}/>        
+        <BoardIndex user={user} boards={boards} pins={pins} />
       </section>
     );
    }

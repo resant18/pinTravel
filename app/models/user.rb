@@ -14,8 +14,19 @@ class User < ApplicationRecord
        
     after_initialize :ensure_session_token
 
-    has_many :boards
-    has_many :pins, through: :boards
+    has_many :boards,
+        foreign_key: :user_id,
+        class_name: :Board,
+        dependent: :destroy
+
+    has_many :board_pins, 
+        through: :boards, 
+        source: :board_pins,
+        dependent: :destroy
+
+    has_many :pins, 
+        through: :boards, 
+        source: :board_pins
 
     attr_reader :password
 

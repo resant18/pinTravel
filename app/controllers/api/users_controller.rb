@@ -6,12 +6,12 @@ class Api::UsersController < ApplicationController
             login(@user)
             render "api/users/show"
         else
-            render json: @user.errors.full_messages, status: 422
+            render json: { signup: @user.errors.full_messages }, status: 422
         end
     end
-
+    
     def show                
-        @user = User.includes(:boards).find_by(username: params[:id])
+        @user = User.includes(:boards, :pins).find_by(username: params[:id])
         render :show
     end
 

@@ -3,19 +3,21 @@ import { showModal, hideModal } from "../../actions/modal_actions";
 import { fetchUserBoards } from '../../actions/board_actions';
 //import { fetchUser } from "../../actions/user_actions";
 import BoardIndex from "./board_index";
+import { selectUserPins } from "../../reducers/selector";
 
 const mapStateToProps = (state, ownProps) => {    
-  // const currentUser = state.entities.users[state.session.id];
+  const currentUser = state.entities.users[state.session.id];
   const user = ownProps.user;
-  // const username = user.username;
+  const username = user.username;
   const boards = ownProps.boards;
-  // const pins = Object.values(state.entities.pins);
+  const pins = ownProps.pins;  
+  
   return {
-    // currentUser,
+    currentUser,
     user,
-    // username,
+    username,
     boards,
-    // pins
+    pins,
   };
 };
 
