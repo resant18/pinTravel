@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
     has_many :pins, 
         through: :boards, 
-        source: :board_pins
+        source: :pins
 
     attr_reader :password
 

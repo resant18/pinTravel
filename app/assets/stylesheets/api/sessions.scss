@@ -145,3 +145,19 @@
 .create-board, .create-pin {
     cursor: pointer;    
 }
+
+.tab-list {
+    width: 300px;
+    margin-bottom: 4px;
+    nav {
+        display: flex;
+        flex-direction: row;
+        button {
+            width: 90px;
+            min-height: 40px;
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-weight: 700;
+        }        
+    }
+}

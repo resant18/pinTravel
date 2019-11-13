@@ -1873,6 +1873,9 @@ function (_React$Component) {
       showDropDown: false
     };
     _this.displayProfileToolbar = _this.displayProfileToolbar.bind(_assertThisInitialized(_this));
+    _this.displayTabList = _this.displayTabList.bind(_assertThisInitialized(_this));
+    _this.showUserBoards = _this.showUserBoards.bind(_assertThisInitialized(_this));
+    _this.showUserPins = _this.showUserPins.bind(_assertThisInitialized(_this));
     _this.toggleDropDown = _this.toggleDropDown.bind(_assertThisInitialized(_this));
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     return _this;
@@ -1947,6 +1950,31 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "showUserBoards",
+    value: function showUserBoards() {
+      this.setState({
+        tabItem: "board"
+      });
+    }
+  }, {
+    key: "showUserPins",
+    value: function showUserPins() {
+      this.setState({
+        tabItem: "pin"
+      });
+    }
+  }, {
+    key: "displayTabList",
+    value: function displayTabList() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.showUserBoards.bind(this),
+        className: "board-tab"
+      }, "Boards"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.showUserPins.bind(this),
+        className: "pin-tab"
+      }, "Pins"));
+    }
+  }, {
     key: "render",
     value: function render() {
       //   // if (this.props.loading) {
@@ -1956,11 +1984,14 @@ function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           boards = _this$props.boards,
-          pins = _this$props.pins; // const userPins = Object.values(pins).filter(pin => pinIds.includes(pin.id));
-
+          pins = _this$props.pins,
+          pinIds = _this$props.pinIds;
+      var userPins = Object.values(pins).filter(function (pin) {
+        return pinIds.includes(pin.pin_id);
+      });
       if (!user) return null;
       userProfileName = user.first_name + " " + (user.last_name === null ? "" : user.last_name);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tilted-pins"
@@ -1994,11 +2025,15 @@ function (_React$Component) {
         className: "boards-count-title"
       }, "Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "boards-count-number"
-      }, pins.length)))), this.displayProfileToolbar()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, pinIds.length)))), this.displayProfileToolbar())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "tab-list"
+      }, this.displayTabList()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "boards"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
         user: user,
         boards: boards,
-        pins: pins
-      }));
+        pins: userPins
+      })));
     }
   }]);
 
@@ -2031,15 +2066,15 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var username = ownProps.match.params.username;
   var user = state.entities.users[username];
   var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user);
-  var pins = Object.values(state.entities.pins); // const pinIds = user ? user["pin_ids"] || [];  
-  // const userPins = selectUserPins(state.entities, pinIds); 
+  var pins = Object.values(state.entities.pins);
+  var pinIds = user ? user["pin_ids"] : []; // const userPins = selectUserPins(state.entities, pinIds); 
 
   return {
     currentUser: state.entities.users[state.session.id],
     username: username,
     user: user,
     boards: boards,
-    // pinIds,
+    pinIds: pinIds,
     // userPins,
     pins: pins
   };

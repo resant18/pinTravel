@@ -11,6 +11,9 @@ class UserProfile extends React.Component {
     };
 
     this.displayProfileToolbar = this.displayProfileToolbar.bind(this);
+    this.displayTabList = this.displayTabList.bind(this);
+    this.showUserBoards = this.showUserBoards.bind(this);
+    this.showUserPins = this.showUserPins.bind(this);
     this.toggleDropDown = this.toggleDropDown.bind(this);
     this.showModal = this.showModal.bind(this);
   }
@@ -75,53 +78,85 @@ class UserProfile extends React.Component {
     }
   }
 
+  showUserBoards() {
+    this.setState({ tabItem: "board" });
+  }
+
+  showUserPins() {
+    this.setState({ tabItem: "pin" });
+  }
+
+  displayTabList() {
+    return (      
+      <nav>
+        <button
+          onClick={this.showUserBoards.bind(this)}
+          className="board-tab"
+        >
+          Boards
+        </button>
+        <button
+          onClick={this.showUserPins.bind(this)}
+          className="pin-tab"
+        >
+          Pins
+        </button>
+      </nav>
+    )
+  }
+
   render() {
     //   // if (this.props.loading) {
     //   //   return <div></div>;
     //   // }
 
     let userProfileName;
-    const { user, boards, pins} = this.props;
+    const { user, boards, pins, pinIds} = this.props;
 
-    // const userPins = Object.values(pins).filter(pin => pinIds.includes(pin.id));
+    const userPins = Object.values(pins).filter(pin => pinIds.includes(pin.pin_id));
 
     if (!user) return null;
     userProfileName =
       user.first_name + " " + (user.last_name === null ? "" : user.last_name);
     return (
-      <section className="user-profile-page">
-        <div className="tilted-pins"></div>
-        <div className="user-profile-container">
-          <div className="user-avatar">
-            <div className="-pos">
-              <div className="-shadow-wrapper">
-                <img
-                  alt={userProfileName}
-                  className="user-profile-image"
-                  src={window.userProfile}
-                />
+      <div>
+        <section className="user-profile-page">
+          <div className="tilted-pins"></div>
+          <div className="user-profile-container">
+            <div className="user-avatar">
+              <div className="-pos">
+                <div className="-shadow-wrapper">
+                  <img
+                    alt={userProfileName}
+                    className="user-profile-image"
+                    src={window.userProfile}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div className="user-profile-detail">
-            <div className="user-profile-name">
-              <h5>{userProfileName}</h5>
-            </div>
-            <div className="user-boards-pins-count">
-              <div className="boards-count">
-                <p className="boards-count-title">Boards</p>
-                <p className="boards-count-number">{boards.length}</p>
+            <div className="user-profile-detail">
+              <div className="user-profile-name">
+                <h5>{userProfileName}</h5>
               </div>
-              <div className="pins-count">
-                <p className="boards-count-title">Pins</p>
-                <p className="boards-count-number">{pins.length}</p>
+              <div className="user-boards-pins-count">
+                <div className="boards-count">
+                  <p className="boards-count-title">Boards</p>
+                  <p className="boards-count-number">{boards.length}</p>
+                </div>
+                <div className="pins-count">
+                  <p className="boards-count-title">Pins</p>
+                  <p className="boards-count-number">{pinIds.length}</p>
+                </div>
               </div>
             </div>
-          </div>
-          {this.displayProfileToolbar()}
-        </div>
-        <BoardIndex user={user} boards={boards} pins={pins} />
-      </section>
+            {this.displayProfileToolbar()}
+          </div>          
+        </section>
+        <section className="tab-list">{this.displayTabList()}</section>
+        <section className="boards">
+          <BoardIndex user={user} boards={boards} pins={userPins} />
+        </section>
+      </div>
     );
   }
 }

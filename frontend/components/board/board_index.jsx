@@ -17,18 +17,13 @@ class BoardIndex extends React.Component {
         const { boards, pins } = this.props;
 
         if (!boards) return null;
-        
         const userBoards = boards.map((board, i) => {
             const board_pins = pins.filter(pin => pin.board_id === board.id);
 
             return (   
-                
-                                            
-                        <div key={board.id}> 
-                            <BoardIndexItem board={board} pins={board_pins}/> 
-                        </div>
-                    
-                
+                <div key={board.id}> 
+                    <BoardIndexItem board={board} pins={board_pins}/> 
+                </div>
             )
         });
 
