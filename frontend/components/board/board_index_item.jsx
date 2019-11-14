@@ -38,7 +38,7 @@ class BoardIndexItem extends React.Component {
         while (arr.length < 6) {
             let r = Math.floor(Math.random() * limit) + 1;
             if (arr.indexOf(r) === -1) 
-                if (arr.length > count)
+                if (arr.length >= count)
                     arr.push(-1);
                 else
                     arr.push(r);
