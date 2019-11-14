@@ -79,50 +79,66 @@
         .b-item {
             width: 100%;
             height: 100%;
-            max-width: 264px;
+            min-height: 264px;
             a {                
                 display: block;
                 outline: 0;
                 transition: transform 0.2s ease-out 0s;
                 height: 100%;
-                text-decoration: none;
-                .board-cover {
+                text-decoration: none;    
+                div {            
                     width: 100%;
                     height: 100%;
-                    border-radius: 8px;
-                    will-change: transform;
-                    overflow: hidden;
-                    display: flex;
-                    flex-direction: row;
                     transform: translateX(0px) ttranslateY(0px);
-                }
-                .board-info {
-                    letter-spacing: -.4px;
-                    text-align: left;
-                    margin-top: 12px;
-                    h2{
-                        font-weight: 700;
-                        color: #333;
-                        font-size: 21px;
-                        max-width: 100%;
+                    .board-cover {
+                        width: 100%;
+                        height: 264px;
+                        border-radius: 8px;
+                        will-change: transform;
                         overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;   
-                        hyphens: auto;                     
-                        word-wrap: break-word;                        
+                        display: flex;
+                        flex-direction: row;
+                        
+
+                        .bg-cover {
+                            background-color: rgba(0, 0, 0, 0.03) !important; 
+                            background-size: cover !important;
+                            background-position: center !important;
+                        }
                     }
-                    p {                        
-                        color: #8e8e8e;
-                        font-size: 14px;
-                        hyphens: 0;
-                        word-wrap: break-word;
-                        font-weight: 400;
+                    .board-info {
+                        letter-spacing: -.4px;
+                        text-align: center;
+                        margin-top: 12px;                    
+                        h2{
+                            font-weight: 700;
+                            color: #333;
+                            font-size: 21px;
+                            max-width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;   
+                            hyphens: auto;                     
+                            word-wrap: break-word;                        
+                        }
+                        p {                        
+                            color: #8e8e8e;
+                            font-size: 14px;
+                            hyphens: 0;
+                            word-wrap: break-word;
+                            font-weight: 400;
+                        }
                     }
-                }
-                &:focus, &:hover {
-                    cursor: pointer;
+                    
+                    &:focus, &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
+        }
+        &:hover, &:focus {
+            background-color: rgba(0, 0, 0, 0.07);    
+            border-radius: 8px;
         }
     }
 }

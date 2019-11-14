@@ -5,23 +5,28 @@
     html, body {
         font-size: 12pt;
     }
-    .user-profile-container {
+    .user-profile-container, .tab-list {
         max-width: 1024px;
     }    
     .b-item-wrapper {
-        grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));        
+        grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
     }
 }
 
 // Medium screen
 @media all and (max-width: 1023px) and (min-width: 768px) {    
     // 3 columns grid
-    
+    .user-profile-container, .tab-list {
+        max-width: 768px;
+    }
     
 }
 
 // Small screen
 @media all and (max-width: 767px) and (min-width: 540px) {    
     // 2 columns grid
+    .user-profile-container, .tab-list {
+        max-width: 540px;
+    }
     
 }

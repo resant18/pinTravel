@@ -80,22 +80,28 @@ class UserProfile extends React.Component {
 
   showUserBoards() {
     this.setState({ tabItem: "board" });
+    document.getElementById("board-tab").toggleClass("active");
+    document.getElementById("pin-tab").toggleClass("active");
   }
 
   showUserPins() {
     this.setState({ tabItem: "pin" });
+    document.getElementById("board-tab").toggleClass("active");
+    document.getElementById("pin-tab").toggleClass("active");
   }
 
   displayTabList() {
     return (      
       <nav>
-        <button
+        <button 
+          id="board-tab"
           onClick={this.showUserBoards.bind(this)}
-          className="board-tab"
+          className="board-tab active" 
         >
           Boards
         </button>
         <button
+          id = "pin-tab"
           onClick={this.showUserPins.bind(this)}
           className="pin-tab"
         >

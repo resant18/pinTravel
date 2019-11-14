@@ -7,18 +7,19 @@ class BoardIndexItem extends React.Component {
         this.state = {
             visible: false
         }
-
-        this.displayBoardCover = this.displayBoardCover.bind(this);
+        
         this.displayDefaultBoardCover = this.displayDefaultBoardCover.bind(this);        
+        this.displayBoardCoverPins = this.displayBoardCoverPins.bind(this);
         this.toggleEdit = this.toggleEdit.bind(this);  
         this.showModal = this.showModal.bind(this);              
     }
 
-    displayDefaultBoardCover() {        
-        return (
+    displayDefaultBoardCover() {                        
+        return (            
             <div className="board-cover" >
                 <div className="p-item border-line" style={{width: '50%', height: '100%'}}>
-                    <div style={{ width: '100%', height: '100%' }} />            
+                    <div style={{ width: '100%', height: '100%' }} />
+                                    
                 </div>
                 <div className="border-line" style={{ width: '25%', height: '100%', display: 'flex', flexDirection: 'column' }}>                    
                     <div className="p-item border-line" style={{ width: '100%', height: '75%' }} />                        
@@ -28,71 +29,87 @@ class BoardIndexItem extends React.Component {
                     <div className="p-item border-line" style={{ width: '100%', height: '50%' }} />                        
                     <div className="p-item border-line" style={{ width: '100%', height: '50%' }} />                        
                 </div>
+            </div>            
+        )
+    }
+
+    _generateRandomNumber(limit, count) {
+        let arr = [];
+        while (arr.length < 6) {
+            let r = Math.floor(Math.random() * limit) + 1;
+            if (arr.indexOf(r) === -1) 
+                if (arr.length > count)
+                    arr.push(-1);
+                else
+                    arr.push(r);
+    
+        }
+        return arr;
+    }
+
+    displayBoardCoverPins(pinCount) {  
+        let pins = this._generateRandomNumber(25, pinCount);
+
+        return (
+            <div className="board-cover" >
+                <div className="p-item border-line" style={{ width: '50%', height: '100%' }}>
+                    <div className="bg-cover" style={{ width: '100%', height: '100%', background: `url(${window.pins[pins[0]]})` }} />
+                </div>
+                <div className="border-line" style={{ width: '25%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '75%', background: `url(${window.pins[pins[1]]})` }} />
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '25%', background: `url(${window.pins[pins[2]]})` }} />
+                </div>
+                <div style={{ width: '25%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '50%', background: `url(${window.pins[pins[3]]})` }} />
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '50%', background: `url(${window.pins[pins[4]]})` }} />
+                </div>
             </div>
         )
     }
 
-    displayBoardCoverPins() {
-        const halfStyle = {
-            width: '50%',
-            flex: '1 1 auto'
+    displayBoardCoverPins2(pins) {                
+        let itemsHeight = [0, 0, 0];
+        
+        let pinsLayout = "<div></div>";
+        
+        for (let i = 0; i++; i < 6) {            
+            console.log(pins.length);
+
+            if (i < pins.length) {                
+                console.log('sdadas');
+                let img, width, height, ratio;
+                img = document.createElement('div');
+                img.id = "m-item" + i.toString();
+                img.src = window.pin2;
+                ratio = img.naturalWidth / 98.66;
+                height = img.naturalHeight * ratio;
+                img.height = height;
+                imgStyle = {
+                    background: `url(${window.pin3}`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                }
+                pinsLayout = 
+                    `<div style="${imgStyle}">
+                    </div>`;
+            } else {
+                pinsLayout = 
+                    `<h2>something<h2>`;
+            }
+            
         }
+
+        console.log(pinsLayout);
+        
+        
         return (
-            <div className="board-cover" >
-                <div className="p-item border-line" style={{ width: '50%', height: '100%' }}>
-                    <div style={{ width: '100%', height: '100%' }} />
-                </div>
-                <div className="border-line" style={{ width: '25%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div className="p-item border-line" style={{ width: '100%', height: '75%' }} />
-                    <div className="p-item border-line" style={{ width: '100%', height: '25%' }} />
-                </div>
-                <div style={{ width: '25%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div className="p-item border-line" style={{ width: '100%', height: '50%' }} />
-                    <div className="p-item border-line" style={{ width: '100%', height: '50%' }} />
-                </div>
-            </div>
+            pinsLayout
         )
     }
     
 
-    displayBoardCover() {
-        // const BoardIndexItem = ({board, pins}) => {           
-        //     let itemsHeight = [0, 0, 0];
-
-        //     for (let i = 0; i++; i < 6) {
-        //         let img, width, height, ratio;
-        //         img = document.createElement('img');
-        //         img.id = "m-item" + i.toString();
-        //         img.src = "https://i.pinimg.com/564x/b9/43/49/b94349a0521d30f9baafe8ae19f05cc3.jpg"
-        //         ratio = img.naturalWidth / 98.66;
-        //         height = img.naturalHeight * ratio;
-        //         img.height = height;
-        //     }
-
-
-        // const bg = 'http://localhost:3000/assets/pins/1-e54d52a0560338a4dc13217859b079fd38697d3f4094781125ffbdb589f070de.jpg'; 
-        // const imgStyle = {
-        //     // backgroundImage: `url(${bg})`
-        //     backgroundColor: 'black',
-        //     width: '20px',
-        //     height: '20px'
-        // }
-        // const { pins } = this.props;
-        
-        // const pinDetail = Object.values(pins).map(pin =>
-        //     (                                
-        //         <div className="m-item-frame" key={pin.id}>                    
-        //             <img className="m-item" className="m-content" style={imgStyle} />
-        //         </div>
-        //     )
-        // );
-
-
-        return this.displayDefaultBoardCover();
-    }
-
     toggleEdit() {
-        this.setState({ visible: !(this.visible) })
+        // this.setState({ visible: !(this.visible) })
     }
 
     displayEdit() {
@@ -112,22 +129,29 @@ class BoardIndexItem extends React.Component {
     }
 
     render() {
-        const { board, pins } = this.props;        
-        const pinCount = Object.values(pins).length;
-        
+        const { board, pins } = this.props;         
+        const pinCount = Object.keys(pins).length;
+
+        if ( !board ) return null;
+
+        // let pinIdx = this._generateRandomNumber(25);
+        const boardCover = (pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinCount));
+
         return (
             <div className="b-item"
                 onMouseEnter={this.toggleEdit}
                 onMouseLeave={this.toggleEdit}>
             
                 <Link to={`/boards/${board.id}`} >
-                    {
-                        this.displayBoardCover()
-                    }
-                    
-                    <div className="board-info">
-                        <h2>{board.name}</h2>
-                        <p>{pinCount} {pinCount > 1 ? "Pins" : "Pin"}</p>
+                    <div>
+                        {                        
+                            boardCover
+                        }
+                        
+                        <div className="board-info">
+                            <h2>{board.name}</h2>
+                            <p>{pinCount} {pinCount > 1 ? "Pins" : "Pin"}</p>
+                        </div>
                     </div>
                 </Link>
             </div>

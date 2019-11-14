@@ -949,8 +949,8 @@ function (_React$Component) {
     _this.state = {
       visible: false
     };
-    _this.displayBoardCover = _this.displayBoardCover.bind(_assertThisInitialized(_this));
     _this.displayDefaultBoardCover = _this.displayDefaultBoardCover.bind(_assertThisInitialized(_this));
+    _this.displayBoardCoverPins = _this.displayBoardCoverPins.bind(_assertThisInitialized(_this));
     _this.toggleEdit = _this.toggleEdit.bind(_assertThisInitialized(_this));
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     return _this;
@@ -1014,12 +1014,22 @@ function (_React$Component) {
       })));
     }
   }, {
+    key: "_generateRandomNumber",
+    value: function _generateRandomNumber(limit, count) {
+      var arr = [];
+
+      while (arr.length < 6) {
+        var r = Math.floor(Math.random() * limit) + 1;
+        if (arr.indexOf(r) === -1) if (arr.length > count) arr.push(-1);else arr.push(r);
+      }
+
+      return arr;
+    }
+  }, {
     key: "displayBoardCoverPins",
-    value: function displayBoardCoverPins() {
-      var halfStyle = {
-        width: '50%',
-        flex: '1 1 auto'
-      };
+    value: function displayBoardCoverPins(pinCount) {
+      var pins = this._generateRandomNumber(25, pinCount);
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-cover"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1029,9 +1039,11 @@ function (_React$Component) {
           height: '100%'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bg-cover",
         style: {
           width: '100%',
-          height: '100%'
+          height: '100%',
+          background: "url(".concat(window.pins[pins[0]], ")")
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "border-line",
@@ -1042,16 +1054,18 @@ function (_React$Component) {
           flexDirection: 'column'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
+        className: "p-item border-line bg-cover",
         style: {
           width: '100%',
-          height: '75%'
+          height: '75%',
+          background: "url(".concat(window.pins[pins[1]], ")")
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
+        className: "p-item border-line bg-cover",
         style: {
           width: '100%',
-          height: '25%'
+          height: '25%',
+          background: "url(".concat(window.pins[pins[2]], ")")
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -1061,56 +1075,59 @@ function (_React$Component) {
           flexDirection: 'column'
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
+        className: "p-item border-line bg-cover",
         style: {
           width: '100%',
-          height: '50%'
+          height: '50%',
+          background: "url(".concat(window.pins[pins[3]], ")")
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
+        className: "p-item border-line bg-cover",
         style: {
           width: '100%',
-          height: '50%'
+          height: '50%',
+          background: "url(".concat(window.pins[pins[4]], ")")
         }
       })));
     }
   }, {
-    key: "displayBoardCover",
-    value: function displayBoardCover() {
-      // const BoardIndexItem = ({board, pins}) => {           
-      //     let itemsHeight = [0, 0, 0];
-      //     for (let i = 0; i++; i < 6) {
-      //         let img, width, height, ratio;
-      //         img = document.createElement('img');
-      //         img.id = "m-item" + i.toString();
-      //         img.src = "https://i.pinimg.com/564x/b9/43/49/b94349a0521d30f9baafe8ae19f05cc3.jpg"
-      //         ratio = img.naturalWidth / 98.66;
-      //         height = img.naturalHeight * ratio;
-      //         img.height = height;
-      //     }
-      // const bg = 'http://localhost:3000/assets/pins/1-e54d52a0560338a4dc13217859b079fd38697d3f4094781125ffbdb589f070de.jpg'; 
-      // const imgStyle = {
-      //     // backgroundImage: `url(${bg})`
-      //     backgroundColor: 'black',
-      //     width: '20px',
-      //     height: '20px'
-      // }
-      // const { pins } = this.props;
-      // const pinDetail = Object.values(pins).map(pin =>
-      //     (                                
-      //         <div className="m-item-frame" key={pin.id}>                    
-      //             <img className="m-item" className="m-content" style={imgStyle} />
-      //         </div>
-      //     )
-      // );
-      return this.displayDefaultBoardCover();
+    key: "displayBoardCoverPins2",
+    value: function displayBoardCoverPins2(pins) {
+      var itemsHeight = [0, 0, 0];
+      var pinsLayout = "<div></div>";
+
+      for (var i = 0; i++; i < 6) {
+        console.log(pins.length);
+
+        if (i < pins.length) {
+          console.log('sdadas');
+          var img = void 0,
+              width = void 0,
+              height = void 0,
+              ratio = void 0;
+          img = document.createElement('div');
+          img.id = "m-item" + i.toString();
+          img.src = window.pin2;
+          ratio = img.naturalWidth / 98.66;
+          height = img.naturalHeight * ratio;
+          img.height = height;
+          imgStyle = {
+            background: "url(".concat(window.pin3),
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          };
+          pinsLayout = "<div style=\"".concat(imgStyle, "\">\n                    </div>");
+        } else {
+          pinsLayout = "<h2>something<h2>";
+        }
+      }
+
+      console.log(pinsLayout);
+      return pinsLayout;
     }
   }, {
     key: "toggleEdit",
-    value: function toggleEdit() {
-      this.setState({
-        visible: !this.visible
-      });
+    value: function toggleEdit() {// this.setState({ visible: !(this.visible) })
     }
   }, {
     key: "displayEdit",
@@ -1143,16 +1160,19 @@ function (_React$Component) {
       var _this$props = this.props,
           board = _this$props.board,
           pins = _this$props.pins;
-      var pinCount = Object.values(pins).length;
+      var pinCount = Object.keys(pins).length;
+      if (!board) return null; // let pinIdx = this._generateRandomNumber(25);
+
+      var boardCover = pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinCount);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "b-item",
         onMouseEnter: this.toggleEdit,
         onMouseLeave: this.toggleEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/boards/".concat(board.id)
-      }, this.displayBoardCover(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, boardCover, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? "Pins" : "Pin"))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? "Pins" : "Pin")))));
     }
   }]);
 
@@ -2113,6 +2133,8 @@ function (_React$Component) {
       this.setState({
         tabItem: "board"
       });
+      document.getElementById("board-tab").toggleClass("active");
+      document.getElementById("pin-tab").toggleClass("active");
     }
   }, {
     key: "showUserPins",
@@ -2120,14 +2142,18 @@ function (_React$Component) {
       this.setState({
         tabItem: "pin"
       });
+      document.getElementById("board-tab").toggleClass("active");
+      document.getElementById("pin-tab").toggleClass("active");
     }
   }, {
     key: "displayTabList",
     value: function displayTabList() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "board-tab",
         onClick: this.showUserBoards.bind(this),
-        className: "board-tab"
+        className: "board-tab active"
       }, "Boards"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "pin-tab",
         onClick: this.showUserPins.bind(this),
         className: "pin-tab"
       }, "Pins"));
