@@ -1,23 +1,28 @@
 import { connect } from "react-redux";
 import { showModal, hideModal } from "../../actions/modal_actions";
-import { fetchUserBoards } from '../../actions/board_action';
+import { fetchUserBoards } from '../../actions/board_actions';
 //import { fetchUser } from "../../actions/user_actions";
 import BoardIndex from "./board_index";
+import { selectUserPins } from "../../reducers/selector";
 
-const mapStateToProps = (state, ownProps) => {  
-  //debugger
+const mapStateToProps = (state, ownProps) => {    
+  const currentUser = state.entities.users[state.session.id];
+  const user = ownProps.user;
+  const username = user.username;
+  const boards = ownProps.boards;
+  const pins = ownProps.pins;  
+  
   return {
-    boards: Object.values(state.entities.boards || []),
-    //currentId: ownProps.userId || ownProps.match.params.id,
-    currentUserId: ownProps.match.params.id || state.session.id,
-    loggedInUser: state.session.id
+    currentUser,
+    user,
+    username,
+    boards,
+    pins,
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    fetchUserBoards: userId => dispatch(fetchUserBoards(userId)),
-    //fetchUser: id => dispatch(fetchUser(id)),
+  return {    
     hideModal: () => dispatch(hideModal()),
     showModal: modal => dispatch(showModal(modal))
   }; 

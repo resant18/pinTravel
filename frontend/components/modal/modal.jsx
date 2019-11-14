@@ -1,28 +1,26 @@
 import React from 'react';
-import { hideModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
-import LoginFormContainer from '../session_form/login_form_container';
-import SignupFormContainer from '../session_form/signup_form_container';
+import { hideModal } from '../../actions/modal_actions';
+import BoardCreateContainer from '../../components/board/board_create_container';
 
 const Modal = ({ modal, hideModal }) => {       
-    if (!modal) {
+    if (!modal || modal === 'login' || modal === 'signup') {
         return null;
     }
+    
     let component;
-    // let sessionClassName;
-    switch (modal) {
-        case 'login':
-            component = <LoginFormContainer />;
-            // sessionClassName = "image-background: url('/data-grid')"
+
+    switch (modal) {        
+        case 'create_board':
+            component = <BoardCreateContainer />
             break;
-        case 'signup':
-            component = <SignupFormContainer />;
+        case 'create-pin':
+            component = <BoardCreateContainer />
             break;
         default:
             return null;
     }
-
-    if (modal === 'login' || modal === 'signup') return (<div>{component} </div>);
+  
     return (
         <div className="modal-main" onClick={hideModal}>
             <section className="modal-content" onClick={e => e.stopPropagation()}>

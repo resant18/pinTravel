@@ -2,25 +2,20 @@ class Api::BoardsController < ApplicationController
     before_action :require_logged_in, only: [:create, :edit, :update, :destroy]
 
     def index
-        debugger
-        
-        if params[:id]
-            @boards = User.includes(:boards).find(params[:id]).boards
-        else
-            @boards = current_user.boards
-        end
+        @boards = Board.all.includes(:user, :boards_pins, :pins)
+        render "api/boards/index"
     end
 
     def show
-        @board = Board.find(params[:id])
-        render :show
+        @board = Board.includes(:user, :boards_pins, :pins).find(params[:id])
+        render "api/boards/show"
     end
 
     def create
         @board = Board.new(board_params)
         @board.user_id = current_user.id
         if @board.save
-            render :show
+            render "api/boards/show"
         else
             render json: @board.errors.full_messages, status: 422
         end
@@ -30,7 +25,7 @@ class Api::BoardsController < ApplicationController
         @board = current_user.boards.find(params[:id])
         if @board
             if @board.update(board_params)
-                render :show
+                render "api/boards/show"
             else
                 render json: @board.errors.full_messages, status: 422
             end
@@ -44,7 +39,7 @@ class Api::BoardsController < ApplicationController
         if @board
             @board.destroy
         else
-            render json: ["You have to login first to create a board"], status: 401
+            render json: ["You have to login first to delete a board"], status: 401
         end
     end
 

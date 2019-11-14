@@ -1,25 +1,27 @@
 import React from 'react';
 import { isBlank, isValidInput } from './form_validation';
 
-
-
 class SessionForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             email: '',
-            password: '',            
+            password: '',               
         };
-        this.handleSubmit = this.handleSubmit.bind(this);        
-    }    
 
-    update(field) {
-        return e => this.setState({
-            [field]: e.currentTarget.value
-        });
+        // this.typingEffect = this.typingEffect.bind(this);    
+        this._writeDemoUser = this._writeDemoUser.bind(this);    
+        this.handleDemoUser = this.handleDemoUser.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);   
+        this.handleChange = this.handleChange.bind(this);
+        this.renderErrors = this.renderErrors.bind(this);        
+    }  
+    
+    componentWillUnmount() {
+        this.props.clearErrors();
     }
 
-    parseUserName() {
+    _getUserInfo() {
         const email = this.state.email;
         const idx = email.indexOf('@');
         
@@ -34,11 +36,12 @@ class SessionForm extends React.Component {
             firstName = username;
             lastName = '';
         }
-        
-        return { first_name: firstName, last_name: lastName }
+
+        this.setState({ first_name: firstName, last_name: lastName });        
+        return { username: firstName, first_name: firstName, last_name: lastName }
     }
 
-    formValidation() {        
+    _validateForm() {        
         let emailInput = document.getElementById('input-email');
         let passwordInput = document.getElementById('input-password');
         let errorText = '';        
@@ -48,6 +51,7 @@ class SessionForm extends React.Component {
             div.id = 'error-email';
             div.classList.add('error-text');
             errorText = `You missed a spot! Don't forget to add your email.`;
+            //this.setState({ errors, email: errorText });
             div.innerHTML = errorText;  
             
             if (document.getElementById('error-email') !== null) {                
@@ -60,7 +64,9 @@ class SessionForm extends React.Component {
             div.id = 'error-email';
             div.classList.add('error-text');
             errorText = `Hmm...that doesn't look like an email address`;
+            //this.setState({errors, email: errorText});
             div.innerHTML = errorText;
+
             if (document.getElementById('error-email') !== null) {
                 document.getElementById('error-email').remove();
             }
@@ -72,6 +78,11 @@ class SessionForm extends React.Component {
             div.classList.add('error-text');
             errorText = `Your password is too short! You need 6+ characters.`;
             div.innerHTML = errorText;
+
+            //this.setState({ errors, password: errorText });
+            if (document.getElementById('error-email') !== null) {
+                document.getElementById('error-email').remove();
+            }
             if (document.getElementById('error-password') !== null) {
                 document.getElementById('error-password').remove();
             }
@@ -82,38 +93,92 @@ class SessionForm extends React.Component {
         return true;
     }
 
+    _writeDemoUser(callback) {
+        let i = 0;        
+        document.getElementById('input-email').value = '';
+        document.getElementById('input-password').value = '';
+
+        function typingEffect(id, txt) {
+            if (i < txt.length) {            
+                document.getElementById(id).value += txt.charAt(i);                
+                i++;
+                setTimeout(() => typingEffect(id, txt), 25);
+            }
+        }
+        typingEffect('input-email', 'guest@gmail.com');
+        
+        document.getElementById('input-password').value = 'password';
+        
+        callback();
+    }
+
+    handleDemoUser(e) {                
+        e.preventDefault();
+        const demoUser = { email: "guest@gmail.com", password: "password" };        
+        var i = 0;
+        
+        this._writeDemoUser(() =>
+            this.props.login(demoUser)
+                .then(this.props.hideModal)
+                .then(() => this.props.history.push("/guest"))
+        )
+    }
+
     handleSubmit(e) {
         e.preventDefault();
 
-        let username, user;
-        
+        let user;
+        const email = document.getElementById('input-email').value;
+        const password = document.getElementById('input-password').value;
+        const newState = { email, password }
+
+        this.setState(newState);
         if (this.props.formType === 'Sign up') {
-            username = this.parseUserName();           
-            user = Object.assign({}, this.state, username);
-        } else {                     
+            const userInfo = this._getUserInfo();
+            const { username, first_name, last_name } = userInfo;
+            user = { email, password, username, first_name, last_name };
+        } else {
             user = Object.assign({}, this.state);
         }
-        if (this.formValidation()) this.props.processForm(user).then(this.props.hideModal);
-    }    
 
-    componentWillUnmount() {
-        this.props.clearErrors();
+
+
+        if (this._validateForm()) {
+            this.props.processForm(user)                                
+                .then ( user => {                                           
+                    this.props.hideModal();
+                    return user;                                  
+                })                
+                .then( user => {                                        
+                    this.props.history.push(`/${user.currentUser.username}`)
+                })
+        }
     }
 
-    renderErrors() {        
-        return (
-            <ul>
-                {this.props.errors.map((error, i) => (
-                    <li key={`error-${i}`}>
-                        {error}
-                    </li>
-                ))}
-            </ul>
-        );
+    handleChange(event) {
+        event.preventDefault();
+        const { name, value } = event.target;
+
+        this.setState({ [name]: value });
+    }
+
+   
+
+    renderErrors() {   
+        
+        const { email, password } = this.props.errors;
+        console.log(email);
+        console.log(password);             
+        
     }
     
     render() {
-        const { passwordHolder, formType } = this.props;        
+        const { passwordHolder, formType } = this.props;   
+
+        const divStyle = {
+            display: 'none',
+        };
+        
         return (
             <div className="form-container">
                 <div className="data-grid-images" />                
@@ -124,43 +189,53 @@ class SessionForm extends React.Component {
                             <div className="logo" />
                             <div>                                
                                 <p className="title">Welcome to PinTravel</p>
-                                <p className="sub-title">Find new travel destination to pin</p>
+                                <p className="sub-title">Find new travel destinations to pin</p>
                             </div>
                             <div className="form-fields-wrapper">
                                 <div className="form-fields">
                                     <div className="input-field">                                
                                         <input type="text"  
-                                            id="input-email"                          
-                                            value={this.state.email}
-                                            onChange={this.update('email')}
+                                            id="input-email"        
+                                            name="email"                  
+                                            value={this.state.email}                                            
+                                            onChange={this.handleChange}
                                             className="login-input"
                                             placeholder="Email"
                                             aria-invalid="false"                                            
                                         />
+                                        <div id="error-email" className="error-text" style={divStyle}></div>
                                     </div>
                                     <div className="input-field">
                                         <input type="password"
                                             id="input-password"
+                                            name="password"
                                             value={this.state.password}
-                                            onChange={this.update('password')}
+                                            onChange={this.handleChange}
                                             className="login-input"
                                             placeholder={passwordHolder}
                                             aria-invalid="false"                                            
                                         />
                                     </div>
+                                    <div>
+                                        <button className="prim" 
+                                            type="submit"
+                                            onClick={ this.handleDemoUser }>
+                                            Demo User
+                                        </button>
+                                    </div>                                    
                                     <div>                                                 
-                                        <button className="form-submit-button" type="submit">{ formType }</button>                                    
-                                    </div>
+                                        <button className="prim" type="submit">{ formType }</button>                                    
+                                    </div>                                    
                                 </div>
                                 <p>OR</p>                            
-                                <button className="bottom-button" onClick={this.props.switchAction}>{ formType === "Sign up" ? "Log in" : "Sign up" }</button>
+                                <button className="sec" type="button" onClick={this.props.switchAction}>{ formType === "Sign up" ? "Log in" : "Sign up" }</button>
                                 <span>
                                     By continuing, you agree to Pinterest's <a data-test-id="tos" href="#" target="_blank">Terms of Service</a>, 
                                     <a data-test-id="privacy" href="#" target="_blank">Privacy Policy</a>
                                 </span>
                             </div>
                         </form>
-                        <div className="errors">{this.renderErrors()}</div>
+                        
                     </div>
                 </div>
             </div>

@@ -1,0 +1,1 @@
+json.extract! board, :id, :name, :category_id, :cover_id, :secret, :user_id
