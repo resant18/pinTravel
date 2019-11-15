@@ -13,10 +13,10 @@ export const fetchPinsFeed = page => {
   });
 };
 
-export const fetchUserPins = (userId, page) => {
+export const fetchUserPins = (username, page) => {
   return $.ajax({
     method: "GET",
-    url: `api/users/${userId}/pins`,
+    url: `api/users/${username}/pins`,
     data: { page }
   });
 };

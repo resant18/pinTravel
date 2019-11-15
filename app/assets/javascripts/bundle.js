@@ -232,7 +232,7 @@ var hideModal = function hideModal() {
 /*!*****************************************!*\
   !*** ./frontend/actions/pin_actions.js ***!
   \*****************************************/
-/*! exports provided: RECEIVE_PINS, RECEIVE_PIN, REMOVE_PIN, RECEIVE_PIN_ERRORS, CLEAR_PINS, receivePins, receivePin, removePin, clearPinIndex, receivePinErrors, fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPin, createPin, updatePin, deletePin */
+/*! exports provided: RECEIVE_PINS, RECEIVE_PIN, REMOVE_PIN, RECEIVE_PIN_ERRORS, CLEAR_PINS, receivePins, receivePin, removePin, clearPins, receivePinErrors, fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPin, createPin, updatePin, deletePin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -245,7 +245,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePins", function() { return receivePins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePin", function() { return receivePin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removePin", function() { return removePin; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearPinIndex", function() { return clearPinIndex; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearPins", function() { return clearPins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receivePinErrors", function() { return receivePinErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllPins", function() { return fetchAllPins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPinsFeed", function() { return fetchPinsFeed; });
@@ -290,7 +290,7 @@ var removePin = function removePin(payload) {
     pinId: payload.pin.id
   };
 };
-var clearPinIndex = function clearPinIndex() {
+var clearPins = function clearPins() {
   return {
     type: CLEAR_PINS
   };
@@ -608,6 +608,12 @@ var App = function App() {
     path: "/",
     component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_3__["default"]
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/:username/boards",
+    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/:username/pins",
+    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/:username",
     component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
@@ -1026,9 +1032,23 @@ function (_React$Component) {
       return arr;
     }
   }, {
+    key: "_pinsIndex",
+    value: function _pinsIndex(pins) {
+      var pinsIdx = [];
+      var i = 0;
+
+      while (i < 5) {
+        if (i < pins.length) pinsIdx.push(pins[i].pin_id);else pinsIdx.push(-1);
+        i++;
+      }
+
+      return pinsIdx;
+    }
+  }, {
     key: "displayBoardCoverPins",
-    value: function displayBoardCoverPins(pinCount) {
-      var pins = this._generateRandomNumber(25, pinCount);
+    value: function displayBoardCoverPins(pins) {
+      // let pins = this._generateRandomNumber(25, pinCount);
+      var pinsIdx = this._pinsIndex(pins);
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-cover"
@@ -1043,7 +1063,7 @@ function (_React$Component) {
         style: {
           width: '100%',
           height: '100%',
-          background: "url(".concat(window.pins[pins[0]], ")")
+          background: "url(".concat(window.pins[pinsIdx[0]], ")")
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "border-line",
@@ -1058,14 +1078,14 @@ function (_React$Component) {
         style: {
           width: '100%',
           height: '75%',
-          background: "url(".concat(window.pins[pins[1]], ")")
+          background: "url(".concat(window.pins[pinsIdx[1]], ")")
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-item border-line bg-cover",
         style: {
           width: '100%',
           height: '25%',
-          background: "url(".concat(window.pins[pins[2]], ")")
+          background: "url(".concat(window.pins[pinsIdx[2]], ")")
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -1079,14 +1099,14 @@ function (_React$Component) {
         style: {
           width: '100%',
           height: '50%',
-          background: "url(".concat(window.pins[pins[3]], ")")
+          background: "url(".concat(window.pins[pinsIdx[3]], ")")
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-item border-line bg-cover",
         style: {
           width: '100%',
           height: '50%',
-          background: "url(".concat(window.pins[pins[4]], ")")
+          background: "url(".concat(window.pins[pinsIdx[4]], ")")
         }
       })));
     }
@@ -1100,7 +1120,6 @@ function (_React$Component) {
         console.log(pins.length);
 
         if (i < pins.length) {
-          console.log('sdadas');
           var img = void 0,
               width = void 0,
               height = void 0,
@@ -1160,10 +1179,11 @@ function (_React$Component) {
       var _this$props = this.props,
           board = _this$props.board,
           pins = _this$props.pins;
-      var pinCount = Object.keys(pins).length;
+      var pinsData = Object.values(pins);
+      var pinCount = pinsData.length;
       if (!board) return null; // let pinIdx = this._generateRandomNumber(25);
 
-      var boardCover = pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinCount);
+      var boardCover = pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinsData);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "b-item",
         onMouseEnter: this.toggleEdit,
@@ -1466,6 +1486,356 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_4__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/pin/pin_index.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/pin/pin_index.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pin_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pin_index_item */ "./frontend/components/pin/pin_index_item.jsx");
+/* harmony import */ var react_waypoint__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-waypoint */ "./node_modules/react-waypoint/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var PinIndex =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PinIndex, _React$Component);
+
+  function PinIndex(props) {
+    var _this;
+
+    _classCallCheck(this, PinIndex);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PinIndex).call(this, props));
+    _this.state = {
+      prevPage: 0,
+      page: 1
+    };
+    _this.fetchMorePins = _this.fetchMorePins.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(PinIndex, [{
+    key: "fetchPinsData",
+    value: function fetchPinsData() {
+      var _this$props = this.props,
+          fetchType = _this$props.fetchType,
+          fetchPins = _this$props.fetchPins,
+          boardId = _this$props.boardId,
+          username = _this$props.username;
+
+      switch (fetchType) {
+        case "feed":
+          fetchPins(this.state.page);
+          break;
+
+        case "user":
+          fetchPins(username, this.state.page);
+          break;
+
+        case "board":
+          fetchPins(boardId, this.state.page);
+          break;
+
+        default:
+      }
+
+      this.setState({
+        page: this.state.page + 1
+      });
+    }
+  }, {
+    key: "fetchMorePins",
+    value: function fetchMorePins() {
+      var value = this.state.prevPage + 1;
+      this.setState({
+        prevPage: value
+      });
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.clearPins(); // .then(() => this.fetchMorePins);
+
+      this.setState({
+        page: this.state.page + 1
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var pins = this.props.pins.map(function (pin, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          pin: pin,
+          key: i,
+          showModal: _this2.props.showModal,
+          currentUser: _this2.props.currentUser
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-index"
+      }, pins, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
+        onEnter: this.fetchPinsData.bind(this)
+      }));
+    }
+  }]);
+
+  return PinIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PinIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/pin/pin_index_item.jsx":
+/*!****************************************************!*\
+  !*** ./frontend/components/pin/pin_index_item.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var PinIndexItem =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PinIndexItem, _React$Component);
+
+  function PinIndexItem(props) {
+    var _this;
+
+    _classCallCheck(this, PinIndexItem);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PinIndexItem).call(this, props));
+    _this.state = {
+      visible: false
+    };
+    _this.turnOffVisibility = _this.turnOffVisibility.bind(_assertThisInitialized(_this));
+    _this.turnOnVisibility = _this.turnOnVisibility.bind(_assertThisInitialized(_this));
+    _this.displayLinks = _this.displayLinks.bind(_assertThisInitialized(_this));
+    _this.showEditModal = _this.showEditModal.bind(_assertThisInitialized(_this));
+    _this.showCreateModal = _this.showCreateModal.bind(_assertThisInitialized(_this));
+    _this.toPinShow = _this.toPinShow.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(PinIndexItem, [{
+    key: "toPinShow",
+    value: function toPinShow(e) {
+      if (e.target.className.includes("p-link")) {
+        this.props.history.push("/pins/".concat(this.props.pin.id));
+      }
+    }
+  }, {
+    key: "showEditModal",
+    value: function showEditModal(e) {
+      this.props.openModal("editPin", this.props.pin.id);
+    }
+  }, {
+    key: "showCreateModal",
+    value: function showCreateModal(e) {
+      this.props.openModal("createPinJoin", this.props.pin.id);
+    }
+  }, {
+    key: "turnOffVisibility",
+    value: function turnOffVisibility(e) {
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: "turnOnVisibility",
+    value: function turnOnVisibility(e) {
+      this.setState({
+        visible: true
+      });
+    } // TO-DO regex the link name later
+
+  }, {
+    key: "displayLinks",
+    value: function displayLinks() {
+      if (this.state.visible) {
+        var pin = this.props.pin;
+        var imageHeight = pin.row_height * 10;
+        var link;
+        var edit;
+
+        if (pin.link_url !== "") {
+          var hostname = new URL(pin.link_url).hostname;
+          link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            href: pin.link_url,
+            target: "_blank"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "fas fa-external-link-alt"
+          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, hostname));
+        }
+
+        var currentUser = this.props.currentUser;
+
+        if (currentUser && currentUser.username === pin.creator.username) {
+          edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "p-btn",
+            onClick: this.showEditModal
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+            className: "fas fa-pen"
+          }));
+        } else {
+          edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+        }
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "p-links visible",
+          onClick: this.toPinShow,
+          style: {
+            height: imageHeight
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "top-links"
+        }, edit, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "save-btn",
+          onClick: this.showCreateModal
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "fas fa-map-pin"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "bottom-links"
+        }, link));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var pin = this.props.pin; // const frameHeight = pin.row_height * 10 + 45;
+      // const imageHeight = pin.row_height * 10;
+      // const gridSpan = `span ${pin.row_height + 6}`;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pins" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
+        // onMouseEnter={this.turnOnVisibility}
+        // onMouseLeave={this.turnOffVisibility}
+
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "pin-item-img",
+        src: window.pins[pin.pin_id]
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-item-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.name)));
+    }
+  }]);
+
+  return PinIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(PinIndexItem));
+
+/***/ }),
+
+/***/ "./frontend/components/pin/pin_index_user_container.js":
+/*!*************************************************************!*\
+  !*** ./frontend/components/pin/pin_index_user_container.js ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _pin_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pin_index */ "./frontend/components/pin/pin_index.jsx");
+
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var currentUser = state.entities.users[state.session.id] || {};
+  var user = ownProps.user;
+  var username = user.username;
+  var boards = ownProps.boards;
+  var pins = Object.values(state.entities.pins);
+  return {
+    fetchType: "user",
+    currentUser: currentUser,
+    user: user,
+    username: username,
+    boards: boards,
+    pins: pins
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchPins: function fetchPins(username, page) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUserPins"])(username, page));
+    },
+    clearPins: function clearPins() {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["clearPins"])());
+    },
+    showModal: function showModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])(modal));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_index__WEBPACK_IMPORTED_MODULE_4__["default"])));
 
 /***/ }),
 
@@ -2014,6 +2384,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _board_board_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../board/board_index */ "./frontend/components/board/board_index.jsx");
+/* harmony import */ var _pin_pin_index_user_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pin/pin_index_user_container */ "./frontend/components/pin/pin_index_user_container.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2033,7 +2404,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
- // import PinIndexContainer from "../pin/pin_index_container";
+
+
 
 var UserProfile =
 /*#__PURE__*/
@@ -2047,7 +2419,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
     _this.state = {
-      tabItem: "board",
+      tabItem: "boards",
       showDropDown: false
     };
     _this.displayProfileToolbar = _this.displayProfileToolbar.bind(_assertThisInitialized(_this));
@@ -2056,6 +2428,7 @@ function (_React$Component) {
     _this.showUserPins = _this.showUserPins.bind(_assertThisInitialized(_this));
     _this.toggleDropDown = _this.toggleDropDown.bind(_assertThisInitialized(_this));
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    _this.renderChildComponent = _this.renderChildComponent.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2131,19 +2504,19 @@ function (_React$Component) {
     key: "showUserBoards",
     value: function showUserBoards() {
       this.setState({
-        tabItem: "board"
+        tabItem: "boards"
       });
-      document.getElementById("board-tab").toggleClass("active");
-      document.getElementById("pin-tab").toggleClass("active");
+      document.getElementById("board-tab").classList.toggle("active");
+      document.getElementById("pin-tab").classList.toggle("active");
     }
   }, {
     key: "showUserPins",
     value: function showUserPins() {
       this.setState({
-        tabItem: "pin"
+        tabItem: "pins"
       });
-      document.getElementById("board-tab").toggleClass("active");
-      document.getElementById("pin-tab").toggleClass("active");
+      document.getElementById("board-tab").classList.toggle("active");
+      document.getElementById("pin-tab").classList.toggle("active");
     }
   }, {
     key: "displayTabList",
@@ -2159,11 +2532,25 @@ function (_React$Component) {
       }, "Pins"));
     }
   }, {
+    key: "renderChildComponent",
+    value: function renderChildComponent(user, boards, userPins, permitted) {
+      if (this.state.tabItem === 'boards') return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        user: user,
+        boards: boards,
+        pins: userPins,
+        permitted: permitted,
+        showModal: this.props.showModal
+      });else return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_user_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        user: user,
+        boards: boards,
+        pins: userPins,
+        permitted: permitted,
+        showModal: this.props.showModal
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      //   // if (this.props.loading) {
-      //   //   return <div></div>;
-      //   // }
       var _this$props = this.props,
           currentUser = _this$props.currentUser,
           username = _this$props.username,
@@ -2214,14 +2601,15 @@ function (_React$Component) {
       }, pinIds.length)))), this.displayProfileToolbar())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "tab-list"
       }, this.displayTabList()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "boards"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        user: user,
-        boards: boards,
-        pins: userPins,
-        permitted: permitted,
-        showModal: this.props.showModal
-      })));
+        className: this.state.tabItem
+      }, this.renderChildComponent(user, boards, userPins, permitted) // <BoardIndex
+      //   user={user}
+      //   boards={boards}
+      //   pins={userPins}
+      //   permitted={permitted}
+      //   showModal={this.props.showModal}
+      // />
+      ));
     }
   }]);
 
@@ -2983,10 +3371,10 @@ var fetchPinsFeed = function fetchPinsFeed(page) {
     }
   });
 };
-var fetchUserPins = function fetchUserPins(userId, page) {
+var fetchUserPins = function fetchUserPins(username, page) {
   return $.ajax({
     method: "GET",
-    url: "api/users/".concat(userId, "/pins"),
+    url: "api/users/".concat(username, "/pins"),
     data: {
       page: page
     }
@@ -3287,6 +3675,226 @@ function _inheritsLoose(subClass, superClass) {
 }
 
 module.exports = _inheritsLoose;
+
+/***/ }),
+
+/***/ "./node_modules/consolidated-events/lib/index.esm.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/consolidated-events/lib/index.esm.js ***!
+  \***********************************************************/
+/*! exports provided: addEventListener */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addEventListener", function() { return addEventListener; });
+var CAN_USE_DOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+// Adapted from Modernizr
+// https://github.com/Modernizr/Modernizr/blob/acb3f0d9/feature-detects/dom/passiveeventlisteners.js#L26-L37
+function testPassiveEventListeners() {
+  if (!CAN_USE_DOM) {
+    return false;
+  }
+
+  if (!window.addEventListener || !window.removeEventListener || !Object.defineProperty) {
+    return false;
+  }
+
+  var supportsPassiveOption = false;
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      // eslint-disable-next-line getter-return
+      get: function () {
+        function get() {
+          supportsPassiveOption = true;
+        }
+
+        return get;
+      }()
+    });
+    var noop = function noop() {};
+    window.addEventListener('testPassiveEventSupport', noop, opts);
+    window.removeEventListener('testPassiveEventSupport', noop, opts);
+  } catch (e) {
+    // do nothing
+  }
+
+  return supportsPassiveOption;
+}
+
+var memoized = void 0;
+
+function canUsePassiveEventListeners() {
+  if (memoized === undefined) {
+    memoized = testPassiveEventListeners();
+  }
+  return memoized;
+}
+
+function normalizeEventOptions(eventOptions) {
+  if (!eventOptions) {
+    return undefined;
+  }
+
+  if (!canUsePassiveEventListeners()) {
+    // If the browser does not support the passive option, then it is expecting
+    // a boolean for the options argument to specify whether it should use
+    // capture or not. In more modern browsers, this is passed via the `capture`
+    // option, so let's just hoist that value up.
+    return !!eventOptions.capture;
+  }
+
+  return eventOptions;
+}
+
+/* eslint-disable no-bitwise */
+
+/**
+ * Generate a unique key for any set of event options
+ */
+function eventOptionsKey(normalizedEventOptions) {
+  if (!normalizedEventOptions) {
+    return 0;
+  }
+
+  // If the browser does not support passive event listeners, the normalized
+  // event options will be a boolean.
+  if (normalizedEventOptions === true) {
+    return 100;
+  }
+
+  // At this point, the browser supports passive event listeners, so we expect
+  // the event options to be an object with possible properties of capture,
+  // passive, and once.
+  //
+  // We want to consistently return the same value, regardless of the order of
+  // these properties, so let's use binary maths to assign each property to a
+  // bit, and then add those together (with an offset to account for the
+  // booleans at the beginning of this function).
+  var capture = normalizedEventOptions.capture << 0;
+  var passive = normalizedEventOptions.passive << 1;
+  var once = normalizedEventOptions.once << 2;
+  return capture + passive + once;
+}
+
+function ensureCanMutateNextEventHandlers(eventHandlers) {
+  if (eventHandlers.handlers === eventHandlers.nextHandlers) {
+    // eslint-disable-next-line no-param-reassign
+    eventHandlers.nextHandlers = eventHandlers.handlers.slice();
+  }
+}
+
+function TargetEventHandlers(target) {
+  this.target = target;
+  this.events = {};
+}
+
+TargetEventHandlers.prototype.getEventHandlers = function () {
+  function getEventHandlers(eventName, options) {
+    var key = String(eventName) + ' ' + String(eventOptionsKey(options));
+
+    if (!this.events[key]) {
+      this.events[key] = {
+        handlers: [],
+        handleEvent: undefined
+      };
+      this.events[key].nextHandlers = this.events[key].handlers;
+    }
+
+    return this.events[key];
+  }
+
+  return getEventHandlers;
+}();
+
+TargetEventHandlers.prototype.handleEvent = function () {
+  function handleEvent(eventName, options, event) {
+    var eventHandlers = this.getEventHandlers(eventName, options);
+    eventHandlers.handlers = eventHandlers.nextHandlers;
+    eventHandlers.handlers.forEach(function (handler) {
+      if (handler) {
+        // We need to check for presence here because a handler function may
+        // cause later handlers to get removed. This can happen if you for
+        // instance have a waypoint that unmounts another waypoint as part of an
+        // onEnter/onLeave handler.
+        handler(event);
+      }
+    });
+  }
+
+  return handleEvent;
+}();
+
+TargetEventHandlers.prototype.add = function () {
+  function add(eventName, listener, options) {
+    var _this = this;
+
+    // options has already been normalized at this point.
+    var eventHandlers = this.getEventHandlers(eventName, options);
+
+    ensureCanMutateNextEventHandlers(eventHandlers);
+
+    if (eventHandlers.nextHandlers.length === 0) {
+      eventHandlers.handleEvent = this.handleEvent.bind(this, eventName, options);
+
+      this.target.addEventListener(eventName, eventHandlers.handleEvent, options);
+    }
+
+    eventHandlers.nextHandlers.push(listener);
+
+    var isSubscribed = true;
+    var unsubscribe = function () {
+      function unsubscribe() {
+        if (!isSubscribed) {
+          return;
+        }
+
+        isSubscribed = false;
+
+        ensureCanMutateNextEventHandlers(eventHandlers);
+        var index = eventHandlers.nextHandlers.indexOf(listener);
+        eventHandlers.nextHandlers.splice(index, 1);
+
+        if (eventHandlers.nextHandlers.length === 0) {
+          // All event handlers have been removed, so we want to remove the event
+          // listener from the target node.
+
+          if (_this.target) {
+            // There can be a race condition where the target may no longer exist
+            // when this function is called, e.g. when a React component is
+            // unmounting. Guarding against this prevents the following error:
+            //
+            //   Cannot read property 'removeEventListener' of undefined
+            _this.target.removeEventListener(eventName, eventHandlers.handleEvent, options);
+          }
+
+          eventHandlers.handleEvent = undefined;
+        }
+      }
+
+      return unsubscribe;
+    }();
+    return unsubscribe;
+  }
+
+  return add;
+}();
+
+var EVENT_HANDLERS_KEY = '__consolidated_events_handlers__';
+
+// eslint-disable-next-line import/prefer-default-export
+function addEventListener(target, eventName, listener, options) {
+  if (!target[EVENT_HANDLERS_KEY]) {
+    // eslint-disable-next-line no-param-reassign
+    target[EVENT_HANDLERS_KEY] = new TargetEventHandlers(target);
+  }
+  var normalizedEventOptions = normalizeEventOptions(options);
+  return target[EVENT_HANDLERS_KEY].add(eventName, listener, normalizedEventOptions);
+}
+
+
+
 
 /***/ }),
 
@@ -57327,6 +57935,676 @@ if (true) {
 
 //# sourceMappingURL=react-router.js.map
 
+
+/***/ }),
+
+/***/ "./node_modules/react-waypoint/es/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/react-waypoint/es/index.js ***!
+  \*************************************************/
+/*! exports provided: Waypoint */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Waypoint", function() { return Waypoint; });
+/* harmony import */ var consolidated_events__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! consolidated-events */ "./node_modules/consolidated-events/lib/index.esm.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
+/* harmony import */ var react_is__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_is__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+
+/**
+ * Attempts to parse the offset provided as a prop as a percentage. For
+ * instance, if the component has been provided with the string "20%" as
+ * a value of one of the offset props. If the value matches, then it returns
+ * a numeric version of the prop. For instance, "20%" would become `0.2`.
+ * If `str` isn't a percentage, then `undefined` will be returned.
+ *
+ * @param {string} str The value of an offset prop to be converted to a
+ *   number.
+ * @return {number|undefined} The numeric version of `str`. Undefined if `str`
+ *   was not a percentage.
+ */
+function parseOffsetAsPercentage(str) {
+  if (str.slice(-1) === '%') {
+    return parseFloat(str.slice(0, -1)) / 100;
+  }
+
+  return undefined;
+}
+
+/**
+ * Attempts to parse the offset provided as a prop as a pixel value. If
+ * parsing fails, then `undefined` is returned. Three examples of values that
+ * will be successfully parsed are:
+ * `20`
+ * "20px"
+ * "20"
+ *
+ * @param {string|number} str A string of the form "{number}" or "{number}px",
+ *   or just a number.
+ * @return {number|undefined} The numeric version of `str`. Undefined if `str`
+ *   was neither a number nor string ending in "px".
+ */
+function parseOffsetAsPixels(str) {
+  if (!isNaN(parseFloat(str)) && isFinite(str)) {
+    return parseFloat(str);
+  }
+
+  if (str.slice(-2) === 'px') {
+    return parseFloat(str.slice(0, -2));
+  }
+
+  return undefined;
+}
+
+/**
+ * @param {string|number} offset
+ * @param {number} contextHeight
+ * @return {number} A number representing `offset` converted into pixels.
+ */
+
+function computeOffsetPixels(offset, contextHeight) {
+  var pixelOffset = parseOffsetAsPixels(offset);
+
+  if (typeof pixelOffset === 'number') {
+    return pixelOffset;
+  }
+
+  var percentOffset = parseOffsetAsPercentage(offset);
+
+  if (typeof percentOffset === 'number') {
+    return percentOffset * contextHeight;
+  }
+
+  return undefined;
+}
+
+var ABOVE = 'above';
+var INSIDE = 'inside';
+var BELOW = 'below';
+var INVISIBLE = 'invisible';
+
+function debugLog() {
+  if (true) {
+    var _console;
+
+    (_console = console).log.apply(_console, arguments); // eslint-disable-line no-console
+
+  }
+}
+
+/**
+ * When an element's type is a string, it represents a DOM node with that tag name
+ * https://facebook.github.io/react/blog/2015/12/18/react-components-elements-and-instances.html#dom-elements
+ *
+ * @param {React.element} Component
+ * @return {bool} Whether the component is a DOM Element
+ */
+function isDOMElement(Component) {
+  return typeof Component.type === 'string';
+}
+
+var errorMessage = '<Waypoint> needs a DOM element to compute boundaries. The child you passed is neither a ' + 'DOM element (e.g. <div>) nor does it use the innerRef prop.\n\n' + 'See https://goo.gl/LrBNgw for more info.';
+/**
+ * Raise an error if "children" is not a DOM Element and there is no ref provided to Waypoint
+ *
+ * @param {?React.element} children
+ * @param {?HTMLElement} ref
+ * @return {undefined}
+ */
+
+function ensureRefIsProvidedByChild(children, ref) {
+  if (children && !isDOMElement(children) && !ref) {
+    throw new Error(errorMessage);
+  }
+}
+
+/**
+ * @param {object} bounds An object with bounds data for the waypoint and
+ *   scrollable parent
+ * @return {string} The current position of the waypoint in relation to the
+ *   visible portion of the scrollable parent. One of the constants `ABOVE`,
+ *   `BELOW`, `INSIDE` or `INVISIBLE`.
+ */
+
+function getCurrentPosition(bounds) {
+  if (bounds.viewportBottom - bounds.viewportTop === 0) {
+    return INVISIBLE;
+  } // top is within the viewport
+
+
+  if (bounds.viewportTop <= bounds.waypointTop && bounds.waypointTop <= bounds.viewportBottom) {
+    return INSIDE;
+  } // bottom is within the viewport
+
+
+  if (bounds.viewportTop <= bounds.waypointBottom && bounds.waypointBottom <= bounds.viewportBottom) {
+    return INSIDE;
+  } // top is above the viewport and bottom is below the viewport
+
+
+  if (bounds.waypointTop <= bounds.viewportTop && bounds.viewportBottom <= bounds.waypointBottom) {
+    return INSIDE;
+  }
+
+  if (bounds.viewportBottom < bounds.waypointTop) {
+    return BELOW;
+  }
+
+  if (bounds.waypointTop < bounds.viewportTop) {
+    return ABOVE;
+  }
+
+  return INVISIBLE;
+}
+
+var timeout;
+var timeoutQueue = [];
+function onNextTick(cb) {
+  timeoutQueue.push(cb);
+
+  if (!timeout) {
+    timeout = setTimeout(function () {
+      timeout = null; // Drain the timeoutQueue
+
+      var item; // eslint-disable-next-line no-cond-assign
+
+      while (item = timeoutQueue.shift()) {
+        item();
+      }
+    }, 0);
+  }
+
+  var isSubscribed = true;
+  return function unsubscribe() {
+    if (!isSubscribed) {
+      return;
+    }
+
+    isSubscribed = false;
+    var index = timeoutQueue.indexOf(cb);
+
+    if (index === -1) {
+      return;
+    }
+
+    timeoutQueue.splice(index, 1);
+
+    if (!timeoutQueue.length && timeout) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+  };
+}
+
+function resolveScrollableAncestorProp(scrollableAncestor) {
+  // When Waypoint is rendered on the server, `window` is not available.
+  // To make Waypoint easier to work with, we allow this to be specified in
+  // string form and safely convert to `window` here.
+  if (scrollableAncestor === 'window') {
+    return global.window;
+  }
+
+  return scrollableAncestor;
+}
+
+var defaultProps = {
+  debug: false,
+  scrollableAncestor: undefined,
+  children: undefined,
+  topOffset: '0px',
+  bottomOffset: '0px',
+  horizontal: false,
+  onEnter: function onEnter() {},
+  onLeave: function onLeave() {},
+  onPositionChange: function onPositionChange() {},
+  fireOnRapidScroll: true
+}; // Calls a function when you scroll to the element.
+
+var Waypoint =
+/*#__PURE__*/
+function (_React$PureComponent) {
+  _inherits(Waypoint, _React$PureComponent);
+
+  function Waypoint(props) {
+    var _this;
+
+    _classCallCheck(this, Waypoint);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Waypoint).call(this, props));
+
+    _this.refElement = function (e) {
+      _this._ref = e;
+    };
+
+    return _this;
+  }
+
+  _createClass(Waypoint, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      if (!Waypoint.getWindow()) {
+        return;
+      } // this._ref may occasionally not be set at this time. To help ensure that
+      // this works smoothly and to avoid layout thrashing, we want to delay the
+      // initial execution until the next tick.
+
+
+      this.cancelOnNextTick = onNextTick(function () {
+        _this2.cancelOnNextTick = null;
+        var _this2$props = _this2.props,
+            children = _this2$props.children,
+            debug = _this2$props.debug; // Berofe doing anything, we want to check that this._ref is avaliable in Waypoint
+
+        ensureRefIsProvidedByChild(children, _this2._ref);
+        _this2._handleScroll = _this2._handleScroll.bind(_this2);
+        _this2.scrollableAncestor = _this2._findScrollableAncestor();
+
+        if ( true && debug) {
+          debugLog('scrollableAncestor', _this2.scrollableAncestor);
+        }
+
+        _this2.scrollEventListenerUnsubscribe = Object(consolidated_events__WEBPACK_IMPORTED_MODULE_0__["addEventListener"])(_this2.scrollableAncestor, 'scroll', _this2._handleScroll, {
+          passive: true
+        });
+        _this2.resizeEventListenerUnsubscribe = Object(consolidated_events__WEBPACK_IMPORTED_MODULE_0__["addEventListener"])(window, 'resize', _this2._handleScroll, {
+          passive: true
+        });
+
+        _this2._handleScroll(null);
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var _this3 = this;
+
+      if (!Waypoint.getWindow()) {
+        return;
+      }
+
+      if (!this.scrollableAncestor) {
+        // The Waypoint has not yet initialized.
+        return;
+      } // The element may have moved, so we need to recompute its position on the
+      // page. This happens via handleScroll in a way that forces layout to be
+      // computed.
+      //
+      // We want this to be deferred to avoid forcing layout during render, which
+      // causes layout thrashing. And, if we already have this work enqueued, we
+      // can just wait for that to happen instead of enqueueing again.
+
+
+      if (this.cancelOnNextTick) {
+        return;
+      }
+
+      this.cancelOnNextTick = onNextTick(function () {
+        _this3.cancelOnNextTick = null;
+
+        _this3._handleScroll(null);
+      });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (!Waypoint.getWindow()) {
+        return;
+      }
+
+      if (this.scrollEventListenerUnsubscribe) {
+        this.scrollEventListenerUnsubscribe();
+      }
+
+      if (this.resizeEventListenerUnsubscribe) {
+        this.resizeEventListenerUnsubscribe();
+      }
+
+      if (this.cancelOnNextTick) {
+        this.cancelOnNextTick();
+      }
+    }
+    /**
+     * Traverses up the DOM to find an ancestor container which has an overflow
+     * style that allows for scrolling.
+     *
+     * @return {Object} the closest ancestor element with an overflow style that
+     *   allows for scrolling. If none is found, the `window` object is returned
+     *   as a fallback.
+     */
+
+  }, {
+    key: "_findScrollableAncestor",
+    value: function _findScrollableAncestor() {
+      var _this$props = this.props,
+          horizontal = _this$props.horizontal,
+          scrollableAncestor = _this$props.scrollableAncestor;
+
+      if (scrollableAncestor) {
+        return resolveScrollableAncestorProp(scrollableAncestor);
+      }
+
+      var node = this._ref;
+
+      while (node.parentNode) {
+        node = node.parentNode;
+
+        if (node === document.body) {
+          // We've reached all the way to the root node.
+          return window;
+        }
+
+        var style = window.getComputedStyle(node);
+        var overflowDirec = horizontal ? style.getPropertyValue('overflow-x') : style.getPropertyValue('overflow-y');
+        var overflow = overflowDirec || style.getPropertyValue('overflow');
+
+        if (overflow === 'auto' || overflow === 'scroll') {
+          return node;
+        }
+      } // A scrollable ancestor element was not found, which means that we need to
+      // do stuff on window.
+
+
+      return window;
+    }
+    /**
+     * @param {Object} event the native scroll event coming from the scrollable
+     *   ancestor, or resize event coming from the window. Will be undefined if
+     *   called by a React lifecyle method
+     */
+
+  }, {
+    key: "_handleScroll",
+    value: function _handleScroll(event) {
+      if (!this._ref) {
+        // There's a chance we end up here after the component has been unmounted.
+        return;
+      }
+
+      var bounds = this._getBounds();
+
+      var currentPosition = getCurrentPosition(bounds);
+      var previousPosition = this._previousPosition;
+      var _this$props2 = this.props,
+          debug = _this$props2.debug,
+          onPositionChange = _this$props2.onPositionChange,
+          onEnter = _this$props2.onEnter,
+          onLeave = _this$props2.onLeave,
+          fireOnRapidScroll = _this$props2.fireOnRapidScroll;
+
+      if ( true && debug) {
+        debugLog('currentPosition', currentPosition);
+        debugLog('previousPosition', previousPosition);
+      } // Save previous position as early as possible to prevent cycles
+
+
+      this._previousPosition = currentPosition;
+
+      if (previousPosition === currentPosition) {
+        // No change since last trigger
+        return;
+      }
+
+      var callbackArg = {
+        currentPosition: currentPosition,
+        previousPosition: previousPosition,
+        event: event,
+        waypointTop: bounds.waypointTop,
+        waypointBottom: bounds.waypointBottom,
+        viewportTop: bounds.viewportTop,
+        viewportBottom: bounds.viewportBottom
+      };
+      onPositionChange.call(this, callbackArg);
+
+      if (currentPosition === INSIDE) {
+        onEnter.call(this, callbackArg);
+      } else if (previousPosition === INSIDE) {
+        onLeave.call(this, callbackArg);
+      }
+
+      var isRapidScrollDown = previousPosition === BELOW && currentPosition === ABOVE;
+      var isRapidScrollUp = previousPosition === ABOVE && currentPosition === BELOW;
+
+      if (fireOnRapidScroll && (isRapidScrollDown || isRapidScrollUp)) {
+        // If the scroll event isn't fired often enough to occur while the
+        // waypoint was visible, we trigger both callbacks anyway.
+        onEnter.call(this, {
+          currentPosition: INSIDE,
+          previousPosition: previousPosition,
+          event: event,
+          waypointTop: bounds.waypointTop,
+          waypointBottom: bounds.waypointBottom,
+          viewportTop: bounds.viewportTop,
+          viewportBottom: bounds.viewportBottom
+        });
+        onLeave.call(this, {
+          currentPosition: currentPosition,
+          previousPosition: INSIDE,
+          event: event,
+          waypointTop: bounds.waypointTop,
+          waypointBottom: bounds.waypointBottom,
+          viewportTop: bounds.viewportTop,
+          viewportBottom: bounds.viewportBottom
+        });
+      }
+    }
+  }, {
+    key: "_getBounds",
+    value: function _getBounds() {
+      var _this$props3 = this.props,
+          horizontal = _this$props3.horizontal,
+          debug = _this$props3.debug;
+
+      var _this$_ref$getBoundin = this._ref.getBoundingClientRect(),
+          left = _this$_ref$getBoundin.left,
+          top = _this$_ref$getBoundin.top,
+          right = _this$_ref$getBoundin.right,
+          bottom = _this$_ref$getBoundin.bottom;
+
+      var waypointTop = horizontal ? left : top;
+      var waypointBottom = horizontal ? right : bottom;
+      var contextHeight;
+      var contextScrollTop;
+
+      if (this.scrollableAncestor === window) {
+        contextHeight = horizontal ? window.innerWidth : window.innerHeight;
+        contextScrollTop = 0;
+      } else {
+        contextHeight = horizontal ? this.scrollableAncestor.offsetWidth : this.scrollableAncestor.offsetHeight;
+        contextScrollTop = horizontal ? this.scrollableAncestor.getBoundingClientRect().left : this.scrollableAncestor.getBoundingClientRect().top;
+      }
+
+      if ( true && debug) {
+        debugLog('waypoint top', waypointTop);
+        debugLog('waypoint bottom', waypointBottom);
+        debugLog('scrollableAncestor height', contextHeight);
+        debugLog('scrollableAncestor scrollTop', contextScrollTop);
+      }
+
+      var _this$props4 = this.props,
+          bottomOffset = _this$props4.bottomOffset,
+          topOffset = _this$props4.topOffset;
+      var topOffsetPx = computeOffsetPixels(topOffset, contextHeight);
+      var bottomOffsetPx = computeOffsetPixels(bottomOffset, contextHeight);
+      var contextBottom = contextScrollTop + contextHeight;
+      return {
+        waypointTop: waypointTop,
+        waypointBottom: waypointBottom,
+        viewportTop: contextScrollTop + topOffsetPx,
+        viewportBottom: contextBottom - bottomOffsetPx
+      };
+    }
+    /**
+     * @return {Object}
+     */
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this4 = this;
+
+      var children = this.props.children;
+
+      if (!children) {
+        // We need an element that we can locate in the DOM to determine where it is
+        // rendered relative to the top of its context.
+        return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", {
+          ref: this.refElement,
+          style: {
+            fontSize: 0
+          }
+        });
+      }
+
+      if (isDOMElement(children) || Object(react_is__WEBPACK_IMPORTED_MODULE_3__["isForwardRef"])(children)) {
+        var ref = function ref(node) {
+          _this4.refElement(node);
+
+          if (children.ref) {
+            if (typeof children.ref === 'function') {
+              children.ref(node);
+            } else {
+              children.ref.current = node;
+            }
+          }
+        };
+
+        return react__WEBPACK_IMPORTED_MODULE_2___default.a.cloneElement(children, {
+          ref: ref
+        });
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.cloneElement(children, {
+        innerRef: this.refElement
+      });
+    }
+  }]);
+
+  return Waypoint;
+}(react__WEBPACK_IMPORTED_MODULE_2___default.a.PureComponent);
+
+if (true) {
+  Waypoint.propTypes = {
+    children: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.element,
+    debug: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+    onEnter: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+    onLeave: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+    onPositionChange: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func,
+    fireOnRapidScroll: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+    // eslint-disable-next-line react/forbid-prop-types
+    scrollableAncestor: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any,
+    horizontal: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.bool,
+    // `topOffset` can either be a number, in which case its a distance from the
+    // top of the container in pixels, or a string value. Valid string values are
+    // of the form "20px", which is parsed as pixels, or "20%", which is parsed
+    // as a percentage of the height of the containing element.
+    // For instance, if you pass "-20%", and the containing element is 100px tall,
+    // then the waypoint will be triggered when it has been scrolled 20px beyond
+    // the top of the containing element.
+    topOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number]),
+    // `bottomOffset` is like `topOffset`, but for the bottom of the container.
+    bottomOffset: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.oneOfType([prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.string, prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.number])
+  };
+}
+
+Waypoint.above = ABOVE;
+Waypoint.below = BELOW;
+Waypoint.inside = INSIDE;
+Waypoint.invisible = INVISIBLE;
+
+Waypoint.getWindow = function () {
+  if (typeof window !== 'undefined') {
+    return window;
+  }
+
+  return undefined;
+};
+
+Waypoint.defaultProps = defaultProps;
+Waypoint.displayName = 'Waypoint';
+
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 

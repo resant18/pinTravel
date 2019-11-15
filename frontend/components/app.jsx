@@ -17,20 +17,22 @@ import { AuthRoute, ProtectedRoute, SessionRoute } from '../util/route_util';
 import Dashboard from './modal/dashboard';
 
 const App = () => (
-    <div>                  
-        <Modal />                                 
-        <Switch>                      
-            <SessionRoute exact path="/" />                
-            <Route path="/" component={NavBarContainer} />
-        </Switch>           
-        <Switch>            
-            <Route exact path="/:username" component={UserProfileContainer} />
-        </Switch>
-        {/* <Switch>
+  <div>
+    <Modal />
+    <Switch>
+      <SessionRoute exact path="/" />
+      <Route path="/" component={NavBarContainer} />
+    </Switch>
+    <Switch>
+      <Route path="/:username/boards" component={UserProfileContainer} />
+      <Route path="/:username/pins" component={UserProfileContainer} />
+      <Route exact path="/:username" component={UserProfileContainer} />
+    </Switch>
+    {/* <Switch>
             <Route path="/:username/:boardId" component={BoardItemShowContainer} />
             <Route path="/:username/pins" component={UserPinsShowContainer} />
         </Switch> */}
-    </div>
+  </div>
 );
 
 export default App;

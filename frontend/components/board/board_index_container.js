@@ -1,3 +1,4 @@
+// This container is not used
 import { connect } from "react-redux";
 import { showModal, hideModal } from "../../actions/modal_actions";
 import { fetchUserBoards } from '../../actions/board_actions';

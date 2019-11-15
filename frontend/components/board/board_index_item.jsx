@@ -47,21 +47,36 @@ class BoardIndexItem extends React.Component {
         return arr;
     }
 
-    displayBoardCoverPins(pinCount) {  
-        let pins = this._generateRandomNumber(25, pinCount);
+    _pinsIndex(pins) {
+        let pinsIdx = [];
+        let i = 0;
+
+        while (i < 5) {
+          if (i < pins.length) pinsIdx.push(pins[i].pin_id);
+          else pinsIdx.push(-1);
+          i++;
+        }
+
+        return pinsIdx;
+    }
+
+    displayBoardCoverPins(pins) {  
+        // let pins = this._generateRandomNumber(25, pinCount);
+        
+        let pinsIdx = this._pinsIndex(pins);        
 
         return (
             <div className="board-cover" >
                 <div className="p-item border-line" style={{ width: '50%', height: '100%' }}>
-                    <div className="bg-cover" style={{ width: '100%', height: '100%', background: `url(${window.pins[pins[0]]})` }} />
+                    <div className="bg-cover" style={{ width: '100%', height: '100%', background: `url(${window.pins[pinsIdx[0]]})` }} />
                 </div>
                 <div className="border-line" style={{ width: '25%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '75%', background: `url(${window.pins[pins[1]]})` }} />
-                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '25%', background: `url(${window.pins[pins[2]]})` }} />
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '75%', background: `url(${window.pins[pinsIdx[1]]})` }} />
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '25%', background: `url(${window.pins[pinsIdx[2]]})` }} />
                 </div>
                 <div style={{ width: '25%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '50%', background: `url(${window.pins[pins[3]]})` }} />
-                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '50%', background: `url(${window.pins[pins[4]]})` }} />
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '50%', background: `url(${window.pins[pinsIdx[3]]})` }} />
+                    <div className="p-item border-line bg-cover" style={{ width: '100%', height: '50%', background: `url(${window.pins[pinsIdx[4]]})` }} />
                 </div>
             </div>
         )
@@ -76,7 +91,7 @@ class BoardIndexItem extends React.Component {
             console.log(pins.length);
 
             if (i < pins.length) {                
-                console.log('sdadas');
+                
                 let img, width, height, ratio;
                 img = document.createElement('div');
                 img.id = "m-item" + i.toString();
@@ -129,13 +144,14 @@ class BoardIndexItem extends React.Component {
     }
 
     render() {
-        const { board, pins } = this.props;         
-        const pinCount = Object.keys(pins).length;
+        const { board, pins } = this.props;       
+        const pinsData = Object.values(pins); 
+        const pinCount = pinsData.length;
 
         if ( !board ) return null;
 
         // let pinIdx = this._generateRandomNumber(25);
-        const boardCover = (pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinCount));
+        const boardCover = (pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinsData));
 
         return (
             <div className="b-item"

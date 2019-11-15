@@ -1,12 +1,12 @@
 import React from "react";
 import BoardIndex from "../board/board_index";
-// import PinIndexContainer from "../pin/pin_index_container";
+import PinIndexUserContainer from "../pin/pin_index_user_container";
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tabItem: "board",
+      tabItem: "boards",
       showDropDown: false
     };
 
@@ -16,6 +16,7 @@ class UserProfile extends React.Component {
     this.showUserPins = this.showUserPins.bind(this);
     this.toggleDropDown = this.toggleDropDown.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.renderChildComponent = this.renderChildComponent.bind(this);
   }
 
   componentDidMount() {
@@ -79,15 +80,15 @@ class UserProfile extends React.Component {
   }
 
   showUserBoards() {
-    this.setState({ tabItem: "board" });
-    document.getElementById("board-tab").toggleClass("active");
-    document.getElementById("pin-tab").toggleClass("active");
+    this.setState({ tabItem: "boards" });
+    document.getElementById("board-tab").classList.toggle("active");
+    document.getElementById("pin-tab").classList.toggle("active");
   }
 
-  showUserPins() {
-    this.setState({ tabItem: "pin" });
-    document.getElementById("board-tab").toggleClass("active");
-    document.getElementById("pin-tab").toggleClass("active");
+  showUserPins() {    
+    this.setState({ tabItem: "pins" });
+    document.getElementById("board-tab").classList.toggle("active");
+    document.getElementById("pin-tab").classList.toggle("active");
   }
 
   displayTabList() {
@@ -111,13 +112,30 @@ class UserProfile extends React.Component {
     )
   }
 
+  renderChildComponent(user, boards, userPins, permitted) {
+    if (this.state.tabItem === 'boards') 
+      return (
+        <BoardIndex
+          user={user}
+          boards={boards}
+          pins={userPins}
+          permitted={permitted}
+          showModal={this.props.showModal}
+        />
+      );
+    else 
+      return (
+        <PinIndexUserContainer
+          user={user}
+          boards={boards}
+          pins={userPins}
+          permitted={permitted}
+          showModal={this.props.showModal}
+        />
+      );
+  }
 
   render() {
-    //   // if (this.props.loading) {
-    //   //   return <div></div>;
-    //   // }
-
-
     const { currentUser, username, user, boards, pins, pinIds} = this.props;    
 
     if (!user) return null;
@@ -163,11 +181,20 @@ class UserProfile extends React.Component {
               </div>
             </div>
             {this.displayProfileToolbar()}
-          </div>          
+          </div>
         </section>
         <section className="tab-list">{this.displayTabList()}</section>
-        <section className="boards">
-          <BoardIndex user={user} boards={boards} pins={userPins} permitted = {permitted} showModal={this.props.showModal}/>
+        <section className={this.state.tabItem}>
+          {
+            this.renderChildComponent(user, boards, userPins, permitted) 
+            // <BoardIndex
+            //   user={user}
+            //   boards={boards}
+            //   pins={userPins}
+            //   permitted={permitted}
+            //   showModal={this.props.showModal}
+            // />
+          }
         </section>
       </div>
     );

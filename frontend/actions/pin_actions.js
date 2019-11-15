@@ -33,7 +33,7 @@ export const removePin = payload => {
   };
 };
 
-export const clearPinIndex = () => ({
+export const clearPins = () => ({
   type: CLEAR_PINS
 });
 
