@@ -3,9 +3,7 @@ import UserProfile from './user_profile';
 import { fetchUser } from '../../actions/user_actions';
 import { selectUserBoards, selectUserPins } from '../../reducers/selector';
 
-const mapStateToProps = (state, ownProps) => { 
-    
-  
+const mapStateToProps = (state, ownProps) => {   
   const username = ownProps.match.params.username;
   const user = state.entities.users[username];  
   const boards = selectUserBoards(state.entities, user);

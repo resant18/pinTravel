@@ -4,7 +4,8 @@ import {
   requestUserPins,
   deletePin,
   requestPin,
-  createPin
+  createPin,
+  clearPins
 } from "../../actions/pin_actions";
 import { requestUserBoards } from "../../actions/board_actions";
 import { openModal } from "../../actions/modal2_actions";
@@ -25,7 +26,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(requestUserPins(userId, description)),
     createPin: pin => dispatch(createPin(pin)),
     openModal: modal => dispatch(openModal(modal)),
-    requestUserBoards: id => dispatch(requestUserBoards(id))
+    requestUserBoards: id => dispatch(requestUserBoards(id)),
+    clearPins: () => dispatch(clearPins()),
   };
 };
 

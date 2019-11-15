@@ -93,8 +93,7 @@ class PinIndexItem extends React.Component {
     // const gridSpan = `span ${pin.row_height + 6}`;
 
     return (
-      <div
-        className="pins"
+      <div className="pin"
         // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         // onMouseEnter={this.turnOnVisibility}
         // onMouseLeave={this.turnOffVisibility}

@@ -4,13 +4,13 @@ import PinIndex from "./pin_index";
 import { fetchBoardPins, clearPins } from "../../actions/pin_actions";
 import { showModal } from "../../actions/modal_actions";
 
-const mapDispatchToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id] || {};
   const user = ownProps.user;
   const board = ownProps.board;
   const boardId = board.id;
   const pins = Object.values(state.entities.pins);
-
+  
   return {
     type: "board",
     currentUser,

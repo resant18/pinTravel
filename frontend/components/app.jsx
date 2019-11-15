@@ -11,8 +11,7 @@ import {
 import Modal from './modal/modal';
 import NavBarContainer from './navbar/navbar_container';
 import UserProfileContainer from './user/user_profile_container';
-import SignUpFormContainer from './session_form/signup_form_container';
-import LogInFormContainer from './session_form/login_form_container';
+import PinBoardIndexContainer from './pin/pin_index_board_container';
 import { AuthRoute, ProtectedRoute, SessionRoute } from '../util/route_util';
 import Dashboard from './modal/dashboard';
 
@@ -24,8 +23,8 @@ const App = () => (
       <Route path="/" component={NavBarContainer} />
     </Switch>
     <Switch>
-      <Route path="/:username/boards" component={UserProfileContainer} />
-      <Route path="/:username/pins" component={UserProfileContainer} />
+      <Route exact path="/:username/boards/:boardId" component={PinBoardIndexContainer} />
+      <Route exact path="/:username/pins" component={UserProfileContainer} />
       <Route exact path="/:username" component={UserProfileContainer} />
     </Switch>
     {/* <Switch>

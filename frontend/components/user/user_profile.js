@@ -4,7 +4,8 @@ import PinIndexUserContainer from "../pin/pin_index_user_container";
 
 class UserProfile extends React.Component {
   constructor(props) {
-    super(props);
+    super(props);    
+    
     this.state = {
       tabItem: "boards",
       showDropDown: false
@@ -81,14 +82,14 @@ class UserProfile extends React.Component {
 
   showUserBoards() {
     this.setState({ tabItem: "boards" });
-    document.getElementById("board-tab").classList.toggle("active");
-    document.getElementById("pin-tab").classList.toggle("active");
+    document.getElementById("board-tab").classList.add("active");
+    document.getElementById("pin-tab").classList.remove("active");
   }
 
   showUserPins() {    
     this.setState({ tabItem: "pins" });
-    document.getElementById("board-tab").classList.toggle("active");
-    document.getElementById("pin-tab").classList.toggle("active");
+    document.getElementById("board-tab").classList.remove("active");
+    document.getElementById("pin-tab").classList.add("active");
   }
 
   displayTabList() {
@@ -186,14 +187,7 @@ class UserProfile extends React.Component {
         <section className="tab-list">{this.displayTabList()}</section>
         <section className={this.state.tabItem}>
           {
-            this.renderChildComponent(user, boards, userPins, permitted) 
-            // <BoardIndex
-            //   user={user}
-            //   boards={boards}
-            //   pins={userPins}
-            //   permitted={permitted}
-            //   showModal={this.props.showModal}
-            // />
+            this.renderChildComponent(user, boards, userPins, permitted)             
           }
         </section>
       </div>

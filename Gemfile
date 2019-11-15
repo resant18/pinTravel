@@ -42,7 +42,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Allows to view Heroku logs and will precompile our assets
 gem 'rails_12factor'
 
-# Rails pagination
+# Paginator for modern web app frameworks and ORMs
 gem 'kaminari'
 
 group :development, :test do

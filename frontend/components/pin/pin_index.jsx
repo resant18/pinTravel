@@ -42,7 +42,7 @@ class PinIndex extends React.Component {
   componentDidMount() {
     
     this.props.clearPins()
-      // .then(() => this.fetchMorePins);
+      //  .then(() => this.fetchMorePins);
 
     this.setState({ page: this.state.page + 1 });
   }
