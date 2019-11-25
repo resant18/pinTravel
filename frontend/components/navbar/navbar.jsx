@@ -13,15 +13,15 @@ class NavBar extends React.Component {
         }
     }
 
-    render() {
-        if (this.props.loggedIn)
+    render() { 
+        if (this.props.loggedIn)        
             return (
                 <header>
                     <nav className="navbar">
                         <div className="navbar-content">
                             <div className="left-nav">
                                 <a className="active" aria-current="page" href="#/">
-                                    <img className="logo" src={window.logo} alt="Pinterest"/>                        
+                                    <img className="logo" src={window.logo} alt="PinTravel"/>                        
                                 </a>                    
                                 <a><span className="pin-travel">Pintravel</span></a>
                             </div>

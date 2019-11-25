@@ -11,10 +11,13 @@ class PinIndex extends React.Component {
     };
 
     this.fetchMorePins = this.fetchMorePins.bind(this);
+    this.fetchPinsData = this.fetchPinsData.bind(this);
   }
 
   fetchPinsData() {
     const { fetchType, fetchPins, boardId, username } = this.props;
+
+    
 
     switch (fetchType) {
       case "feed":
@@ -35,16 +38,13 @@ class PinIndex extends React.Component {
   }
 
   fetchMorePins() {
-    const value = this.state.prevPage + 1;
-    this.setState({ prevPage: value });
+    // const value = this.state.prevPage + 1;
+    // this.setState({ prevPage: value });
   }
 
-  componentDidMount() {
-    
-    this.props.clearPins()
-      //  .then(() => this.fetchMorePins);
-
-    this.setState({ page: this.state.page + 1 });
+  componentDidMount() {        
+    // this.props.clearPins();
+    this.fetchPinsData();
   }
 
   render() {
@@ -62,7 +62,7 @@ class PinIndex extends React.Component {
     return (
       <div className="pin-index">
         {pins}
-        <Waypoint onEnter={this.fetchPinsData.bind(this)} />
+        <Waypoint onEnter={this.fetchPinsData} />
       </div>
     );
   }

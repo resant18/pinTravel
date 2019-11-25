@@ -31,7 +31,7 @@ class SessionForm extends React.Component {
     let firstName, lastName;
     if (dotIdx !== -1) {
       firstName = username.slice(0, dotIdx);
-      lastName = username.slice(dotIdx + 1, username.length - 1);
+      lastName = username.slice(dotIdx + 1, username.length);
     } else {
       firstName = username;
       lastName = "";

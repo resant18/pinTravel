@@ -44,7 +44,7 @@ pin7 = Pin.create({id: 7, name: 'Denpasar', detail: '', lat: -8.6524973, lng: 11
 pin8 = Pin.create({id: 8, name: 'Jimbaran', detail: 'Jimbaran bay', lat: -8.7891548, lng: 115.1630097 })
 
 pin9 = Pin.create({id: 9, name: 'Walmart', detail: '', lat: 34.052240, lng: -118.243340 })
-pin10 = Pin.create(id: 10, name: 'Target', detail: '', lat: 34.1391749, lng: -118.3543047 })
+pin10 = Pin.create({id: 10, name: 'Target', detail: '', lat: 34.1391749, lng: -118.3543047 })
 pin11 = Pin.create({id: 11, name: 'Rail Road Vintage Shop', detail: '', lat: 33.8136476, lng: -117.9197157 })
 pin12 = Pin.create({id: 12, name: 'Michael''s Consignment', detail: '', lat: 40.776550, lng: -73.961600 })
 pin13 = Pin.create({id: 13, name: 'Hell''s Kitchen Flea Market', detail: '', lat: 40.756770, lng: -73.994460 })
@@ -71,7 +71,7 @@ pin31 = Pin.create({id: 31, name: 'Lombok Beach', detail: '', lat: -8.6524973, l
 pin32 = Pin.create({id: 32, name: 'Cup Noodle Museum', detail: 'Yokohama', lat: -8.7891548, lng: 115.1630097 })
 
 pin33 = Pin.create({id: 33, name: 'Perfect Croatia', detail: '', lat: 34.052240, lng: -118.243340 })
-pin34 = Pin.create(id: 34, name: 'Crotia Stairs', detail: '', lat: 34.1391749, lng: -118.3543047 })
+pin34 = Pin.create({id: 34, name: 'Crotia Stairs', detail: '', lat: 34.1391749, lng: -118.3543047 })
 pin35 = Pin.create({id: 35, name: 'Awesome Things in Yokohama', detail: '', lat: 33.8136476, lng: -117.9197157 })
 pin36 = Pin.create({id: 36, name: 'Gili Island', detail: 'Lombok Best Beach', lat: 40.776550, lng: -73.961600 })
 pin37 = Pin.create({id: 37, name: 'Luna Park', detail: 'Kids Amusement Park', lat: 40.756770, lng: -73.994460 })
@@ -172,3 +172,5 @@ bpin63 = BoardPin.create({id: 63, board_id: 4, pin_id: 52})
 bpin63 = BoardPin.create({id: 63, board_id: 6, pin_id: 53})
 bpin64 = BoardPin.create({id: 64, board_id: 6, pin_id: 54})
 bpin65 = BoardPin.create({id: 65, board_id: 6, pin_id: 55})
+
+bpin66 = BoardPin.create({id: 66, board_id: 2, pin_id: 6})

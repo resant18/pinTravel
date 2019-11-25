@@ -5,13 +5,13 @@ class Api::PinsController < ApplicationController
       if params[:user_id]        
         user = User.find_by(username: params[:user_id])                            
         @pins = user.pins.order(updated_at: :desc)
-              # .page(params[:page]).per(10)
-
+              .page(params[:page]).per(10)                            
       elsif params[:board_id]        
         @pins = Pin.includes(:boards_pins, :boards)
               .where(boards: { board_id: params[:board_id]} )
               .page(params[:page]).per(10)
       end
+      
       render "api/pins/index"
     end
 

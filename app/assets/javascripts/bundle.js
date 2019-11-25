@@ -1391,7 +1391,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "logo",
         src: window.logo,
-        alt: "Pinterest"
+        alt: "PinTravel"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "pin-travel"
       }, "Pintravel"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1540,6 +1540,7 @@ function (_React$Component) {
       page: 1
     };
     _this.fetchMorePins = _this.fetchMorePins.bind(_assertThisInitialized(_this));
+    _this.fetchPinsData = _this.fetchPinsData.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1574,20 +1575,14 @@ function (_React$Component) {
     }
   }, {
     key: "fetchMorePins",
-    value: function fetchMorePins() {
-      var value = this.state.prevPage + 1;
-      this.setState({
-        prevPage: value
-      });
+    value: function fetchMorePins() {// const value = this.state.prevPage + 1;
+      // this.setState({ prevPage: value });
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.clearPins(); //  .then(() => this.fetchMorePins);
-
-      this.setState({
-        page: this.state.page + 1
-      });
+      // this.props.clearPins();
+      this.fetchPinsData();
     }
   }, {
     key: "render",
@@ -1605,7 +1600,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index"
       }, pins, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
-        onEnter: this.fetchPinsData.bind(this)
+        onEnter: this.fetchPinsData
       }));
     }
   }]);
@@ -2085,7 +2080,7 @@ function (_React$Component) {
 
       if (dotIdx !== -1) {
         firstName = username.slice(0, dotIdx);
-        lastName = username.slice(dotIdx + 1, username.length - 1);
+        lastName = username.slice(dotIdx + 1, username.length);
       } else {
         firstName = username;
         lastName = "";
@@ -2686,6 +2681,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_profile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_profile */ "./frontend/components/user/user_profile.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _reducers_selector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../reducers/selector */ "./frontend/reducers/selector.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+
 
 
 
@@ -2694,10 +2691,12 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var username = ownProps.match.params.username;
   var user = state.entities.users[username];
-  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user);
-  var pins = Object.values(state.entities.pins);
-  var pinIds = user ? user["pin_ids"] : []; // const userPins = selectUserPins(state.entities, pinIds); 
+  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user); // const boards = Object.values(state.entities.boards).filter(
+  //   board => board.user_id === user.id
+  // );
 
+  var pins = Object.values(state.entities.pins);
+  var pinIds = user ? user["pin_ids"] : [];
   return {
     currentUser: state.entities.users[state.session.id],
     username: username,
@@ -2714,32 +2713,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchUser: function fetchUser(username) {
       return dispatch(Object(_actions_user_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(username));
     },
-    showModal: function (_showModal) {
-      function showModal(_x) {
-        return _showModal.apply(this, arguments);
-      }
-
-      showModal.toString = function () {
-        return _showModal.toString();
-      };
-
-      return showModal;
-    }(function (modal) {
-      return dispatch(showModal(modal));
-    }),
-    hideModal: function (_hideModal) {
-      function hideModal() {
-        return _hideModal.apply(this, arguments);
-      }
-
-      hideModal.toString = function () {
-        return _hideModal.toString();
-      };
-
-      return hideModal;
-    }(function () {
-      return dispatch(hideModal);
-    })
+    showModal: function showModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["showModal"])(modal));
+    },
+    hideModal: function hideModal() {
+      return dispatch(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["hideModal"]);
+    }
   };
 };
 
@@ -3017,6 +2996,7 @@ var pinsReducer = function pinsReducer() {
       return lodash_merge__WEBPACK_IMPORTED_MODULE_0___default()({}, state, action.pins);
 
     case _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["CLEAR_PINS"]:
+      debugger;
       return {};
 
     default:
@@ -3084,6 +3064,7 @@ var selectBoard = function selectBoard(_ref, boardId) {
 };
 var selectUserBoards = function selectUserBoards(_ref2, user) {
   var boards = _ref2.boards;
+  if (!user) return [];
   return Object.values(boards).filter(function (board) {
     return board.user_id === user.id;
   }); // return user.boardIds.map(boardId => boards[boardId]);
@@ -56826,7 +56807,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -14,7 +14,7 @@ export const selectBoard = ({ boards }, boardId) => {
 };
 
 export const selectUserBoards = ({ boards }, user) => {
-    
+    if (!user) return [];
     return Object.values(boards).filter(board => board.user_id === user.id);
     // return user.boardIds.map(boardId => boards[boardId]);
 };
