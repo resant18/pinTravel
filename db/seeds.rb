@@ -169,8 +169,8 @@ bpin61 = BoardPin.create({id: 61, board_id: 5, pin_id: 50})
 bpin62 = BoardPin.create({id: 62, board_id: 4, pin_id: 51})
 bpin63 = BoardPin.create({id: 63, board_id: 4, pin_id: 52})
 
-bpin63 = BoardPin.create({id: 63, board_id: 6, pin_id: 53})
-bpin64 = BoardPin.create({id: 64, board_id: 6, pin_id: 54})
-bpin65 = BoardPin.create({id: 65, board_id: 6, pin_id: 55})
+bpin64 = BoardPin.create({id: 64, board_id: 6, pin_id: 53})
+bpin65 = BoardPin.create({id: 65, board_id: 6, pin_id: 54})
+bpin66 = BoardPin.create({id: 66, board_id: 6, pin_id: 55})
 
-bpin66 = BoardPin.create({id: 66, board_id: 2, pin_id: 6})
+bpin67 = BoardPin.create({id: 67, board_id: 2, pin_id: 6})
