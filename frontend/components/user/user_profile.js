@@ -21,7 +21,18 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchUser(this.props.username);
+    debugger
+    if (!this.props.user) {      
+      debugger
+      this.props.fetchUser(this.props.username);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!this.props.user) {
+      debugger
+      this.props.fetchUser(this.props.username);
+    }
   }
 
   handleClick(type) {
@@ -137,7 +148,9 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const { currentUser, username, user, boards, pins, pinIds} = this.props;    
+    const { user, permitted, boards, pins, pinIds} = this.props;    
+
+    debugger
 
     if (!user) return null;
 
@@ -146,9 +159,7 @@ class UserProfile extends React.Component {
     );
 
     let userProfileName =
-      user.first_name + " " + (user.last_name === null ? "" : user.last_name);
-    
-    const permitted = (username === currentUser.username);    
+      user.first_name + " " + (user.last_name === null ? "" : user.last_name);        
 
     return (
       <div>

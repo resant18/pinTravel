@@ -611,10 +611,6 @@ var App = function App() {
     component: _pin_pin_index_board_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
-    path: "/:username/pins",
-    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
-    exact: true,
     path: "/:username",
     component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   })));
@@ -2490,7 +2486,20 @@ function (_React$Component) {
   _createClass(UserProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUser(this.props.username);
+      debugger;
+
+      if (!this.props.user) {
+        debugger;
+        this.props.fetchUser(this.props.username);
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (!this.props.user) {
+        debugger;
+        this.props.fetchUser(this.props.username);
+      }
     }
   }, {
     key: "handleClick",
@@ -2607,18 +2616,17 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          currentUser = _this$props.currentUser,
-          username = _this$props.username,
           user = _this$props.user,
+          permitted = _this$props.permitted,
           boards = _this$props.boards,
           pins = _this$props.pins,
           pinIds = _this$props.pinIds;
+      debugger;
       if (!user) return null;
       var userPins = Object.values(pins).filter(function (pin) {
         return pinIds.includes(pin.pin_id);
       });
       var userProfileName = user.first_name + " " + (user.last_name === null ? "" : user.last_name);
-      var permitted = username === currentUser.username;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2689,8 +2697,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
+  var currentUser = state.entities.users[state.session.id];
   var username = ownProps.match.params.username;
   var user = state.entities.users[username];
+  var permitted = currentUser ? username === currentUser.username : false;
   var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user); // const boards = Object.values(state.entities.boards).filter(
   //   board => board.user_id === user.id
   // );
@@ -2698,9 +2709,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var pins = Object.values(state.entities.pins);
   var pinIds = user ? user["pin_ids"] : [];
   return {
-    currentUser: state.entities.users[state.session.id],
+    currentUser: currentUser,
     username: username,
     user: user,
+    permitted: permitted,
     boards: boards,
     pinIds: pinIds,
     // userPins,
@@ -56807,7 +56819,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

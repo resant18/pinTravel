@@ -24,7 +24,7 @@ const App = () => (
     </Switch>
     <Switch>
       <Route exact path="/:username/boards/:boardId" component={PinBoardIndexContainer} />
-      <Route exact path="/:username/pins" component={UserProfileContainer} />
+      {/* <Route exact path="/:username/pins" component={UserProfileContainer} /> */}
       <Route exact path="/:username" component={UserProfileContainer} />
     </Switch>
   </div>
