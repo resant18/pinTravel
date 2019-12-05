@@ -55,6 +55,17 @@
     font-size: 1.5em;
 }
 
+.add-board-pin {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;    
+    padding: 0;
+    background-color: #ddd;
+    &:hover, &:active {
+        box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5)
+    }
+}   
+
 // Board
 
 .boards-count {
