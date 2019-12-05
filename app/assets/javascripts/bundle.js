@@ -2486,10 +2486,7 @@ function (_React$Component) {
   _createClass(UserProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      debugger;
-
       if (!this.props.user) {
-        debugger;
         this.props.fetchUser(this.props.username);
       }
     }
@@ -2497,7 +2494,6 @@ function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       if (!this.props.user) {
-        debugger;
         this.props.fetchUser(this.props.username);
       }
     }
@@ -2619,13 +2615,10 @@ function (_React$Component) {
           user = _this$props.user,
           permitted = _this$props.permitted,
           boards = _this$props.boards,
+          userPins = _this$props.userPins,
           pins = _this$props.pins,
           pinIds = _this$props.pinIds;
-      debugger;
       if (!user) return null;
-      var userPins = Object.values(pins).filter(function (pin) {
-        return pinIds.includes(pin.pin_id);
-      });
       var userProfileName = user.first_name + " " + (user.last_name === null ? "" : user.last_name);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-profile-page"
@@ -2661,7 +2654,7 @@ function (_React$Component) {
         className: "boards-count-title"
       }, "Pins"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "boards-count-number"
-      }, pinIds.length)))), this.displayProfileToolbar())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      }, userPins.length)))), this.displayProfileToolbar())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "tab-list"
       }, this.displayTabList()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: this.state.tabItem
@@ -2697,16 +2690,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   var currentUser = state.entities.users[state.session.id];
   var username = ownProps.match.params.username;
   var user = state.entities.users[username];
   var permitted = currentUser ? username === currentUser.username : false;
-  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user); // const boards = Object.values(state.entities.boards).filter(
-  //   board => board.user_id === user.id
-  // );
-
-  var pins = Object.values(state.entities.pins);
+  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user);
+  var userPins = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserPins"])(state.entities, user);
   var pinIds = user ? user["pin_ids"] : [];
   return {
     currentUser: currentUser,
@@ -2714,9 +2703,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     user: user,
     permitted: permitted,
     boards: boards,
-    pinIds: pinIds,
-    // userPins,
-    pins: pins
+    //pinIds,
+    userPins: userPins //pins
+
   };
 };
 
@@ -3079,13 +3068,17 @@ var selectUserBoards = function selectUserBoards(_ref2, user) {
   if (!user) return [];
   return Object.values(boards).filter(function (board) {
     return board.user_id === user.id;
-  }); // return user.boardIds.map(boardId => boards[boardId]);
-};
-var selectUserPins = function selectUserPins(_ref3, pinIds) {
-  var pins = _ref3.pins;
-  return Object.values(pins).filter(function (pin) {
-    return pinIds.includes(pin.id);
   });
+};
+var selectUserPins = function selectUserPins(_ref3, user) {
+  var pins = _ref3.pins;
+  if (!user) return [];
+  return Object.values(pins).filter(function (pin) {
+    return user.board_pin_ids.includes(pin.id);
+  }); // Code to get unique pins    
+  // return Object.values(pins).filter(
+  //     pin => user.pin_ids.includes(pin.pin_id)        
+  // );        
 }; // export const selectReviewsForBench = ({ benches, reviews }, bench) => {
 //   return bench.reviewIds.map(reviewId => reviews[reviewId]);
 // };

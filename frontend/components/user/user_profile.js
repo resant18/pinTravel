@@ -21,16 +21,13 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
-    debugger
-    if (!this.props.user) {      
-      debugger
+    if (!this.props.user) {            
       this.props.fetchUser(this.props.username);
     }
   }
 
   componentDidUpdate(prevProps) {
     if (!this.props.user) {
-      debugger
       this.props.fetchUser(this.props.username);
     }
   }
@@ -148,16 +145,9 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const { user, permitted, boards, pins, pinIds} = this.props;    
-
-    debugger
+    const { user, permitted, boards, userPins, pins, pinIds} = this.props;    
 
     if (!user) return null;
-
-    const userPins = Object.values(pins).filter(pin =>
-      pinIds.includes(pin.pin_id)
-    );
-
     let userProfileName =
       user.first_name + " " + (user.last_name === null ? "" : user.last_name);        
 
@@ -188,7 +178,7 @@ class UserProfile extends React.Component {
                 </div>
                 <div className="pins-count">
                   <p className="boards-count-title">Pins</p>
-                  <p className="boards-count-number">{pinIds.length}</p>
+                  <p className="boards-count-number">{userPins.length}</p>
                 </div>
               </div>
             </div>

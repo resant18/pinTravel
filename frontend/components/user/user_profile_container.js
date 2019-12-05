@@ -4,17 +4,13 @@ import { fetchUser } from '../../actions/user_actions';
 import { selectUserBoards, selectUserPins } from '../../reducers/selector';
 import { showModal, hideModal } from '../../actions/modal_actions';
 
-const mapStateToProps = (state, ownProps) => {     
-  debugger 
+const mapStateToProps = (state, ownProps) => {      
   const currentUser = state.entities.users[state.session.id];  
   const username = ownProps.match.params.username;
   const user = state.entities.users[username];  
   const permitted = currentUser ? (username === currentUser.username) : false;
   const boards = selectUserBoards(state.entities, user);
-  // const boards = Object.values(state.entities.boards).filter(
-  //   board => board.user_id === user.id
-  // );
-  const pins = Object.values(state.entities.pins);  
+  const userPins = selectUserPins(state.entities, user)    
   const pinIds = user ? user["pin_ids"] : [];  
   
   return {
@@ -23,9 +19,9 @@ const mapStateToProps = (state, ownProps) => {
     user,
     permitted,
     boards,
-    pinIds,
-    // userPins,
-    pins
+    //pinIds,
+    userPins,
+    //pins
   };
 };
 

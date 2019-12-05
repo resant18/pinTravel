@@ -15,14 +15,20 @@ export const selectBoard = ({ boards }, boardId) => {
 
 export const selectUserBoards = ({ boards }, user) => {
     if (!user) return [];
-    return Object.values(boards).filter(board => board.user_id === user.id);
-    // return user.boardIds.map(boardId => boards[boardId]);
+    return Object.values(boards).filter(board => 
+        board.user_id === user.id);    
 };
 
-export const selectUserPins = ({ pins }, pinIds) => {
-    return Object.values(pins).filter(
-        pin => pinIds.includes(pin.id)
-    );    
+export const selectUserPins = ({ pins }, user) => {
+    if (!user) return [];    
+
+    return Object.values(pins).filter(pin =>
+       user.board_pin_ids.includes(pin.id)
+    );
+    // Code to get unique pins    
+    // return Object.values(pins).filter(
+    //     pin => user.pin_ids.includes(pin.pin_id)        
+    // );        
 }; 
 
 // export const selectReviewsForBench = ({ benches, reviews }, bench) => {
