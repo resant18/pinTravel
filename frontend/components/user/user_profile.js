@@ -38,12 +38,15 @@ class UserProfile extends React.Component {
 
   toggleDropDown(e) {
     e.preventDefault();
-
     document.getElementById("drop-down").classList.toggle("show");
   }
 
   showModal(modal) {
-    return e => this.props.showModal(modal);
+    // document.getElementById("drop-down").classList.toggle("show");
+    return e => {
+      this.props.showModal(modal);    
+      this.toggleDropDown(e);
+    }
   }
 
   displayProfileToolbar() {

@@ -16,6 +16,12 @@
         column-gap: 18px;
         max-width: 1512px;
     }
+    .input-board-name {
+        width: 75%;
+    }
+    .board-name p {
+        width: 25%;
+    }
 }
 
 // Medium screen
@@ -28,6 +34,12 @@
         columns: 4;
         column-gap: 18px;
         max-width: 767px;
+    }
+    .input-board-name {
+        width: 75%;
+    }
+    .board-name p {
+        width: 25%;
     }
 }
 

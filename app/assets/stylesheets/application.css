@@ -37,6 +37,13 @@ html {
     text-size-adjust: none;
 }
 
+h1 {
+  font-size: 24px;
+  letter-spacing: -.4px;    
+  hyphens: auto;
+  word-wrap: break-word;  
+}
+
 h5 {
     color: #333;
     letter-spacing: -.4px;
@@ -119,6 +126,8 @@ li {
 
 .modal-content {
     position: absolute;
+    background: white;
+    border-radius: 12px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -130,6 +139,8 @@ li {
     font-size: 14px;
     text-align: left;
 }
+
+
 
 /* <!doctype html>
 <html>

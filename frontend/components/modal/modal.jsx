@@ -11,7 +11,7 @@ const Modal = ({ modal, hideModal }) => {
     let component;
 
     switch (modal) {        
-        case 'create_board':
+        case 'create-board':
             component = <BoardCreateContainer />
             break;
         case 'create-pin':

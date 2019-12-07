@@ -1,3 +1,33 @@
 // Place all the styles related to the api/boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.board-form-container {
+   width: 544px;
+   margin-left: 16px;
+   margin-right: 16px;
+   .header {
+      padding-top: 20px;
+      padding-bottom: 20px;
+   }
+
+   .close-btn {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding-top: 8px  ;
+      padding-right: 8px;
+      width: 40px;
+      height: 40px;
+      background: white;
+      color: #8e8e8e;
+   }
+
+   h1 {
+      text-align: center;
+      font-weight: 700;      
+   }
+   p {
+
+      display: inline-block;
+   }
+}

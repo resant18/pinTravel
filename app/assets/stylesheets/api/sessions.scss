@@ -39,18 +39,15 @@
 }
 
 .logo {
-
     background-image: url('/logo.png');
     width: 72px;
     height: 72px;
     margin: 5px auto;
 }
 
-.login-form-container {
-    background: white;
+.login-form-container {    
     width: 440px;
-    min-height: 533px;
-    border-radius: 12px;
+    min-height: 533px;    
     align-self: center;
     padding-top: 10px;
 }

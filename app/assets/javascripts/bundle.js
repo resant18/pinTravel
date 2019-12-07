@@ -772,11 +772,11 @@ function (_React$Component) {
         className: "board-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "close-btn",
         onClick: this.props.hideModal
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-        "class": "gUZ B9u U9O kVc",
+        className: "gUZ B9u U9O kVc",
         height: "20",
         width: "20",
         viewBox: "0 0 24 24",
@@ -789,9 +789,9 @@ function (_React$Component) {
         className: "board-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-name"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TextInput, {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "input board-name",
-        placeHolder: "E.g. 'Places to go' or 'Recipes to make'",
+        placeholder: "E.g. 'Places to go' or 'Recipes to make'",
         onChange: this.update('name')
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
@@ -1279,7 +1279,7 @@ var Modal = function Modal(_ref) {
   var component;
 
   switch (modal) {
-    case 'create_board':
+    case 'create-board':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
 
@@ -2519,8 +2519,11 @@ function (_React$Component) {
     value: function showModal(modal) {
       var _this3 = this;
 
+      // document.getElementById("drop-down").classList.toggle("show");
       return function (e) {
-        return _this3.props.showModal(modal);
+        _this3.props.showModal(modal);
+
+        _this3.toggleDropDown(e);
       };
     }
   }, {
