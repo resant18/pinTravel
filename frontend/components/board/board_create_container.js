@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { createBoard } from '../../actions/board_actions';
+import { showModal, hideModal } from '../../actions/modal_actions';
 import BoardForm from './board_form';
 
 const mapStateToProps = (state, ownProps) => ({
   board: {
     name: '',
-    category_id: '',
+    category_id: 1,
     cover_id: '',
     secret: false,    
   },
@@ -17,7 +18,7 @@ const mapDispatchToProps = dispatch => ({
   action: board => dispatch(createBoard(board)),
   showModal: modal => dispatch(showModal(modal)),
   hideModal: () => dispatch(hideModal()),
-  receiveBoardErrors: errors => dispatch(receiveBoardErrors(errors)),
+  // receiveBoardErrors: errors => dispatch(receiveBoardErrors(errors)),
 });
 
 export default connect(

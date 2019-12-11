@@ -631,7 +631,9 @@ var App = function App() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _board_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board_form */ "./frontend/components/board/board_form.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _board_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./board_form */ "./frontend/components/board/board_form.jsx");
+
 
 
 
@@ -640,7 +642,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     board: {
       name: '',
-      category_id: '',
+      category_id: 1,
       cover_id: '',
       secret: false
     },
@@ -654,49 +656,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     action: function action(board) {
       return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["createBoard"])(board));
     },
-    showModal: function (_showModal) {
-      function showModal(_x) {
-        return _showModal.apply(this, arguments);
-      }
+    showModal: function showModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["showModal"])(modal));
+    },
+    hideModal: function hideModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["hideModal"])());
+    } // receiveBoardErrors: errors => dispatch(receiveBoardErrors(errors)),
 
-      showModal.toString = function () {
-        return _showModal.toString();
-      };
-
-      return showModal;
-    }(function (modal) {
-      return dispatch(showModal(modal));
-    }),
-    hideModal: function (_hideModal) {
-      function hideModal() {
-        return _hideModal.apply(this, arguments);
-      }
-
-      hideModal.toString = function () {
-        return _hideModal.toString();
-      };
-
-      return hideModal;
-    }(function () {
-      return dispatch(hideModal());
-    }),
-    receiveBoardErrors: function (_receiveBoardErrors) {
-      function receiveBoardErrors(_x2) {
-        return _receiveBoardErrors.apply(this, arguments);
-      }
-
-      receiveBoardErrors.toString = function () {
-        return _receiveBoardErrors.toString();
-      };
-
-      return receiveBoardErrors;
-    }(function (errors) {
-      return dispatch(receiveBoardErrors(errors));
-    })
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -765,6 +735,15 @@ function (_React$Component) {
       this.props.action(this.state);
     }
   }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors === undefined ? "" : this.props.errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -794,6 +773,8 @@ function (_React$Component) {
         placeholder: "E.g. 'Places to go' or 'Recipes to make'",
         onChange: this.update('name')
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "errors"
+      }, this.renderErrors), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "buttons-right"
@@ -2807,7 +2788,7 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOARD_ERRORS"]:
-      return action.errors;
+      return action.errors || [];
     // return action.errors.error_message || [];
     // case CLEAR_BOARD_ERRORS:
     //   return [];

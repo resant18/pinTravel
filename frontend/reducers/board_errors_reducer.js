@@ -1,18 +1,18 @@
 import {
-  RECEIVE_BOARD_ERRORS,
-  CLEAR_BOARD_ERRORS
-} from '../actions/board_actions';
+   RECEIVE_BOARD_ERRORS,
+   CLEAR_BOARD_ERRORS
+} from "../actions/board_actions";
 
 export default (state = [], action) => {
-  Object.freeze(state);
-  
-  switch (action.type) {
-    case RECEIVE_BOARD_ERRORS:
-      return action.errors;
+   Object.freeze(state);
+
+   switch (action.type) {
+      case RECEIVE_BOARD_ERRORS:
+         return action.errors || [];
       // return action.errors.error_message || [];
-    // case CLEAR_BOARD_ERRORS:
-    //   return [];
-    default:
-      return state;
-  }
+      // case CLEAR_BOARD_ERRORS:
+      //   return [];
+      default:
+         return state;
+   }
 };

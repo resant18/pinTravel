@@ -4,7 +4,6 @@ export const RECEIVE_BOARDS = "RECEIVE_BOARDS";
 export const RECEIVE_BOARD = "RECEIVE_BOARD";
 export const REMOVE_BOARD = "REMOVE_BOARD";
 export const CLEAR_BOARDS = "CLEAR_BOARDS";
-
 export const RECEIVE_BOARD_ERRORS = "RECEIVE_BOARD_ERRORS";
 
 export const receiveBoards = payload => {
@@ -38,10 +37,12 @@ export const clearBoards = payload => {
   };
 };
 
-export const receiveBoardErrors = errors => ({
+export const receiveBoardErrors = errors => { 
+  
+  return ({
   type: RECEIVE_BOARD_ERRORS,
   errors
-});
+})};
 
 // =====
 
