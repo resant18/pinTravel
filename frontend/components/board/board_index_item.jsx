@@ -5,7 +5,7 @@ class BoardIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            visible: false
+            editable: false
         }
         
         this.displayDefaultBoardCover = this.displayDefaultBoardCover.bind(this);        
@@ -82,6 +82,7 @@ class BoardIndexItem extends React.Component {
         )
     }
 
+    // TODO: Use Pinterest's logic to render the board cover pin images dynamically
     displayBoardCoverPins2(pins) {                
         let itemsHeight = [0, 0, 0];
         
@@ -123,12 +124,15 @@ class BoardIndexItem extends React.Component {
     }
     
 
-    toggleEdit() {
-        // this.setState({ visible: !(this.visible) })
+    toggleEdit(e) {
+        // e.preventDefault();
+        // debugger
+        // console.log('toggle edit');
+        this.setState({ editable: !(this.editable) });
     }
 
-    displayEdit() {
-        if (this.state.visible && this.props.permitted) {
+    displayEdit() {        
+        if (this.state.editable && this.props.permitted) {
             return (
                 <button
                     onClick={this.showModal}
@@ -170,6 +174,7 @@ class BoardIndexItem extends React.Component {
                         </div>
                     </div>
                 </Link>
+                {this.displayEdit()}
             </div>
         )
     }

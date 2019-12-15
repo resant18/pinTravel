@@ -737,7 +737,8 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors === undefined ? "" : this.props.errors.map(function (error, i) {
+      if (this.props.errors === undefined) return '';
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "error-".concat(i)
         }, error);
@@ -755,7 +756,6 @@ function (_React$Component) {
         className: "close-btn",
         onClick: this.props.hideModal
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-        className: "gUZ B9u U9O kVc",
         height: "20",
         width: "20",
         viewBox: "0 0 24 24",
@@ -764,7 +764,11 @@ function (_React$Component) {
         role: "img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
         d: "M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        "class": "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "board-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-name"
@@ -772,9 +776,19 @@ function (_React$Component) {
         className: "input board-name",
         placeholder: "E.g. 'Places to go' or 'Recipes to make'",
         onChange: this.update('name')
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        "class": "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-visibility"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "checkbox"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secret"
+      }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create"
+      }, "Learn more"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "errors"
-      }, this.renderErrors), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "buttons-right"
@@ -784,7 +798,7 @@ function (_React$Component) {
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "rectangle-btn",
         onClick: this.handleSubmit
-      }, "Create"))));
+      }, "Create")))));
     }
   }]);
 
@@ -930,7 +944,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardIndexItem).call(this, props));
     _this.state = {
-      visible: false
+      editable: false
     };
     _this.displayDefaultBoardCover = _this.displayDefaultBoardCover.bind(_assertThisInitialized(_this));
     _this.displayBoardCoverPins = _this.displayBoardCoverPins.bind(_assertThisInitialized(_this));
@@ -1086,7 +1100,8 @@ function (_React$Component) {
           background: "url(".concat(window.pins[pinsIdx[4]], ")")
         }
       })));
-    }
+    } // TODO: Use Pinterest's logic to render the board cover pin images dynamically
+
   }, {
     key: "displayBoardCoverPins2",
     value: function displayBoardCoverPins2(pins) {
@@ -1123,12 +1138,18 @@ function (_React$Component) {
     }
   }, {
     key: "toggleEdit",
-    value: function toggleEdit() {// this.setState({ visible: !(this.visible) })
+    value: function toggleEdit(e) {
+      // e.preventDefault();
+      // debugger
+      // console.log('toggle edit');
+      this.setState({
+        editable: !this.editable
+      });
     }
   }, {
     key: "displayEdit",
     value: function displayEdit() {
-      if (this.state.visible && this.props.permitted) {
+      if (this.state.editable && this.props.permitted) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: this.showModal,
           className: "b-index-link"
@@ -1169,7 +1190,7 @@ function (_React$Component) {
         to: "/boards/".concat(board.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, boardCover, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? "Pins" : "Pin")))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? "Pins" : "Pin")))), this.displayEdit());
     }
   }]);
 
