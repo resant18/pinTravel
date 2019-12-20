@@ -99,6 +99,12 @@ input[type=text], input[type=password] {
     width: 100%;    
 }
 
+input[type=checkbox] {
+    height: 24px;
+    width: 24px;    
+    line-height: normal;
+}
+
 input[type=text]:focus, input[type=password]:focus,
 button:focus {
     outline: 5px auto -webkit-focus-ring-color;    
@@ -107,10 +113,7 @@ button:focus {
 div {
     box-sizing: border-box;
 }
-/* 
-:focus {
-    outline: -webkit-focus-ring-color auto 5px;
-} */
+
 
 li {
     list-style: none;

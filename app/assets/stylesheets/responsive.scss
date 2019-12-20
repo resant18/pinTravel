@@ -16,12 +16,16 @@
         column-gap: 18px;
         max-width: 1512px;
     }
-    .board-name {
+    .board-name, .board-visibility {
         input {
             width: 75%; 
         }
         p {
             width: 25%; 
+            box-sizing: border-box;            
+        }
+        .secret {
+            font-size: 14px;
         }
     }    
 }
@@ -32,12 +36,15 @@
     .user-profile-container, .tab-list {
         max-width: 768px;
     }
-    .pin-index {
+    .b-item-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
+    }
+    .pins .pin-index {
         columns: 4;
         column-gap: 18px;
         max-width: 767px;
     }
-    .board-name {
+    .board-name, .board-visibility {
         padding-top: 18px;
         padding-bottom: 18px;
         padding-left: 16px;
@@ -47,7 +54,11 @@
         }
         p {
             width: 25%; 
+            box-sizing: border-box;
         }
+        .secret {
+            font-size: 12px;
+        }      
     } 
 }
 
@@ -57,7 +68,10 @@
     .user-profile-container, .tab-list {
         max-width: 540px;
     }
-    .pin-index {
+    .b-item-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
+    }
+    .pins .pin-index {
         columns: 3;
         column-gap: 18px;
         max-width: 540px;
@@ -71,7 +85,10 @@
     .user-profile-container, .tab-list {
         max-width: 360px;
     }
-    .pin-index {
+    .b-item-wrapper {
+        grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
+    }
+    .pins  .pin-index {
         columns: 2;
         column-gap: 15px;
     }
