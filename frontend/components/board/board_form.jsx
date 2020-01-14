@@ -25,7 +25,7 @@ class BoardForm extends React.Component {
                 if (e.target.value === '') {
                     this.setState({ [field]: e.target.value, showErrors: true });  
                     createBtn.classList.remove('create-btn-focus');
-                    cancelBtn.classList.remove('cancel-btn-unfocus');                                          
+                    cancelBtn.classList.remove('cancel-btn-unfocus');                                         
                     inputBoardName.classList.add('error');                       
                 } else {
                     this.setState({ [field]: e.target.value, showErrors: false });  
@@ -40,8 +40,8 @@ class BoardForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.action(this.state.board);    
-        debugger                
+
+        this.props.action(this.state);                    
     }
     
     renderErrors() { 
@@ -59,7 +59,7 @@ class BoardForm extends React.Component {
 
     render() {        
         const renderBoardNameValidationError = (this.state.name === '' && this.state.showErrors === true) ? `Don't forget to name your board!` : '';
-        const createButtonDisabled = (this.state.name === '') ? true : false;
+        const createButtonDisabled = (this.state.name === '' ) ? true : false;
 
         return (            
             <div aria-label='Create' className='board-form-container'>
@@ -84,6 +84,7 @@ class BoardForm extends React.Component {
                                 onChange={this.update('name')}                                                                
                             />
                             <div className='error-text'>{renderBoardNameValidationError}</div>
+                            <div className='error-text'>{this.renderErrors()}</div>
                         </div>
                         
                         <hr className='borderline' />
@@ -98,7 +99,7 @@ class BoardForm extends React.Component {
                             </div>
                         </div>
                     </form>
-                    <div className='errors'>{this.renderErrors()}</div>
+                    
                     <hr className='borderline' />
                     <div className='button-footer'>
                         <div className='button-group'>

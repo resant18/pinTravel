@@ -4,7 +4,7 @@ import { showModal, hideModal } from '../../actions/modal_actions';
 import BoardForm from './board_form';
 
 const mapStateToProps = (state, ownProps) => { 
-  debugger
+  
   return ({
   board: {
     name: '',

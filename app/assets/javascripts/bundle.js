@@ -639,7 +639,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     board: {
       name: '',
@@ -766,8 +765,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.action(this.state.board);
-      debugger;
+      this.props.action(this.state);
     }
   }, {
     key: "renderErrors",
@@ -816,7 +814,9 @@ function (_React$Component) {
         onChange: this.update('name')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error-text"
-      }, renderBoardNameValidationError)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, renderBoardNameValidationError), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-text"
+      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "borderline"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-visibility"
@@ -830,9 +830,7 @@ function (_React$Component) {
         className: "secret-info"
       }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create"
-      }, "Learn more"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "errors"
-      }, this.renderErrors()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, "Learn more"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "borderline"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
