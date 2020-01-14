@@ -720,12 +720,58 @@ function (_React$Component) {
   }
 
   _createClass(BoardForm, [{
+    key: "debounce",
+    value: function debounce(func, wait, immediate) {
+      var _this2 = this,
+          _arguments = arguments;
+
+      var timeout;
+      debugger;
+      return function () {
+        debugger;
+        var context = _this2,
+            args = _arguments;
+
+        var later = function later() {
+          timeout = null;
+
+          if (!immediate) {
+            func.apply(context, args);
+          }
+        };
+
+        var callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait || 200);
+
+        if (callNow) {
+          func.apply(context, args);
+        }
+      };
+    }
+  }, {
     key: "update",
     value: function update(field) {
-      var _this2 = this;
+      var _this3 = this;
 
+      var timeout = null;
       return function (e) {
-        return _this2.setState(_defineProperty({}, field, e.target.value));
+        _this3.setState(_defineProperty({}, field, e.target.value));
+
+        clearTimeout(timeout);
+        e.persist();
+        timeout = setTimeout(function () {
+          var createBtn = document.getElementById('create-btn');
+          var cancelBtn = document.getElementById('cancel-btn');
+
+          if (e.target.value === '') {
+            createBtn.classList.remove('create-btn-focus');
+            cancelBtn.classList.remove('cancel-btn-unfocus');
+          } else {
+            createBtn.classList.add('create-btn-focus');
+            cancelBtn.classList.add('cancel-btn-unfocus');
+          }
+        }, 1000);
       };
     }
   }, {
@@ -773,6 +819,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "board-name-input",
         className: "input board-name",
         placeholder: "E.g. 'Places to go' or 'Recipes to make'",
         onChange: this.update('name')
@@ -797,12 +844,15 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "buttons-right"
+        className: "button-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "rectangle-btn",
+        id: "cancel-btn",
+        className: "cancel-btn",
+        tabIndex: "1",
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "rectangle-btn",
+        id: "create-btn",
+        className: "create-btn",
         onClick: this.handleSubmit
       }, "Create")))));
     }

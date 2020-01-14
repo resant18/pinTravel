@@ -18,10 +18,8 @@
 
    .close-btn {
       position: absolute;
-      right: 0;
-      top: 0;
-      padding-top: 8px  ;
-      padding-right: 8px;
+      right: 15px;
+      top: 0;      
       width: 40px;
       height: 40px;
       background: white;
@@ -39,15 +37,16 @@
          div {
             display: inline-block;
             vertical-align: middle;
-         }
-         a {
-            text-decoration: none;
-            font-weight: 700;
-         }
+         }         
       }
       .secret {
          display: flex;
          align-items: center;
+         a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+         }
       }
    }
 
@@ -55,6 +54,7 @@
       text-align: center;
       font-weight: 700;      
    }
+
    p {
       padding-bottom: 12px;
       padding-top: 12px;
@@ -63,8 +63,45 @@
       font-size: 14px;
       display: inline-block;
    }
+
    hr {
       border-top: 1px solid #efefef;
    } 
-   
+
+   .button-footer {
+      padding: 0 16px 16px;
+      .button-group {
+         display: flex;
+         justify-content: flex-end;         
+         button {
+            border-radius: 8px;
+            box-sizing: border-box;
+            min-height: 40px;            
+            font-size: 16px;
+            width: 100px;
+            padding: 10px 14px;
+            margin-left: 16px;                        
+         }
+      }      
+   }
+
+   .cancel-btn {
+      color: #333;
+      background-color: #efefef;                                 
+   }
+
+   .cancel-btn-unfocus {
+      color: #8e8e8e;
+      background-color: #efefef;
+   }
+
+   .create-btn {
+      color: #8e8e8e;
+      background-color: #efefef;                
+   }
+
+   .create-btn-focus {
+      color: #333;
+      background-color: var(--color-secondary);           
+   }  
 }

@@ -8,8 +8,49 @@ class BoardForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);        
     }
 
-    update(field) {
-        return e => this.setState({ [field]: e.target.value });
+    debounce (func, wait, immediate) {
+        var timeout;
+        debugger
+        return () => {
+            debugger
+            var context = this,
+                args = arguments;
+            var later = () => {
+                timeout = null;
+                if (!immediate) {
+                    func.apply(context, args);
+                }
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait || 200);
+            if (callNow) {
+                func.apply(context, args);
+            }
+        };
+    };
+
+    update(field) {      
+        let timeout = null;  
+
+        return e => {            
+            this.setState({ [field]: e.target.value });       
+            
+            clearTimeout(timeout);
+            e.persist();
+            timeout = setTimeout( () => {
+                let createBtn = document.getElementById('create-btn');
+                let cancelBtn = document.getElementById('cancel-btn');
+
+                if (e.target.value === '') {
+                    createBtn.classList.remove('create-btn-focus');
+                    cancelBtn.classList.remove('cancel-btn-unfocus');                                        
+                } else {
+                    createBtn.classList.add('create-btn-focus'); 
+                    cancelBtn.classList.add('cancel-btn-unfocus');                   
+                }                
+            }, 1000);                                             
+        }
     }
 
     handleSubmit(e) {
@@ -49,6 +90,7 @@ class BoardForm extends React.Component {
                         <div className='board-name'>
                             <p>Name</p>
                             <input
+                                id='board-name-input' 
                                 className='input board-name'
                                 placeholder="E.g. 'Places to go' or 'Recipes to make'"
                                 onChange={this.update('name')}
@@ -69,14 +111,17 @@ class BoardForm extends React.Component {
                     <div className='errors'>{this.renderErrors()}</div>
                     <hr className='borderline' />
                     <div className='button-footer'>
-                        <div className='buttons-right'>
+                        <div className='button-group'>
                             <button
-                                className='rectangle-btn'
+                                id='cancel-btn'
+                                className = 'cancel-btn'
+                                tabIndex='1'
                                 onClick={this.props.hideModal} >
                                 Cancel
                             </button>
                             <button
-                                className='rectangle-btn'
+                                id='create-btn'
+                                className = 'create-btn'
                                 onClick={this.handleSubmit} >
                                 Create
                             </button>

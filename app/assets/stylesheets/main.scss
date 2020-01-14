@@ -62,7 +62,8 @@
     padding: 0;
     background-color: #ddd;
     &:hover, &:active, &:focus {
-        box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5)
+        box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5);
+        outline: none;
     }
 }   
 

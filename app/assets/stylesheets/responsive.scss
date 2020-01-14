@@ -17,6 +17,10 @@
         max-width: 1512px;
     }
     .board-name, .board-visibility {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 14px;
+        padding-right: 14px;
         input {
             width: 75%; 
         }
@@ -45,10 +49,10 @@
         max-width: 767px;
     }
     .board-name, .board-visibility {
-        padding-top: 18px;
-        padding-bottom: 18px;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 14px;
+        padding-right: 14px;
         input {
             width: 75%; 
         }
