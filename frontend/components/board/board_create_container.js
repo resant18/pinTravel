@@ -3,7 +3,9 @@ import { createBoard } from '../../actions/board_actions';
 import { showModal, hideModal } from '../../actions/modal_actions';
 import BoardForm from './board_form';
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, ownProps) => { 
+  debugger
+  return ({
   board: {
     name: '',
     category_id: 1,
@@ -11,8 +13,8 @@ const mapStateToProps = (state, ownProps) => ({
     secret: false,    
   },
   formType: 'Create Board',
-  errors: state.errors.boards,
-});
+  errors: state.errors.board,
+})};
 
 const mapDispatchToProps = dispatch => ({
   action: board => dispatch(createBoard(board)),

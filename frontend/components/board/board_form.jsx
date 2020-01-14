@@ -3,7 +3,7 @@ import React from 'react';
 class BoardForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { ...props.board, showErrors: false};
+        this.state = { ...props.board, showErrors: false, serverError: props.errors};
         
         this.handleSubmit = this.handleSubmit.bind(this);        
     }    
@@ -23,17 +23,15 @@ class BoardForm extends React.Component {
                 let inputBoardName = document.getElementById('board-name-input');
 
                 if (e.target.value === '') {
-                    createBtn.classList.remove('create-btn-focus');
-                    cancelBtn.classList.remove('cancel-btn-unfocus');  
-                    createBtn.disabled = true;                       
-                    inputBoardName.classList.add('error');   
                     this.setState({ [field]: e.target.value, showErrors: true });  
+                    createBtn.classList.remove('create-btn-focus');
+                    cancelBtn.classList.remove('cancel-btn-unfocus');                                          
+                    inputBoardName.classList.add('error');                       
                 } else {
-                    createBtn.classList.add('create-btn-focus'); 
-                    cancelBtn.classList.add('cancel-btn-unfocus');                   
-                    createBtn.disabled = false;
-                    inputBoardName.classList.remove('error');
                     this.setState({ [field]: e.target.value, showErrors: false });  
+                    createBtn.classList.add('create-btn-focus'); 
+                    cancelBtn.classList.add('cancel-btn-unfocus');                                       
+                    inputBoardName.classList.remove('error');                    
                 }  
                               
             }, 500);                                             
@@ -42,8 +40,8 @@ class BoardForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-
-        this.props.action(this.state);                    
+        this.props.action(this.state.board);    
+        debugger                
     }
     
     renderErrors() { 
@@ -61,6 +59,8 @@ class BoardForm extends React.Component {
 
     render() {        
         const renderBoardNameValidationError = (this.state.name === '' && this.state.showErrors === true) ? `Don't forget to name your board!` : '';
+        const createButtonDisabled = (this.state.name === '') ? true : false;
+
         return (            
             <div aria-label='Create' className='board-form-container'>
                 <div className='header'>
@@ -74,7 +74,7 @@ class BoardForm extends React.Component {
                 </div>
                 <hr className='borderline' />
                 <div className='body'>
-                    <form className='board-form' noValidate>
+                    <form className='board-form'>
                         <div className='board-name'>
                             <p>Name</p>
                             <input
@@ -112,7 +112,7 @@ class BoardForm extends React.Component {
                             <button
                                 id='create-btn'
                                 className = 'create-btn'
-                                disabled
+                                disabled = {createButtonDisabled}
                                 onClick={this.handleSubmit} >
                                 Create
                             </button>

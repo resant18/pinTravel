@@ -639,6 +639,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
   return {
     board: {
       name: '',
@@ -647,7 +648,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       secret: false
     },
     formType: 'Create Board',
-    errors: state.errors.boards
+    errors: state.errors.board
   };
 };
 
@@ -719,7 +720,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardForm).call(this, props));
     _this.state = _objectSpread({}, props.board, {
-      showErrors: false
+      showErrors: false,
+      serverError: props.errors
     });
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
@@ -743,21 +745,19 @@ function (_React$Component) {
           if (e.target.value === '') {
             var _this2$setState;
 
+            _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
+
             createBtn.classList.remove('create-btn-focus');
             cancelBtn.classList.remove('cancel-btn-unfocus');
-            createBtn.disabled = true;
             inputBoardName.classList.add('error');
-
-            _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
           } else {
             var _this2$setState2;
 
+            _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
+
             createBtn.classList.add('create-btn-focus');
             cancelBtn.classList.add('cancel-btn-unfocus');
-            createBtn.disabled = false;
             inputBoardName.classList.remove('error');
-
-            _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
           }
         }, 500);
       };
@@ -766,7 +766,8 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.action(this.state);
+      this.props.action(this.state.board);
+      debugger;
     }
   }, {
     key: "renderErrors",
@@ -782,6 +783,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var renderBoardNameValidationError = this.state.name === '' && this.state.showErrors === true ? "Don't forget to name your board!" : '';
+      var createButtonDisabled = this.state.name === '' ? true : false;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "aria-label": "Create",
         className: "board-form-container"
@@ -804,8 +806,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "board-form",
-        noValidate: true
+        className: "board-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -845,7 +846,7 @@ function (_React$Component) {
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "create-btn",
         className: "create-btn",
-        disabled: true,
+        disabled: createButtonDisabled,
         onClick: this.handleSubmit
       }, "Create")))));
     }
