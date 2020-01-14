@@ -683,6 +683,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -714,64 +718,48 @@ function (_React$Component) {
     _classCallCheck(this, BoardForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardForm).call(this, props));
-    _this.state = props.board;
+    _this.state = _objectSpread({}, props.board, {
+      showErrors: false
+    });
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BoardForm, [{
-    key: "debounce",
-    value: function debounce(func, wait, immediate) {
-      var _this2 = this,
-          _arguments = arguments;
-
-      var timeout;
-      debugger;
-      return function () {
-        debugger;
-        var context = _this2,
-            args = _arguments;
-
-        var later = function later() {
-          timeout = null;
-
-          if (!immediate) {
-            func.apply(context, args);
-          }
-        };
-
-        var callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait || 200);
-
-        if (callNow) {
-          func.apply(context, args);
-        }
-      };
-    }
-  }, {
     key: "update",
     value: function update(field) {
-      var _this3 = this;
+      var _this2 = this;
 
       var timeout = null;
       return function (e) {
-        _this3.setState(_defineProperty({}, field, e.target.value));
-
         clearTimeout(timeout);
         e.persist();
+        document.getElementById('board-name-input').setAttribute('required', 'true');
         timeout = setTimeout(function () {
           var createBtn = document.getElementById('create-btn');
           var cancelBtn = document.getElementById('cancel-btn');
+          var inputBoardName = document.getElementById('board-name-input');
 
           if (e.target.value === '') {
+            var _this2$setState;
+
             createBtn.classList.remove('create-btn-focus');
             cancelBtn.classList.remove('cancel-btn-unfocus');
+            createBtn.disabled = true;
+            inputBoardName.classList.add('error');
+
+            _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
           } else {
+            var _this2$setState2;
+
             createBtn.classList.add('create-btn-focus');
             cancelBtn.classList.add('cancel-btn-unfocus');
+            createBtn.disabled = false;
+            inputBoardName.classList.remove('error');
+
+            _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
           }
-        }, 1000);
+        }, 500);
       };
     }
   }, {
@@ -793,6 +781,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
+      var renderBoardNameValidationError = this.state.name === '' && this.state.showErrors === true ? "Don't forget to name your board!" : '';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "aria-label": "Create",
         className: "board-form-container"
@@ -815,7 +804,8 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "board-form"
+        className: "board-form",
+        noValidate: true
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -823,7 +813,9 @@ function (_React$Component) {
         className: "input board-name",
         placeholder: "E.g. 'Places to go' or 'Recipes to make'",
         onChange: this.update('name')
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-text"
+      }, renderBoardNameValidationError)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "borderline"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-visibility"
@@ -853,6 +845,7 @@ function (_React$Component) {
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "create-btn",
         className: "create-btn",
+        disabled: true,
         onClick: this.handleSubmit
       }, "Create")))));
     }

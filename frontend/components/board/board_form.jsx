@@ -3,60 +3,47 @@ import React from 'react';
 class BoardForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = props.board;
+        this.state = { ...props.board, showErrors: false};
         
         this.handleSubmit = this.handleSubmit.bind(this);        
-    }
-
-    debounce (func, wait, immediate) {
-        var timeout;
-        debugger
-        return () => {
-            debugger
-            var context = this,
-                args = arguments;
-            var later = () => {
-                timeout = null;
-                if (!immediate) {
-                    func.apply(context, args);
-                }
-            };
-            var callNow = immediate && !timeout;
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait || 200);
-            if (callNow) {
-                func.apply(context, args);
-            }
-        };
-    };
+    }    
 
     update(field) {      
         let timeout = null;  
 
-        return e => {            
-            this.setState({ [field]: e.target.value });       
+        return e => {                        
+                 
             
             clearTimeout(timeout);
             e.persist();
+            document.getElementById('board-name-input').setAttribute('required', 'true');
             timeout = setTimeout( () => {
                 let createBtn = document.getElementById('create-btn');
                 let cancelBtn = document.getElementById('cancel-btn');
+                let inputBoardName = document.getElementById('board-name-input');
 
                 if (e.target.value === '') {
                     createBtn.classList.remove('create-btn-focus');
-                    cancelBtn.classList.remove('cancel-btn-unfocus');                                        
+                    cancelBtn.classList.remove('cancel-btn-unfocus');  
+                    createBtn.disabled = true;                       
+                    inputBoardName.classList.add('error');   
+                    this.setState({ [field]: e.target.value, showErrors: true });  
                 } else {
                     createBtn.classList.add('create-btn-focus'); 
                     cancelBtn.classList.add('cancel-btn-unfocus');                   
-                }                
-            }, 1000);                                             
+                    createBtn.disabled = false;
+                    inputBoardName.classList.remove('error');
+                    this.setState({ [field]: e.target.value, showErrors: false });  
+                }  
+                              
+            }, 500);                                             
         }
     }
 
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.action(this.state)                    
+        this.props.action(this.state);                    
     }
     
     renderErrors() { 
@@ -73,6 +60,7 @@ class BoardForm extends React.Component {
     }       
 
     render() {        
+        const renderBoardNameValidationError = (this.state.name === '' && this.state.showErrors === true) ? `Don't forget to name your board!` : '';
         return (            
             <div aria-label='Create' className='board-form-container'>
                 <div className='header'>
@@ -86,16 +74,18 @@ class BoardForm extends React.Component {
                 </div>
                 <hr className='borderline' />
                 <div className='body'>
-                    <form className='board-form'>
+                    <form className='board-form' noValidate>
                         <div className='board-name'>
                             <p>Name</p>
                             <input
                                 id='board-name-input' 
                                 className='input board-name'
-                                placeholder="E.g. 'Places to go' or 'Recipes to make'"
-                                onChange={this.update('name')}
+                                placeholder="E.g. 'Places to go' or 'Recipes to make'"                                
+                                onChange={this.update('name')}                                                                
                             />
+                            <div className='error-text'>{renderBoardNameValidationError}</div>
                         </div>
+                        
                         <hr className='borderline' />
                         <div className='board-visibility'>
                             <p>Visibility</p>
@@ -122,6 +112,7 @@ class BoardForm extends React.Component {
                             <button
                                 id='create-btn'
                                 className = 'create-btn'
+                                disabled
                                 onClick={this.handleSubmit} >
                                 Create
                             </button>

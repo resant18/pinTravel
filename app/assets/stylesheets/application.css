@@ -141,7 +141,7 @@ li {
 }
 
 .error-text {
-    color: #e60023;
+    color: var(--color-error);
     font-size: 14px;
     text-align: left;
 }
