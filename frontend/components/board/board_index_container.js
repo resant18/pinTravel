@@ -1,4 +1,5 @@
-// This container is not used
+// THIS CONTAINER IS NOT USED!!!
+
 import { connect } from "react-redux";
 import { showModal, hideModal } from "../../actions/modal_actions";
 import { fetchUserBoards } from '../../actions/board_actions';

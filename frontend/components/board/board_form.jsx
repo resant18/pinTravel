@@ -12,8 +12,6 @@ class BoardForm extends React.Component {
         let timeout = null;  
 
         return e => {                        
-                 
-            
             clearTimeout(timeout);
             e.persist();
             document.getElementById('board-name-input').setAttribute('required', 'true');

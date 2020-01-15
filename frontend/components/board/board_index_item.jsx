@@ -162,7 +162,7 @@ class BoardIndexItem extends React.Component {
                 onMouseEnter={this.toggleEdit}
                 onMouseLeave={this.toggleEdit}>
             
-                <Link to={`/boards/${board.id}`} >
+                <Link to={`/${this.props.username}/boards/${board.id}`} >
                     <div>
                         {                        
                             boardCover
