@@ -1204,7 +1204,7 @@ function (_React$Component) {
           onClick: this.showModal,
           className: "b-index-link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          "class": "gUZ B9u U9O kVc",
+          className: "gUZ B9u U9O kVc",
           height: "20",
           width: "20",
           viewBox: "0 0 24 24",
@@ -1308,7 +1308,7 @@ function (_React$Component) {
           className: "board-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "total-pins"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "total pins"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, "collection of pins here"));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pins.length))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, "collection of pins here"));
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
       }
@@ -1344,13 +1344,13 @@ var mapStateToProps = function mapStateToProps(state, _ref) {
   var match = _ref.match;
   var currentUser = state.entities.users[state.session.id];
   var boardId = parseInt(match.params.boardId);
-  var board = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_2__["selectBoard"])(state.entities, boardId); // const pins = selectReviewsForBoard(state.entities, board);
-
+  var board = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_2__["selectBoard"])(state.entities, boardId);
+  var pins = selectReviewsForBoard(state.entities, board);
   return {
     currentUser: currentUser,
     boardId: boardId,
-    board: board // pins
-
+    board: board,
+    pins: pins
   };
 };
 

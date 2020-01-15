@@ -19,7 +19,7 @@ class BoardShow extends React.Component {
                <section className='board-detail'>
                   <h4>{board.name}</h4>
                   <div className='total-pins'>
-                     <span>total pins</span>
+         <span>{pins.length}</span>
                   </div>
                </section>
                <section>

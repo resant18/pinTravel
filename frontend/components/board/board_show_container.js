@@ -8,12 +8,12 @@ const mapStateToProps = (state, { match }) => {
   const currentUser = state.entities.users[state.session.id];  
   const boardId = parseInt(match.params.boardId);
   const board = selectBoard(state.entities, boardId);
-  // const pins = selectReviewsForBoard(state.entities, board);
+  const pins = selectReviewsForBoard(state.entities, board);
   return {
     currentUser,
     boardId,
     board,
-    // pins
+    pins
   };
 };
 
