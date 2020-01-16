@@ -1,8 +1,9 @@
-import { connect } from "react-redux";
-import { Link, withRouter } from "react-router-dom";
-import PinIndex from "./pin_index";
-import { fetchBoardPins, clearPins } from "../../actions/pin_actions";
-import { showModal } from "../../actions/modal_actions";
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import PinIndex from '../pin/pin_index';
+import { fetchBoardPins, clearPins } from '../../actions/pin_actions';
+import { selectUserBoardPins } from '../../reducers/selector';
+import { showModal } from '../../actions/modal_actions';
 
 const mapStateToProps = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id] || {};
@@ -10,14 +11,16 @@ const mapStateToProps = (state, ownProps) => {
   const board = ownProps.board;
   const boardId = board.id;
   const pins = Object.values(state.entities.pins);
+  const selectedBoardPins = selectUserBoardPins(state.entities, boardId);
   
   return {
-    type: "board",
-    currentUser,
-    user,
-    board,
-    boardId,
-    pins
+     fetchType: 'board',
+     currentUser,
+     user,
+     board,
+     boardId,
+     pins,
+     selectedBoardPins
   };
 };
 

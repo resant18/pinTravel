@@ -11,7 +11,7 @@ class Api::UsersController < ApplicationController
     end
     
     def show                
-        @user = User.includes(:boards, :pins).find_by(username: params[:id])
+        @user = User.includes(:boards, :board_pins, :pins).find_by(username: params[:id])        
         render :show
     end
 

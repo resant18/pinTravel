@@ -17,12 +17,12 @@ class BoardIndex extends React.Component {
         const { user, boards, pins, permitted, showModal } = this.props;
 
         if (!boards) return null;
-        const userBoards = boards.map((board, i) => {            
-            const board_pins = pins.filter(pin => pin.board_id === board.id);
+        const userBoards = boards.map((board, i) => {                                    
+            const user_board_pins = pins.filter(pin => pin.board_id === board.id);
 
             return (   
                 <div className="b-item-content" key={board.id}> 
-                    <BoardIndexItem board={board} pins={board_pins} username={user.username} permitted={permitted} showModal={showModal.bind(this)}/> 
+                    <BoardIndexItem  board={board} pins={user_board_pins} username={user.username} permitted={permitted} showModal={showModal.bind(this)}/> 
                 </div>
             )
         });

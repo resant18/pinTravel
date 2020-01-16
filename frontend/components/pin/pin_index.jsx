@@ -16,9 +16,7 @@ class PinIndex extends React.Component {
 
   fetchPinsData() {
     const { fetchType, fetchPins, boardId, username } = this.props;
-
-    
-
+  
     switch (fetchType) {
       case "feed":
         fetchPins(this.state.page);
@@ -44,11 +42,12 @@ class PinIndex extends React.Component {
 
   componentDidMount() {        
     // this.props.clearPins();
-    this.fetchPinsData();
+    if (!this.props.selectedBoardPins)
+      this.fetchPinsData();
   }
 
   render() {
-    const pins = this.props.pins.map((pin, i) => {
+    const pins = this.props.selectedBoardPins.map((pin, i) => {
       return (
         <PinIndexItem
           pin={pin}

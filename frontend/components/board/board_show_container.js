@@ -1,19 +1,22 @@
 import { connect } from "react-redux";
 
 import { fetchBoard } from "../../actions/board_actions";
-import { selectBoard } from '../../reducers/selector';
+import { selectBoard, selectUserBoardPins, selectUserCreator } from '../../reducers/selector';
 import BoardShow from '../board/board_show';
 
 const mapStateToProps = (state, { match }) => {
   const currentUser = state.entities.users[state.session.id];  
   const boardId = parseInt(match.params.boardId);
-  const board = selectBoard(state.entities, boardId);
-  const pins = selectReviewsForBoard(state.entities, board);
+  const board = selectBoard(state.entities, boardId);    
+  const board_pins = selectUserBoardPins(state.entities, boardId);
+  const user = selectUserCreator(state.entities, board);
+  
   return {
     currentUser,
     boardId,
     board,
-    pins
+    board_pins,
+    user
   };
 };
 

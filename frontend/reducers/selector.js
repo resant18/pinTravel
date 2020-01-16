@@ -31,6 +31,20 @@ export const selectUserPins = ({ pins }, user) => {
     // );        
 }; 
 
+export const selectUserBoardPins = ({ pins }, boardId) => {
+    if (!boardId) return [];
+
+    return Object.values(pins).filter(pin => 
+        pin.board_id === boardId    
+    );
+}
+
+export const selectUserCreator = ({ users }, board) => {
+    if (!board) return null;
+
+    return Object.values(users).filter(user => user.id === board.user_id);
+}
+
 // export const selectReviewsForBench = ({ benches, reviews }, bench) => {
 //   return bench.reviewIds.map(reviewId => reviews[reviewId]);
 // };

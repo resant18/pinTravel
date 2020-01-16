@@ -149,11 +149,11 @@ class BoardIndexItem extends React.Component {
 
     render() {
         const { board, pins } = this.props;       
-        const pinsData = Object.values(pins); 
-        const pinCount = pinsData.length;
-
+        const pinsData = Object.values(pins);         
+        const pinCount = pinsData.length;        
+        
         if ( !board ) return null;
-
+        
         // let pinIdx = this._generateRandomNumber(25);
         const boardCover = (pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinsData));
 
@@ -169,7 +169,7 @@ class BoardIndexItem extends React.Component {
                         }
                         
                         <div className="board-info">
-                            <h2>{board.name}</h2>
+                            <h2>{board.name}</h2>                            
                             <p>{pinCount} {pinCount > 1 ? "Pins" : "Pin"}</p>
                         </div>
                     </div>

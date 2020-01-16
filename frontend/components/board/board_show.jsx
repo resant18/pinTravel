@@ -1,4 +1,5 @@
 import React from 'react';
+import BoardPinIndexContainer from './board_pin_index_container';
 
 class BoardShow extends React.Component {
    constructor(props) {
@@ -10,7 +11,7 @@ class BoardShow extends React.Component {
    }
 
    render() {
-      const { board } = this.props;
+      const { board, board_pins, user } = this.props;
 
       if (board) {
          return (
@@ -19,11 +20,11 @@ class BoardShow extends React.Component {
                <section className='board-detail'>
                   <h4>{board.name}</h4>
                   <div className='total-pins'>
-         <span>{pins.length}</span>
+                     <span>{board_pins.length}</span>
                   </div>
                </section>
-               <section>
-                  collection of pins here
+               <section className='board-pins-detail'>
+                  <BoardPinIndexContainer user={user} board={board} /> 
                </section>
             </div>
          )
