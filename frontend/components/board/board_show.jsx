@@ -12,15 +12,19 @@ class BoardShow extends React.Component {
 
    render() {
       const { board, board_pins, user } = this.props;
+      const pinTotal = board_pins.length;
+      const pinWord = pinTotal > 1 ? 'Pins' : 'Pin';
 
       if (board) {
          return (
             <div>
 
-               <section className='board-detail'>
-                  <h4>{board.name}</h4>
-                  <div className='total-pins'>
-                     <span>{board_pins.length}</span>
+               <section className='board-pins-header'>
+                  <div className='board-detail'>
+                     <h4>{board.name}</h4>
+                     <div className='total-pins'>
+                        <span>{pinTotal}</span>&nbsp;{pinWord}
+                     </div>
                   </div>
                </section>
                <section className='board-pins-detail'>

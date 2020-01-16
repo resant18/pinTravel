@@ -1363,13 +1363,17 @@ function (_React$Component) {
           board = _this$props.board,
           board_pins = _this$props.board_pins,
           user = _this$props.user;
+      var pinTotal = board_pins.length;
+      var pinWord = pinTotal > 1 ? 'Pins' : 'Pin';
 
       if (board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+          className: "board-pins-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "total-pins"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, board_pins.length))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pinTotal), "\xA0", pinWord))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
           className: "board-pins-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pins"
