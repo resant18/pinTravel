@@ -47,7 +47,7 @@ class PinIndex extends React.Component {
   }
 
   render() {
-    const pins = this.props.selectedBoardPins.map((pin, i) => {
+    const pins = this.props.pins.map((pin, i) => {
       return (
         <PinIndexItem
           pin={pin}

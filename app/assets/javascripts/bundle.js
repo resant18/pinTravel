@@ -1278,16 +1278,14 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var user = ownProps.user;
   var board = ownProps.board;
   var boardId = board.id;
-  var pins = Object.values(state.entities.pins);
-  var selectedBoardPins = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_4__["selectUserBoardPins"])(state.entities, boardId);
+  var pins = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_4__["selectUserBoardPins"])(state.entities, boardId);
   return {
     fetchType: 'board',
     currentUser: currentUser,
     user: user,
     board: board,
     boardId: boardId,
-    pins: pins,
-    selectedBoardPins: selectedBoardPins
+    pins: pins
   };
 };
 
@@ -1373,10 +1371,12 @@ function (_React$Component) {
           className: "total-pins"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, board_pins.length))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
           className: "board-pins-detail"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pins"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_pin_index_container__WEBPACK_IMPORTED_MODULE_1__["default"], {
           user: user,
           board: board
-        })));
+        }))));
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
       }
@@ -1822,7 +1822,7 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var pins = this.props.selectedBoardPins.map(function (pin, i) {
+      var pins = this.props.pins.map(function (pin, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           pin: pin,
           key: i,

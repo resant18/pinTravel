@@ -24,7 +24,9 @@ class BoardShow extends React.Component {
                   </div>
                </section>
                <section className='board-pins-detail'>
-                  <BoardPinIndexContainer user={user} board={board} /> 
+                  <div className='pins'>
+                     <BoardPinIndexContainer user={user} board={board} /> 
+                  </div>
                </section>
             </div>
          )

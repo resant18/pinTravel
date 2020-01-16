@@ -10,8 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   const user = ownProps.user;
   const board = ownProps.board;
   const boardId = board.id;
-  const pins = Object.values(state.entities.pins);
-  const selectedBoardPins = selectUserBoardPins(state.entities, boardId);
+  const pins = selectUserBoardPins(state.entities, boardId);
   
   return {
      fetchType: 'board',
@@ -19,8 +18,7 @@ const mapStateToProps = (state, ownProps) => {
      user,
      board,
      boardId,
-     pins,
-     selectedBoardPins
+     pins,  
   };
 };
 
