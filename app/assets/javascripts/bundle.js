@@ -1368,12 +1368,34 @@ function (_React$Component) {
 
       if (board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+          className: "info-bar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toobar-wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          "aria-label": "Board Actions",
+          className: "board-action",
+          type: "button"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "INd zI7 iyn Hsu"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          className: "svg-add",
+          height: "24",
+          width: "24",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"
+        }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-pins-header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "total-pins"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pinTotal), "\xA0", pinWord))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pinTotal), "\xA0", pinWord)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
           className: "board-pins-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pins"

@@ -160,6 +160,21 @@
 }
 
 //  Pin
+.board-action {
+    background: transparent;
+    div {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.svg-add {
+    color: #8e8e8e;
+    fill: currentColor;
+    stroke-width: 0;
+    vertical-align: middle;
+}
+
 .board-pins-header {
     margin-left: 11%;
 }
