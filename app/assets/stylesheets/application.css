@@ -146,7 +146,9 @@ li {
     text-align: left;
 }
 
-
+.show {
+    visibility: visible;
+}
 
 /* <!doctype html>
 <html>

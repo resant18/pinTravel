@@ -6,10 +6,28 @@ class BoardShow extends React.Component {
       super(props);
 
       this.browseBack = this.browseBack.bind(this);
+      this.toggleDropDown = this.toggleDropDown.bind(this);
+      this.showModal = this.showModal.bind(this);
    }
 
    componentDidMount() {
       this.props.fetchBoard(this.props.boardId);
+   }
+
+   handleClick(type) {
+      return e => this.setState({ tabItem: [type] });
+   }
+
+   toggleDropDown(e) {
+      e.preventDefault();
+      document.getElementById("drop-down").classList.toggle("show");
+   }
+
+   showModal(modal) {    
+      return e => {
+         this.props.showModal(modal);
+         this.toggleDropDown(e);
+      }
    }
 
    browseBack() {
@@ -28,13 +46,26 @@ class BoardShow extends React.Component {
                         </svg>
                      </div>
                   </button>
-                  <button aria-label="Add Pin" className="add-button" type="button">
+                  <button aria-label="Add Pin" className="add-button" type="button" onClick={this.toggleDropDown} >
                      <div>
                         <svg className="svg-add" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
                            <path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path>
                         </svg>
                      </div>
                   </button>
+                  <div id="drop-down" className="board-show-add-pin drop-down">
+                     <div className="frame">
+                        <div className="list" role="list">
+                           <div
+                              title="Add Pin"
+                              className="create-pin add-pin"
+                              //onClick={this.showModal("add-pin")}
+                           >
+                              Create Pin
+                           </div>                           
+                        </div>
+                     </div>
+                  </div>
                   <button aria-label="Edit board" className="edit-button" type="button">
                      <div>
                         <svg className="svg-edit" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">

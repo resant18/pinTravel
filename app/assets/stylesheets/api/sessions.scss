@@ -104,10 +104,7 @@
 
 .drop-down {    
     stroke: rgb(239, 239, 239);
-    visibility: hidden;
-    top: 65px;
-    right: 0px;    
-    position: absolute;
+    visibility: hidden;    
     .frame{
         background-color: white;
         color: white;
@@ -133,10 +130,6 @@
             }
         }
     }
-}
-
-.show {
-    visibility: visible;
 }
 
 .create-board, .create-pin {
