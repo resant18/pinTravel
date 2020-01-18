@@ -5,8 +5,13 @@ class BoardShow extends React.Component {
    constructor(props) {
       super(props);
 
+      this.state = {
+         dropDown: false
+      }
+
       this.browseBack = this.browseBack.bind(this);
-      this.toggleDropDown = this.toggleDropDown.bind(this);
+      this.showDropDown = this.showDropDown.bind(this);
+      this.hideDropDown = this.hideDropDown.bind(this);      
       this.showModal = this.showModal.bind(this);
    }
 
@@ -14,25 +19,52 @@ class BoardShow extends React.Component {
       this.props.fetchBoard(this.props.boardId);
    }
 
-   handleClick(type) {
-      return e => this.setState({ tabItem: [type] });
-   }
-
-   toggleDropDown(e) {
-      e.preventDefault();
-      document.getElementById("drop-down").classList.toggle("show");
-   }
-
-   showModal(modal) {    
-      return e => {
-         this.props.showModal(modal);
-         this.toggleDropDown(e);
-      }
+   componentWillUnmount() {
+      document.removeEventListener('mousedown', this.hideDropDown);
    }
 
    browseBack() {
       this.props.history.goBack();
    }
+
+   showDropDown(e) {
+      this.setState({ dropDown: true });
+      document.addEventListener('mousedown', this.hideDropDown);
+   }
+
+   hideDropDown(e) {
+      if (!this.node.contains(e.target)) {
+         this.setState({ dropDown: false }); 
+         document.removeEventListener('mousedown', this.hideDropDown);
+      }
+   }
+
+   renderDropDown() {
+      if (this.state.dropDown) {
+         return (
+            <div id="drop-down" ref={ node => this.node = node } className="board-show-add-pin drop-down">
+               <div className="frame">
+                  <div className="list" role="list">
+                     <div
+                        title="Add Pin"
+                        className="create-pin add-pin"
+                        onClick={this.showModal("add-pin")}
+                     >
+                        Create Pin
+                           </div>
+                  </div>
+               </div>
+            </div>
+         )
+      }
+   }
+
+   showModal(modal) {    
+      return e => {
+         this.props.showModal(modal);
+         this.hideDropDown();
+      }
+   }   
 
    displayToolbar() {      
       if (this.props.currentUser.username === this.props.user.username) {
@@ -46,26 +78,14 @@ class BoardShow extends React.Component {
                         </svg>
                      </div>
                   </button>
-                  <button aria-label="Add Pin" className="tool-buttons add-button" type="button" onClick={this.toggleDropDown} >
+                  <button aria-label="Add Pin" className="tool-buttons add-button" type="button" onClick={this.showDropDown} >
                      <div>
                         <svg className="svg-add" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
                            <path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path>
                         </svg>
                      </div>
                   </button>
-                  <div id="drop-down" className="board-show-add-pin drop-down">
-                     <div className="frame">
-                        <div className="list" role="list">
-                           <div
-                              title="Add Pin"
-                              className="create-pin add-pin"
-                              //onClick={this.showModal("add-pin")}
-                           >
-                              Create Pin
-                           </div>                           
-                        </div>
-                     </div>
-                  </div>
+                  { this.renderDropDown() }
                   <button aria-label="Edit board" className="tool-buttons edit-button" type="button">
                      <div>
                         <svg className="svg" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
@@ -77,11 +97,7 @@ class BoardShow extends React.Component {
             </div>
          )
       }
-   }
-
-   displaydropDown() {
-
-   }
+   }   
 
    render() {
       const { board, board_pins, user } = this.props;

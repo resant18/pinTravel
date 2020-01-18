@@ -50,7 +50,7 @@ class UserProfile extends React.Component {
     if (this.state.dropDown) {
       return (
          <div id="drop-down" 
-              ref={node => this.node = node }
+              ref={ node => this.node = node }
               className="profile-add-board-pin drop-down">
             <div className="frame">
                <div className="list" role="list">

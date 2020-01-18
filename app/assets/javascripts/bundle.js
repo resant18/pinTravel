@@ -1351,8 +1351,12 @@ function (_React$Component) {
     _classCallCheck(this, BoardShow);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardShow).call(this, props));
+    _this.state = {
+      dropDown: false
+    };
     _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
-    _this.toggleDropDown = _this.toggleDropDown.bind(_assertThisInitialized(_this));
+    _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
+    _this.hideDropDown = _this.hideDropDown.bind(_assertThisInitialized(_this));
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1363,21 +1367,56 @@ function (_React$Component) {
       this.props.fetchBoard(this.props.boardId);
     }
   }, {
-    key: "handleClick",
-    value: function handleClick(type) {
-      var _this2 = this;
-
-      return function (e) {
-        return _this2.setState({
-          tabItem: [type]
-        });
-      };
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener('mousedown', this.hideDropDown);
     }
   }, {
-    key: "toggleDropDown",
-    value: function toggleDropDown(e) {
-      e.preventDefault();
-      document.getElementById("drop-down").classList.toggle("show");
+    key: "browseBack",
+    value: function browseBack() {
+      this.props.history.goBack();
+    }
+  }, {
+    key: "showDropDown",
+    value: function showDropDown(e) {
+      this.setState({
+        dropDown: true
+      });
+      document.addEventListener('mousedown', this.hideDropDown);
+    }
+  }, {
+    key: "hideDropDown",
+    value: function hideDropDown(e) {
+      if (!this.node.contains(e.target)) {
+        this.setState({
+          dropDown: false
+        });
+        document.removeEventListener('mousedown', this.hideDropDown);
+      }
+    }
+  }, {
+    key: "renderDropDown",
+    value: function renderDropDown() {
+      var _this2 = this;
+
+      if (this.state.dropDown) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "drop-down",
+          ref: function ref(node) {
+            return _this2.node = node;
+          },
+          className: "board-show-add-pin drop-down"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "frame"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "list",
+          role: "list"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          title: "Add Pin",
+          className: "create-pin add-pin",
+          onClick: this.showModal("add-pin")
+        }, "Create Pin"))));
+      }
     }
   }, {
     key: "showModal",
@@ -1387,13 +1426,8 @@ function (_React$Component) {
       return function (e) {
         _this3.props.showModal(modal);
 
-        _this3.toggleDropDown(e);
+        _this3.hideDropDown();
       };
-    }
-  }, {
-    key: "browseBack",
-    value: function browseBack() {
-      this.props.history.goBack();
     }
   }, {
     key: "displayToolbar",
@@ -1421,7 +1455,7 @@ function (_React$Component) {
           "aria-label": "Add Pin",
           className: "tool-buttons add-button",
           type: "button",
-          onClick: this.toggleDropDown
+          onClick: this.showDropDown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg-add",
           height: "24",
@@ -1432,19 +1466,7 @@ function (_React$Component) {
           role: "img"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"
-        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "drop-down",
-          className: "board-show-add-pin drop-down"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "frame"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "list",
-          role: "list"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          title: "Add Pin",
-          className: "create-pin add-pin" //onClick={this.showModal("add-pin")}
-
-        }, "Create Pin")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        })))), this.renderDropDown(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit board",
           className: "tool-buttons edit-button",
           type: "button"
@@ -1461,9 +1483,6 @@ function (_React$Component) {
         }))))));
       }
     }
-  }, {
-    key: "displaydropDown",
-    value: function displaydropDown() {}
   }, {
     key: "render",
     value: function render() {
