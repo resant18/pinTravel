@@ -994,7 +994,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardIndexItem).call(this, props));
     _this.state = {
-      editable: false
+      editable: true //false
+
     };
     _this.displayDefaultBoardCover = _this.displayDefaultBoardCover.bind(_assertThisInitialized(_this));
     _this.displayBoardCoverPins = _this.displayBoardCoverPins.bind(_assertThisInitialized(_this));
@@ -1188,23 +1189,22 @@ function (_React$Component) {
     }
   }, {
     key: "toggleEdit",
-    value: function toggleEdit(e) {
-      // e.preventDefault();
+    value: function toggleEdit(e) {// e.preventDefault();
       // debugger
       // console.log('toggle edit');
-      this.setState({
-        editable: !this.editable
-      });
+      //this.setState({ editable: !(this.editable) });
     }
   }, {
     key: "displayEdit",
     value: function displayEdit() {
       if (this.state.editable && this.props.permitted) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          "aria-label": "Edit Board",
           onClick: this.showModal,
-          className: "b-index-link"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          className: "gUZ B9u U9O kVc",
+          className: "b-index-link edit-button",
+          type: "button"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          className: "svg",
           height: "20",
           width: "20",
           viewBox: "0 0 24 24",
@@ -1213,7 +1213,7 @@ function (_React$Component) {
           role: "img"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
-        })));
+        }))));
       }
     }
   }, {
@@ -1405,7 +1405,7 @@ function (_React$Component) {
           className: "toobar-wrapper"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Back",
-          className: "back-button",
+          className: "tool-buttons back-button",
           type: "button",
           onClick: this.browseBack
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -1419,7 +1419,7 @@ function (_React$Component) {
           d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 0 1 3.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
         })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Add Pin",
-          className: "add-button",
+          className: "tool-buttons add-button",
           type: "button",
           onClick: this.toggleDropDown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -1446,10 +1446,10 @@ function (_React$Component) {
 
         }, "Create Pin")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit board",
-          className: "edit-button",
+          className: "tool-buttons edit-button",
           type: "button"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          className: "svg-edit",
+          className: "svg",
           height: "24",
           width: "24",
           viewBox: "0 0 24 24",

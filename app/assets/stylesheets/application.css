@@ -150,108 +150,39 @@ li {
     visibility: visible;
 }
 
-/* <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-body {
-  background-color: #cccccc;
-  color: #333333;
+/* Tool Buttons */
+
+.tool-buttons {
+  background: transparent;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  transition: transform 0.2s ease-out 0s;
 }
-.masonry-wrapper {
-  padding: 1.5em;
-  max-width: 300px;
-  margin-right: auto;
-  margin-left: auto;
+
+.tool-buttons:hover {
+    background-color: #EFEFEF;
+    border-radius: 50%;
 }
-.masonry {
-  columns: 3;
-  column-gap: 10px;
+
+.tool-buttons:focus{    
+    box-shadow: 0 0 0 4px rgba(0,132,255,.5);                 
+    border-radius: 50%;
+    outline: 1px auto #d1d1d1;
+    background-color: rgb(239, 239, 239);
 }
-.masonry-item {
-  display: inline-block;
-  vertical-align: top;
-  margin-bottom: 10px;
+
+.tool-buttons div {
+    width: 48px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    display: flex;                            
 }
-@media only screen and (max-width: 1023px) and (min-width: 768px) {  .masonry {
-    columns: 3;
-  }
+
+svg {
+    color: #8e8e8e;
+    fill: currentColor;
+    stroke-width: 0;                    
 }
-@media only screen and (min-width: 1024px) {
-  .masonry {
-    columns: 3;
-  }
-}
-.masonry-item, .masonry-content {
-  border-radius: 8px;
-  overflow: hidden;
-}
-.masonry-item {
-  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));
-  transition: filter .25s ease-in-out;
-}
-.masonry-item:hover {
-  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, .3));
-}
-.masonry-footer {
-  font-size: .75em;
-  opacity: .25;
-  text-align: center;
-  padding-top: 3em; 
-  padding-bottom: 3em;
-  margin-bottom: -1.5em;
-  transition: opacity 1s ease-in-out;
-}
-.masonry-footer a {
-  color: currentColor;
-}
-.masonry-footer:hover, .masonry-footer:active, .masonry-footer:focus {
-  opacity: .75;
-} */
-  /* <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-body {
-  background-color: #cccccc;
-  color: #333333;
-}
-.masonry-wrapper {
-  padding: 1.5em;
-  max-width: 300px;
-  margin-right: auto;
-  margin-left: auto;
-}
-.masonry {
-  columns: 3;
-  column-gap: 10px;
-}
-.masonry-item {
-  display: inline-block;
-  vertical-align: top;
-  margin-bottom: 10px;
-}
-@media only screen and (max-width: 1023px) and (min-width: 768px) {  .masonry {
-    columns: 3;
-  }
-}
-@media only screen and (min-width: 1024px) {
-  .masonry {
-    columns: 3;
-  }
-}
-.masonry-item, .masonry-content {
-  border-radius: 8px;
-  overflow: hidden;
-}
-.masonry-item {
-  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));
-  transition: filter .25s ease-in-out;
-}
-.masonry-item:hover {
-  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, .3));
-} */
