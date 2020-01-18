@@ -1374,12 +1374,10 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toobar-wrapper"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          "aria-label": "Board Actions",
-          className: "board-action",
+          "aria-label": "Add Pin",
+          className: "add-button",
           type: "button"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "INd zI7 iyn Hsu"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg-add",
           height: "24",
           width: "24",
@@ -1389,7 +1387,21 @@ function (_React$Component) {
           role: "img"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"
-        }))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          "aria-label": "Edit board",
+          className: "edit-button",
+          type: "button"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          "class": "svg-edit",
+          height: "24",
+          width: "24",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
+        })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-pins-header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-detail"
