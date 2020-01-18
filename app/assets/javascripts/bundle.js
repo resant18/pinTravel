@@ -994,8 +994,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardIndexItem).call(this, props));
     _this.state = {
-      editable: true //false
-
+      editable: false
     };
     _this.displayDefaultBoardCover = _this.displayDefaultBoardCover.bind(_assertThisInitialized(_this));
     _this.displayBoardCoverPins = _this.displayBoardCoverPins.bind(_assertThisInitialized(_this));
@@ -1189,10 +1188,11 @@ function (_React$Component) {
     }
   }, {
     key: "toggleEdit",
-    value: function toggleEdit(e) {// e.preventDefault();
-      // debugger
-      // console.log('toggle edit');
-      //this.setState({ editable: !(this.editable) });
+    value: function toggleEdit(e) {
+      e.preventDefault();
+      this.setState({
+        editable: !this.state.editable
+      });
     }
   }, {
     key: "displayEdit",
@@ -1201,9 +1201,11 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit Board",
           onClick: this.showModal,
-          className: "b-index-link edit-button",
+          className: "tool-buttons edit-button",
           type: "button"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "svg-40"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
           height: "20",
           width: "20",

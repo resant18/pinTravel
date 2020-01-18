@@ -105,8 +105,7 @@ input[type=checkbox] {
     line-height: normal;
 }
 
-input[type=text]:focus, input[type=password]:focus,
-button:focus {
+input[type=text]:focus, input[type=password]:focus {
     outline: 5px auto -webkit-focus-ring-color;    
 }
 
@@ -157,19 +156,14 @@ li {
   width: 48px;
   height: 48px;
   padding: 0;
-  margin: 0;
+  margin: 0 7px 0 0;
   transition: transform 0.2s ease-out 0s;
 }
 
-.tool-buttons:hover {
-    background-color: #EFEFEF;
-    border-radius: 50%;
-}
-
-.tool-buttons:focus{    
+.tool-buttons:hover, .tool-buttons:focus{    
     box-shadow: 0 0 0 4px rgba(0,132,255,.5);                 
     border-radius: 50%;
-    outline: 1px auto #d1d1d1;
+    /* 1px auto #d1d1d1; */
     background-color: rgb(239, 239, 239);
 }
 
@@ -179,6 +173,11 @@ li {
     justify-content: center;
     align-items: center;
     display: flex;                            
+}
+
+.edit-button {    
+    border-radius: 50%;    
+    outline: 0;    
 }
 
 svg {
