@@ -1329,9 +1329,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1346,15 +1346,24 @@ function (_React$Component) {
   _inherits(BoardShow, _React$Component);
 
   function BoardShow(props) {
+    var _this;
+
     _classCallCheck(this, BoardShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BoardShow).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardShow).call(this, props));
+    _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(BoardShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchBoard(this.props.boardId);
+    }
+  }, {
+    key: "browseBack",
+    value: function browseBack() {
+      this.props.history.goBack();
     }
   }, {
     key: "displayToolbar",
@@ -1365,6 +1374,20 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toobar-wrapper"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          "aria-label": "Back",
+          className: "back-button",
+          type: "button",
+          onClick: this.browseBack
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          className: "svg-back",
+          height: "20",
+          width: "20",
+          viewBox: "0 0 24 24",
+          "aria-label": "Back",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 0 1 3.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
+        })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Add Pin",
           className: "add-button",
           type: "button"
@@ -1395,6 +1418,9 @@ function (_React$Component) {
         }))))));
       }
     }
+  }, {
+    key: "displaydropDown",
+    value: function displaydropDown() {}
   }, {
     key: "render",
     value: function render() {
