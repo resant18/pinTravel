@@ -8,22 +8,20 @@ class UserProfile extends React.Component {
     
     this.state = {
       tabItem: "boards",
-      showDropDown: false
+      dropDown: false
     };
-
-    this.displayProfileToolbar = this.displayProfileToolbar.bind(this);
-    this.displayTabList = this.displayTabList.bind(this);
+    
+    this.showDropDown = this.showDropDown.bind(this);
+    this.hideDropDown = this.hideDropDown.bind(this);
+    this.showModal = this.showModal.bind(this);
     this.showUserBoards = this.showUserBoards.bind(this);
     this.showUserPins = this.showUserPins.bind(this);
-    this.toggleDropDown = this.toggleDropDown.bind(this);
-    this.showModal = this.showModal.bind(this);
-    this.renderChildComponent = this.renderChildComponent.bind(this);
   }
 
   componentDidMount() {
     if (!this.props.user) {            
       this.props.fetchUser(this.props.username);
-    }
+    }    
   }
 
   componentDidUpdate(prevProps) {
@@ -32,20 +30,55 @@ class UserProfile extends React.Component {
     }
   }
 
-  handleClick(type) {
-    return e => this.setState({ tabItem: [type] });
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.hideDropDown);
   }
 
-  toggleDropDown(e) {
-    e.preventDefault();
-    document.getElementById("drop-down").classList.toggle("show");
+  showDropDown(e) {    
+    this.setState({ dropDown: true });
+    document.addEventListener('mousedown', this.hideDropDown);
   }
 
-  showModal(modal) {
-    // document.getElementById("drop-down").classList.toggle("show");
+  hideDropDown(e) {    
+    if (!this.node.contains(e.target)) {
+      this.setState({ dropDown: false });
+      document.removeEventListener('mousedown', this.hideDropDown);
+    }
+  }
+
+  renderDropDown() {    
+    if (this.state.dropDown) {
+      return (
+         <div id="drop-down" 
+              ref={node => this.node = node }
+              className="profile-add-board-pin drop-down">
+            <div className="frame">
+               <div className="list" role="list">
+                  <div
+                     title="Create board"
+                     className="create-board"
+                     onClick={this.showModal("create-board")}
+                  >
+                     Create board
+                  </div>
+                  <div
+                     title="Create pin"
+                     className="create-pin"
+                     onClick={this.showModal("create-pin")}
+                  >
+                     Create Pin
+                  </div>
+               </div>
+            </div>
+         </div>
+      );
+    }
+  }
+
+  showModal(modal) {    
     return e => {
       this.props.showModal(modal);    
-      this.toggleDropDown(e);
+      this.hideDropdown();
     }
   }
 
@@ -56,41 +89,15 @@ class UserProfile extends React.Component {
             <div>
                <button
                   className="add-board-pin"
-                  onClick={this.toggleDropDown}
+                  onClick={this.showDropDown}
                   aria-label="Add board or pin"
                   type="button"
                >
-                  <svg
-                     height="24"
-                     width="24"
-                     viewBox="0 0 24 24"
-                     aria-hidden="true"
-                     aria-label=""
-                     role="img"
-                  >
+                  <svg height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img" >
                      <path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path>
                   </svg>
                </button>
-               <div id="drop-down" className="profile-add-board-pin drop-down">
-                  <div className="frame">
-                     <div className="list" role="list">
-                        <div
-                           title="Create board"
-                           className="create-board"
-                           onClick={this.showModal("create-board")}
-                        >
-                           Create board
-                        </div>
-                        <div
-                           title="Create pin"
-                           className="create-pin"
-                           onClick={this.showModal("create-pin")}
-                        >
-                           Create Pin
-                        </div>
-                     </div>
-                  </div>
-               </div>
+               { this.renderDropDown() }
             </div>
          </nav>
       );

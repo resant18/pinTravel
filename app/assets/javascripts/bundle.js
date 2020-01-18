@@ -2768,15 +2768,13 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
     _this.state = {
       tabItem: "boards",
-      showDropDown: false
+      dropDown: false
     };
-    _this.displayProfileToolbar = _this.displayProfileToolbar.bind(_assertThisInitialized(_this));
-    _this.displayTabList = _this.displayTabList.bind(_assertThisInitialized(_this));
+    _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
+    _this.hideDropDown = _this.hideDropDown.bind(_assertThisInitialized(_this));
+    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     _this.showUserBoards = _this.showUserBoards.bind(_assertThisInitialized(_this));
     _this.showUserPins = _this.showUserPins.bind(_assertThisInitialized(_this));
-    _this.toggleDropDown = _this.toggleDropDown.bind(_assertThisInitialized(_this));
-    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
-    _this.renderChildComponent = _this.renderChildComponent.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2795,56 +2793,39 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "handleClick",
-    value: function handleClick(type) {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      document.removeEventListener('mousedown', this.hideDropDown);
+    }
+  }, {
+    key: "showDropDown",
+    value: function showDropDown(e) {
+      this.setState({
+        dropDown: true
+      });
+      document.addEventListener('mousedown', this.hideDropDown);
+    }
+  }, {
+    key: "hideDropDown",
+    value: function hideDropDown(e) {
+      if (!this.node.contains(e.target)) {
+        this.setState({
+          dropDown: false
+        });
+        document.removeEventListener('mousedown', this.hideDropDown);
+      }
+    }
+  }, {
+    key: "renderDropDown",
+    value: function renderDropDown() {
       var _this2 = this;
 
-      return function (e) {
-        return _this2.setState({
-          tabItem: [type]
-        });
-      };
-    }
-  }, {
-    key: "toggleDropDown",
-    value: function toggleDropDown(e) {
-      e.preventDefault();
-      document.getElementById("drop-down").classList.toggle("show");
-    }
-  }, {
-    key: "showModal",
-    value: function showModal(modal) {
-      var _this3 = this;
-
-      // document.getElementById("drop-down").classList.toggle("show");
-      return function (e) {
-        _this3.props.showModal(modal);
-
-        _this3.toggleDropDown(e);
-      };
-    }
-  }, {
-    key: "displayProfileToolbar",
-    value: function displayProfileToolbar() {
-      if (this.props.user === this.props.currentUser) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-          className: "profile-toolbar"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "add-board-pin",
-          onClick: this.toggleDropDown,
-          "aria-label": "Add board or pin",
-          type: "button"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          height: "24",
-          width: "24",
-          viewBox: "0 0 24 24",
-          "aria-hidden": "true",
-          "aria-label": "",
-          role: "img"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"
-        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      if (this.state.dropDown) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "drop-down",
+          ref: function ref(node) {
+            return _this2.node = node;
+          },
           className: "profile-add-board-pin drop-down"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "frame"
@@ -2859,7 +2840,41 @@ function (_React$Component) {
           title: "Create pin",
           className: "create-pin",
           onClick: this.showModal("create-pin")
-        }, "Create Pin"))))));
+        }, "Create Pin"))));
+      }
+    }
+  }, {
+    key: "showModal",
+    value: function showModal(modal) {
+      var _this3 = this;
+
+      return function (e) {
+        _this3.props.showModal(modal);
+
+        _this3.hideDropdown();
+      };
+    }
+  }, {
+    key: "displayProfileToolbar",
+    value: function displayProfileToolbar() {
+      if (this.props.user === this.props.currentUser) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+          className: "profile-toolbar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "add-board-pin",
+          onClick: this.showDropDown,
+          "aria-label": "Add board or pin",
+          type: "button"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          height: "24",
+          width: "24",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"
+        }))), this.renderDropDown()));
       }
     }
   }, {
