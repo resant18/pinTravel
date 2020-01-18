@@ -1392,7 +1392,7 @@ function (_React$Component) {
           className: "edit-button",
           type: "button"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          "class": "svg-edit",
+          className: "svg-edit",
           height: "24",
           width: "24",
           viewBox: "0 0 24 24",

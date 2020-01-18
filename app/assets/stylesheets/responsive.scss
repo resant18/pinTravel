@@ -11,9 +11,11 @@
     .b-item-wrapper {
         grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
     }
-    .pins .pin-index {
+    .pins .pin-index, .toolbar {
         columns: 6;
-        column-gap: 18px;
+        column-gap: 18px;        
+    }
+    .pins .pin-index, .toolbar, .board-pins-header {
         max-width: 1512px;
     }
     .board-name, .board-visibility {
@@ -43,9 +45,11 @@
     .b-item-wrapper {
         grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
     }
-    .pins .pin-index {
+    .pins .pin-index, .toolbar {
         columns: 4;
         column-gap: 18px;
+    }
+    .pins .pin-index, .toolbar, .board-pins-header {
         max-width: 767px;
     }
     .board-name, .board-visibility {
@@ -75,26 +79,27 @@
     .b-item-wrapper {
         grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
     }
-    .pins .pin-index {
+    .pins .pin-index, .toolbar {
         columns: 3;
         column-gap: 18px;
+    }
+    .pins .pin-index, .toolbar, .board-pins-header {
         max-width: 540px;
     }
-    
 }
 
 // Very Small screen
 @media all and (max-width: 541px) {    
     // 2 columns grid
-    .user-profile-container, .tab-list {
+    .user-profile-container, .tab-list, .pins  .pin-index, .toolbar, .board-pins-header {
         max-width: 360px;
     }
     .b-item-wrapper {
         grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));        
     }
-    .pins  .pin-index {
+    .pins  .pin-index, .toolbar  {
         columns: 2;
-        column-gap: 15px;
+        column-gap: 15px;        
     }
     
 }
