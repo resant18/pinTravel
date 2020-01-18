@@ -42,7 +42,7 @@ export const selectUserBoardPins = ({ pins }, boardId) => {
 export const selectUserCreator = ({ users }, board) => {
     if (!board) return null;
 
-    return Object.values(users).filter(user => user.id === board.user_id);
+    return Object.values(users).filter(user => user.id === board.user_id)[0];
 }
 
 // export const selectReviewsForBench = ({ benches, reviews }, bench) => {

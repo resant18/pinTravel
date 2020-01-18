@@ -1357,19 +1357,10 @@ function (_React$Component) {
       this.props.fetchBoard(this.props.boardId);
     }
   }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          board = _this$props.board,
-          board_pins = _this$props.board_pins,
-          user = _this$props.user;
-      var pinTotal = board_pins.length;
-      var pinWord = pinTotal > 1 ? 'Pins' : 'Pin';
-
-      if (board) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-          className: "info-bar"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    key: "displayToolbar",
+    value: function displayToolbar() {
+      if (this.props.currentUser.username === this.props.user.username) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toobar-wrapper"
@@ -1401,7 +1392,23 @@ function (_React$Component) {
           role: "img"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
-        })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }))))));
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          board = _this$props.board,
+          board_pins = _this$props.board_pins,
+          user = _this$props.user;
+      var pinTotal = board_pins.length;
+      var pinWord = pinTotal > 1 ? 'Pins' : 'Pin';
+
+      if (board) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+          className: "info-bar"
+        }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-pins-header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-detail"
@@ -3320,7 +3327,7 @@ var selectUserCreator = function selectUserCreator(_ref5, board) {
   if (!board) return null;
   return Object.values(users).filter(function (user) {
     return user.id === board.user_id;
-  });
+  })[0];
 }; // export const selectReviewsForBench = ({ benches, reviews }, bench) => {
 //   return bench.reviewIds.map(reviewId => reviews[reviewId]);
 // };
