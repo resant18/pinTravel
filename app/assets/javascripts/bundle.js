@@ -670,6 +670,17 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/board/board_edit_container.js":
+/*!***********************************************************!*\
+  !*** ./frontend/components/board/board_edit_container.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resant/AppAcademy/pinTravel/frontend/components/board/board_edit_container.js: Unexpected token (13:14)\n\n\u001b[0m \u001b[90m 11 | \u001b[39m  fetchBoard\u001b[33m:\u001b[39m boardId \u001b[33m=>\u001b[39m dispatch(fetchBoard(boardId))\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m  updateBoard\u001b[33m:\u001b[39m board \u001b[33m=>\u001b[39m dispatch(updateBoard(board))\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 | \u001b[39m  deleteBoard \u001b[33m=\u001b[39m boardId \u001b[33m=>\u001b[39m dispatch(deleteBoard(boardId))\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m})\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m connect(\u001b[0m\n    at Object.raise (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:6420:17)\n    at Object.unexpected (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:7773:16)\n    at Object.parseParenAndDistinguishExpression (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9172:12)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8917:21)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:3618:20)\n    at Object.parseExprSubscripts (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseFunctionBody (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9566:24)\n    at Object.parseArrowExpression (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9525:10)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8870:18)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:3618:20)\n    at Object.parseExprSubscripts (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseVar (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10660:26)\n    at Object.parseVarStatement (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10479:10)\n    at Object.parseStatementContent (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10076:21)\n    at Object.parseStatement (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseTopLevel (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9940:10)\n    at Object.parse (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:11447:17)\n    at parse (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:11483:38)\n    at parser (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)\n    at normalizeFile (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/core/lib/transformation/normalize-file.js:102:11)");
+
+/***/ }),
+
 /***/ "./frontend/components/board/board_form.jsx":
 /*!**************************************************!*\
   !*** ./frontend/components/board/board_form.jsx ***!
@@ -1635,6 +1646,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/board/board_create_container */ "./frontend/components/board/board_create_container.js");
+/* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/board/board_edit_container */ "./frontend/components/board/board_edit_container.js");
+/* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -1653,6 +1667,10 @@ var Modal = function Modal(_ref) {
   switch (modal) {
     case 'create-board':
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      break;
+
+    case 'edit-board':
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4___default.a, null);
       break;
 
     case 'create-pin':
