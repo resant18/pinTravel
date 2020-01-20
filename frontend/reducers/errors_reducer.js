@@ -7,5 +7,5 @@ import user from "./user_errors_reducer";
 export default combineReducers({
   session,
   board,
-  user
+  user,
 });

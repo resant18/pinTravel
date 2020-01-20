@@ -215,6 +215,7 @@ __webpack_require__.r(__webpack_exports__);
 var SHOW_MODAL = "SHOW_MODAL";
 var HIDE_MODAL = "HIDE_MODAL";
 var showModal = function showModal(modal) {
+  debugger;
   return {
     type: SHOW_MODAL,
     modal: modal
@@ -646,7 +647,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
       cover_id: '',
       secret: false
     },
-    formType: 'Create Board',
+    // formType: 'Create Board',
     errors: state.errors.board
   };
 };
@@ -674,10 +675,279 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /*!***********************************************************!*\
   !*** ./frontend/components/board/board_edit_container.js ***!
   \***********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/resant/AppAcademy/pinTravel/frontend/components/board/board_edit_container.js: Unexpected token (13:14)\n\n\u001b[0m \u001b[90m 11 | \u001b[39m  fetchBoard\u001b[33m:\u001b[39m boardId \u001b[33m=>\u001b[39m dispatch(fetchBoard(boardId))\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 12 | \u001b[39m  updateBoard\u001b[33m:\u001b[39m board \u001b[33m=>\u001b[39m dispatch(updateBoard(board))\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 13 | \u001b[39m  deleteBoard \u001b[33m=\u001b[39m boardId \u001b[33m=>\u001b[39m dispatch(deleteBoard(boardId))\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    | \u001b[39m              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 14 | \u001b[39m})\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 | \u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 | \u001b[39m\u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m connect(\u001b[0m\n    at Object.raise (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:6420:17)\n    at Object.unexpected (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:7773:16)\n    at Object.parseParenAndDistinguishExpression (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9172:12)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8917:21)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:3618:20)\n    at Object.parseExprSubscripts (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseFunctionBody (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9566:24)\n    at Object.parseArrowExpression (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9525:10)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8870:18)\n    at Object.parseExprAtom (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:3618:20)\n    at Object.parseExprSubscripts (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8556:23)\n    at Object.parseMaybeUnary (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8536:21)\n    at Object.parseExprOps (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8402:23)\n    at Object.parseMaybeConditional (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8375:23)\n    at Object.parseMaybeAssign (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:8325:21)\n    at Object.parseVar (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10660:26)\n    at Object.parseVarStatement (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10479:10)\n    at Object.parseStatementContent (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10076:21)\n    at Object.parseStatement (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10009:17)\n    at Object.parseBlockOrModuleBlockBody (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10585:25)\n    at Object.parseBlockBody (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:10572:10)\n    at Object.parseTopLevel (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:9940:10)\n    at Object.parse (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:11447:17)\n    at parse (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/parser/lib/index.js:11483:38)\n    at parser (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/core/lib/transformation/normalize-file.js:168:34)\n    at normalizeFile (/Users/resant/AppAcademy/pinTravel/node_modules/@babel/core/lib/transformation/normalize-file.js:102:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _board_edit_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./board_edit_form */ "./frontend/components/board/board_edit_form.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var boardId = state.ui.currentObject;
+  var board = state.entities.boards[boardId];
+  var currentUser = state.entities.users[state.session.id];
+  debugger;
+  return {
+    boards: boards // formType: 'Update Board'
+
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchBoard: function fetchBoard(boardId) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["fetchBoard"])(boardId));
+    },
+    showModal: function (_showModal) {
+      function showModal(_x) {
+        return _showModal.apply(this, arguments);
+      }
+
+      showModal.toString = function () {
+        return _showModal.toString();
+      };
+
+      return showModal;
+    }(function (modal) {
+      return dispatch(showModal(modal));
+    }),
+    hideModal: function (_hideModal) {
+      function hideModal() {
+        return _hideModal.apply(this, arguments);
+      }
+
+      hideModal.toString = function () {
+        return _hideModal.toString();
+      };
+
+      return hideModal;
+    }(function () {
+      return dispatch(hideModal());
+    }),
+    updateBoard: function updateBoard(board) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["updateBoard"])(board));
+    },
+    deleteBoard: function deleteBoard(boardId) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["deleteBoard"])(boardId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_edit_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/board/board_edit_form.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/board/board_edit_form.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var BoardEditForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(BoardEditForm, _React$Component);
+
+  function BoardEditForm(props) {
+    var _this;
+
+    _classCallCheck(this, BoardEditForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardEditForm).call(this, props));
+    _this.state = _objectSpread({}, props.board, {
+      showErrors: false,
+      serverError: props.errors
+    });
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(BoardEditForm, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      var timeout = null;
+      return function (e) {
+        switch (field) {
+          case 'name':
+            clearTimeout(timeout);
+            e.persist();
+            document.getElementById('board-name-input').setAttribute('required', 'true');
+            timeout = setTimeout(function () {
+              var createBtn = document.getElementById('create-btn');
+              var cancelBtn = document.getElementById('cancel-btn');
+              var inputBoardName = document.getElementById('board-name-input');
+
+              if (e.target.value === '') {
+                var _this2$setState;
+
+                _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
+
+                createBtn.classList.remove('create-btn-focus');
+                cancelBtn.classList.remove('cancel-btn-unfocus');
+                inputBoardName.classList.add('error');
+              } else {
+                var _this2$setState2;
+
+                _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
+
+                createBtn.classList.add('create-btn-focus');
+                cancelBtn.classList.add('cancel-btn-unfocus');
+                inputBoardName.classList.remove('error');
+              }
+            }, 500);
+            break;
+
+          case 'secret':
+            _this2.setState(_defineProperty({}, field, e.target.value));
+
+            break;
+
+          default:
+            break;
+        }
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.updateBoard(this.state);
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      if (this.props.errors === undefined) return '';
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var renderBoardNameValidationError = this.state.name === '' && this.state.showErrors === true ? "Don't forget to name your board!" : '';
+      var createButtonDisabled = this.state.name === '' ? true : false;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "aria-label": "Create",
+        className: "board-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit your board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "close-btn",
+        onClick: this.props.hideModal
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        height: "20",
+        width: "20",
+        viewBox: "0 0 24 24",
+        "aria-hidden": "true",
+        "aria-label": "",
+        role: "img"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "board-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "board-name-input",
+        className: "input board-name",
+        value: this.state.name,
+        placeholder: "E.g. 'Places to go' or 'Recipes to make'",
+        onChange: this.update('name')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-text"
+      }, renderBoardNameValidationError), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-text"
+      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-visibility"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secret"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "secret-box",
+        type: "checkbox",
+        value: this.state.secret,
+        onClick: this.update('secret')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secret-info"
+      }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create"
+      }, "Learn more"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "left"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "delete-btn",
+        className: "delete-btn",
+        onClick: this.props.deleteBoard
+      }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "cancel-btn",
+        className: "cancel-btn",
+        tabIndex: "1",
+        onClick: this.props.hideModal
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "create-btn",
+        className: "create-btn",
+        disabled: createButtonDisabled,
+        onClick: this.handleSubmit
+      }, "Save"))))));
+    }
+  }]);
+
+  return BoardEditForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (BoardEditForm);
 
 /***/ }),
 
@@ -744,32 +1014,44 @@ function (_React$Component) {
 
       var timeout = null;
       return function (e) {
-        clearTimeout(timeout);
-        e.persist();
-        document.getElementById('board-name-input').setAttribute('required', 'true');
-        timeout = setTimeout(function () {
-          var createBtn = document.getElementById('create-btn');
-          var cancelBtn = document.getElementById('cancel-btn');
-          var inputBoardName = document.getElementById('board-name-input');
+        switch (field) {
+          case 'name':
+            clearTimeout(timeout);
+            e.persist();
+            document.getElementById('board-name-input').setAttribute('required', 'true');
+            timeout = setTimeout(function () {
+              var createBtn = document.getElementById('create-btn');
+              var cancelBtn = document.getElementById('cancel-btn');
+              var inputBoardName = document.getElementById('board-name-input');
 
-          if (e.target.value === '') {
-            var _this2$setState;
+              if (e.target.value === '') {
+                var _this2$setState;
 
-            _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
+                _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
 
-            createBtn.classList.remove('create-btn-focus');
-            cancelBtn.classList.remove('cancel-btn-unfocus');
-            inputBoardName.classList.add('error');
-          } else {
-            var _this2$setState2;
+                createBtn.classList.remove('create-btn-focus');
+                cancelBtn.classList.remove('cancel-btn-unfocus');
+                inputBoardName.classList.add('error');
+              } else {
+                var _this2$setState2;
 
-            _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
+                _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
 
-            createBtn.classList.add('create-btn-focus');
-            cancelBtn.classList.add('cancel-btn-unfocus');
-            inputBoardName.classList.remove('error');
-          }
-        }, 500);
+                createBtn.classList.add('create-btn-focus');
+                cancelBtn.classList.add('cancel-btn-unfocus');
+                inputBoardName.classList.remove('error');
+              }
+            }, 500);
+            break;
+
+          case 'secret':
+            _this2.setState(_defineProperty({}, field, e.target.value));
+
+            break;
+
+          default:
+            break;
+        }
       };
     }
   }, {
@@ -836,7 +1118,8 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "secret-box",
         type: "checkbox",
-        value: "false"
+        value: "false",
+        onClick: this.update('secret')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "secret-info"
       }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1232,6 +1515,7 @@ function (_React$Component) {
   }, {
     key: "showModal",
     value: function showModal(e) {
+      debugger;
       this.props.showModal('edit-board', this.props.board.id);
     }
   }, {
@@ -1647,7 +1931,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/board/board_create_container */ "./frontend/components/board/board_create_container.js");
 /* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/board/board_edit_container */ "./frontend/components/board/board_edit_container.js");
-/* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
@@ -1656,7 +1939,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var Modal = function Modal(_ref) {
   var modal = _ref.modal,
-      hideModal = _ref.hideModal;
+      hideModal = _ref.hideModal,
+      selectedData = _ref.selectedData;
+  debugger;
 
   if (!modal || modal === 'login' || modal === 'signup') {
     return null;
@@ -1670,7 +1955,9 @@ var Modal = function Modal(_ref) {
       break;
 
     case 'edit-board':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4___default.a, null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        selectedData: selectedData
+      });
       break;
 
     case 'create-pin':
@@ -1693,8 +1980,10 @@ var Modal = function Modal(_ref) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
+  debugger;
   return {
-    modal: state.ui.modal
+    modal: state.ui.modal && state.ui.modal.name,
+    selectedData: state.ui.modal && state.ui.modal.selectedData
   };
 };
 
@@ -1864,10 +2153,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
-    },
-    showModal: function showModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])('signup'));
-    }
+    } //showModal: () => dispatch(showModal('signup')),
+
   };
 };
 
@@ -2874,11 +3161,15 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Create board",
           className: "create-board",
-          onClick: this.showModal("create-board")
+          onClick: this.showModal({
+            name: "create-board"
+          })
         }, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Create pin",
           className: "create-pin",
-          onClick: this.showModal("create-pin")
+          onClick: this.showModal({
+            name: "create-pin"
+          })
         }, "Create Pin"))));
       }
     }
@@ -2887,10 +3178,11 @@ function (_React$Component) {
     value: function showModal(modal) {
       var _this3 = this;
 
+      debugger;
       return function (e) {
         _this3.props.showModal(modal);
 
-        _this3.hideDropdown();
+        _this3.hideDropDown(e);
       };
     }
   }, {
@@ -3296,7 +3588,8 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["SHOW_MODAL"]:
-      return action.modal;
+      debugger;
+      return action.modal || state;
 
     case _actions_modal_actions__WEBPACK_IMPORTED_MODULE_0__["HIDE_MODAL"]:
       return null;

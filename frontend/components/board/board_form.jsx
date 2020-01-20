@@ -6,33 +6,42 @@ class BoardForm extends React.Component {
         this.state = { ...props.board, showErrors: false, serverError: props.errors};
         
         this.handleSubmit = this.handleSubmit.bind(this);        
-    }    
+    }        
 
     update(field) {      
         let timeout = null;  
 
         return e => {                        
-            clearTimeout(timeout);
-            e.persist();
-            document.getElementById('board-name-input').setAttribute('required', 'true');
-            timeout = setTimeout( () => {
-                let createBtn = document.getElementById('create-btn');
-                let cancelBtn = document.getElementById('cancel-btn');
-                let inputBoardName = document.getElementById('board-name-input');
+            switch (field) {
+                case 'name':
+                    clearTimeout(timeout);
+                    e.persist();
+                    document.getElementById('board-name-input').setAttribute('required', 'true');
+                    timeout = setTimeout(() => {
+                        let createBtn = document.getElementById('create-btn');
+                        let cancelBtn = document.getElementById('cancel-btn');
+                        let inputBoardName = document.getElementById('board-name-input');
 
-                if (e.target.value === '') {
-                    this.setState({ [field]: e.target.value, showErrors: true });  
-                    createBtn.classList.remove('create-btn-focus');
-                    cancelBtn.classList.remove('cancel-btn-unfocus');                                         
-                    inputBoardName.classList.add('error');                       
-                } else {
-                    this.setState({ [field]: e.target.value, showErrors: false });  
-                    createBtn.classList.add('create-btn-focus'); 
-                    cancelBtn.classList.add('cancel-btn-unfocus');                                       
-                    inputBoardName.classList.remove('error');                    
-                }  
-                              
-            }, 500);                                             
+                        if (e.target.value === '') {
+                            this.setState({ [field]: e.target.value, showErrors: true });
+                            createBtn.classList.remove('create-btn-focus');
+                            cancelBtn.classList.remove('cancel-btn-unfocus');
+                            inputBoardName.classList.add('error');
+                        } else {
+                            this.setState({ [field]: e.target.value, showErrors: false });
+                            createBtn.classList.add('create-btn-focus');
+                            cancelBtn.classList.add('cancel-btn-unfocus');
+                            inputBoardName.classList.remove('error');
+                        }
+
+                    }, 500);    
+                    break;
+                case 'secret':
+                    this.setState({ [field]: e.target.value });
+                    break;
+                default:
+                    break;
+            }                                                     
         }
     }
 
@@ -41,6 +50,8 @@ class BoardForm extends React.Component {
 
         this.props.action(this.state);                    
     }
+
+    
     
     renderErrors() { 
         if (this.props.errors === undefined) return '';
@@ -89,7 +100,7 @@ class BoardForm extends React.Component {
                         <div className='board-visibility'>
                             <p>Visibility</p>
                             <div className='secret'>
-                                <input className='secret-box' type='checkbox' value='false' />
+                                <input className='secret-box' type='checkbox' value='false' onClick={this.update('secret')} />
                                 <div>
                                     <div className='secret-info'>Keep this board secret.</div>
                                     <a href='https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create'>Learn more</a>
@@ -100,7 +111,7 @@ class BoardForm extends React.Component {
                     
                     <hr className='borderline' />
                     <div className='button-footer'>
-                        <div className='button-group'>
+                        <div className='button-group'>                            
                             <button
                                 id='cancel-btn'
                                 className = 'cancel-btn'
@@ -114,7 +125,7 @@ class BoardForm extends React.Component {
                                 disabled = {createButtonDisabled}
                                 onClick={this.handleSubmit} >
                                 Create
-                            </button>
+                            </button>                        
                         </div>
                     </div>
                 </div>

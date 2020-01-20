@@ -57,14 +57,14 @@ class UserProfile extends React.Component {
                   <div
                      title="Create board"
                      className="create-board"
-                     onClick={this.showModal("create-board")}
+                     onClick={this.showModal({ name: "create-board" })}
                   >
                      Create board
                   </div>
                   <div
                      title="Create pin"
                      className="create-pin"
-                     onClick={this.showModal("create-pin")}
+                     onClick={this.showModal({ name: "create-pin" })}
                   >
                      Create Pin
                   </div>
@@ -75,10 +75,11 @@ class UserProfile extends React.Component {
     }
   }
 
-  showModal(modal) {    
+  showModal(modal) {   
+    debugger 
     return e => {
       this.props.showModal(modal);    
-      this.hideDropdown();
+      this.hideDropDown(e);
     }
   }
 

@@ -4,7 +4,8 @@ import { hideModal } from '../../actions/modal_actions';
 import BoardCreateContainer from '../../components/board/board_create_container';
 import BoardEditContainer from '../../components/board/board_edit_container';
 
-const Modal = ({ modal, hideModal }) => {       
+const Modal = ({ modal, hideModal, selectedData }) => { 
+    debugger      
     if (!modal || modal === 'login' || modal === 'signup') {
         return null;
     }
@@ -16,7 +17,7 @@ const Modal = ({ modal, hideModal }) => {
             component = <BoardCreateContainer />
             break;
         case 'edit-board':
-            component = <BoardEditContainer />
+            component = <BoardEditContainer selectedData={selectedData} />
             break;
         case 'create-pin':
             component = <BoardCreateContainer />
@@ -34,9 +35,11 @@ const Modal = ({ modal, hideModal }) => {
     );
 }
 
-const mapStateToProps = state => {    
+const mapStateToProps = (state) => {  
+    debugger  
     return {
-        modal: state.ui.modal
+        modal: state.ui.modal && state.ui.modal.name,
+        selectedData: state.ui.modal && state.ui.modal.selectedData
     };
 };
 

@@ -149,6 +149,7 @@ class BoardIndexItem extends React.Component {
     }
 
     showModal(e) {
+        debugger
         this.props.showModal('edit-board', this.props.board.id);
     }
 
