@@ -34,10 +34,12 @@ class Api::BoardsController < ApplicationController
         end
     end
 
-    def destroy
+    def destroy        
         @board = current_user.boards.find(params[:id])
+        
         if @board
             @board.destroy
+            render "api/boards/show"
         else
             render json: ["You have to login first to delete a board"], status: 401
         end

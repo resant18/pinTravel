@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { hideModal } from '../../actions/modal_actions';
 import BoardCreateContainer from '../../components/board/board_create_container';
 import BoardEditContainer from '../../components/board/board_edit_container';
+import BoardDeleteConfirmation from '../../components/board/board_delete_confirmation';
 
 const Modal = ({ modal, hideModal, selectedData }) => { 
-    debugger      
     if (!modal || modal === 'login' || modal === 'signup') {
         return null;
     }
@@ -18,6 +18,9 @@ const Modal = ({ modal, hideModal, selectedData }) => {
             break;
         case 'edit-board':
             component = <BoardEditContainer selectedData={selectedData} />
+            break;
+        case 'delete-board-confirm':
+            component = <BoardDeleteConfirmation selectedData={selectedData} />
             break;
         case 'create-pin':
             component = <BoardCreateContainer />
@@ -36,7 +39,6 @@ const Modal = ({ modal, hideModal, selectedData }) => {
 }
 
 const mapStateToProps = (state) => {  
-    debugger  
     return {
         modal: state.ui.modal && state.ui.modal.name,
         selectedData: state.ui.modal && state.ui.modal.selectedData

@@ -32,7 +32,6 @@ const pinsReducer = (state = {}, action) => {
     case (RECEIVE_CURRENT_USER, RECEIVE_USERS, RECEIVE_USER):      
       return merge({}, state, action.pins);
     case CLEAR_PINS:
-      debugger
       return {};
     default:
       return state;

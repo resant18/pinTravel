@@ -24,7 +24,7 @@ export const receiveBoard = payload => {
   };
 };
 
-export const removeBoard = payload => {
+export const removeBoard = payload => {  
   return {
     type: REMOVE_BOARD,
     boardId: payload.board.id

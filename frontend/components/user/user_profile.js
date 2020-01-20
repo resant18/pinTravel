@@ -76,7 +76,6 @@ class UserProfile extends React.Component {
   }
 
   showModal(modal) {   
-    debugger 
     return e => {
       this.props.showModal(modal);    
       this.hideDropDown(e);

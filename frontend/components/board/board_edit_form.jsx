@@ -6,6 +6,7 @@ class BoardEditForm extends React.Component {
       this.state = { ...props.board, showErrors: false, serverError: props.errors };
 
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleDelete = this.handleDelete.bind(this);
    }
 
    update(field) {
@@ -50,6 +51,13 @@ class BoardEditForm extends React.Component {
 
       this.props.updateBoard(this.state);
    }
+
+   handleDelete(e) {
+      e.preventDefault();
+      
+      this.props.hideModal();      
+      this.props.showModal({ name: 'delete-board-confirm', selectedData: this.props.boardId });         
+   }   
 
    renderErrors() {
       if (this.props.errors === undefined) return '';
@@ -115,7 +123,7 @@ class BoardEditForm extends React.Component {
                         <button
                            id='delete-btn'
                            className='delete-btn'
-                           onClick={this.props.deleteBoard} >
+                           onClick={this.handleDelete} >
                            Delete
                                 </button>
                      </div>
