@@ -37,7 +37,8 @@ class BoardForm extends React.Component {
                     }, 500);    
                     break;
                 case 'secret':
-                    this.setState({ [field]: e.target.value });
+                    debugger
+                    this.setState({ [field]: e.target.checked });
                     break;
                 default:
                     break;

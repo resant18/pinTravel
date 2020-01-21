@@ -1030,7 +1030,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "secret-box",
         type: "checkbox",
-        value: this.state.secret,
+        checked: this.state.secret,
         onClick: this.update('secret')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "secret-info"
@@ -1165,7 +1165,9 @@ function (_React$Component) {
             break;
 
           case 'secret':
-            _this2.setState(_defineProperty({}, field, e.target.value));
+            debugger;
+
+            _this2.setState(_defineProperty({}, field, e.target.checked));
 
             break;
 

@@ -107,7 +107,7 @@ class BoardEditForm extends React.Component {
                   <div className='board-visibility'>
                      <p>Visibility</p>
                      <div className='secret'>
-                        <input className='secret-box' type='checkbox' value={this.state.secret} onClick={this.update('secret')} />
+                        <input className='secret-box' type='checkbox' checked={this.state.secret} onClick={this.update('secret')} />
                         <div>
                            <div className='secret-info'>Keep this board secret.</div>
                            <a href='https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create'>Learn more</a>
