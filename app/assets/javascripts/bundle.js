@@ -560,8 +560,7 @@ var fetchUsers = function fetchUsers() {
 var fetchUser = function fetchUser(username) {
   return function (dispatch) {
     return _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](username).then(function (user) {
-      ;
-      dispatch(receiveUser(user));
+      return dispatch(receiveUser(user));
     }, function (err) {
       return dispatch(receiveUserErrors(err.responseJSON));
     });
@@ -1498,6 +1497,7 @@ function (_React$Component) {
     key: "displayBoardCoverPins",
     value: function displayBoardCoverPins(pins) {
       // let pins = this._generateRandomNumber(25, pinCount);
+      //TODO: Do something for undefined image file
       var pinsIdx = this._pinsIndex(pins);
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1768,7 +1768,7 @@ function (_React$Component) {
     _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
     _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
     _this.hideDropDown = _this.hideDropDown.bind(_assertThisInitialized(_this));
-    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    _this.handleModal = _this.handleModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1806,15 +1806,34 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "handleModal",
+    value: function handleModal(e, modal) {
+      var _this2 = this;
+
+      e.preventDefault();
+      return function (e) {
+        if (modal === 'create-pin') {
+          _this2.props.showModal({
+            modal: 'create-pin'
+          });
+        } else if (modal === 'edit-board') {
+          _this2.props.showModal({
+            modal: 'edit-board',
+            selectedData: _this2.props.boardId
+          });
+        }
+      };
+    }
+  }, {
     key: "renderDropDown",
     value: function renderDropDown() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.state.dropDown) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "drop-down",
           ref: function ref(node) {
-            return _this2.node = node;
+            return _this3.node = node;
           },
           className: "board-show-add-pin drop-down"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1825,19 +1844,19 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Add Pin",
           className: "create-pin add-pin",
-          onClick: this.showModal("add-pin")
+          onClick: this.handleModal("create-pin")
         }, "Create Pin"))));
       }
     }
   }, {
     key: "showModal",
     value: function showModal(modal) {
-      var _this3 = this;
+      var _this4 = this;
 
       return function (e) {
-        _this3.props.showModal(modal);
+        _this4.props.showModal(modal);
 
-        _this3.hideDropDown();
+        _this4.hideDropDown();
       };
     }
   }, {
@@ -1880,7 +1899,8 @@ function (_React$Component) {
         })))), this.renderDropDown(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit board",
           className: "tool-buttons edit-button",
-          type: "button"
+          type: "button",
+          onClick: this.showModal
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
           height: "24",
@@ -1891,6 +1911,26 @@ function (_React$Component) {
           role: "img"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
+        }))))));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toobar-wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          "aria-label": "Back",
+          className: "tool-buttons back-button",
+          type: "button",
+          onClick: this.browseBack
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          className: "svg-back",
+          height: "20",
+          width: "20",
+          viewBox: "0 0 24 24",
+          "aria-label": "Back",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 0 1 3.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
         }))))));
       }
     }
@@ -1946,7 +1986,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
 /* harmony import */ var _reducers_selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../reducers/selector */ "./frontend/reducers/selector.js");
-/* harmony import */ var _board_board_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../board/board_show */ "./frontend/components/board/board_show.jsx");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _board_board_show__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../board/board_show */ "./frontend/components/board/board_show.jsx");
+
 
 
 
@@ -1972,11 +2014,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchBoard: function fetchBoard(id) {
       return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["fetchBoard"])(id));
+    },
+    showModal: function showModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])(modal));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_board_show__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_board_show__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
@@ -4181,13 +4226,13 @@ __webpack_require__.r(__webpack_exports__);
 var fetchAllPins = function fetchAllPins() {
   return $.ajax({
     method: "GET",
-    url: "api/boards_pins"
+    url: "api/board_pins"
   });
 };
 var fetchPinsFeed = function fetchPinsFeed(page) {
   return $.ajax({
     method: "GET",
-    url: "api/boards_pins/feeds",
+    url: "api/board_pins/feeds",
     data: {
       page: page
     }

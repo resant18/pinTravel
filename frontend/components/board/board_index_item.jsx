@@ -62,9 +62,10 @@ class BoardIndexItem extends React.Component {
 
     displayBoardCoverPins(pins) {  
         // let pins = this._generateRandomNumber(25, pinCount);
-        
-        let pinsIdx = this._pinsIndex(pins);        
+        //TODO: Do something for undefined image file
 
+        let pinsIdx = this._pinsIndex(pins);    
+        
         return (
             <div className="board-cover" >
                 <div className="p-item border-line" style={{ width: '50%', height: '100%' }}>

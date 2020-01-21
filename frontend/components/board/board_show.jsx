@@ -12,7 +12,7 @@ class BoardShow extends React.Component {
       this.browseBack = this.browseBack.bind(this);
       this.showDropDown = this.showDropDown.bind(this);
       this.hideDropDown = this.hideDropDown.bind(this);      
-      this.showModal = this.showModal.bind(this);
+      this.handleModal = this.handleModal.bind(this);
    }
 
    componentDidMount() {
@@ -39,6 +39,18 @@ class BoardShow extends React.Component {
       }
    }
 
+   handleModal(e, modal) {
+      e.preventDefault();
+
+      return (e) => {
+         if (modal === 'create-pin') {
+            this.props.showModal({ modal: 'create-pin'})
+         } else if (modal === 'edit-board') {
+            this.props.showModal({ modal: 'edit-board', selectedData: this.props.boardId})
+         }
+      }
+   }
+
    renderDropDown() {
       if (this.state.dropDown) {
          return (
@@ -48,7 +60,7 @@ class BoardShow extends React.Component {
                      <div
                         title="Add Pin"
                         className="create-pin add-pin"
-                        onClick={this.showModal("add-pin")}
+                        onClick={this.handleModal("create-pin")}
                      >
                         Create Pin
                            </div>
@@ -86,10 +98,24 @@ class BoardShow extends React.Component {
                      </div>
                   </button>
                   { this.renderDropDown() }
-                  <button aria-label="Edit board" className="tool-buttons edit-button" type="button">
+                  <button aria-label="Edit board" className="tool-buttons edit-button" type="button" onClick={this.showModal}>
                      <div>
                         <svg className="svg" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
                            <path d="M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"></path>
+                        </svg>
+                     </div>
+                  </button>
+               </div>
+            </div>
+         )
+      } else {
+         return (
+            <div className='toolbar'>
+               <div className='toobar-wrapper'>
+                  <button aria-label="Back" className="tool-buttons back-button" type="button" onClick={this.browseBack}>
+                     <div>
+                        <svg className="svg-back" height="20" width="20" viewBox="0 0 24 24" aria-label="Back" role="img">
+                           <path d="M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 0 1 3.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"></path>
                         </svg>
                      </div>
                   </button>

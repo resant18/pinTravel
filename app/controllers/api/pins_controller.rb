@@ -7,7 +7,7 @@ class Api::PinsController < ApplicationController
         @pins = user.pins.order(updated_at: :desc)
               .page(params[:page]).per(10)                            
       elsif params[:board_id]        
-        @pins = Pin.includes(:boards_pins, :boards)
+        @pins = Pin.includes(:board_pins, :boards)
               .where(boards: { board_id: params[:board_id]} )
               .page(params[:page]).per(10)
       end
@@ -49,7 +49,7 @@ class Api::PinsController < ApplicationController
 
     def destroy
       @pin = current_user.pins.find(params[:id])  
-      @board_pin = current_user.boards_pins.find(params[:id])
+      @board_pin = current_user.board_pins.find(params[:id])
       @board_pin.destroy
       @pin.destroy
       render "api/pins/show"

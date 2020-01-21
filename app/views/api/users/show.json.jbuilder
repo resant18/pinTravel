@@ -1,5 +1,5 @@
 json.user do
-  json.partial! "api/users/user", user: @user  
+  json.partial! "api/users/user", user: @user    
 end
 
 json.boards do
@@ -15,5 +15,5 @@ json.pins do
     json.set! board_pin.id do
       json.partial! 'api/pins/pin', board_pin: board_pin
     end
-  end
+  end  
 end

@@ -1,14 +1,14 @@
 export const fetchAllPins = () => {
   return $.ajax({
     method: "GET",
-    url: `api/boards_pins`
+    url: `api/board_pins`
   });
 };
 
 export const fetchPinsFeed = page => {
   return $.ajax({
     method: "GET",
-    url: `api/boards_pins/feeds`,
+    url: `api/board_pins/feeds`,
     data: { page }
   });
 };

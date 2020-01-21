@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 
 import { fetchBoard } from "../../actions/board_actions";
 import { selectBoard, selectUserBoardPins, selectUserCreator } from '../../reducers/selector';
+import { showModal } from '../../actions/modal_actions';
 import BoardShow from '../board/board_show';
 
 const mapStateToProps = (state, { match }) => {
@@ -21,7 +22,8 @@ const mapStateToProps = (state, { match }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchBoard: id => dispatch(fetchBoard(id))
+  fetchBoard: id => dispatch(fetchBoard(id)),
+  showModal: modal => dispatch(showModal(modal)),  
 });
 
 export default connect(

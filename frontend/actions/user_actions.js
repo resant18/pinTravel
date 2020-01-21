@@ -43,8 +43,8 @@ export const fetchUsers = () => dispatch => (
 export const fetchUser = username => dispatch => (
   ApiUtil.fetchUser(username)
   .then(
-    user => { ; dispatch(receiveUser(user)) }, 
-    err => (dispatch(receiveUserErrors(err.responseJSON)))
+    user => dispatch(receiveUser(user)), 
+    err => dispatch(receiveUserErrors(err.responseJSON))
   )
 );
 

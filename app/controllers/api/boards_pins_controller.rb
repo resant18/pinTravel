@@ -2,27 +2,27 @@ class Api::BoardsPinsController < ApplicationController
   before_action :require_logged_in, only: [:create, :edit, :update, :destroy]
 
   def index      
-      @boards_pins = BoardPin.includes(:pin, :board, :user).all
+      @board_pins = BoardPin.includes(:pin, :board, :user).all
       render 'api/pins/index'
   end
 
   # get all pin that is not current user pins for news feeds
   def feeds
   #   board_ids = current_user ? current_user.board_ids : []
-    @boards_pins = BoardPin.includes(:pin, :board, :user)
+    @board_pins = BoardPin.includes(:pin, :board, :user)
                         .where.not(user_id: current_user)
                         .page(params[:page]).per(10)
     render 'api/pins/index'
   end   
   
   def user_pins
-      # @boards_pins = BoardPin.includes(:pin, :board, :user)
+      # @board_pins = BoardPin.includes(:pin, :board, :user)
       #     .where(user_id: params[:user_id])
       #     .page(params[:page]).per(10)
   end
 
   def board_pins
-      @boards_pins = BoardPin.includes(:pin, :board, :user)
+      @board_pins = BoardPin.includes(:pin, :board, :user)
           .where(board_id: params[:board_id])
           .page(params[:page]).per(10)
   end
@@ -40,7 +40,7 @@ class Api::BoardsPinsController < ApplicationController
   # end
 
   def update
-    @board_pin = current_user.boards_pins.find(params[:id])
+    @board_pin = current_user.board_pins.find(params[:id])
     @board_pin.update!(board_pin_params)
     render 'api/pins/show'
   end

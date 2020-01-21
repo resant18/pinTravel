@@ -21,7 +21,7 @@ class UserProfile extends React.Component {
   componentDidMount() {
     if (!this.props.user) {            
       this.props.fetchUser(this.props.username);
-    }    
+    }        
   }
 
   componentDidUpdate(prevProps) {
@@ -137,7 +137,7 @@ class UserProfile extends React.Component {
     )
   }
 
-  renderChildComponent(user, boards, userPins, permitted) {
+  renderChildComponent(user, boards, userPins, permitted) {    
     if (this.state.tabItem === 'boards') 
       return (
         <BoardIndex
