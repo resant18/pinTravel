@@ -62,8 +62,7 @@ class BoardEditForm extends React.Component {
 
    render() {
       const isCreateButtonDisabled = (this.state.name === '') ? true : false;                  
-      const createButtonStyle = (this.state.name === '') ? '' : 'create-btn-focus';                  
-      const cancelButtonStyle = (this.state.name === '') ? '' : 'cancel-btn-unfocus';                  
+      const createButtonStyle = (this.state.name === '') ? '' : 'create-btn-focus';                        
 
       return (
          <div aria-label='Create' className='board-form-container'>
@@ -108,7 +107,7 @@ class BoardEditForm extends React.Component {
 
                <hr className='borderline' />
                <div className='button-footer'>
-                  <div className='button-group'>
+                  <div className='button-group button-group-edit'>
                      <div className='left'>
                         <button
                            id='delete-btn'
@@ -120,7 +119,7 @@ class BoardEditForm extends React.Component {
                      <div className='right'>
                         <button
                            id='cancel-btn'
-                           className={'cancel-btn ' + cancelButtonStyle}
+                           className='cancel-btn'
                            tabIndex='1'
                            onClick={this.props.hideModal} >
                            Cancel

@@ -22,26 +22,22 @@ class BoardForm extends React.Component {
                     e.persist();
                     document.getElementById('board-name-input').setAttribute('required', 'true');
                     timeout = setTimeout(() => {
-                        let createBtn = document.getElementById('create-btn');
-                        let cancelBtn = document.getElementById('cancel-btn');
+                        let createBtn = document.getElementById('create-btn');                        
                         let inputBoardName = document.getElementById('board-name-input');
 
                         if (e.target.value === '') {
                             this.setState({ [field]: e.target.value, showErrors: true });
-                            createBtn.classList.remove('create-btn-focus');
-                            cancelBtn.classList.remove('cancel-btn-unfocus');
+                            createBtn.classList.remove('create-btn-focus');                            
                             inputBoardName.classList.add('error');
                         } else {
                             this.setState({ [field]: e.target.value, showErrors: false });
-                            createBtn.classList.add('create-btn-focus');
-                            cancelBtn.classList.add('cancel-btn-unfocus');
+                            createBtn.classList.add('create-btn-focus');                            
                             inputBoardName.classList.remove('error');
                         }
 
                     }, 500);    
                     break;
-                case 'secret':
-                    debugger
+                case 'secret':                    
                     this.setState({ [field]: e.target.checked });
                     break;
                 default:
@@ -55,11 +51,8 @@ class BoardForm extends React.Component {
 
         this.props.createBoard(this.state);                    
     }
-
     
-    
-    renderErrors() { 
-        
+    renderErrors() {         
         if (this.props.errors === undefined) return '';
         return (            
             <ul>
@@ -117,7 +110,7 @@ class BoardForm extends React.Component {
                     
                     <hr className='borderline' />
                     <div className='button-footer'>
-                        <div className='button-group'>                            
+                        <div className='button-group button-group-create'>                            
                             <button
                                 id='cancel-btn'
                                 className = 'cancel-btn'

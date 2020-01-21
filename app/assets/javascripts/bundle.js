@@ -980,7 +980,6 @@ function (_React$Component) {
     value: function render() {
       var isCreateButtonDisabled = this.state.name === '' ? true : false;
       var createButtonStyle = this.state.name === '' ? '' : 'create-btn-focus';
-      var cancelButtonStyle = this.state.name === '' ? '' : 'cancel-btn-unfocus';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "aria-label": "Create",
         className: "board-form-container"
@@ -1035,7 +1034,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-group"
+        className: "button-group button-group-edit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1046,7 +1045,7 @@ function (_React$Component) {
         className: "right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "cancel-btn",
-        className: 'cancel-btn ' + cancelButtonStyle,
+        className: "cancel-btn",
         tabIndex: "1",
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1139,7 +1138,6 @@ function (_React$Component) {
             document.getElementById('board-name-input').setAttribute('required', 'true');
             timeout = setTimeout(function () {
               var createBtn = document.getElementById('create-btn');
-              var cancelBtn = document.getElementById('cancel-btn');
               var inputBoardName = document.getElementById('board-name-input');
 
               if (e.target.value === '') {
@@ -1148,7 +1146,6 @@ function (_React$Component) {
                 _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
 
                 createBtn.classList.remove('create-btn-focus');
-                cancelBtn.classList.remove('cancel-btn-unfocus');
                 inputBoardName.classList.add('error');
               } else {
                 var _this2$setState2;
@@ -1156,15 +1153,12 @@ function (_React$Component) {
                 _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
 
                 createBtn.classList.add('create-btn-focus');
-                cancelBtn.classList.add('cancel-btn-unfocus');
                 inputBoardName.classList.remove('error');
               }
             }, 500);
             break;
 
           case 'secret':
-            debugger;
-
             _this2.setState(_defineProperty({}, field, e.target.checked));
 
             break;
@@ -1249,7 +1243,7 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-group"
+        className: "button-group button-group-create"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "cancel-btn",
         className: "cancel-btn",
