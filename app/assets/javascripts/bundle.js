@@ -913,40 +913,15 @@ function (_React$Component) {
     value: function update(field) {
       var _this2 = this;
 
-      var timeout = null;
       return function (e) {
         switch (field) {
           case 'name':
-            clearTimeout(timeout);
-            e.persist();
-            document.getElementById('board-name-input').setAttribute('required', 'true');
-            timeout = setTimeout(function () {
-              var createBtn = document.getElementById('create-btn');
-              var cancelBtn = document.getElementById('cancel-btn');
-              var inputBoardName = document.getElementById('board-name-input');
+            _this2.setState(_defineProperty({}, field, e.target.value));
 
-              if (e.target.value === '') {
-                var _this2$setState;
-
-                _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
-
-                createBtn.classList.remove('create-btn-focus');
-                cancelBtn.classList.remove('cancel-btn-unfocus');
-                inputBoardName.classList.add('error');
-              } else {
-                var _this2$setState2;
-
-                _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
-
-                createBtn.classList.add('create-btn-focus');
-                cancelBtn.classList.add('cancel-btn-unfocus');
-                inputBoardName.classList.remove('error');
-              }
-            }, 500);
             break;
 
           case 'secret':
-            _this2.setState(_defineProperty({}, field, e.target.value));
+            _this2.setState(_defineProperty({}, field, e.target.checked));
 
             break;
 
@@ -959,7 +934,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.updateBoard(this.state);
+      this.props.updateBoard(this.state).then(this.props.hideModal());
     }
   }, {
     key: "handleDelete",
@@ -982,10 +957,20 @@ function (_React$Component) {
       }));
     }
   }, {
+    key: "renderBoardNameValidationError",
+    value: function renderBoardNameValidationError() {
+      if (this.state.name === '' && this.state.showErrors === true) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "error-text"
+        }, "Don't forget to name your board!");
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      var renderBoardNameValidationError = this.state.name === '' && this.state.showErrors === true ? "Don't forget to name your board!" : '';
-      var createButtonDisabled = this.state.name === '' ? true : false;
+      var isCreateButtonDisabled = this.state.name === '' ? true : false;
+      var createButtonStyle = this.state.name === '' ? '' : 'create-btn-focus';
+      var cancelButtonStyle = this.state.name === '' ? '' : 'cancel-btn-unfocus';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "aria-label": "Create",
         className: "board-form-container"
@@ -1016,10 +1001,9 @@ function (_React$Component) {
         className: "input board-name",
         value: this.state.name,
         placeholder: "E.g. 'Places to go' or 'Recipes to make'",
-        onChange: this.update('name')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "error-text"
-      }, renderBoardNameValidationError), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onChange: this.update('name'),
+        required: true
+      }), this.renderBoardNameValidationError(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error-text"
       }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "borderline"
@@ -1031,7 +1015,7 @@ function (_React$Component) {
         className: "secret-box",
         type: "checkbox",
         checked: this.state.secret,
-        onClick: this.update('secret')
+        onChange: this.update('secret')
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "secret-info"
       }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1052,13 +1036,13 @@ function (_React$Component) {
         className: "right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "cancel-btn",
-        className: "cancel-btn",
+        className: 'cancel-btn ' + cancelButtonStyle,
         tabIndex: "1",
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "create-btn",
-        className: "create-btn",
-        disabled: createButtonDisabled,
+        className: 'create-btn ' + createButtonStyle,
+        disabled: isCreateButtonDisabled,
         onClick: this.handleSubmit
       }, "Save"))))));
     }

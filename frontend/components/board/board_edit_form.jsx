@@ -6,39 +6,17 @@ class BoardEditForm extends React.Component {
       this.state = { ...props.board, showErrors: false, serverError: props.errors };
 
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.handleDelete = this.handleDelete.bind(this);
+      this.handleDelete = this.handleDelete.bind(this);      
    }
 
-   update(field) {
-      let timeout = null;
-
+   update(field) {      
       return e => {
          switch (field) {
-            case 'name':
-               clearTimeout(timeout);
-               e.persist();
-               document.getElementById('board-name-input').setAttribute('required', 'true');
-               timeout = setTimeout(() => {
-                  let createBtn = document.getElementById('create-btn');
-                  let cancelBtn = document.getElementById('cancel-btn');
-                  let inputBoardName = document.getElementById('board-name-input');
-
-                  if (e.target.value === '') {
-                     this.setState({ [field]: e.target.value, showErrors: true });
-                     createBtn.classList.remove('create-btn-focus');
-                     cancelBtn.classList.remove('cancel-btn-unfocus');
-                     inputBoardName.classList.add('error');
-                  } else {
-                     this.setState({ [field]: e.target.value, showErrors: false });
-                     createBtn.classList.add('create-btn-focus');
-                     cancelBtn.classList.add('cancel-btn-unfocus');
-                     inputBoardName.classList.remove('error');
-                  }
-
-               }, 500);
+            case 'name':                                                                                             
+               this.setState({ [field]: e.target.value });   
                break;
             case 'secret':
-               this.setState({ [field]: e.target.value });
+               this.setState({ [field]: e.target.checked });
                break;
             default:
                break;
@@ -49,7 +27,8 @@ class BoardEditForm extends React.Component {
    handleSubmit(e) {
       e.preventDefault();
 
-      this.props.updateBoard(this.state);
+      this.props.updateBoard(this.state)
+         .then(this.props.hideModal());
    }
 
    handleDelete(e) {
@@ -57,10 +36,11 @@ class BoardEditForm extends React.Component {
       
       this.props.hideModal();      
       this.props.showModal({ name: 'delete-board-confirm', selectedData: this.props.boardId });         
-   }   
+   }      
 
    renderErrors() {
-      if (this.props.errors === undefined) return '';
+      if (this.props.errors === undefined) return '';      
+
       return (
          <ul>
             {this.props.errors.map((error, i) => (
@@ -72,9 +52,18 @@ class BoardEditForm extends React.Component {
       );
    }
 
+   renderBoardNameValidationError() {
+      if (this.state.name === '' && this.state.showErrors === true) {
+         return (
+            <div className='error-text'>Don't forget to name your board!</div>
+         )
+      }      
+   }
+
    render() {
-      const renderBoardNameValidationError = (this.state.name === '' && this.state.showErrors === true) ? `Don't forget to name your board!` : '';
-      const createButtonDisabled = (this.state.name === '') ? true : false;
+      const isCreateButtonDisabled = (this.state.name === '') ? true : false;                  
+      const createButtonStyle = (this.state.name === '') ? '' : 'create-btn-focus';                  
+      const cancelButtonStyle = (this.state.name === '') ? '' : 'cancel-btn-unfocus';                  
 
       return (
          <div aria-label='Create' className='board-form-container'>
@@ -98,8 +87,9 @@ class BoardEditForm extends React.Component {
                         value={this.state.name}
                         placeholder="E.g. 'Places to go' or 'Recipes to make'"
                         onChange={this.update('name')}
+                        required
                      />
-                     <div className='error-text'>{renderBoardNameValidationError}</div>
+                     {this.renderBoardNameValidationError()}
                      <div className='error-text'>{this.renderErrors()}</div>
                   </div>
 
@@ -107,7 +97,7 @@ class BoardEditForm extends React.Component {
                   <div className='board-visibility'>
                      <p>Visibility</p>
                      <div className='secret'>
-                        <input className='secret-box' type='checkbox' checked={this.state.secret} onClick={this.update('secret')} />
+                        <input className='secret-box' type='checkbox' checked={this.state.secret} onChange={this.update('secret')} />
                         <div>
                            <div className='secret-info'>Keep this board secret.</div>
                            <a href='https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create'>Learn more</a>
@@ -125,21 +115,21 @@ class BoardEditForm extends React.Component {
                            className='delete-btn'
                            onClick={this.handleDelete} >
                            Delete
-                                </button>
+                        </button>
                      </div>
                      <div className='right'>
                         <button
                            id='cancel-btn'
-                           className='cancel-btn'
+                           className={'cancel-btn ' + cancelButtonStyle}
                            tabIndex='1'
                            onClick={this.props.hideModal} >
                            Cancel
                         </button>
                         <button
                            id='create-btn'
-                           className='create-btn'                           
-                           disabled={createButtonDisabled}
-                           onClick={this.handleSubmit} >
+                           className={'create-btn ' + createButtonStyle}                       
+                           disabled={isCreateButtonDisabled}
+                           onClick={this.handleSubmit} > 
                            Save
                         </button>
                      </div>
