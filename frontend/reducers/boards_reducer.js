@@ -1,12 +1,11 @@
-import { merge } from "lodash";
-
+import { merge } from 'lodash';
 import { RECEIVE_BOARDS, RECEIVE_BOARD, REMOVE_BOARD, CLEAR_BOARDS } from '../actions/board_actions';
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_USERS,
   RECEIVE_USER
-} from "../actions/user_actions";
-import { RECEIVE_PINS, RECEIVE_PIN } from "../actions/pin_actions";
+} from '../actions/user_actions';
+import { RECEIVE_PINS, RECEIVE_PIN } from '../actions/pin_actions';
 
 const boardsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -23,7 +22,7 @@ const boardsReducer = (state = {}, action) => {
     case (RECEIVE_CURRENT_USER, RECEIVE_USERS, RECEIVE_USER):
       return merge({}, state, action.boards);
     case CLEAR_BOARDS:
-      return {};
+      return {};          
     case RECEIVE_PINS:
       return merge({}, state, action.boards);
     case RECEIVE_PIN:

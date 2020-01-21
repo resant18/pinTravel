@@ -3,7 +3,7 @@ import React from 'react';
 class BoardEditForm extends React.Component {
    constructor(props) {
       super(props);
-      this.state = { ...props.board, showErrors: false, serverError: props.errors };
+      this.state = { ...props.board, serverError: props.errors };
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleDelete = this.handleDelete.bind(this);      
@@ -53,7 +53,7 @@ class BoardEditForm extends React.Component {
    }
 
    renderBoardNameValidationError() {
-      if (this.state.name === '' && this.state.showErrors === true) {
+      if (this.state.name === '') {
          return (
             <div className='error-text'>Don't forget to name your board!</div>
          )

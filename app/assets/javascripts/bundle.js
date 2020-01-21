@@ -90,7 +90,7 @@
 /*!*******************************************!*\
   !*** ./frontend/actions/board_actions.js ***!
   \*******************************************/
-/*! exports provided: RECEIVE_BOARDS, RECEIVE_BOARD, REMOVE_BOARD, CLEAR_BOARDS, RECEIVE_BOARD_ERRORS, receiveBoards, receiveBoard, removeBoard, clearBoards, receiveBoardErrors, fetchBoards, fetchBoard, createBoard, updateBoard, deleteBoard */
+/*! exports provided: RECEIVE_BOARDS, RECEIVE_BOARD, REMOVE_BOARD, CLEAR_BOARDS, RECEIVE_BOARD_ERRORS, CLEAR_BOARD_ERRORS, receiveBoards, receiveBoard, removeBoard, clearBoards, receiveBoardErrors, clearBoardErrors, fetchBoards, fetchBoard, createBoard, updateBoard, deleteBoard */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -100,11 +100,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_BOARD", function() { return REMOVE_BOARD; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_BOARDS", function() { return CLEAR_BOARDS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_BOARD_ERRORS", function() { return RECEIVE_BOARD_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_BOARD_ERRORS", function() { return CLEAR_BOARD_ERRORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBoards", function() { return receiveBoards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBoard", function() { return receiveBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeBoard", function() { return removeBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearBoards", function() { return clearBoards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveBoardErrors", function() { return receiveBoardErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearBoardErrors", function() { return clearBoardErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoards", function() { return fetchBoards; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoard", function() { return fetchBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBoard", function() { return createBoard; });
@@ -112,11 +114,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
 /* harmony import */ var _util_board_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/board_api_util */ "./frontend/util/board_api_util.js");
 
-var RECEIVE_BOARDS = "RECEIVE_BOARDS";
-var RECEIVE_BOARD = "RECEIVE_BOARD";
-var REMOVE_BOARD = "REMOVE_BOARD";
-var CLEAR_BOARDS = "CLEAR_BOARDS";
-var RECEIVE_BOARD_ERRORS = "RECEIVE_BOARD_ERRORS";
+var RECEIVE_BOARDS = 'RECEIVE_BOARDS';
+var RECEIVE_BOARD = 'RECEIVE_BOARD';
+var REMOVE_BOARD = 'REMOVE_BOARD';
+var CLEAR_BOARDS = 'CLEAR_BOARDS';
+var RECEIVE_BOARD_ERRORS = 'RECEIVE_BOARD_ERRORS';
+var CLEAR_BOARD_ERRORS = 'CLEAR_BOARD_ERRORS';
 var receiveBoards = function receiveBoards(payload) {
   return {
     type: RECEIVE_BOARDS,
@@ -148,6 +151,11 @@ var receiveBoardErrors = function receiveBoardErrors(errors) {
   return {
     type: RECEIVE_BOARD_ERRORS,
     errors: errors
+  };
+};
+var clearBoardErrors = function clearBoardErrors() {
+  return {
+    type: CLEAR_BOARD_ERRORS
   };
 }; // =====
 
@@ -653,7 +661,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    action: function action(board) {
+    createBoard: function createBoard(board) {
       return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["createBoard"])(board));
     },
     showModal: function showModal(modal) {
@@ -661,6 +669,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     hideModal: function hideModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["hideModal"])());
+    },
+    clearBoardErrors: function clearBoardErrors() {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["clearBoardErrors"])());
     } // receiveBoardErrors: errors => dispatch(receiveBoardErrors(errors)),
 
   };
@@ -900,7 +911,6 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardEditForm).call(this, props));
     _this.state = _objectSpread({}, props.board, {
-      showErrors: false,
       serverError: props.errors
     });
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -959,7 +969,7 @@ function (_React$Component) {
   }, {
     key: "renderBoardNameValidationError",
     value: function renderBoardNameValidationError() {
-      if (this.state.name === '' && this.state.showErrors === true) {
+      if (this.state.name === '') {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "error-text"
         }, "Don't forget to name your board!");
@@ -1104,14 +1114,18 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardForm).call(this, props));
     _this.state = _objectSpread({}, props.board, {
-      showErrors: false,
-      serverError: props.errors
+      showErrors: false
     });
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BoardForm, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearBoardErrors();
+    }
+  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -1164,7 +1178,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.action(this.state);
+      this.props.createBoard(this.state);
     }
   }, {
     key: "renderErrors",
@@ -3563,8 +3577,9 @@ __webpack_require__.r(__webpack_exports__);
     case _actions_board_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOARD_ERRORS"]:
       return action.errors || [];
     // return action.errors.error_message || [];
-    // case CLEAR_BOARD_ERRORS:
-    //   return [];
+
+    case _actions_board_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_BOARD_ERRORS"]:
+      return [];
 
     default:
       return state;

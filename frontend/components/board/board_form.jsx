@@ -3,10 +3,14 @@ import React from 'react';
 class BoardForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { ...props.board, showErrors: false, serverError: props.errors};
+        this.state = { ...props.board, showErrors: false };
         
         this.handleSubmit = this.handleSubmit.bind(this);        
-    }        
+    }   
+    
+    componentWillUnmount() {
+        this.props.clearBoardErrors();
+    }
 
     update(field) {      
         let timeout = null;  
@@ -49,12 +53,13 @@ class BoardForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.action(this.state);                    
+        this.props.createBoard(this.state);                    
     }
 
     
     
     renderErrors() { 
+        
         if (this.props.errors === undefined) return '';
         return (            
             <ul>
