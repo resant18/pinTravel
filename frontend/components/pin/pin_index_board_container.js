@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import PinIndex from '../pin/pin_index';
+import PinIndex from './pin_index';
 import { fetchBoardPins, clearPins } from '../../actions/pin_actions';
 import { selectUserBoardPins } from '../../reducers/selector';
 import { showModal } from '../../actions/modal_actions';

@@ -11,7 +11,7 @@ import { requestUserBoards } from "../../actions/board_actions";
 import { openModal } from "../../actions/modal2_actions";
 
 const mapStateToProps = (state, ownProps) => {
-  // 
+  debugger
   return {
     pins: Object.values(state.entities.pins || []),
     currentId: state.session.id,

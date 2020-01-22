@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardPinIndexContainer from './board_pin_index_container';
+import PinIndexBoardContainer from '../pin/pin_index_board_container';
 
 class BoardShow extends React.Component {
    constructor(props) {
@@ -40,6 +40,7 @@ class BoardShow extends React.Component {
    }
 
    handleModal(e, modal) {
+      debugger
       e.preventDefault();
 
       return (e) => {
@@ -146,7 +147,7 @@ class BoardShow extends React.Component {
                </section>
                <section className='board-pins-detail'>
                   <div className='pins'>
-                     <BoardPinIndexContainer user={user} board={board} /> 
+                     <PinIndexBoardContainer user={user} board={board} /> 
                   </div>
                </section>
             </div>

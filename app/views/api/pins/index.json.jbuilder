@@ -18,13 +18,11 @@ json.boards do
   end
 end
 
-#   json.users do
-#     @pins.
-#     json.set! board_pin.user.username do
-#       json.partial! "api/users/user", user: board_pin.user
-#     end
-#   end
-# end
+json.users do
+  json.set! board_pins.user.username do
+    json.partial! 'api/users/user', user: board_pins.user
+  end
+end
 
 
 
