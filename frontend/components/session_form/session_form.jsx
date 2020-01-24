@@ -182,8 +182,7 @@ class SessionForm extends React.Component {
     };
 
     return (
-      <div className="form-container">
-        <div className="data-grid-images" />
+      <div className="form-container">        
         <div className="data-grid-opacity" />
         <div className="modal-content">
           <div className="login-form-container">

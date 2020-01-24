@@ -129,7 +129,7 @@ li {
 }
 
 .modal-content {
-    position: relative;
+    position: absolute;
     background: white;
     border-radius: 12px;
     top: 50%;
@@ -137,6 +137,7 @@ li {
     transform: translate(-50%, -50%);
     z-index: 3;
     display: flex;
+    vertical-align: middle;
 }
 
 .error-text {

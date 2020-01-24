@@ -74,19 +74,9 @@ class PinIndex extends React.Component {
         <Waypoint onEnter={this.loadMorePins} />
       );
     // }
-  }
-
-  _noScroll() {
-    if (!this.props.username) {
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${window.scrollY}px`;
-
-    }
-  }
+  }  
   
-  render() {
-    // this._noScroll();
-
+  render() {   
     return (
       <div className="pins">        
         <div className="pin-index">

@@ -2354,17 +2354,8 @@ function (_React$Component) {
       }); // }
     }
   }, {
-    key: "_noScroll",
-    value: function _noScroll() {
-      if (!this.props.username) {
-        document.body.style.position = 'fixed';
-        document.body.style.top = "-".concat(window.scrollY, "px");
-      }
-    }
-  }, {
     key: "render",
     value: function render() {
-      // this._noScroll();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3093,8 +3084,6 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "data-grid-images"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "data-grid-opacity"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal-content"

@@ -3,25 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .form-container {
-    // height: 100%;
-    // width: 100%;
-    // position: absolute;
-    // top: 0px;
-    // overflow: hidden;
-}
-
-.data-grid-images {
-    max-width: 2500px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 1;
+    height: 100%;
+    width: 100%;
     position: absolute;
+    top: 0;
+    left: 0;
     overflow: hidden;
-    padding: 24px 20px;    
-    // background-image: image-url('data-grid-image-high');
-    background-size: cover;    
 }
 
 .data-grid-opacity {
