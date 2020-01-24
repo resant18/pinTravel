@@ -24,6 +24,7 @@
 #   end
 # end
 
+
 @board_pins.each do |board_pin| 
   json.pins do
     json.set! board_pin.id do

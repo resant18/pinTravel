@@ -14,8 +14,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchUser: (username) => dispatch(fetchUser(username)),
-    logout: () => dispatch(logout()), 
-    //showModal: () => dispatch(showModal('signup')),
+    logout: () => dispatch(logout()),     
   };
 };
 

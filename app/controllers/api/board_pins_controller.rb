@@ -7,13 +7,12 @@ class Api::BoardPinsController < ApplicationController
   end
 
   # get all pin that is not current user pins for news feeds
-  def feeds
+  def feeds    
     board_ids = current_user ? current_user.board_ids : []
   
     @board_pins = BoardPin.includes(:pin, :board)
                         .where.not(board_id: board_ids)
-                        # .page(params[:page]).per(10)
-    
+                        .page(params[:page]).per(10)    
     render 'api/pins/index'
   end   
   

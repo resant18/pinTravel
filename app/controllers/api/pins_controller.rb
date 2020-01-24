@@ -6,10 +6,12 @@ class Api::PinsController < ApplicationController
         user = User.find_by(username: params[:user_id])                            
         # @pins = user.pins.order(updated_at: :desc)
         #       .page(params[:page]).per(10)  
-        @board_pins = BoardPin.includes(:pin, :board, :user)
+        
+        @board_pins = BoardPin.includes(:board, :user)
               .where(users: { username: params[:user_id] })  
               .order(updated_at: :desc)                       
               # .page(params[:page]).per(10)
+        
       elsif params[:board_id]                
         # @pins = Pin.includes(:board_pins, :boards)
         #       .where(boards: { id: params[:board_id]} )

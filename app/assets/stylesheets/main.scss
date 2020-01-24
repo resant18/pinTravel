@@ -225,10 +225,13 @@ div.svg-40 {
 .pins {    
     display: flex;
     justify-content: center;
-    overflow: scroll;
+    overflow: scroll; 
     .pin-index {
         transition: opacity .5s ease-in-out;
-        padding-top: 1.5em;        
+        padding-top: 1.5em;           
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;     
                   
         .pin {
             margin-bottom: 20px;

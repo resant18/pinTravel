@@ -129,7 +129,7 @@ li {
 }
 
 .modal-content {
-    position: absolute;
+    position: relative;
     background: white;
     border-radius: 12px;
     top: 50%;

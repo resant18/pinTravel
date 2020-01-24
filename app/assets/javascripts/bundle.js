@@ -1762,7 +1762,6 @@ function (_React$Component) {
     value: function handleModal(e, modal) {
       var _this2 = this;
 
-      debugger;
       e.preventDefault();
       return function (e) {
         if (modal === 'create-pin') {
@@ -2221,8 +2220,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
-    } //showModal: () => dispatch(showModal('signup')),
-
+    }
   };
 };
 
@@ -2278,25 +2276,26 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinIndex).call(this, props));
     _this.state = {
       prevPage: 0,
-      page: 1
+      page: 1 // isLoading: false
+
     };
-    _this.fetchMorePins = _this.fetchMorePins.bind(_assertThisInitialized(_this));
-    _this.fetchPinsData = _this.fetchPinsData.bind(_assertThisInitialized(_this));
+    _this.loadMorePins = _this.loadMorePins.bind(_assertThisInitialized(_this)); // this.updatePageNumber = this.updatePageNumber.bind(this);
+
     return _this;
   }
 
   _createClass(PinIndex, [{
-    key: "fetchPinsData",
-    value: function fetchPinsData() {
+    key: "loadMorePins",
+    value: function loadMorePins() {
       var _this$props = this.props,
           fetchType = _this$props.fetchType,
           fetchPins = _this$props.fetchPins,
           boardId = _this$props.boardId,
-          username = _this$props.username;
+          username = _this$props.username; // this.setState({ isLoading: true});
 
       switch (fetchType) {
         case "feed":
-          debugger;
+          console.log('fetch pins');
           fetchPins(this.state.page);
           break;
 
@@ -2312,27 +2311,26 @@ function (_React$Component) {
       }
 
       this.setState({
-        prevPage: this.state.page,
-        page: this.state.page + 1
+        // prevPage: this.state.page,
+        page: this.state.page + 1 // isLoading: false
+
       });
-    }
-  }, {
-    key: "fetchMorePins",
-    value: function fetchMorePins() {
-      var value = this.state.prevPage + 1;
-      this.setState({
-        prevPage: value
-      });
-    }
+    } // updatePageNumber() {
+    //   const add = this.state.prevPage + 1;
+    //   this.setState({ prevPage: add });
+    // }
+
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {// this.props.clearPins();
+    value: function componentDidMount() {
+      // this.props.clearPins();
       // if (!this.props.selectedBoardPins)
-      //   this.fetchPinsData();
+      // debugger
+      this.loadMorePins();
     }
   }, {
-    key: "render",
-    value: function render() {
+    key: "renderPins",
+    value: function renderPins() {
       var _this2 = this;
 
       var pins = this.props.pins.map(function (pin, i) {
@@ -2343,13 +2341,35 @@ function (_React$Component) {
           currentUser: _this2.props.currentUser
         });
       });
+      return pins;
+    }
+  }, {
+    key: "renderWaypoint",
+    value: function renderWaypoint() {
+      console.log(this.state.page); // if (!this.state.isLoading) {
+
+      console.log('calling waypoint');
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
+        onEnter: this.loadMorePins
+      }); // }
+    }
+  }, {
+    key: "_noScroll",
+    value: function _noScroll() {
+      if (!this.props.username) {
+        document.body.style.position = 'fixed';
+        document.body.style.top = "-".concat(window.scrollY, "px");
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      // this._noScroll();
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index"
-      }, pins, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
-        onEnter: this.fetchPinsData
-      })));
+      }, this.renderPins(), this.renderWaypoint()));
     }
   }]);
 
@@ -2570,7 +2590,6 @@ function (_React$Component) {
           }));
         }
 
-        debugger;
         var currentUser = this.props.currentUser;
 
         if (currentUser && currentUser.username === pin.user.username) {
@@ -2622,7 +2641,7 @@ function (_React$Component) {
         src: window.pins[pin.pin_id]
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)), this.displayLinks());
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)));
     }
   }]);
 

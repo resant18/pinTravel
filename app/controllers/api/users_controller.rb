@@ -10,7 +10,7 @@ class Api::UsersController < ApplicationController
         end
     end
     
-    def show                
+    def show   
         @user = User.includes(:boards, :board_pins, :pins).find_by(username: params[:id])        
         render :show
     end

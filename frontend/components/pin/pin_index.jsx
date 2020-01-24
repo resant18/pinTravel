@@ -7,19 +7,21 @@ class PinIndex extends React.Component {
     super(props);
     this.state = {
       prevPage: 0,
-      page: 1
+      page: 1, 
+      // isLoading: false
     };
-
-    this.fetchMorePins = this.fetchMorePins.bind(this);
-    this.fetchPinsData = this.fetchPinsData.bind(this);
+    
+    this.loadMorePins = this.loadMorePins.bind(this);
+    // this.updatePageNumber = this.updatePageNumber.bind(this);
   }
 
-  fetchPinsData() {
+  loadMorePins() {
     const { fetchType, fetchPins, boardId, username } = this.props;
   
+    // this.setState({ isLoading: true});
     switch (fetchType) {
       case "feed":
-        debugger
+        console.log('fetch pins');        
         fetchPins(this.state.page);
         break;
       case "user":
@@ -32,23 +34,25 @@ class PinIndex extends React.Component {
     }
 
     this.setState({
-      prevPage: this.state.page,
-      page: this.state.page + 1
+      // prevPage: this.state.page,
+      page: this.state.page + 1,
+      // isLoading: false
     });
   }
 
-  fetchMorePins() {
-    const value = this.state.prevPage + 1;
-    this.setState({ prevPage: value });
-  }
+  // updatePageNumber() {
+  //   const add = this.state.prevPage + 1;
+  //   this.setState({ prevPage: add });
+  // }
 
   componentDidMount() {        
     // this.props.clearPins();
     // if (!this.props.selectedBoardPins)
-    //   this.fetchPinsData();
+    // debugger
+    this.loadMorePins();
   }
 
-  render() {
+  renderPins() {
     const pins = this.props.pins.map((pin, i) => {
       return (
         <PinIndexItem
@@ -59,12 +63,35 @@ class PinIndex extends React.Component {
         />
       );
     });
+    return pins;
+  }
+
+  renderWaypoint() {
+      console.log(this.state.page);
+    // if (!this.state.isLoading) {
+      console.log('calling waypoint');
+      return (
+        <Waypoint onEnter={this.loadMorePins} />
+      );
+    // }
+  }
+
+  _noScroll() {
+    if (!this.props.username) {
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;
+
+    }
+  }
+  
+  render() {
+    // this._noScroll();
 
     return (
-      <div className="pins">
+      <div className="pins">        
         <div className="pin-index">
-          {pins}
-          <Waypoint onEnter={this.fetchPinsData} />
+          {this.renderPins()}
+          {this.renderWaypoint()}
         </div>
       </div>
     );

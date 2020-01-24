@@ -54,7 +54,7 @@ class PinIndexItem extends React.Component {
           </a>
         );
       }
-debugger
+
       const { currentUser } = this.props;
       if (currentUser && currentUser.username === pin.user.username) {
         edit = (
@@ -108,7 +108,7 @@ debugger
         <div className="pin-item-title">
           <p>{pin.title}</p>
         </div>
-        {this.displayLinks()}
+        {/* {this.displayLinks()} */}
       </div>
     
     );

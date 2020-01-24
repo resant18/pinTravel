@@ -40,7 +40,7 @@ class BoardShow extends React.Component {
    }
 
    handleModal(e, modal) {
-      debugger
+      
       e.preventDefault();
 
       return (e) => {
