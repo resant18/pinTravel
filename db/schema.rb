@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_02_192019) do
+ActiveRecord::Schema.define(version: 2020_01_23_180803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 2019_12_02_192019) do
     t.integer "pin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "detail"
     t.index ["board_id"], name: "index_board_pins_on_board_id"
     t.index ["pin_id"], name: "index_board_pins_on_pin_id"
   end
@@ -59,8 +61,6 @@ ActiveRecord::Schema.define(version: 2019_12_02_192019) do
   end
 
   create_table "pins", force: :cascade do |t|
-    t.string "name", default: ""
-    t.string "detail", default: ""
     t.decimal "lat", default: "0.0"
     t.decimal "lng", default: "0.0"
     t.datetime "created_at", null: false

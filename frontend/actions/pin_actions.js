@@ -8,7 +8,7 @@ export const RECEIVE_PIN_ERRORS = "RECEIVE_PIN_ERRORS";
 export const CLEAR_PINS = "CLEAR_PINS";
 
 
-export const receivePins = ({ users, boards, pins }) => {
+export const receivePins = ({ users, boards, pins }) => {  
   return {
     type: RECEIVE_PINS,
     users,

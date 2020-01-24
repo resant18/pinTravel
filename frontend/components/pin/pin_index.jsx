@@ -31,6 +31,7 @@ class PinIndex extends React.Component {
     }
 
     this.setState({
+      prevPage: this.state.page,
       page: this.state.page + 1
     });
   }

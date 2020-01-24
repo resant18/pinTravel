@@ -1,4 +1,4 @@
-class Api::BoardsPinsController < ApplicationController
+class Api::BoardPinsController < ApplicationController
   before_action :require_logged_in, only: [:create, :edit, :update, :destroy]
 
   def index      
@@ -8,10 +8,12 @@ class Api::BoardsPinsController < ApplicationController
 
   # get all pin that is not current user pins for news feeds
   def feeds
-  #   board_ids = current_user ? current_user.board_ids : []
+    board_ids = current_user ? current_user.board_ids : []
+  
     @board_pins = BoardPin.includes(:pin, :board, :user)
-                        .where.not(user_id: current_user)
-                        .page(params[:page]).per(10)
+                        .where.not(board_id: board_ids)
+                        # .page(params[:page]).per(10)
+    
     render 'api/pins/index'
   end   
   
