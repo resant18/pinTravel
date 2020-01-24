@@ -20,15 +20,15 @@ const App = () => (
   <div>
     <Modal />
     <Switch>
-
       <SessionRoute exact path='/' />
       <Route path='/' component={NavBarContainer} />
     </Switch>
     <Switch>
       <Route exact path='/:username/boards/:boardId' component={BoardShowContainer} />
+      <Route exact path='/feeds' component={PinIndexFeedContainer} />
       {/* <Route exact path='/:username/pins' component={UserProfileContainer} /> */}
       <Route exact path='/:username' component={UserProfileContainer} />
-      {/* <Route exact path='/' component={PinIndexFeedContainer} /> */}
+      <Route exact path='/' component={PinIndexFeedContainer} />
     </Switch>
   </div>
 );

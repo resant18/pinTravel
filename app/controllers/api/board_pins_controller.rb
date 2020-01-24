@@ -10,7 +10,7 @@ class Api::BoardPinsController < ApplicationController
   def feeds
     board_ids = current_user ? current_user.board_ids : []
   
-    @board_pins = BoardPin.includes(:pin, :board, :user)
+    @board_pins = BoardPin.includes(:pin, :board)
                         .where.not(board_id: board_ids)
                         # .page(params[:page]).per(10)
     

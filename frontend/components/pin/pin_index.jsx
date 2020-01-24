@@ -19,6 +19,7 @@ class PinIndex extends React.Component {
   
     switch (fetchType) {
       case "feed":
+        debugger
         fetchPins(this.state.page);
         break;
       case "user":
@@ -37,14 +38,14 @@ class PinIndex extends React.Component {
   }
 
   fetchMorePins() {
-    // const value = this.state.prevPage + 1;
-    // this.setState({ prevPage: value });
+    const value = this.state.prevPage + 1;
+    this.setState({ prevPage: value });
   }
 
   componentDidMount() {        
     // this.props.clearPins();
-    if (!this.props.selectedBoardPins)
-      this.fetchPinsData();
+    // if (!this.props.selectedBoardPins)
+    //   this.fetchPinsData();
   }
 
   render() {
@@ -60,9 +61,11 @@ class PinIndex extends React.Component {
     });
 
     return (
-      <div className="pin-index">
-        {pins}
-        <Waypoint onEnter={this.fetchPinsData} />
+      <div className="pins">
+        <div className="pin-index">
+          {pins}
+          <Waypoint onEnter={this.fetchPinsData} />
+        </div>
       </div>
     );
   }

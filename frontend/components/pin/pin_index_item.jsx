@@ -12,13 +12,13 @@ class PinIndexItem extends React.Component {
     this.displayLinks = this.displayLinks.bind(this);
     this.showEditModal = this.showEditModal.bind(this);
     this.showCreateModal = this.showCreateModal.bind(this);
-    this.toPinShow = this.toPinShow.bind(this);
+    this.showPin = this.showPin.bind(this);
   }
 
-  toPinShow(e) {
-    if (e.target.className.includes("p-link")) {
+  showPin(e) {
+    // if (e.target.className.includes("p-link")) {
       this.props.history.push(`/pins/${this.props.pin.id}`);
-    }
+    // }
   }
 
   showEditModal(e) {
@@ -41,22 +41,22 @@ class PinIndexItem extends React.Component {
   displayLinks() {
     if (this.state.visible) {
       const { pin } = this.props;
-      const imageHeight = pin.row_height * 10;
+      // const imageHeight = pin.row_height * 10;
       let link;
       let edit;
 
       if (pin.link_url !== "") {
-        const hostname = new URL(pin.link_url).hostname;
+        // const hostname = new URL(pin.link_url).hostname;
         link = (
           <a href={pin.link_url} target="_blank">
             <i className="fas fa-external-link-alt"></i>
-            <p>{hostname}</p>
+            {/* <p>{hostname}</p> */}
           </a>
         );
       }
-
+debugger
       const { currentUser } = this.props;
-      if (currentUser && currentUser.username === pin.creator.username) {
+      if (currentUser && currentUser.username === pin.user.username) {
         edit = (
           <button className="p-btn" onClick={this.showEditModal}>
             <i className="fas fa-pen"></i>
@@ -92,11 +92,12 @@ class PinIndexItem extends React.Component {
     // const imageHeight = pin.row_height * 10;
     // const gridSpan = `span ${pin.row_height + 6}`;
 
-    return (
+    return (      
       <div className="pin"
         // style={{ height: frameHeight, gridRowEnd: gridSpan }}
-        // onMouseEnter={this.turnOnVisibility}
-        // onMouseLeave={this.turnOffVisibility}
+        onClick={this.showPin}
+        onMouseEnter={this.turnOnVisibility}
+        onMouseLeave={this.turnOffVisibility}
       >
         <div className="pin-item">
           <img
@@ -105,10 +106,11 @@ class PinIndexItem extends React.Component {
           />
         </div>
         <div className="pin-item-title">
-          <p>{pin.name}</p>
+          <p>{pin.title}</p>
         </div>
-        {/* {this.displayLinks()} */}
+        {this.displayLinks()}
       </div>
+    
     );
   }
 }

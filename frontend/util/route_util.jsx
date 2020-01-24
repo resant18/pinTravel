@@ -27,15 +27,17 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
 
 const Session = ({ path, sessionType, loggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => {       
-        if (loggedIn)
-            return <PinIndexFeedContainer {...props} />
-        else
+        // if (loggedIn) {        
+        //     return <PinIndexFeedContainer {...props} />
+        // }
+        // else      
+        if (!loggedIn) {              
             if (sessionType === 'signup' || sessionType === null) 
                 return <SignUpFormContainer {...props} />
             else if (sessionType === 'login')
                 return <LogInFormContainer {...props} />
-        }} 
-    />
+        }
+    }}  />
 );
 
 

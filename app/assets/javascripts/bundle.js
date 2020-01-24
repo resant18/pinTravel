@@ -618,8 +618,16 @@ var App = function App() {
     component: _board_board_show_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
+    path: "/feeds",
+    component: _pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
     path: "/:username",
     component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/",
+    component: _pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   })));
 };
 
@@ -2288,6 +2296,7 @@ function (_React$Component) {
 
       switch (fetchType) {
         case "feed":
+          debugger;
           fetchPins(this.state.page);
           break;
 
@@ -2309,14 +2318,17 @@ function (_React$Component) {
     }
   }, {
     key: "fetchMorePins",
-    value: function fetchMorePins() {// const value = this.state.prevPage + 1;
-      // this.setState({ prevPage: value });
+    value: function fetchMorePins() {
+      var value = this.state.prevPage + 1;
+      this.setState({
+        prevPage: value
+      });
     }
   }, {
     key: "componentDidMount",
-    value: function componentDidMount() {
-      // this.props.clearPins();
-      if (!this.props.selectedBoardPins) this.fetchPinsData();
+    value: function componentDidMount() {// this.props.clearPins();
+      // if (!this.props.selectedBoardPins)
+      //   this.fetchPinsData();
     }
   }, {
     key: "render",
@@ -2332,10 +2344,12 @@ function (_React$Component) {
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pins"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index"
       }, pins, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
         onEnter: this.fetchPinsData
-      }));
+      })));
     }
   }]);
 
@@ -2502,16 +2516,15 @@ function (_React$Component) {
     _this.displayLinks = _this.displayLinks.bind(_assertThisInitialized(_this));
     _this.showEditModal = _this.showEditModal.bind(_assertThisInitialized(_this));
     _this.showCreateModal = _this.showCreateModal.bind(_assertThisInitialized(_this));
-    _this.toPinShow = _this.toPinShow.bind(_assertThisInitialized(_this));
+    _this.showPin = _this.showPin.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(PinIndexItem, [{
-    key: "toPinShow",
-    value: function toPinShow(e) {
-      if (e.target.className.includes("p-link")) {
-        this.props.history.push("/pins/".concat(this.props.pin.id));
-      }
+    key: "showPin",
+    value: function showPin(e) {
+      // if (e.target.className.includes("p-link")) {
+      this.props.history.push("/pins/".concat(this.props.pin.id)); // }
     }
   }, {
     key: "showEditModal",
@@ -2542,24 +2555,25 @@ function (_React$Component) {
     key: "displayLinks",
     value: function displayLinks() {
       if (this.state.visible) {
-        var pin = this.props.pin;
-        var imageHeight = pin.row_height * 10;
+        var pin = this.props.pin; // const imageHeight = pin.row_height * 10;
+
         var link;
         var edit;
 
         if (pin.link_url !== "") {
-          var hostname = new URL(pin.link_url).hostname;
+          // const hostname = new URL(pin.link_url).hostname;
           link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
             href: pin.link_url,
             target: "_blank"
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
             className: "fas fa-external-link-alt"
-          }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, hostname));
+          }));
         }
 
+        debugger;
         var currentUser = this.props.currentUser;
 
-        if (currentUser && currentUser.username === pin.creator.username) {
+        if (currentUser && currentUser.username === pin.user.username) {
           edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
             className: "p-btn",
             onClick: this.showEditModal
@@ -2597,9 +2611,10 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
-        // onMouseEnter={this.turnOnVisibility}
-        // onMouseLeave={this.turnOffVisibility}
-
+        ,
+        onClick: this.showPin,
+        onMouseEnter: this.turnOnVisibility,
+        onMouseLeave: this.turnOffVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2607,7 +2622,7 @@ function (_React$Component) {
         src: window.pins[pin.pin_id]
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.name)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)), this.displayLinks());
     }
   }]);
 
@@ -3469,7 +3484,7 @@ function (_React$Component) {
       }, userPins.length)))), this.displayProfileToolbar())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "tab-list"
       }, this.displayTabList()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: this.state.tabItem
+        className: "tab-item"
       }, this.renderChildComponent(user, boards, userPins, permitted)));
     }
   }]);
@@ -4363,7 +4378,13 @@ var Session = function Session(_ref3) {
     path: path,
     exact: exact,
     render: function render(props) {
-      if (loggedIn) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_5__["default"], props);else if (sessionType === 'signup' || sessionType === null) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], props);else if (sessionType === 'login') return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], props);
+      // if (loggedIn) {        
+      //     return <PinIndexFeedContainer {...props} />
+      // }
+      // else      
+      if (!loggedIn) {
+        if (sessionType === 'signup' || sessionType === null) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], props);else if (sessionType === 'login') return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], props);
+      }
     }
   });
 };
@@ -57643,7 +57664,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

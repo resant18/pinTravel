@@ -117,24 +117,24 @@ class UserProfile extends React.Component {
   }
 
   displayTabList() {
-    return (      
-      <nav>
-        <button 
-          id="board-tab"
-          onClick={this.showUserBoards.bind(this)}
-          className="board-tab active" 
-        >
-          Boards
-        </button>
-        <button
-          id = "pin-tab"
-          onClick={this.showUserPins.bind(this)}
-          className="pin-tab"
-        >
-          Pins
-        </button>
-      </nav>
-    )
+    return (
+       <nav>
+          <button
+             id="board-tab"
+             onClick={this.showUserBoards.bind(this)}
+             className="board-tab active"
+          >
+             Boards
+          </button>          
+          <button
+            id="pin-tab"
+            onClick={this.showUserPins.bind(this)}
+            className="pin-tab"
+          >
+            Pins
+          </button>          
+       </nav>
+    );
   }
 
   renderChildComponent(user, boards, userPins, permitted) {    
@@ -202,7 +202,7 @@ class UserProfile extends React.Component {
           </div>
         </section>
         <section className="tab-list">{this.displayTabList()}</section>
-        <section className={this.state.tabItem}>
+        <section className="tab-item">          
           {
             this.renderChildComponent(user, boards, userPins, permitted)             
           }
