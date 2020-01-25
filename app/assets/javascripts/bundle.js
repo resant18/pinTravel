@@ -223,7 +223,6 @@ __webpack_require__.r(__webpack_exports__);
 var SHOW_MODAL = "SHOW_MODAL";
 var HIDE_MODAL = "HIDE_MODAL";
 var showModal = function showModal(modal) {
-  debugger;
   return {
     type: SHOW_MODAL,
     modal: modal
@@ -648,7 +647,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _board_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./board_form */ "./frontend/components/board/board_form.jsx");
+/* harmony import */ var _board_create_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./board_create_form */ "./frontend/components/board/board_create_form.jsx");
 
 
 
@@ -685,7 +684,208 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_create_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/board/board_create_form.jsx":
+/*!*********************************************************!*\
+  !*** ./frontend/components/board/board_create_form.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var BoardCreateForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(BoardCreateForm, _React$Component);
+
+  function BoardCreateForm(props) {
+    var _this;
+
+    _classCallCheck(this, BoardCreateForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardCreateForm).call(this, props));
+    _this.state = _objectSpread({}, props.board, {
+      showErrors: false
+    });
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(BoardCreateForm, [{
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.props.clearBoardErrors();
+    }
+  }, {
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      var timeout = null;
+      return function (e) {
+        switch (field) {
+          case 'name':
+            clearTimeout(timeout);
+            e.persist();
+            document.getElementById('board-name-input').setAttribute('required', 'true');
+            timeout = setTimeout(function () {
+              var createBtn = document.getElementById('create-btn');
+              var inputBoardName = document.getElementById('board-name-input');
+
+              if (e.target.value === '') {
+                var _this2$setState;
+
+                _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
+
+                createBtn.classList.remove('create-btn-focus');
+                inputBoardName.classList.add('error');
+              } else {
+                var _this2$setState2;
+
+                _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
+
+                createBtn.classList.add('create-btn-focus');
+                inputBoardName.classList.remove('error');
+              }
+            }, 500);
+            break;
+
+          case 'secret':
+            _this2.setState(_defineProperty({}, field, e.target.checked));
+
+            break;
+
+          default:
+            break;
+        }
+      };
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.createBoard(this.state);
+    }
+  }, {
+    key: "renderErrors",
+    value: function renderErrors() {
+      if (this.props.errors === undefined) return '';
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: "error-".concat(i)
+        }, error);
+      }));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var renderBoardNameValidationError = this.state.name === '' && this.state.showErrors === true ? "Don't forget to name your board!" : '';
+      var createButtonDisabled = this.state.name === '' ? true : false;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "aria-label": "Create",
+        className: "board-form-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "close-btn",
+        onClick: this.props.hideModal
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        height: "20",
+        width: "20",
+        viewBox: "0 0 24 24",
+        "aria-hidden": "true",
+        "aria-label": "",
+        role: "img"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z"
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "board-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-name"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "board-name-input",
+        className: "input board-name",
+        placeholder: "E.g. 'Places to go' or 'Recipes to make'",
+        onChange: this.update('name')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-text"
+      }, renderBoardNameValidationError), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "error-text"
+      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-visibility"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secret"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        className: "secret-box",
+        type: "checkbox",
+        value: "false",
+        onClick: this.update('secret')
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "secret-info"
+      }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create"
+      }, "Learn more"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+        className: "borderline"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group button-group-create"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "cancel-btn",
+        className: "cancel-btn",
+        tabIndex: "1",
+        onClick: this.props.hideModal
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        id: "create-btn",
+        className: "create-btn",
+        disabled: createButtonDisabled,
+        onClick: this.handleSubmit
+      }, "Create")))));
+    }
+  }]);
+
+  return BoardCreateForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (BoardCreateForm);
 
 /***/ }),
 
@@ -1069,207 +1269,6 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (BoardEditForm);
-
-/***/ }),
-
-/***/ "./frontend/components/board/board_form.jsx":
-/*!**************************************************!*\
-  !*** ./frontend/components/board/board_form.jsx ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-var BoardForm =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(BoardForm, _React$Component);
-
-  function BoardForm(props) {
-    var _this;
-
-    _classCallCheck(this, BoardForm);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardForm).call(this, props));
-    _this.state = _objectSpread({}, props.board, {
-      showErrors: false
-    });
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(BoardForm, [{
-    key: "componentWillUnmount",
-    value: function componentWillUnmount() {
-      this.props.clearBoardErrors();
-    }
-  }, {
-    key: "update",
-    value: function update(field) {
-      var _this2 = this;
-
-      var timeout = null;
-      return function (e) {
-        switch (field) {
-          case 'name':
-            clearTimeout(timeout);
-            e.persist();
-            document.getElementById('board-name-input').setAttribute('required', 'true');
-            timeout = setTimeout(function () {
-              var createBtn = document.getElementById('create-btn');
-              var inputBoardName = document.getElementById('board-name-input');
-
-              if (e.target.value === '') {
-                var _this2$setState;
-
-                _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
-
-                createBtn.classList.remove('create-btn-focus');
-                inputBoardName.classList.add('error');
-              } else {
-                var _this2$setState2;
-
-                _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
-
-                createBtn.classList.add('create-btn-focus');
-                inputBoardName.classList.remove('error');
-              }
-            }, 500);
-            break;
-
-          case 'secret':
-            _this2.setState(_defineProperty({}, field, e.target.checked));
-
-            break;
-
-          default:
-            break;
-        }
-      };
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
-      this.props.createBoard(this.state);
-    }
-  }, {
-    key: "renderErrors",
-    value: function renderErrors() {
-      if (this.props.errors === undefined) return '';
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: "error-".concat(i)
-        }, error);
-      }));
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var renderBoardNameValidationError = this.state.name === '' && this.state.showErrors === true ? "Don't forget to name your board!" : '';
-      var createButtonDisabled = this.state.name === '' ? true : false;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "aria-label": "Create",
-        className: "board-form-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "close-btn",
-        onClick: this.props.hideModal
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-        height: "20",
-        width: "20",
-        viewBox: "0 0 24 24",
-        "aria-hidden": "true",
-        "aria-label": "",
-        role: "img"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-        d: "M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "borderline"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        className: "board-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-name"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "board-name-input",
-        className: "input board-name",
-        placeholder: "E.g. 'Places to go' or 'Recipes to make'",
-        onChange: this.update('name')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "error-text"
-      }, renderBoardNameValidationError), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "error-text"
-      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "borderline"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-visibility"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "secret"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        className: "secret-box",
-        type: "checkbox",
-        value: "false",
-        onClick: this.update('secret')
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "secret-info"
-      }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create"
-      }, "Learn more"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "borderline"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-group button-group-create"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "cancel-btn",
-        className: "cancel-btn",
-        tabIndex: "1",
-        onClick: this.props.hideModal
-      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "create-btn",
-        className: "create-btn",
-        disabled: createButtonDisabled,
-        onClick: this.handleSubmit
-      }, "Create")))));
-    }
-  }]);
-
-  return BoardForm;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["default"] = (BoardForm);
 
 /***/ }),
 
@@ -1980,6 +1979,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/board/board_create_container */ "./frontend/components/board/board_create_container.js");
 /* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/board/board_edit_container */ "./frontend/components/board/board_edit_container.js");
 /* harmony import */ var _components_board_board_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/board/board_delete_confirmation */ "./frontend/components/board/board_delete_confirmation.jsx");
+/* harmony import */ var _components_pin_pin_create_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/pin/pin_create_container */ "./frontend/components/pin/pin_create_container.js");
+/* harmony import */ var _components_pin_pin_create_container__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_components_pin_pin_create_container__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/pin/pin_edit_container */ "./frontend/components/pin/pin_edit_container.js");
+
+
 
 
 
@@ -1996,7 +2000,6 @@ var Modal = function Modal(_ref) {
     return null;
   }
 
-  debugger;
   var component;
 
   switch (modal) {
@@ -2017,7 +2020,13 @@ var Modal = function Modal(_ref) {
       break;
 
     case 'create-pin':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_create_container__WEBPACK_IMPORTED_MODULE_6___default.a, null);
+      break;
+
+    case 'edit-pin':
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        selectedData: selectedData
+      });
       break;
 
     default:
@@ -2216,6 +2225,230 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/pin/pin_create_container.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/pin/pin_create_container.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./frontend/components/pin/pin_edit_container.js":
+/*!*******************************************************!*\
+  !*** ./frontend/components/pin/pin_edit_container.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _pin_edit_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pin_edit_form */ "./frontend/components/pin/pin_edit_form.jsx");
+
+
+
+
+
+
+var msp = function msp(state, ownProps) {
+  var currentUser = state.entities.users[state.session.id] || {};
+  var pinId = state.ui.modal.selectedData;
+  var pin = state.entities.pins[pinId];
+  return {
+    currentUser: currentUser,
+    pin: pin,
+    owner: owner
+  };
+};
+
+var mdp = function mdp(dispatch) {
+  return {
+    updatePin: function updatePin(pin) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["updatePin"])(pin));
+    },
+    deletePin: function deletePin(pinId) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["deletePin"])(pinId));
+    },
+    showModal: function showModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])(modal));
+    },
+    hideModal: function hideModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["hideModal"])(modal));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_pin_edit_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/pin/pin_edit_form.jsx":
+/*!***************************************************!*\
+  !*** ./frontend/components/pin/pin_edit_form.jsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+ // import { TextInput } from '../global/form';
+
+var PinEditForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(PinEditForm, _React$Component);
+
+  function PinEditForm(props) {
+    var _this;
+
+    _classCallCheck(this, PinEditForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PinEditForm).call(this, props));
+    _this.state = {
+      pin: {
+        id: pin.id,
+        board_id: pin.board_id,
+        title: pin.title || '',
+        detail: pin.detail || ''
+      }
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.update = _this.update.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(PinEditForm, [{
+    key: "update",
+    value: function update(field) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.setState({
+          pin: _objectSpread({}, _this2.state.pin, _defineProperty({}, field, e.target.value))
+        });
+      };
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      this.props.showModal({
+        name: 'delete-pin',
+        selectedData: this.props.pin.id
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.updatePin(this.state.pin).then(this.props.hideModal());
+    } // displayPhoto() {
+    //    if (this.state.photoUrl) {
+    //       return (
+    //          <div className="preview-picture" >
+    //             {/* <img src={this.state.photoUrl} /> */}
+    //          </div>
+    //       )
+    //    }
+    // }
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var pin = this.state.pin;
+
+      if (pin) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-edit-buffer"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-form-box"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Edit this Pin")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-form-body"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-aside"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-title"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+          id: "pin-title-input",
+          className: "input pin-title",
+          value: this.state.pin.title,
+          onChange: this.update('title')
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-detail"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Detail"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+          className: "input",
+          placeholder: "What's your pin about?",
+          value: this.state.pin.detail,
+          onChange: this.update('detail')
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-image"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "button-footer"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "buttons-left"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "rectangle-btn",
+          onClick: this.handleDelete
+        }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "buttons-right"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "rectangle-btn",
+          onClick: function onClick() {
+            return _this3.props.hideModal();
+          }
+        }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: 'rectangle-btn save-btn',
+          onClick: this.handleSubmit
+        }, "Save")))));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      }
+    }
+  }]);
+
+  return PinEditForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PinEditForm);
+
+/***/ }),
+
 /***/ "./frontend/components/pin/pin_index.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/pin/pin_index.jsx ***!
@@ -2312,7 +2545,6 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.clearPins(); // if (!this.props.selectedBoardPins)
-      // debugger
 
       this.loadMorePins();
     }
@@ -2512,7 +2744,7 @@ function (_React$Component) {
     _this.turnOffVisibility = _this.turnOffVisibility.bind(_assertThisInitialized(_this));
     _this.turnOnVisibility = _this.turnOnVisibility.bind(_assertThisInitialized(_this));
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
-    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
     _this.showPinPage = _this.showPinPage.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -2524,9 +2756,12 @@ function (_React$Component) {
       this.props.history.push("/pins/".concat(this.props.pin.id)); // }
     }
   }, {
-    key: "showModal",
-    value: function showModal(modal) {
-      this.props.openModal(modal, this.props.pin.id);
+    key: "showEditForm",
+    value: function showEditForm() {
+      this.props.showModal({
+        name: 'edit-pin',
+        selectedData: this.props.pin.id
+      });
     }
   }, {
     key: "turnOffVisibility",
@@ -2565,7 +2800,7 @@ function (_React$Component) {
       if (currentUser.username === pin.user.username) {
         edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "tool-buttons edit-button",
-          onClick: this.showEditModal
+          onClick: this.showEditForm
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg-edit",
           height: "12",

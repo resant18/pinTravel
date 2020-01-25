@@ -48,7 +48,6 @@ class PinIndex extends React.Component {
   componentDidMount() {        
     this.props.clearPins();
     // if (!this.props.selectedBoardPins)
-    // debugger
     this.loadMorePins();
   }
 

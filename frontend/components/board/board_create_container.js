@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { createBoard, clearBoardErrors } from "../../actions/board_actions";
 import { showModal, hideModal } from '../../actions/modal_actions';
-import BoardForm from './board_form';
+import BoardCreateForm from './board_create_form';
 
 const mapStateToProps = (state, ownProps) => ({     
   board: {
@@ -25,4 +25,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardForm);
+)(BoardCreateForm);

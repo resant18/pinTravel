@@ -4,12 +4,13 @@ import { hideModal } from '../../actions/modal_actions';
 import BoardCreateContainer from '../../components/board/board_create_container';
 import BoardEditContainer from '../../components/board/board_edit_container';
 import BoardDeleteConfirmation from '../../components/board/board_delete_confirmation';
+import PinCreateContainer from '../../components/pin/pin_create_container';
+import PinEditContainer from '../../components/pin/pin_edit_container';
 
 const Modal = ({ modal, hideModal, selectedData }) => { 
     if (!modal || modal === 'login' || modal === 'signup') {
         return null;
     }
-    debugger
     let component;
 
     switch (modal) {        
@@ -23,7 +24,10 @@ const Modal = ({ modal, hideModal, selectedData }) => {
             component = <BoardDeleteConfirmation selectedData={selectedData} />
             break;
         case 'create-pin':
-            component = <BoardCreateContainer />
+            component = <PinCreateContainer />
+            break;
+        case 'edit-pin':
+            component = <PinEditContainer selectedData={selectedData} />
             break;
         default:
             return null;

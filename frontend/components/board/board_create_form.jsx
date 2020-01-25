@@ -1,6 +1,6 @@
 import React from 'react';
 
-class BoardForm extends React.Component {
+class BoardCreateForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { ...props.board, showErrors: false };
@@ -133,5 +133,5 @@ class BoardForm extends React.Component {
     }
 }
 
-export default BoardForm;
+export default BoardCreateForm;
 
