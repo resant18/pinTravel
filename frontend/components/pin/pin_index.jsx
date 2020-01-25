@@ -46,7 +46,7 @@ class PinIndex extends React.Component {
   // }
 
   componentDidMount() {        
-    // this.props.clearPins();
+    this.props.clearPins();
     // if (!this.props.selectedBoardPins)
     // debugger
     this.loadMorePins();
@@ -66,10 +66,9 @@ class PinIndex extends React.Component {
     return pins;
   }
 
-  renderWaypoint() {
-      console.log(this.state.page);
+  renderWaypoint() {      
     // if (!this.state.isLoading) {
-      console.log('calling waypoint');
+      console.log('calling waypoint:' + this.state.page);
       return (
         <Waypoint onEnter={this.loadMorePins} />
       );

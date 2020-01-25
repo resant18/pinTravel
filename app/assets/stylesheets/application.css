@@ -179,6 +179,7 @@ li {
 .edit-button {    
     border-radius: 50%;    
     outline: 0;    
+    box-shadow: none;
 }
 
 svg {

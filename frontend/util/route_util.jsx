@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import SignUpFormContainer from '../components/session_form/signup_form_container';
 import LogInFormContainer from '../components/session_form/login_form_container';
-import PinIndexFeedContainer from '../components/pin/pin_index_feed_container';
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => (
@@ -27,10 +26,6 @@ const Protected = ({ component: Component, path, loggedIn, exact }) => (
 
 const Session = ({ path, sessionType, loggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => {       
-        // if (loggedIn) {        
-        //     return <PinIndexFeedContainer {...props} />
-        // }
-        // else      
         if (!loggedIn) {              
             if (sessionType === 'signup' || sessionType === null) 
                 return <SignUpFormContainer {...props} />
@@ -39,7 +34,6 @@ const Session = ({ path, sessionType, loggedIn, exact }) => (
         }
     }}  />
 );
-
 
 
 const mapStateToProps = state => (

@@ -223,6 +223,7 @@ __webpack_require__.r(__webpack_exports__);
 var SHOW_MODAL = "SHOW_MODAL";
 var HIDE_MODAL = "HIDE_MODAL";
 var showModal = function showModal(modal) {
+  debugger;
   return {
     type: SHOW_MODAL,
     modal: modal
@@ -1720,7 +1721,7 @@ function (_React$Component) {
     _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
     _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
     _this.hideDropDown = _this.hideDropDown.bind(_assertThisInitialized(_this));
-    _this.handleModal = _this.handleModal.bind(_assertThisInitialized(_this));
+    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1758,34 +1759,15 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "handleModal",
-    value: function handleModal(e, modal) {
-      var _this2 = this;
-
-      e.preventDefault();
-      return function (e) {
-        if (modal === 'create-pin') {
-          _this2.props.showModal({
-            modal: 'create-pin'
-          });
-        } else if (modal === 'edit-board') {
-          _this2.props.showModal({
-            modal: 'edit-board',
-            selectedData: _this2.props.boardId
-          });
-        }
-      };
-    }
-  }, {
     key: "renderDropDown",
     value: function renderDropDown() {
-      var _this3 = this;
+      var _this2 = this;
 
       if (this.state.dropDown) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "drop-down",
           ref: function ref(node) {
-            return _this3.node = node;
+            return _this2.node = node;
           },
           className: "board-show-add-pin drop-down"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1796,19 +1778,21 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Add Pin",
           className: "create-pin add-pin",
-          onClick: this.handleModal("create-pin")
+          onClick: this.showModal({
+            name: "create-pin"
+          })
         }, "Create Pin"))));
       }
     }
   }, {
     key: "showModal",
     value: function showModal(modal) {
-      var _this4 = this;
+      var _this3 = this;
 
       return function (e) {
-        _this4.props.showModal(modal);
+        _this3.props.showModal(modal);
 
-        _this4.hideDropDown();
+        _this3.hideDropDown(e);
       };
     }
   }, {
@@ -1852,7 +1836,10 @@ function (_React$Component) {
           "aria-label": "Edit board",
           className: "tool-buttons edit-button",
           type: "button",
-          onClick: this.showModal
+          onClick: this.showModal({
+            name: "edit-board",
+            selectedData: this.props.boardId
+          })
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
           height: "24",
@@ -2009,6 +1996,7 @@ var Modal = function Modal(_ref) {
     return null;
   }
 
+  debugger;
   var component;
 
   switch (modal) {
@@ -2323,9 +2311,9 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.props.clearPins();
-      // if (!this.props.selectedBoardPins)
+      this.props.clearPins(); // if (!this.props.selectedBoardPins)
       // debugger
+
       this.loadMorePins();
     }
   }, {
@@ -2346,9 +2334,8 @@ function (_React$Component) {
   }, {
     key: "renderWaypoint",
     value: function renderWaypoint() {
-      console.log(this.state.page); // if (!this.state.isLoading) {
-
-      console.log('calling waypoint');
+      // if (!this.state.isLoading) {
+      console.log('calling waypoint:' + this.state.page);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
         onEnter: this.loadMorePins
       }); // }
@@ -2448,7 +2435,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var currentUser = state.entities.users[state.session.id] || {};
+  var currentUser = state.entities.users[state.session.id];
   var pins = Object.values(state.entities.pins);
   return {
     fetchType: "feed",
@@ -2524,28 +2511,22 @@ function (_React$Component) {
     };
     _this.turnOffVisibility = _this.turnOffVisibility.bind(_assertThisInitialized(_this));
     _this.turnOnVisibility = _this.turnOnVisibility.bind(_assertThisInitialized(_this));
-    _this.displayLinks = _this.displayLinks.bind(_assertThisInitialized(_this));
-    _this.showEditModal = _this.showEditModal.bind(_assertThisInitialized(_this));
-    _this.showCreateModal = _this.showCreateModal.bind(_assertThisInitialized(_this));
-    _this.showPin = _this.showPin.bind(_assertThisInitialized(_this));
+    _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
+    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    _this.showPinPage = _this.showPinPage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(PinIndexItem, [{
-    key: "showPin",
-    value: function showPin(e) {
+    key: "showPinPage",
+    value: function showPinPage(e) {
       // if (e.target.className.includes("p-link")) {
       this.props.history.push("/pins/".concat(this.props.pin.id)); // }
     }
   }, {
-    key: "showEditModal",
-    value: function showEditModal(e) {
-      this.props.openModal("editPin", this.props.pin.id);
-    }
-  }, {
-    key: "showCreateModal",
-    value: function showCreateModal(e) {
-      this.props.openModal("createPinJoin", this.props.pin.id);
+    key: "showModal",
+    value: function showModal(modal) {
+      this.props.openModal(modal, this.props.pin.id);
     }
   }, {
     key: "turnOffVisibility",
@@ -2563,54 +2544,55 @@ function (_React$Component) {
     } // TO-DO regex the link name later
 
   }, {
-    key: "displayLinks",
-    value: function displayLinks() {
-      if (this.state.visible) {
-        var pin = this.props.pin; // const imageHeight = pin.row_height * 10;
+    key: "renderLinks",
+    value: function renderLinks() {
+      var currentUser = this.props.currentUser;
+      if (!currentUser) return null; // if (this.state.visible) {
 
-        var link;
-        var edit;
+      var pin = this.props.pin; // const imageHeight = pin.row_height * 10;
 
-        if (pin.link_url !== "") {
-          // const hostname = new URL(pin.link_url).hostname;
-          link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-            href: pin.link_url,
-            target: "_blank"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-            className: "fas fa-external-link-alt"
-          }));
-        }
+      var link;
+      var edit;
 
-        var currentUser = this.props.currentUser;
-
-        if (currentUser && currentUser.username === pin.user.username) {
-          edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "p-btn",
-            onClick: this.showEditModal
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-            className: "fas fa-pen"
-          }));
-        } else {
-          edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
-        }
-
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "p-links visible",
-          onClick: this.toPinShow,
-          style: {
-            height: imageHeight
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "top-links"
-        }, edit, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "save-btn",
-          onClick: this.showCreateModal
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-          className: "fas fa-map-pin"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "bottom-links"
-        }, link));
+      if (pin.link_url !== "") {
+        // const hostname = new URL(pin.link_url).hostname;
+        link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: pin.link_url,
+          target: "_blank"
+        }, "www.something.com");
       }
+
+      if (currentUser.username === pin.user.username) {
+        edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "tool-buttons edit-button",
+          onClick: this.showEditModal
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          className: "svg-edit",
+          height: "12",
+          width: "12",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
+        })));
+      } else {
+        edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "p-links visible",
+        onClick: this.toPinShow // style={{ height: imageHeight }}
+
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "top-links"
+      }, edit, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "save-btn",
+        onClick: this.showCreateModal
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "bottom-links"
+      }, link)); // }
     }
   }, {
     key: "render",
@@ -2622,7 +2604,7 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         ,
-        onClick: this.showPin,
+        onClick: this.showPinPage,
         onMouseEnter: this.turnOnVisibility,
         onMouseLeave: this.turnOffVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2632,7 +2614,7 @@ function (_React$Component) {
         src: window.pins[pin.pin_id]
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-item-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)), this.renderLinks());
     }
   }]);
 
@@ -4337,8 +4319,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/session_form/signup_form_container */ "./frontend/components/session_form/signup_form_container.js");
 /* harmony import */ var _components_session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/session_form/login_form_container */ "./frontend/components/session_form/login_form_container.js");
-/* harmony import */ var _components_pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/pin/pin_index_feed_container */ "./frontend/components/pin/pin_index_feed_container.js");
-
 
 
 
@@ -4386,10 +4366,6 @@ var Session = function Session(_ref3) {
     path: path,
     exact: exact,
     render: function render(props) {
-      // if (loggedIn) {        
-      //     return <PinIndexFeedContainer {...props} />
-      // }
-      // else      
       if (!loggedIn) {
         if (sessionType === 'signup' || sessionType === null) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], props);else if (sessionType === 'login') return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_session_form_login_form_container__WEBPACK_IMPORTED_MODULE_4__["default"], props);
       }

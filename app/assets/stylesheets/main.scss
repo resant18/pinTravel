@@ -281,4 +281,15 @@ button {
     outline: 0;
 }
 
+.save-btn {
+    align-items: center;
+    background-color: --color-secondary;
+    border-radius: 10px;
+    color: #FFFFFF;
+    cursor: pointer;    
+    height: 40px;
+    padding: 10px 14px;
+    font-size: 15px;
+}
+
 

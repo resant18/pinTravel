@@ -9,7 +9,7 @@ const Modal = ({ modal, hideModal, selectedData }) => {
     if (!modal || modal === 'login' || modal === 'signup') {
         return null;
     }
-    
+    debugger
     let component;
 
     switch (modal) {        

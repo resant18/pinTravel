@@ -11,8 +11,8 @@ class BoardShow extends React.Component {
 
       this.browseBack = this.browseBack.bind(this);
       this.showDropDown = this.showDropDown.bind(this);
-      this.hideDropDown = this.hideDropDown.bind(this);      
-      this.handleModal = this.handleModal.bind(this);
+      this.hideDropDown = this.hideDropDown.bind(this);            
+      this.showModal = this.showModal.bind(this);
    }
 
    componentDidMount() {
@@ -37,20 +37,7 @@ class BoardShow extends React.Component {
          this.setState({ dropDown: false }); 
          document.removeEventListener('mousedown', this.hideDropDown);
       }
-   }
-
-   handleModal(e, modal) {
-      
-      e.preventDefault();
-
-      return (e) => {
-         if (modal === 'create-pin') {
-            this.props.showModal({ modal: 'create-pin'})
-         } else if (modal === 'edit-board') {
-            this.props.showModal({ modal: 'edit-board', selectedData: this.props.boardId})
-         }
-      }
-   }
+   }   
 
    renderDropDown() {
       if (this.state.dropDown) {
@@ -61,7 +48,7 @@ class BoardShow extends React.Component {
                      <div
                         title="Add Pin"
                         className="create-pin add-pin"
-                        onClick={this.handleModal("create-pin")}
+                        onClick={this.showModal({ name: "create-pin" })}
                      >
                         Create Pin
                            </div>
@@ -71,11 +58,11 @@ class BoardShow extends React.Component {
          )
       }
    }
-
+   
    showModal(modal) {    
       return e => {
          this.props.showModal(modal);
-         this.hideDropDown();
+         this.hideDropDown(e);
       }
    }   
 
@@ -99,7 +86,7 @@ class BoardShow extends React.Component {
                      </div>
                   </button>
                   { this.renderDropDown() }
-                  <button aria-label="Edit board" className="tool-buttons edit-button" type="button" onClick={this.showModal}>
+                  <button aria-label="Edit board" className="tool-buttons edit-button" type="button" onClick={this.showModal({ name: "edit-board", selectedData: this.props.boardId })} >
                      <div>
                         <svg className="svg" height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
                            <path d="M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"></path>
