@@ -50,14 +50,14 @@ class PinEditForm extends React.Component {
       if (pin) {
          return (
             <div aria-label='Edit' className='pin-edit-form-box'>
-               <div className='pin-edit-form'>
+               <div className='pin-form'>
                   <div className='header'>
                      <h1>Edit this Pin</h1>
                   </div>
-                  <div className='body'>
+                  <div className='form-body'>
                      <div className='aside'>
                         <div className='pin-title'>
-                           <p>Title</p>
+                           <p>Title</p>                           
                            <input
                               id='pin-title-input'
                               className='input pin-title'
@@ -81,30 +81,30 @@ class PinEditForm extends React.Component {
                            />
                         </div>
                      </div>
-                     <div className='pin-image'>
-                        Image
-                        {/* <img src={this.props.pin.pictureUrl} /> */}
+                     <div className='pin-image'>    
+                        <p>{pin.id}.jpg</p>                    
+                        <img src={window.pins[pin.id]} />
                      </div>
                   </div>
-                  <div className='button-footer'>
-                     <div className='buttons-left'>
+                  <div className='form-footer'>
+                     <div className='button-group buttons-left'>
                         <button
-                           className='rectangle-btn'
+                           className='delete-btn'
                            onClick={this.handleDelete} >
                            Delete
                         </button>
                      </div>
-                     <div className='buttons-right'>
+                     <div className='button-group buttons-right'>
                         <button
                            className='cancel-btn'
                            onClick={() => this.props.hideModal()} >
                            Cancel
                         </button>
                         <button
-                           className='save-btn'
+                           className='save-btn-focus'
                            onClick={this.handleSubmit} >
                            Save
-                </button>
+                     </button>
                      </div>
                   </div>
                </div>

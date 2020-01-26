@@ -40,12 +40,21 @@ class Api::BoardPinsController < ApplicationController
   #   render 'api/pins/show'
   # end
 
-  def update
-    @board_pin = current_user.board_pins.find(params[:id])
-    @board_pin.update!(board_pin_params)
-    render 'api/pins/show'
-  end
+  # def update
+  #   @board_pin = current_user.board_pins.find(params[:id])
+  #   @board_pin.update!(board_pin_params)
+  #   render 'api/pins/show'
+  # end  
 
+  def update
+    @board_pin = current_user.board_pins.find(params[:id])      
+
+    if @board_pin.update(board_pin_params)        
+      render "api/pins/show"
+    else
+      render json: @board_pin.errors.full_messages, status: 422
+    end  
+  end
 
   def destroy
     @board_pin = current_user.pin_joins.find(params[:id])
@@ -56,6 +65,6 @@ class Api::BoardPinsController < ApplicationController
   private
 
   def board_pin_params
-    params.require(:pin).permit(:description, :title, :pin_id, :board_id)
+    params.require(:pin).permit(:title, :detail, :board_id, :pin_id)
   end  
 end

@@ -57,7 +57,7 @@ export const createPin = (formData) => {
 export const updatePin = pin => {
   return $.ajax({
     method: 'PATCH',
-    url: `api/pins/${pin.id}`,
+    url: `api/board_pins/${pin.id}`,
     data: { pin }
   });
 };

@@ -2,3 +2,122 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.pin-edit-form-box {
+   align-items: center;
+   height: 100%;
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   .pin-form {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: var(--color-surface);
+      border-radius: 8px;
+      box-sizing: border-box;
+      width: 450px;
+      .header {
+         box-sizing: border-box;
+         border-bottom: 1px solid #EBEBEB;         
+         padding: 20px 50px;
+         width: 100%;
+         h1 {
+            text-align: center;
+         }
+      }
+      .form-body {        
+         box-sizing: border-box;
+         display: flex;
+         flex-direction: column;
+         align-items: center; 
+         justify-content: space-between;
+         width: 100%;
+         .aside {
+            box-sizing: border-box;            
+            font-size: 14px;
+            height: 100%;
+            padding: 12px 16px 0px 16px;
+            width: 100%;
+            div {
+               align-items: flex-start;
+               box-sizing: border-box;
+               justify-content: space-between;
+               margin-bottom: 12px;
+               display: flex;
+               flex-direction: column;
+               p {
+                  font-size: 14px;
+                  padding-top: 10px;
+                  margin-bottom: 10px;
+               }
+               textarea {
+                  height: 92px;
+                  margin-bottom: 0px;
+                  width: 418px;
+               }
+               input {
+                  width: 418px;
+               }
+            }
+         }
+      }
+      .form-footer {
+         align-items: center;
+         border-top: 1px solid #EBEBEB;
+         box-sizing: border-box;     
+         display: flex;
+         flex-direction: row;    
+         justify-content: space-between;
+         padding: 16px;         
+         width: 100%;
+         .buttons-right {
+            align-items: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+         }
+      }
+   }   
+}
+
+.pin-image {
+   box-sizing: border-box;
+   padding: 12px 16px;
+   width: 268px;
+   img {      
+      border-radius: 8px;
+      display: block;
+      height: auto;
+      width: 236px;
+   }
+}
+
+@media all and (min-width: 768px) {    
+   .pin-form {
+      width: 730px;
+   }
+
+   .form-body {
+      align-items: flex-start;
+      flex-direction: row;
+      
+      .aside {
+         div {
+            flex-direction: row;
+
+            .input {
+               width: 292px;
+            }
+         }
+
+         p {
+         margin-bottom: 0px;
+         }
+      }
+   }
+}
+
+

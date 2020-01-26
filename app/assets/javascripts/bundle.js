@@ -2394,11 +2394,11 @@ function (_React$Component) {
           "aria-label": "Edit",
           className: "pin-edit-form-box"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-edit-form"
+          className: "pin-form"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "header"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit this Pin")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "body"
+          className: "form-body"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "aside"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2417,22 +2417,24 @@ function (_React$Component) {
           onChange: this.update('detail')
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-image"
-        }, "Image")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "button-footer"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.id, ".jpg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: window.pins[pin.id]
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "form-footer"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "buttons-left"
+          className: "button-group buttons-left"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "rectangle-btn",
+          className: "delete-btn",
           onClick: this.handleDelete
         }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "buttons-right"
+          className: "button-group buttons-right"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "cancel-btn",
           onClick: function onClick() {
             return _this3.props.hideModal();
           }
         }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "save-btn",
+          className: "save-btn-focus",
           onClick: this.handleSubmit
         }, "Save")))));
       } else {
@@ -4520,7 +4522,7 @@ var createPin = function createPin(formData) {
 var updatePin = function updatePin(pin) {
   return $.ajax({
     method: 'PATCH',
-    url: "api/pins/".concat(pin.id),
+    url: "api/board_pins/".concat(pin.id),
     data: {
       pin: pin
     }

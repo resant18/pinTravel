@@ -33,7 +33,7 @@
         .secret {
             font-size: 14px;
         }
-    }    
+    }      
 }
 
 // Medium screen
@@ -67,7 +67,7 @@
         .secret {
             font-size: 12px;
         }      
-    } 
+    }    
 }
 
 // Small screen
@@ -86,6 +86,9 @@
     .pins .pin-index, .toolbar, .board-pins-header {
         max-width: 540px;
     }
+    .pin-form {
+        width: 544px;
+    }
 }
 
 // Very Small screen
@@ -101,5 +104,7 @@
         columns: 2;
         column-gap: 15px;        
     }
-    
+    .pin-form {
+        width: 533px;
+    }
 }
