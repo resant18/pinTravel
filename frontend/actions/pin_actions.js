@@ -1,11 +1,11 @@
-import * as ApiUtil from "../util/pin_api_util";
+import * as ApiUtil from '../util/pin_api_util';
 
-export const RECEIVE_PINS = "RECEIVE_PINS";
-export const RECEIVE_PIN = "RECEIVE_PIN";
-export const REMOVE_PIN = "REMOVE_PIN";
+export const RECEIVE_PINS = 'RECEIVE_PINS';
+export const RECEIVE_PIN = 'RECEIVE_PIN';
+export const REMOVE_PIN = 'REMOVE_PIN';
 
-export const RECEIVE_PIN_ERRORS = "RECEIVE_PIN_ERRORS";
-export const CLEAR_PINS = "CLEAR_PINS";
+export const RECEIVE_PIN_ERRORS = 'RECEIVE_PIN_ERRORS';
+export const CLEAR_PINS = 'CLEAR_PINS';
 
 
 export const receivePins = ({ users, boards, pins }) => {  

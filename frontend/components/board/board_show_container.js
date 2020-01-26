@@ -1,6 +1,6 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import { fetchBoard } from "../../actions/board_actions";
+import { fetchBoard } from '../../actions/board_actions';
 import { selectBoard, selectUserBoardPins, selectUserCreator } from '../../reducers/selector';
 import { showModal } from '../../actions/modal_actions';
 import BoardShow from '../board/board_show';

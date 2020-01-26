@@ -38,7 +38,7 @@ class PinEditForm extends React.Component {
    // displayPhoto() {
    //    if (this.state.photoUrl) {
    //       return (
-   //          <div className="preview-picture" >
+   //          <div className='preview-picture' >
    //             {/* <img src={this.state.photoUrl} /> */}
    //          </div>
    //       )
@@ -49,7 +49,7 @@ class PinEditForm extends React.Component {
       const { pin } = this.state;
       if (pin) {
          return (
-            <div aria-label="Edit" className='pin-edit-form-box'>
+            <div aria-label='Edit' className='pin-edit-form-box'>
                <div className='pin-edit-form'>
                   <div className='header'>
                      <h1>Edit this Pin</h1>
@@ -66,7 +66,7 @@ class PinEditForm extends React.Component {
                            />
                            {/* <TextInput
                               className='input'
-                              name="Pin Title"
+                              name='Pin Title'
                               value={this.state.pin.title}
                               onChange={this.update('title')}
                            /> */}
@@ -75,7 +75,7 @@ class PinEditForm extends React.Component {
                            <p>Detail</p>
                            <textarea
                               className='input'
-                              placeholder="Write a note about this Pin..."
+                              placeholder='Write a note about this Pin...'
                               value={this.state.pin.detail}
                               onChange={this.update('detail')}
                            />

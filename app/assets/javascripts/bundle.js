@@ -220,8 +220,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HIDE_MODAL", function() { return HIDE_MODAL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "showModal", function() { return showModal; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hideModal", function() { return hideModal; });
-var SHOW_MODAL = "SHOW_MODAL";
-var HIDE_MODAL = "HIDE_MODAL";
+var SHOW_MODAL = 'SHOW_MODAL';
+var HIDE_MODAL = 'HIDE_MODAL';
 var showModal = function showModal(modal) {
   return {
     type: SHOW_MODAL,
@@ -265,11 +265,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePin", function() { return deletePin; });
 /* harmony import */ var _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/pin_api_util */ "./frontend/util/pin_api_util.js");
 
-var RECEIVE_PINS = "RECEIVE_PINS";
-var RECEIVE_PIN = "RECEIVE_PIN";
-var REMOVE_PIN = "REMOVE_PIN";
-var RECEIVE_PIN_ERRORS = "RECEIVE_PIN_ERRORS";
-var CLEAR_PINS = "CLEAR_PINS";
+var RECEIVE_PINS = 'RECEIVE_PINS';
+var RECEIVE_PIN = 'RECEIVE_PIN';
+var REMOVE_PIN = 'REMOVE_PIN';
+var RECEIVE_PIN_ERRORS = 'RECEIVE_PIN_ERRORS';
+var CLEAR_PINS = 'CLEAR_PINS';
 var receivePins = function receivePins(_ref) {
   var users = _ref.users,
       boards = _ref.boards,
@@ -419,13 +419,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony import */ var _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/session_api_util */ "./frontend/util/session_api_util.js");
 
-var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-var LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
-var RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
-var CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
-var CLEAR_SESSION_USERNAME_ERRORS = "CLEAR_SESSION_USERNAME_ERRORS";
-var CLEAR_SESSION_EMAIL_ERRORS = "CLEAR_SESSION_EMAIL_ERRORS";
-var CLEAR_SESSION_PASSWORD_ERRORS = "CLEAR_SESSION_PASSWORD_ERRORS";
+var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+var LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
+var RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+var CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
+var CLEAR_SESSION_USERNAME_ERRORS = 'CLEAR_SESSION_USERNAME_ERRORS';
+var CLEAR_SESSION_EMAIL_ERRORS = 'CLEAR_SESSION_EMAIL_ERRORS';
+var CLEAR_SESSION_PASSWORD_ERRORS = 'CLEAR_SESSION_PASSWORD_ERRORS';
 var receiveCurrentUser = function receiveCurrentUser(payload) {
   return {
     type: RECEIVE_CURRENT_USER,
@@ -515,10 +515,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 /* harmony import */ var _util_user_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/user_api_util */ "./frontend/util/user_api_util.js");
 
-var RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-var RECEIVE_USERS = "RECEIVE_USERS";
-var RECEIVE_USER = "RECEIVE_USER";
-var RECEIVE_USER_ERRORS = "RECEIVE_USER_ERRORS";
+var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+var RECEIVE_USERS = 'RECEIVE_USERS';
+var RECEIVE_USER = 'RECEIVE_USER';
+var RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 var receiveUsers = function receiveUsers(_ref) {
   var users = _ref.users,
       boards = _ref.boards,
@@ -1573,7 +1573,7 @@ function (_React$Component) {
     key: "displayBoardCoverPins2",
     value: function displayBoardCoverPins2(pins) {
       var itemsHeight = [0, 0, 0];
-      var pinsLayout = "<div></div>";
+      var pinsLayout = '<div></div>';
 
       for (var i = 0; i++; i < 6) {
         console.log(pins.length);
@@ -1584,7 +1584,7 @@ function (_React$Component) {
               height = void 0,
               ratio = void 0;
           img = document.createElement('div');
-          img.id = "m-item" + i.toString();
+          img.id = 'm-item' + i.toString();
           img.src = window.pin2;
           ratio = img.naturalWidth / 98.66;
           height = img.naturalHeight * ratio;
@@ -1594,7 +1594,7 @@ function (_React$Component) {
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           };
-          pinsLayout = "<div style=\"".concat(imgStyle, "\">\n                    </div>");
+          pinsLayout = "<div style='".concat(imgStyle, "'>\n                    </div>");
         } else {
           pinsLayout = "<h2>something<h2>";
         }
@@ -1659,7 +1659,7 @@ function (_React$Component) {
         to: "/".concat(this.props.username, "/boards/").concat(board.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, boardCover, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? "Pins" : "Pin")))), this.displayEdit());
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? 'Pins' : 'Pin')))), this.displayEdit());
     }
   }]);
 
@@ -1778,7 +1778,7 @@ function (_React$Component) {
           title: "Add Pin",
           className: "create-pin add-pin",
           onClick: this.showModal({
-            name: "create-pin"
+            name: 'create-pin'
           })
         }, "Create Pin"))));
       }
@@ -1836,7 +1836,7 @@ function (_React$Component) {
           className: "tool-buttons edit-button",
           type: "button",
           onClick: this.showModal({
-            name: "edit-board",
+            name: 'edit-board',
             selectedData: this.props.boardId
           })
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -2375,7 +2375,7 @@ function (_React$Component) {
     } // displayPhoto() {
     //    if (this.state.photoUrl) {
     //       return (
-    //          <div className="preview-picture" >
+    //          <div className='preview-picture' >
     //             {/* <img src={this.state.photoUrl} /> */}
     //          </div>
     //       )
@@ -2514,16 +2514,16 @@ function (_React$Component) {
           username = _this$props.username; // this.setState({ isLoading: true});
 
       switch (fetchType) {
-        case "feed":
+        case 'feed':
           console.log('fetch pins');
           fetchPins(this.state.page);
           break;
 
-        case "user":
+        case 'user':
           fetchPins(username, this.state.page);
           break;
 
-        case "board":
+        case 'board':
           fetchPins(boardId, this.state.page);
           break;
 
@@ -2669,7 +2669,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var currentUser = state.entities.users[state.session.id];
   var pins = Object.values(state.entities.pins);
   return {
-    fetchType: "feed",
+    fetchType: 'feed',
     currentUser: currentUser,
     pins: pins
   };
@@ -2751,7 +2751,7 @@ function (_React$Component) {
   _createClass(PinIndexItem, [{
     key: "showPinPage",
     value: function showPinPage(e) {
-      // if (e.target.className.includes("p-link")) {
+      // if (e.target.className.includes('p-link')) {
       this.props.history.push("/pins/".concat(this.props.pin.id)); // }
     }
   }, {
@@ -2788,7 +2788,7 @@ function (_React$Component) {
       var link;
       var edit;
 
-      if (pin.link_url !== "") {
+      if (pin.link_url !== '') {
         // const hostname = new URL(pin.link_url).hostname;
         link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: pin.link_url,
@@ -2886,7 +2886,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var boards = ownProps.boards;
   var pins = Object.values(state.entities.pins);
   return {
-    fetchType: "user",
+    fetchType: 'user',
     currentUser: currentUser,
     user: user,
     username: username,
@@ -4261,7 +4261,7 @@ var sessionReducer = function sessionReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _modal_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modal_reducer */ "./frontend/reducers/modal_reducer.js");
- // import filters from "./filters_reducer";
+ // import filters from './filters_reducer';
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
@@ -4408,20 +4408,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteBoard", function() { return deleteBoard; });
 var fetchBoards = function fetchBoards() {
   return $.ajax({
-    method: "GET",
-    url: "/api/boards"
+    method: 'GET',
+    url: '/api/boards'
   });
 };
 var fetchBoard = function fetchBoard(id) {
   return $.ajax({
-    method: "GET",
+    method: 'GET',
     url: "/api/boards/".concat(id)
   });
 };
 var createBoard = function createBoard(board) {
   return $.ajax({
-    method: "POST",
-    url: "/api/boards",
+    method: 'POST',
+    url: '/api/boards',
     data: {
       board: board
     }
@@ -4429,7 +4429,7 @@ var createBoard = function createBoard(board) {
 };
 var updateBoard = function updateBoard(board) {
   return $.ajax({
-    method: "PATCH",
+    method: 'PATCH',
     url: "/api/boards/".concat(board.id),
     data: {
       board: board
@@ -4438,7 +4438,7 @@ var updateBoard = function updateBoard(board) {
 };
 var deleteBoard = function deleteBoard(id) {
   return $.ajax({
-    method: "DELETE",
+    method: 'DELETE',
     url: "/api/boards/".concat(id)
   });
 };
@@ -4464,13 +4464,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePin", function() { return deletePin; });
 var fetchAllPins = function fetchAllPins() {
   return $.ajax({
-    method: "GET",
+    method: 'GET',
     url: "api/board_pins"
   });
 };
 var fetchPinsFeed = function fetchPinsFeed(page) {
   return $.ajax({
-    method: "GET",
+    method: 'GET',
     url: "api/board_pins/feeds",
     data: {
       page: page
@@ -4479,7 +4479,7 @@ var fetchPinsFeed = function fetchPinsFeed(page) {
 };
 var fetchUserPins = function fetchUserPins(username, page) {
   return $.ajax({
-    method: "GET",
+    method: 'GET',
     url: "api/users/".concat(username, "/pins"),
     data: {
       page: page
@@ -4488,7 +4488,7 @@ var fetchUserPins = function fetchUserPins(username, page) {
 };
 var fetchBoardPins = function fetchBoardPins(boardId, page) {
   return $.ajax({
-    method: "GET",
+    method: 'GET',
     url: "api/boards/".concat(boardId, "/pins"),
     data: {
       page: page
@@ -4497,13 +4497,13 @@ var fetchBoardPins = function fetchBoardPins(boardId, page) {
 };
 var fetchPin = function fetchPin(id) {
   return $.ajax({
-    method: "GET",
+    method: 'GET',
     url: "api/pin_joins/".concat(id)
   });
 };
 var createPin = function createPin(formData) {
   return $.ajax({
-    method: "POST",
+    method: 'POST',
     url: "api/pins",
     data: formData,
     contentType: false,
@@ -4511,7 +4511,7 @@ var createPin = function createPin(formData) {
   });
 }; // export const createPinJoin = (pin, id) => {
 //   return $.ajax({
-//     method: "POST",
+//     method: 'POST',
 //     url: `api/boards/${id}/pin_joins`,
 //     data: { pin }
 //   });
@@ -4519,7 +4519,7 @@ var createPin = function createPin(formData) {
 
 var updatePin = function updatePin(pin) {
   return $.ajax({
-    method: "PATCH",
+    method: 'PATCH',
     url: "api/pins/".concat(pin.id),
     data: {
       pin: pin
@@ -4528,7 +4528,7 @@ var updatePin = function updatePin(pin) {
 };
 var deletePin = function deletePin(id) {
   return $.ajax({
-    method: "DELETE",
+    method: 'DELETE',
     url: "api/pin/".concat(id)
   });
 };
@@ -4634,8 +4634,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 var login = function login(user) {
   return $.ajax({
-    method: "POST",
-    url: "/api/session",
+    method: 'POST',
+    url: '/api/session',
     data: {
       user: user
     }
@@ -4643,8 +4643,8 @@ var login = function login(user) {
 };
 var signup = function signup(user) {
   return $.ajax({
-    method: "POST",
-    url: "/api/users",
+    method: 'POST',
+    url: '/api/users',
     data: {
       user: user
     }
@@ -4652,8 +4652,8 @@ var signup = function signup(user) {
 };
 var logout = function logout() {
   return $.ajax({
-    method: "DELETE",
-    url: "/api/session"
+    method: 'DELETE',
+    url: '/api/session'
   });
 };
 
@@ -4673,7 +4673,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUser", function() { return updateUser; });
 var fetchUser = function fetchUser(username) {
   return $.ajax({
-    method: "GET",
+    method: 'GET',
     url: "/api/users/".concat(username)
   });
 };

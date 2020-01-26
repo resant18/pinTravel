@@ -20,14 +20,14 @@ class PinIndex extends React.Component {
   
     // this.setState({ isLoading: true});
     switch (fetchType) {
-      case "feed":
+      case 'feed':
         console.log('fetch pins');        
         fetchPins(this.state.page);
         break;
-      case "user":
+      case 'user':
         fetchPins(username, this.state.page);
         break;
-      case "board":
+      case 'board':
         fetchPins(boardId, this.state.page);
         break;
       default:
@@ -76,8 +76,8 @@ class PinIndex extends React.Component {
   
   render() {   
     return (
-      <div className="pins">        
-        <div className="pin-index">
+      <div className='pins'>        
+        <div className='pin-index'>
           {this.renderPins()}
           {this.renderWaypoint()}
         </div>

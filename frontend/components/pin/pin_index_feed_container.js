@@ -1,8 +1,8 @@
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import PinIndex from "./pin_index";
-import { fetchPinsFeed, clearPins } from "../../actions/pin_actions";
-import { showModal } from "../../actions/modal_actions";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import PinIndex from './pin_index';
+import { fetchPinsFeed, clearPins } from '../../actions/pin_actions';
+import { showModal } from '../../actions/modal_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   const pins = Object.values(state.entities.pins);
   
   return {
-    fetchType: "feed",
+    fetchType: 'feed',
     currentUser,
     pins
   };

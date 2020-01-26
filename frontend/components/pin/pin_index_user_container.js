@@ -1,8 +1,8 @@
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { clearPins, fetchUserPins } from "../../actions/pin_actions";
-import { showModal } from "../../actions/modal_actions";
-import PinIndex from "./pin_index";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { clearPins, fetchUserPins } from '../../actions/pin_actions';
+import { showModal } from '../../actions/modal_actions';
+import PinIndex from './pin_index';
 
 // User's all Pins collection
 const mapStateToProps = (state, ownProps) => {
@@ -13,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
   const pins = Object.values(state.entities.pins);
 
   return {
-    fetchType: "user",
+    fetchType: 'user',
     currentUser,
     user,
     username,

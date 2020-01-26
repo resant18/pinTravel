@@ -88,7 +88,7 @@ class BoardCreateForm extends React.Component {
                             <input
                                 id='board-name-input' 
                                 className='input board-name'
-                                placeholder="E.g. 'Places to go' or 'Recipes to make'"                                
+                                placeholder="E.g. 'Places to go' or 'Recipes to make'"
                                 onChange={this.update('name')}                                                                
                             />
                             <div className='error-text'>{renderBoardNameValidationError}</div>

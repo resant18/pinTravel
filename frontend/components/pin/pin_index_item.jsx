@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
 class PinIndexItem extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class PinIndexItem extends React.Component {
   }
 
   showPinPage(e) {
-    // if (e.target.className.includes("p-link")) {
+    // if (e.target.className.includes('p-link')) {
       this.props.history.push(`/pins/${this.props.pin.id}`);
     // }
   }
@@ -44,11 +44,11 @@ class PinIndexItem extends React.Component {
       let link;
       let edit;
 
-      if (pin.link_url !== "") {
+      if (pin.link_url !== '') {
         // const hostname = new URL(pin.link_url).hostname;
         link = (
-          <a href={pin.link_url} target="_blank">
-            {/* <i className="fas fa-external-link-alt"></i> */}
+          <a href={pin.link_url} target='_blank'>
+            {/* <i className='fas fa-external-link-alt'></i> */}
             www.something.com
             {/* <p>{hostname}</p> */}
           </a>
@@ -57,9 +57,9 @@ class PinIndexItem extends React.Component {
       
       if (currentUser.username === pin.user.username) {
         edit = (
-          <button className="tool-buttons edit-button" onClick={this.showEditForm}>
-            <svg className="svg-edit" height="12" width="12" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
-              <path d="M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"></path>
+          <button className='tool-buttons edit-button' onClick={this.showEditForm}>
+            <svg className='svg-edit' height='12' width='12' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
+              <path d='M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z'></path>
             </svg>
           </button>
         );
@@ -69,17 +69,17 @@ class PinIndexItem extends React.Component {
 
       return (
         <div
-          className="p-links visible"
+          className='p-links visible'
           onClick={this.toPinShow}
           // style={{ height: imageHeight }}
         >
-          <div className="top-links">
+          <div className='top-links'>
             {edit}
-            <button className="save-btn" onClick={this.showCreateModal}>              
+            <button className='save-btn' onClick={this.showCreateModal}>              
               <p>Save</p>
             </button>
           </div>
-          <div className="bottom-links">{link}</div>
+          <div className='bottom-links'>{link}</div>
         </div>
       );
     // }
@@ -93,19 +93,19 @@ class PinIndexItem extends React.Component {
     // const gridSpan = `span ${pin.row_height + 6}`;
 
     return (      
-      <div className="pin"
+      <div className='pin'
         // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         // onClick={this.showPinPage}
         onMouseEnter={this.turnOnVisibility}
         onMouseLeave={this.turnOffVisibility}
       >
-        <div className="pin-item">
+        <div className='pin-item'>
           <img
-            className="pin-item-img"
+            className='pin-item-img'
             src={window.pins[pin.pin_id]}            
           />
         </div>
-        <div className="pin-item-title">
+        <div className='pin-item-title'>
           <p>{pin.title}</p>
         </div>
         {this.renderLinks()}

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createBoard, clearBoardErrors } from "../../actions/board_actions";
+import { createBoard, clearBoardErrors } from '../../actions/board_actions';
 import { showModal, hideModal } from '../../actions/modal_actions';
 import BoardCreateForm from './board_create_form';
 

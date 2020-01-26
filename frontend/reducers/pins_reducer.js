@@ -5,15 +5,15 @@ import {
   RECEIVE_PIN,
   REMOVE_PIN,
   CLEAR_PINS
-} from "../actions/pin_actions";
+} from '../actions/pin_actions';
 
 import {
   RECEIVE_CURRENT_USER,
   RECEIVE_USERS,
   RECEIVE_USER
-} from "../actions/user_actions";
+} from '../actions/user_actions';
 
-import { RECEIVE_BOARDS, RECEIVE_BOARD } from "../actions/board_actions";
+import { RECEIVE_BOARDS, RECEIVE_BOARD } from '../actions/board_actions';
 
 const pinsReducer = (state = {}, action) => {
   Object.freeze(state);
