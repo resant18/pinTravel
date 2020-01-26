@@ -15,8 +15,7 @@ const msp = (state, ownProps) => {
          
    return {
       currentUser,
-      pin,
-      owner
+      pin,      
    };
 };
 

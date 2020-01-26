@@ -1,13 +1,13 @@
-import React from "react";
-import BoardIndex from "../board/board_index";
-import PinIndexUserContainer from "../pin/pin_index_user_container";
+import React from 'react';
+import BoardIndex from '../board/board_index';
+import PinIndexUserContainer from '../pin/pin_index_user_container';
 
 class UserProfile extends React.Component {
   constructor(props) {
     super(props);    
     
     this.state = {
-      tabItem: "boards",
+      tabItem: 'boards',
       dropDown: false
     };
     
@@ -49,22 +49,22 @@ class UserProfile extends React.Component {
   renderDropDown() {    
     if (this.state.dropDown) {
       return (
-         <div id="drop-down" 
+         <div id='drop-down' 
               ref={ node => this.node = node }
-              className="profile-add-board-pin drop-down">
-            <div className="frame">
-               <div className="list" role="list">
+              className='profile-add-board-pin drop-down'>
+            <div className='frame'>
+               <div className='list' role='list'>
                   <div
-                     title="Create board"
-                     className="create-board"
-                     onClick={this.showModal({ name: "create-board" })}
+                     title='Create board'
+                     className='create-board'
+                     onClick={this.showModal({ name: 'create-board' })}
                   >
                      Create board
                   </div>
                   <div
-                     title="Create pin"
-                     className="create-pin"
-                     onClick={this.showModal({ name: "create-pin" })}
+                     title='Create pin'
+                     className='create-pin'
+                     onClick={this.showModal({ name: 'create-pin' })}
                   >
                      Create Pin
                   </div>
@@ -85,16 +85,16 @@ class UserProfile extends React.Component {
   displayProfileToolbar() {
     if (this.props.user === this.props.currentUser) {
       return (
-         <nav className="profile-toolbar">
+         <nav className='profile-toolbar'>
             <div>
                <button
-                  className="add-board-pin"
+                  className='add-board-pin'
                   onClick={this.showDropDown}
-                  aria-label="Add board or pin"
-                  type="button"
+                  aria-label='Add board or pin'
+                  type='button'
                >
-                  <svg height="24" width="24" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img" >
-                     <path d="M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"></path>
+                  <svg height='24' width='24' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img' >
+                     <path d='M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4'></path>
                   </svg>
                </button>
                { this.renderDropDown() }
@@ -105,31 +105,31 @@ class UserProfile extends React.Component {
   }
 
   showUserBoards() {
-    this.setState({ tabItem: "boards" });
-    document.getElementById("board-tab").classList.add("active");
-    document.getElementById("pin-tab").classList.remove("active");
+    this.setState({ tabItem: 'boards' });
+    document.getElementById('board-tab').classList.add('active');
+    document.getElementById('pin-tab').classList.remove('active');
   }
 
   showUserPins() {    
-    this.setState({ tabItem: "pins" });
-    document.getElementById("board-tab").classList.remove("active");
-    document.getElementById("pin-tab").classList.add("active");
+    this.setState({ tabItem: 'pins' });
+    document.getElementById('board-tab').classList.remove('active');
+    document.getElementById('pin-tab').classList.add('active');
   }
 
   displayTabList() {
     return (
        <nav>
           <button
-             id="board-tab"
+             id='board-tab'
              onClick={this.showUserBoards.bind(this)}
-             className="board-tab active"
+             className='board-tab active'
           >
              Boards
           </button>          
           <button
-            id="pin-tab"
+            id='pin-tab'
             onClick={this.showUserPins.bind(this)}
-            className="pin-tab"
+            className='pin-tab'
           >
             Pins
           </button>          
@@ -165,44 +165,44 @@ class UserProfile extends React.Component {
 
     if (!user) return null;
     let userProfileName =
-      user.first_name + " " + (user.last_name === null ? "" : user.last_name);        
+      user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);        
 
     return (
       <div>
-        <section className="user-profile-page">
-          <div className="tilted-pins"></div>
-          <div className="user-profile-container">
-            <div className="user-avatar">
-              <div className="-pos">
-                <div className="-shadow-wrapper">
+        <section className='user-profile-page'>
+          <div className='tilted-pins'></div>
+          <div className='user-profile-container'>
+            <div className='user-avatar'>
+              <div className='-pos'>
+                <div className='-shadow-wrapper'>
                   <img
                     alt={userProfileName}
-                    className="user-profile-image"
+                    className='user-profile-image'
                     src={window.userProfile}
                   />
                 </div>
               </div>
             </div>
-            <div className="user-profile-detail">
-              <div className="user-profile-name">
+            <div className='user-profile-detail'>
+              <div className='user-profile-name'>
                 <h5>{userProfileName}</h5>
               </div>
-              <div className="user-boards-pins-count">
-                <div className="boards-count">
-                  <p className="boards-count-title">Boards</p>
-                  <p className="boards-count-number">{boards.length}</p>
+              <div className='user-boards-pins-count'>
+                <div className='boards-count'>
+                  <p className='boards-count-title'>Boards</p>
+                  <p className='boards-count-number'>{boards.length}</p>
                 </div>
-                <div className="pins-count">
-                  <p className="boards-count-title">Pins</p>
-                  <p className="boards-count-number">{userPins.length}</p>
+                <div className='pins-count'>
+                  <p className='boards-count-title'>Pins</p>
+                  <p className='boards-count-number'>{userPins.length}</p>
                 </div>
               </div>
             </div>
             {this.displayProfileToolbar()}
           </div>
         </section>
-        <section className="tab-list">{this.displayTabList()}</section>
-        <section className="tab-item">          
+        <section className='tab-list'>{this.displayTabList()}</section>
+        <section className='tab-item'>          
           {
             this.renderChildComponent(user, boards, userPins, permitted)             
           }

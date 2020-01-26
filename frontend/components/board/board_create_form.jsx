@@ -19,19 +19,19 @@ class BoardCreateForm extends React.Component {
             switch (field) {
                 case 'name':
                     clearTimeout(timeout);
-                    e.persist();
+                    e.persist();    
                     document.getElementById('board-name-input').setAttribute('required', 'true');
                     timeout = setTimeout(() => {
-                        let createBtn = document.getElementById('create-btn');                        
+                        let createBtn = document.getElementById('save-btn');                        
                         let inputBoardName = document.getElementById('board-name-input');
 
                         if (e.target.value === '') {
                             this.setState({ [field]: e.target.value, showErrors: true });
-                            createBtn.classList.remove('create-btn-focus');                            
+                            createBtn.classList.remove('save-btn-focus');                            
                             inputBoardName.classList.add('error');
                         } else {
                             this.setState({ [field]: e.target.value, showErrors: false });
-                            createBtn.classList.add('create-btn-focus');                            
+                            createBtn.classList.add('save-btn-focus');                            
                             inputBoardName.classList.remove('error');
                         }
 
@@ -70,7 +70,7 @@ class BoardCreateForm extends React.Component {
         const createButtonDisabled = (this.state.name === '' ) ? true : false;
 
         return (            
-            <div aria-label='Create' className='board-form-container'>
+            <div aria-label='Create' className='board-form-box'>
                 <div className='header'>
                     <h1>Create board</h1>
                     <button
@@ -119,8 +119,8 @@ class BoardCreateForm extends React.Component {
                                 Cancel
                             </button>
                             <button
-                                id='create-btn'
-                                className = 'create-btn'
+                                id='save-btn'
+                                className = 'save-btn'
                                 disabled = {createButtonDisabled}
                                 onClick={this.handleSubmit} >
                                 Create

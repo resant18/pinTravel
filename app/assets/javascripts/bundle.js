@@ -761,7 +761,7 @@ function (_React$Component) {
             e.persist();
             document.getElementById('board-name-input').setAttribute('required', 'true');
             timeout = setTimeout(function () {
-              var createBtn = document.getElementById('create-btn');
+              var createBtn = document.getElementById('save-btn');
               var inputBoardName = document.getElementById('board-name-input');
 
               if (e.target.value === '') {
@@ -769,14 +769,14 @@ function (_React$Component) {
 
                 _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
 
-                createBtn.classList.remove('create-btn-focus');
+                createBtn.classList.remove('save-btn-focus');
                 inputBoardName.classList.add('error');
               } else {
                 var _this2$setState2;
 
                 _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
 
-                createBtn.classList.add('create-btn-focus');
+                createBtn.classList.add('save-btn-focus');
                 inputBoardName.classList.remove('error');
               }
             }, 500);
@@ -815,7 +815,7 @@ function (_React$Component) {
       var createButtonDisabled = this.state.name === '' ? true : false;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "aria-label": "Create",
-        className: "board-form-container"
+        className: "board-form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -874,8 +874,8 @@ function (_React$Component) {
         tabIndex: "1",
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "create-btn",
-        className: "create-btn",
+        id: "save-btn",
+        className: "save-btn",
         disabled: createButtonDisabled,
         onClick: this.handleSubmit
       }, "Create")))));
@@ -1187,10 +1187,10 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var isCreateButtonDisabled = this.state.name === '' ? true : false;
-      var createButtonStyle = this.state.name === '' ? '' : 'create-btn-focus';
+      var createButtonStyle = this.state.name === '' ? '' : 'save-btn-focus';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "aria-label": "Create",
-        className: "board-form-container"
+        className: "board-form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit your board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -1257,8 +1257,8 @@ function (_React$Component) {
         tabIndex: "1",
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        id: "create-btn",
-        className: 'create-btn ' + createButtonStyle,
+        id: "save-btn",
+        className: 'save-btn ' + createButtonStyle,
         disabled: isCreateButtonDisabled,
         onClick: this.handleSubmit
       }, "Save"))))));
@@ -2195,9 +2195,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_user_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/user_actions */ "./frontend/actions/user_actions.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar */ "./frontend/components/navbar/navbar.jsx");
-
+/* harmony import */ var _navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./navbar */ "./frontend/components/navbar/navbar.jsx");
 
 
 
@@ -2221,7 +2219,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_navbar__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -2262,8 +2260,7 @@ var msp = function msp(state, ownProps) {
   var pin = state.entities.pins[pinId];
   return {
     currentUser: currentUser,
-    pin: pin,
-    owner: owner
+    pin: pin
   };
 };
 
@@ -2336,6 +2333,7 @@ function (_React$Component) {
     _classCallCheck(this, PinEditForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinEditForm).call(this, props));
+    var pin = _this.props.pin;
     _this.state = {
       pin: {
         id: pin.id,
@@ -2393,15 +2391,16 @@ function (_React$Component) {
 
       if (pin) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-edit-buffer"
+          "aria-label": "Edit",
+          className: "pin-edit-form-box"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-form-box"
+          className: "pin-edit-form"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-header"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Edit this Pin")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-form-body"
+          className: "header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit this Pin")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "body"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-aside"
+          className: "aside"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-title"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Title"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -2413,12 +2412,12 @@ function (_React$Component) {
           className: "pin-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Detail"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
           className: "input",
-          placeholder: "What's your pin about?",
+          placeholder: "Write a note about this Pin...",
           value: this.state.pin.detail,
           onChange: this.update('detail')
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-image"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Image")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "button-footer"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "buttons-left"
@@ -2428,12 +2427,12 @@ function (_React$Component) {
         }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "buttons-right"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "rectangle-btn",
+          className: "cancel-btn",
           onClick: function onClick() {
             return _this3.props.hideModal();
           }
         }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: 'rectangle-btn save-btn',
+          className: "save-btn",
           onClick: this.handleSubmit
         }, "Save")))));
       } else {
@@ -2838,8 +2837,8 @@ function (_React$Component) {
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
+        // onClick={this.showPinPage}
         ,
-        onClick: this.showPinPage,
         onMouseEnter: this.turnOnVisibility,
         onMouseLeave: this.turnOffVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2961,10 +2960,10 @@ var isBlank = function isBlank(input) {
 };
 var isValidInput = function isValidInput(input, type) {
   switch (type) {
-    case "email":
+    case 'email':
       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input);
 
-    case "password":
+    case 'password':
       return input.length >= 6;
   }
 };
@@ -3000,8 +2999,8 @@ var mapStateToProps = function mapStateToProps(_ref) {
       email: errors.session.email || [],
       password: errors.session.password || []
     },
-    formType: "Log in",
-    passwordHolder: "Password" // navLink: <Link to="/signup">Sign Up</Link>
+    formType: 'Log in',
+    passwordHolder: 'Password' // navLink: <Link to='/signup'>Sign Up</Link>
 
   };
 };
@@ -3015,7 +3014,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["clearSessionErrors"])());
     },
     switchAction: function switchAction() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])("signup"));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])('signup'));
     },
     hideModal: function hideModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["hideModal"])());
@@ -3078,8 +3077,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(SessionForm).call(this, props));
     _this.state = {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     }; // this.typingEffect = this.typingEffect.bind(this);
 
     _this._writeDemoUser = _this._writeDemoUser.bind(_assertThisInitialized(_this));
@@ -3099,9 +3098,9 @@ function (_React$Component) {
     key: "_getUserInfo",
     value: function _getUserInfo() {
       var email = this.state.email;
-      var idx = email.indexOf("@");
+      var idx = email.indexOf('@');
       var username = email.slice(0, idx);
-      var dotIdx = username.indexOf(".");
+      var dotIdx = username.indexOf('.');
       var firstName, lastName;
 
       if (dotIdx !== -1) {
@@ -3109,7 +3108,7 @@ function (_React$Component) {
         lastName = username.slice(dotIdx + 1, username.length);
       } else {
         firstName = username;
-        lastName = "";
+        lastName = '';
       }
 
       this.setState({
@@ -3125,57 +3124,57 @@ function (_React$Component) {
   }, {
     key: "_validateForm",
     value: function _validateForm() {
-      var emailInput = document.getElementById("input-email");
-      var passwordInput = document.getElementById("input-password");
-      var errorText = "";
+      var emailInput = document.getElementById('input-email');
+      var passwordInput = document.getElementById('input-password');
+      var errorText = '';
 
       if (Object(_form_validation__WEBPACK_IMPORTED_MODULE_1__["isBlank"])(emailInput.value)) {
-        var div = document.createElement("div");
-        div.id = "error-email";
-        div.classList.add("error-text");
+        var div = document.createElement('div');
+        div.id = 'error-email';
+        div.classList.add('error-text');
         errorText = "You missed a spot! Don't forget to add your email."; //this.setState({ errors, email: errorText });
 
         div.innerHTML = errorText;
 
-        if (document.getElementById("error-email") !== null) {
-          document.getElementById("error-email").remove();
+        if (document.getElementById('error-email') !== null) {
+          document.getElementById('error-email').remove();
         }
 
         emailInput.parentNode.appendChild(div);
         return false;
-      } else if (!Object(_form_validation__WEBPACK_IMPORTED_MODULE_1__["isValidInput"])(emailInput.value, "email")) {
-        var _div = document.createElement("div");
+      } else if (!Object(_form_validation__WEBPACK_IMPORTED_MODULE_1__["isValidInput"])(emailInput.value, 'email')) {
+        var _div = document.createElement('div');
 
-        _div.id = "error-email";
+        _div.id = 'error-email';
 
-        _div.classList.add("error-text");
+        _div.classList.add('error-text');
 
         errorText = "Hmm...that doesn't look like an email address"; //this.setState({errors, email: errorText});
 
         _div.innerHTML = errorText;
 
-        if (document.getElementById("error-email") !== null) {
-          document.getElementById("error-email").remove();
+        if (document.getElementById('error-email') !== null) {
+          document.getElementById('error-email').remove();
         }
 
         emailInput.parentNode.appendChild(_div);
         return false;
-      } else if (!Object(_form_validation__WEBPACK_IMPORTED_MODULE_1__["isValidInput"])(passwordInput.value, "password")) {
-        var _div2 = document.createElement("div");
+      } else if (!Object(_form_validation__WEBPACK_IMPORTED_MODULE_1__["isValidInput"])(passwordInput.value, 'password')) {
+        var _div2 = document.createElement('div');
 
-        _div2.id = "error-password";
+        _div2.id = 'error-password';
 
-        _div2.classList.add("error-text");
+        _div2.classList.add('error-text');
 
         errorText = "Your password is too short! You need 6+ characters.";
         _div2.innerHTML = errorText; //this.setState({ errors, password: errorText });
 
-        if (document.getElementById("error-email") !== null) {
-          document.getElementById("error-email").remove();
+        if (document.getElementById('error-email') !== null) {
+          document.getElementById('error-email').remove();
         }
 
-        if (document.getElementById("error-password") !== null) {
-          document.getElementById("error-password").remove();
+        if (document.getElementById('error-password') !== null) {
+          document.getElementById('error-password').remove();
         }
 
         passwordInput.parentNode.appendChild(_div2);
@@ -3188,8 +3187,8 @@ function (_React$Component) {
     key: "_writeDemoUser",
     value: function _writeDemoUser(callback) {
       var i = 0;
-      document.getElementById("input-email").value = "";
-      document.getElementById("input-password").value = "";
+      document.getElementById('input-email').value = '';
+      document.getElementById('input-password').value = '';
 
       function typingEffect(id, txt) {
         if (i < txt.length) {
@@ -3201,8 +3200,8 @@ function (_React$Component) {
         }
       }
 
-      typingEffect("input-email", "guest@gmail.com");
-      document.getElementById("input-password").value = "password";
+      typingEffect('input-email', 'guest@gmail.com');
+      document.getElementById('input-password').value = 'password';
       callback();
     }
   }, {
@@ -3212,14 +3211,14 @@ function (_React$Component) {
 
       e.preventDefault();
       var demoUser = {
-        email: "guest@gmail.com",
-        password: "password"
+        email: 'guest@gmail.com',
+        password: 'password'
       };
       var i = 0;
 
       this._writeDemoUser(function () {
         return _this2.props.login(demoUser).then(_this2.props.hideModal).then(function () {
-          return _this2.props.history.push("/guest");
+          return _this2.props.history.push('/guest');
         });
       });
     }
@@ -3230,15 +3229,15 @@ function (_React$Component) {
 
       e.preventDefault();
       var user;
-      var email = document.getElementById("input-email").value;
-      var password = document.getElementById("input-password").value;
+      var email = document.getElementById('input-email').value;
+      var password = document.getElementById('input-password').value;
       var newState = {
         email: email,
         password: password
       };
       this.setState(newState);
 
-      if (this.props.formType === "Sign up") {
+      if (this.props.formType === 'Sign up') {
         var userInfo = this._getUserInfo();
 
         var username = userInfo.username,
@@ -3296,7 +3295,7 @@ function (_React$Component) {
           passwordHolder = _this$props.passwordHolder,
           formType = _this$props.formType;
       var divStyle = {
-        display: "none"
+        display: 'none'
       };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-container"
@@ -3356,7 +3355,7 @@ function (_React$Component) {
         className: "sec",
         type: "button",
         onClick: this.props.switchAction
-      }, formType === "Sign up" ? "Log in" : "Sign up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "By continuing, you agree to Pinterest's", " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, formType === 'Sign up' ? 'Log in' : 'Sign up'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "By continuing, you agree to Pinterest's", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         "data-test-id": "tos",
         href: "#",
         target: "_blank"
@@ -3408,8 +3407,8 @@ var mapStateToProps = function mapStateToProps(_ref) {
       password: errors.session.password || []
     },
     // errors: errors.session,
-    formType: "Sign up",
-    passwordHolder: "Create a Password",
+    formType: 'Sign up',
+    passwordHolder: 'Create a Password',
     navLink: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
       to: "/login"
     }, "log in instead")
@@ -3425,7 +3424,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["clearSessionErrors"])());
     },
     switchAction: function switchAction() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["showModal"])("login"));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["showModal"])('login'));
     },
     hideModal: function hideModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["hideModal"])());
@@ -3498,7 +3497,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
     _this.state = {
-      tabItem: "boards",
+      tabItem: 'boards',
       dropDown: false
     };
     _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
@@ -3567,13 +3566,13 @@ function (_React$Component) {
           title: "Create board",
           className: "create-board",
           onClick: this.showModal({
-            name: "create-board"
+            name: 'create-board'
           })
         }, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Create pin",
           className: "create-pin",
           onClick: this.showModal({
-            name: "create-pin"
+            name: 'create-pin'
           })
         }, "Create Pin"))));
       }
@@ -3616,19 +3615,19 @@ function (_React$Component) {
     key: "showUserBoards",
     value: function showUserBoards() {
       this.setState({
-        tabItem: "boards"
+        tabItem: 'boards'
       });
-      document.getElementById("board-tab").classList.add("active");
-      document.getElementById("pin-tab").classList.remove("active");
+      document.getElementById('board-tab').classList.add('active');
+      document.getElementById('pin-tab').classList.remove('active');
     }
   }, {
     key: "showUserPins",
     value: function showUserPins() {
       this.setState({
-        tabItem: "pins"
+        tabItem: 'pins'
       });
-      document.getElementById("board-tab").classList.remove("active");
-      document.getElementById("pin-tab").classList.add("active");
+      document.getElementById('board-tab').classList.remove('active');
+      document.getElementById('pin-tab').classList.add('active');
     }
   }, {
     key: "displayTabList",
@@ -3671,7 +3670,7 @@ function (_React$Component) {
           pins = _this$props.pins,
           pinIds = _this$props.pinIds;
       if (!user) return null;
-      var userProfileName = user.first_name + " " + (user.last_name === null ? "" : user.last_name);
+      var userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-profile-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

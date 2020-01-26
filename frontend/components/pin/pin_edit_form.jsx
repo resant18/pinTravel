@@ -3,7 +3,9 @@ import React from 'react';
 
 class PinEditForm extends React.Component {
    constructor(props) {
-      super(props);      
+      super(props);    
+      const { pin } = this.props;
+
       this.state = {
          pin: {
             id: pin.id,
@@ -47,13 +49,13 @@ class PinEditForm extends React.Component {
       const { pin } = this.state;
       if (pin) {
          return (
-            <div className='pin-edit-buffer'>
-               <div className='pin-form-box'>
-                  <div className='pin-header'>
-                     <h3>Edit this Pin</h3>
+            <div aria-label="Edit" className='pin-edit-form-box'>
+               <div className='pin-edit-form'>
+                  <div className='header'>
+                     <h1>Edit this Pin</h1>
                   </div>
-                  <div className='pin-form-body'>
-                     <div className='pin-aside'>
+                  <div className='body'>
+                     <div className='aside'>
                         <div className='pin-title'>
                            <p>Title</p>
                            <input
@@ -73,13 +75,14 @@ class PinEditForm extends React.Component {
                            <p>Detail</p>
                            <textarea
                               className='input'
-                              placeholder="What's your pin about?"
+                              placeholder="Write a note about this Pin..."
                               value={this.state.pin.detail}
                               onChange={this.update('detail')}
                            />
                         </div>
                      </div>
                      <div className='pin-image'>
+                        Image
                         {/* <img src={this.props.pin.pictureUrl} /> */}
                      </div>
                   </div>
@@ -89,16 +92,16 @@ class PinEditForm extends React.Component {
                            className='rectangle-btn'
                            onClick={this.handleDelete} >
                            Delete
-                </button>
+                        </button>
                      </div>
                      <div className='buttons-right'>
                         <button
-                           className='rectangle-btn'
+                           className='cancel-btn'
                            onClick={() => this.props.hideModal()} >
                            Cancel
-                </button>
+                        </button>
                         <button
-                           className={'rectangle-btn save-btn'}
+                           className='save-btn'
                            onClick={this.handleSubmit} >
                            Save
                 </button>

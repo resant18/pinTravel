@@ -5,9 +5,9 @@ export const isBlank = (input) => {
 
 export const isValidInput = (input, type) => {
     switch (type) {
-      case "email":
+      case 'email':
         return (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input));        
-      case "password":
+      case 'password':
         return (input.length >= 6)
     }  
 };

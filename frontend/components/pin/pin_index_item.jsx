@@ -95,7 +95,7 @@ class PinIndexItem extends React.Component {
     return (      
       <div className="pin"
         // style={{ height: frameHeight, gridRowEnd: gridSpan }}
-        onClick={this.showPinPage}
+        // onClick={this.showPinPage}
         onMouseEnter={this.turnOnVisibility}
         onMouseLeave={this.turnOffVisibility}
       >

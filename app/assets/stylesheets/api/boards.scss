@@ -1,7 +1,7 @@
 // Place all the styles related to the api/boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.board-form-container {
+.board-form-box {
    width: 544px;   
    flex: 1 1 auto;
    
@@ -116,12 +116,12 @@
       background-color: #efefef;                                 
    }   
 
-   .create-btn {
+   .save-btn {
       color: #8e8e8e;
       background-color: #efefef;                
    }
 
-   .create-btn-focus {
+   .save-btn-focus {
       color: #333;
       background-color: var(--color-secondary);           
    }  

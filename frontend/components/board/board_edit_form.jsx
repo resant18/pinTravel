@@ -62,10 +62,10 @@ class BoardEditForm extends React.Component {
 
    render() {
       const isCreateButtonDisabled = (this.state.name === '') ? true : false;                  
-      const createButtonStyle = (this.state.name === '') ? '' : 'create-btn-focus';                        
+      const createButtonStyle = (this.state.name === '') ? '' : 'save-btn-focus';                        
 
       return (
-         <div aria-label='Create' className='board-form-container'>
+         <div aria-label='Create' className='board-form-box'>
             <div className='header'>
                <h1>Edit your board</h1>
                <button
@@ -125,8 +125,8 @@ class BoardEditForm extends React.Component {
                            Cancel
                         </button>
                         <button
-                           id='create-btn'
-                           className={'create-btn ' + createButtonStyle}                       
+                           id='save-btn'
+                           className={'save-btn ' + createButtonStyle}                       
                            disabled={isCreateButtonDisabled}
                            onClick={this.handleSubmit} > 
                            Save
