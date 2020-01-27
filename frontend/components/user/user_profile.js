@@ -202,7 +202,7 @@ class UserProfile extends React.Component {
           </div>
         </section>
         <section className='tab-list'>{this.displayTabList()}</section>
-        <section className='tab-item'>          
+        <section className='user-profile-content'>          
           {
             this.renderChildComponent(user, boards, userPins, permitted)             
           }

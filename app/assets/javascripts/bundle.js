@@ -3710,7 +3710,7 @@ function (_React$Component) {
       }, userPins.length)))), this.displayProfileToolbar())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "tab-list"
       }, this.displayTabList()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "tab-item"
+        className: "user-profile-content"
       }, this.renderChildComponent(user, boards, userPins, permitted)));
     }
   }]);
