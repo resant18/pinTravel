@@ -1341,7 +1341,7 @@ function (_React$Component) {
           return pin.board_id === board.id;
         });
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "b-item-content",
+          className: "board-index-item",
           key: board.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           board: board,
@@ -1352,8 +1352,10 @@ function (_React$Component) {
         }));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "b-item-wrapper"
-      }, userBoards);
+        className: "board-index-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-index"
+      }, userBoards));
     }
   }]);
 
@@ -1652,7 +1654,7 @@ function (_React$Component) {
 
       var boardCover = pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinsData);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "b-item",
+        className: "board-item-content",
         onMouseEnter: this.toggleEdit,
         onMouseLeave: this.toggleEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {

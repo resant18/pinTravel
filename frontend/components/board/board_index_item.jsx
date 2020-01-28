@@ -164,7 +164,7 @@ class BoardIndexItem extends React.Component {
         const boardCover = (pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinsData));
 
         return (
-            <div className='b-item'
+            <div className='board-item-content'
                 onMouseEnter={this.toggleEdit}
                 onMouseLeave={this.toggleEdit}>
             

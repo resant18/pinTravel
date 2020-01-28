@@ -21,18 +21,18 @@ class BoardIndex extends React.Component {
             const user_board_pins = pins.filter(pin => pin.board_id === board.id);
 
             return (   
-                <div className='b-item-content' key={board.id}> 
+                <div className='board-index-item' key={board.id}> 
                     <BoardIndexItem  board={board} pins={user_board_pins} username={user.username} permitted={permitted} showModal={showModal.bind(this)}/> 
                 </div>
             )
         });
 
         return (
-            <div className='b-item-wrapper'>
-                {
-                   userBoards
-                }
-            </div>     
+            <div className='board-index-container'>
+                <div className='board-index'>
+                    {userBoards}
+                </div>     
+            </div>
         )
     }
 }
