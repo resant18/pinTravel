@@ -76,7 +76,7 @@ class PinIndex extends React.Component {
   
   render() {   
     return (
-      <div className='pins'>        
+      <div className='pin-index-container'>        
         <div className='pin-index'>
           {this.renderPins()}
           {this.renderWaypoint()}

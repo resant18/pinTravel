@@ -69,7 +69,7 @@ class PinIndexItem extends React.Component {
 
       return (
         <div
-          className='p-links visible'
+          className='pin-content-links visible'
           onClick={this.toPinShow}
           // style={{ height: imageHeight }}
         >
@@ -93,19 +93,19 @@ class PinIndexItem extends React.Component {
     // const gridSpan = `span ${pin.row_height + 6}`;
 
     return (      
-      <div className='pin'
+      <div className='pin-index-item'
         // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         // onClick={this.showPinPage}
         onMouseEnter={this.turnOnVisibility}
         onMouseLeave={this.turnOffVisibility}
       >
-        <div className='pin-item'>
+        <div className='pin-content-img'>
           <img
-            className='pin-item-img'
+            className='pin-img'
             src={window.pins[pin.pin_id]}            
           />
         </div>
-        <div className='pin-item-title'>
+        <div className='pin-content-title'>
           <p>{pin.title}</p>
         </div>
         {this.renderLinks()}

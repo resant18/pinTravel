@@ -2577,7 +2577,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pins"
+        className: "pin-index-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index"
       }, this.renderPins(), this.renderWaypoint()));
@@ -2818,7 +2818,7 @@ function (_React$Component) {
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-links visible",
+        className: "pin-content-links visible",
         onClick: this.toPinShow // style={{ height: imageHeight }}
 
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2838,18 +2838,18 @@ function (_React$Component) {
       // const gridSpan = `span ${pin.row_height + 6}`;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
+        className: "pin-index-item" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         // onClick={this.showPinPage}
         ,
         onMouseEnter: this.turnOnVisibility,
         onMouseLeave: this.turnOffVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-item"
+        className: "pin-content-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "pin-item-img",
+        className: "pin-img",
         src: window.pins[pin.pin_id]
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-item-title"
+        className: "pin-content-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)), this.renderLinks());
     }
   }]);
