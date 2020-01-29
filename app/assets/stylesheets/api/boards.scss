@@ -100,3 +100,20 @@
       }
    }   
 }
+
+.board-name, .board-visibility {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 14px;
+        padding-right: 14px;
+        input {
+            width: 75%; 
+        }
+        p {
+            width: 25%; 
+            box-sizing: border-box;
+        }
+        .secret {
+            font-size: 12px;
+        }      
+    }   
