@@ -5,7 +5,7 @@ class BoardIndexItem extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editable: true //false
+            editable: false
         }
         
         this.displayDefaultBoardCover = this.displayDefaultBoardCover.bind(this);        
@@ -127,7 +127,7 @@ class BoardIndexItem extends React.Component {
 
     toggleEdit(e) {
         e.preventDefault();        
-        // this.setState({ editable: !(this.state.editable) });
+        this.setState({ editable: !(this.state.editable) });
     }
 
     displayEdit() {        
