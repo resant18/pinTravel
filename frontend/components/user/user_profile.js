@@ -169,10 +169,10 @@ class UserProfile extends React.Component {
 
     return (
       <div>
-        <section className='user-profile-page'>
+        <section className='user-profile-header'>
           <div className='tilted-pins'></div>
-          <div className='user-profile-container'>
-            <div className='user-avatar'>
+          <div className='user-profile-detail-container'>
+            <div className='user-profile-avatar'>
               <div className='-pos'>
                 <div className='-shadow-wrapper'>
                   <img

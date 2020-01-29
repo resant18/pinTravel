@@ -6,7 +6,7 @@
     height: 300px;
 }
 
-.user-profile-container {
+.user-profile-detail-container {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -16,8 +16,10 @@
     position: relative;
 }
 
-.user-avatar {
-    width: 20%;    
+.user-profile-avatar {
+    width: 30%;    
+    min-width: 97px;
+    max-width: 200px;
     .-pos {
         top: -52px;
         position: relative;
@@ -44,7 +46,7 @@
 .user-profile-image {
     color: transparent;
     width: 100%;    
-    max-width: 100%;
+    min-width: 97px;
     height: auto;
     vertical-align: middle;
     border: 0;
@@ -55,8 +57,7 @@
     width: 75%;
     align-self: flex-start;
     margin-left: 35px;
-    margin-top: 15px;
-    flex-direction: flex;
+    margin-top: 15px; 
 }
 
 .user-boards-pins-count {
@@ -229,15 +230,15 @@ div.svg-40 {
     display: flex;
     justify-content: center;
     overflow: scroll; 
+    width: 100%;    
+    column-gap: 18px;
     .pin-index {
         transition: opacity .5s ease-in-out;
         padding-top: 1.5em;           
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;     
-                  
+        max-width: 100%;                                  
         .pin-index-item {
             margin-bottom: 20px;
+            width: 236px;
             .pin-content-img {
                 position: relative;
                 filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, .3));

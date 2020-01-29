@@ -3676,13 +3676,13 @@ function (_React$Component) {
       if (!user) return null;
       var userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-        className: "user-profile-page"
+        className: "user-profile-header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tilted-pins"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "user-profile-container"
+        className: "user-profile-detail-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "user-avatar"
+        className: "user-profile-avatar"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "-pos"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
