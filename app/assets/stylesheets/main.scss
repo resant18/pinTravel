@@ -238,6 +238,7 @@ div.svg-40 {
         max-width: 100%;                                  
         .pin-index-item {
             margin-bottom: 20px;
+            position: relative;
             width: 236px;
             .pin-content-img {
                 position: relative;
@@ -268,7 +269,33 @@ div.svg-40 {
                         align-items: center;
                         transition: all .1s ease-in;
                     }
-                }                
+                }   
+                .pin-edit-link {
+                    position: absolute;
+                    top: 0;
+                    left: 0; 
+                    button {
+                        align-items: center;
+                        background-color: var(--color-lightest-gray);
+                        border-radius: 50%;
+                        height: 40px;
+                        width: 40px;
+
+                        &:hover {
+                            background-color: var(--color-light-gray);
+                        }
+                    }
+                }  
+                .pin-save-link {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }  
+                .pin-url-link {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }         
             }
             .pin-content-title {    
                 display: inline-block;                
@@ -276,9 +303,7 @@ div.svg-40 {
                 max-width: 200px;
                 font-weight: 700;
             }
-            .pin-content-links {
-
-            }
+            
         }
     }
 

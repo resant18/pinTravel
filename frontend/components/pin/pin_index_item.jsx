@@ -57,7 +57,7 @@ class PinIndexItem extends React.Component {
       
       if (currentUser.username === pin.user.username) {
         edit = (
-          <button className='tool-buttons edit-button' onClick={this.showEditForm}>
+          <button onClick={this.showEditForm}>
             <svg className='svg-edit' height='12' width='12' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
               <path d='M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z'></path>
             </svg>
@@ -68,19 +68,24 @@ class PinIndexItem extends React.Component {
       }
 
       return (
-        <div
-          className='pin-content-links visible'
-          onClick={this.toPinShow}
+        // <div
+        //   className='pin-content-links visible'
+        //   onClick={this.toPinShow}
           // style={{ height: imageHeight }}
-        >
-          <div className='top-links'>
+        // >
+        <div className='pin-links visible'>
+          <div className='pin-edit-link'>
             {edit}
-            <button className='save-btn' onClick={this.showCreateModal}>              
+          </div>
+          <div className='pin-save-link'>
+            <button className='pin-save-btn' onClick={this.showCreateModal}>              
               <p>Save</p>
             </button>
           </div>
-          <div className='bottom-links'>{link}</div>
-        </div>
+          <div className='pin-url-link'>
+            {link}
+          </div>
+        </div>          
       );
     // }
   }
@@ -100,15 +105,13 @@ class PinIndexItem extends React.Component {
         onMouseLeave={this.turnOffVisibility}
       >
         <div className='pin-content-img'>
-          <img
-            className='pin-img'
-            src={window.pins[pin.pin_id]}            
-          />
+          <img className='pin-img' src={window.pins[pin.pin_id]} />
+          {this.renderLinks()}
         </div>
         <div className='pin-content-title'>
           <p>{pin.title}</p>
         </div>
-        {this.renderLinks()}
+        
       </div>
     
     );

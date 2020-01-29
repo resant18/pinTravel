@@ -1411,8 +1411,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardIndexItem).call(this, props));
     _this.state = {
-      editable: true //false
-
+      editable: false
     };
     _this.displayDefaultBoardCover = _this.displayDefaultBoardCover.bind(_assertThisInitialized(_this));
     _this.displayBoardCoverPins = _this.displayBoardCoverPins.bind(_assertThisInitialized(_this));
@@ -1608,7 +1607,10 @@ function (_React$Component) {
   }, {
     key: "toggleEdit",
     value: function toggleEdit(e) {
-      e.preventDefault(); // this.setState({ editable: !(this.state.editable) });
+      e.preventDefault();
+      this.setState({
+        editable: !this.state.editable
+      });
     }
   }, {
     key: "displayEdit",
@@ -2802,7 +2804,6 @@ function (_React$Component) {
 
       if (currentUser.username === pin.user.username) {
         edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "tool-buttons edit-button",
           onClick: this.showEditForm
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg-edit",
@@ -2819,18 +2820,24 @@ function (_React$Component) {
         edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-content-links visible",
-        onClick: this.toPinShow // style={{ height: imageHeight }}
-
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "top-links"
-      }, edit, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "save-btn",
-        onClick: this.showCreateModal
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "bottom-links"
-      }, link)); // }
+      return (// <div
+        //   className='pin-content-links visible'
+        //   onClick={this.toPinShow}
+        // style={{ height: imageHeight }}
+        // >
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-links visible"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-edit-link"
+        }, edit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-save-link"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "pin-save-btn",
+          onClick: this.showCreateModal
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-url-link"
+        }, link))
+      ); // }
     }
   }, {
     key: "render",
@@ -2850,9 +2857,9 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "pin-img",
         src: window.pins[pin.pin_id]
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), this.renderLinks()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-content-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)), this.renderLinks());
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)));
     }
   }]);
 
