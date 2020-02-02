@@ -3612,7 +3612,6 @@ function (_React$Component) {
           "aria-label": "Add board or pin",
           type: "button"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          "class": "gUZ B9u U9O kVc",
           height: "16",
           width: "16",
           viewBox: "0 0 24 24",

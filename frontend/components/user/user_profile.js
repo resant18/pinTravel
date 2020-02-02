@@ -94,7 +94,6 @@ class UserProfile extends React.Component {
                   type="button"
                >
                   <svg
-                     class="gUZ B9u U9O kVc"
                      height="16"
                      width="16"
                      viewBox="0 0 24 24"
