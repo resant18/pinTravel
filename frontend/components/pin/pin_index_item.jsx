@@ -42,7 +42,7 @@ class PinIndexItem extends React.Component {
 
     if (!currentUser) return null;    
     
-    // if (this.state.visible) {
+    if (this.state.visible) {
       const { pin } = this.props;
       // const imageHeight = pin.row_height * 10;
       let link;
@@ -90,7 +90,7 @@ class PinIndexItem extends React.Component {
           </div>
         </div>          
       );
-    // }
+    }
   }
 
   render() {

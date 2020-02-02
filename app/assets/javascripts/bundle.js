@@ -2668,57 +2668,59 @@ function (_React$Component) {
     key: "renderLinks",
     value: function renderLinks() {
       var currentUser = this.props.currentUser;
-      if (!currentUser) return null; // if (this.state.visible) {
+      if (!currentUser) return null;
 
-      var pin = this.props.pin; // const imageHeight = pin.row_height * 10;
+      if (this.state.visible) {
+        var pin = this.props.pin; // const imageHeight = pin.row_height * 10;
 
-      var link;
-      var edit;
+        var link;
+        var edit;
 
-      if (pin.link_url !== '') {
-        // const hostname = new URL(pin.link_url).hostname;
-        link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: pin.link_url,
-          target: "_blank"
-        }, "something.com...");
+        if (pin.link_url !== '') {
+          // const hostname = new URL(pin.link_url).hostname;
+          link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+            href: pin.link_url,
+            target: "_blank"
+          }, "something.com...");
+        }
+
+        if (currentUser.username === pin.user.username) {
+          edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            onClick: this.showEditForm
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+            className: "svg-edit",
+            height: "12",
+            width: "12",
+            viewBox: "0 0 24 24",
+            "aria-hidden": "true",
+            "aria-label": "",
+            role: "img"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+            d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
+          })));
+        } else {
+          edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
+        }
+
+        return (// <div
+          //   className='pin-content-links visible'
+          //   onClick={this.toPinShow}
+          // style={{ height: imageHeight }}
+          // >
+          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "pin-links visible"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "pin-edit-link"
+          }, edit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "pin-save-link"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+            className: "pin-save-btn",
+            onClick: this.showCreateModal
+          }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "pin-url-link"
+          }, this._formatUrlLink(link)))
+        );
       }
-
-      if (currentUser.username === pin.user.username) {
-        edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: this.showEditForm
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          className: "svg-edit",
-          height: "12",
-          width: "12",
-          viewBox: "0 0 24 24",
-          "aria-hidden": "true",
-          "aria-label": "",
-          role: "img"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
-        })));
-      } else {
-        edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
-      }
-
-      return (// <div
-        //   className='pin-content-links visible'
-        //   onClick={this.toPinShow}
-        // style={{ height: imageHeight }}
-        // >
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-links visible"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-edit-link"
-        }, edit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-save-link"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "pin-save-btn",
-          onClick: this.showCreateModal
-        }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-url-link"
-        }, this._formatUrlLink(link)))
-      ); // }
     }
   }, {
     key: "render",
