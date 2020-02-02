@@ -24,8 +24,7 @@ const App = () => (
       <Route path='/' component={NavBarContainer} />
     </Switch>
     <Switch>
-      <Route exact path='/:username/boards/:boardId' component={BoardShowContainer} />
-      <Route exact path='/feeds' component={PinIndexFeedContainer} />
+      <Route exact path='/:username/boards/:boardId' component={BoardShowContainer} />      
       {/* <Route path='/pin/:pinId' component={PinShowContainer} /> */}
       {/* <Route exact path='/:username/pins' component={UserProfileContainer} /> */}
       <Route exact path='/:username' component={UserProfileContainer} />      

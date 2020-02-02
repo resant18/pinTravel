@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 import SignUpFormContainer from '../components/session_form/signup_form_container';
 import LogInFormContainer from '../components/session_form/login_form_container';
+import NavBarContainer from '../components/navbar/navbar_container';
 
 const Auth = ({ component: Component, path, loggedIn, exact }) => (
     <Route path={path} exact={exact} render={(props) => (
@@ -31,6 +32,8 @@ const Session = ({ path, sessionType, loggedIn, exact }) => (
                 return <SignUpFormContainer {...props} />
             else if (sessionType === 'login')
                 return <LogInFormContainer {...props} />
+        } else {
+            return <NavBarContainer />
         }
     }}  />
 );
