@@ -69,13 +69,13 @@
 
 .add-board-pin {
     border-radius: 50%;
-    height: 42px;
-    width: 42px;    
+    height: 32px;
+    width: 32px;    
     padding: 0;
-    background-color: #ddd;
+    background-color: var(--color-lightest-gray);
+    margin-top: 10px;
     &:hover, &:active, &:focus {
-        box-shadow: 0 0 0 4px rgba(0, 132, 255, 0.5);
-        outline: none;
+        background-color: var(--color-light-gray);
     }
 }   
 

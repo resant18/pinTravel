@@ -12,10 +12,9 @@
         flex-direction: row;        
         justify-content: space-between;
 
-        span.pin-travel {   
-            margin-left: 10px;         
+        span.pin-travel {                  
             align-items: center;
-            font-weight: 700;
+            font-weight: 600;
             color: #333;
             // padding-bottom: 5px;
             font-size: 1.5em;
@@ -28,6 +27,18 @@
             // color: #b5b5b5;
             // padding-bottom: 5px;
             // width: 25%;
+            .logo {
+                width: 48px;
+                height: 48px;
+                align-items: center;
+                justify-content: center;
+                display: flex;
+                padding: 0;                
+                img {
+                    width: 28px;
+                    height: 28px;
+                }
+            }
         }
 
         .right-nav {
@@ -83,7 +94,7 @@
                 border-radius: 999px;
                 transition: transform 0.2s ease-out 0s;
                 color: #262626;
-                padding: 12px;
+                // padding: 12px;
             }
             &:active, &:hover {
                 outline: 0;

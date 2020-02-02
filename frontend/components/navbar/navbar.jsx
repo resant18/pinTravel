@@ -20,7 +20,7 @@ class NavBar extends React.Component {
                     <nav className='navbar'>
                         <div className='navbar-content'>
                             <div className='left-nav'>
-                                <a className='active' aria-current='page' href='#/'>
+                                <a className='logo' aria-current='page' href='#/'>
                                     <img className='logo' src={window.logo} alt='PinTravel'/>                        
                                 </a>                    
                                 <a><span className='pin-travel'>Pintravel</span></a>

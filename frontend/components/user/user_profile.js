@@ -85,19 +85,27 @@ class UserProfile extends React.Component {
   displayProfileToolbar() {
     if (this.props.user === this.props.currentUser) {
       return (
-         <nav className='profile-toolbar'>
+         <nav className="profile-toolbar">
             <div>
                <button
-                  className='add-board-pin'
+                  className="add-board-pin"
                   onClick={this.showDropDown}
-                  aria-label='Add board or pin'
-                  type='button'
+                  aria-label="Add board or pin"
+                  type="button"
                >
-                  <svg height='24' width='24' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img' >
-                     <path d='M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4'></path>
+                  <svg
+                     class="gUZ B9u U9O kVc"
+                     height="16"
+                     width="16"
+                     viewBox="0 0 24 24"
+                     aria-hidden="true"
+                     aria-label=""
+                     role="img"
+                  >
+                     <path d="M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M3 9c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm18 0c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3z"></path>
                   </svg>
                </button>
-               { this.renderDropDown() }
+               {this.renderDropDown()}
             </div>
          </nav>
       );
