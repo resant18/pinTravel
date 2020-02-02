@@ -22,7 +22,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => ({
    updatePin: pin => dispatch(updatePin(pin)),
    deletePin: pinId => dispatch(deletePin(pinId)),
-   showModal: (modal) => dispatch(showModal(modal)),
+   showModal: modal => dispatch(showModal(modal)),
    hideModal: modal => dispatch(hideModal(modal)),   
 });
 

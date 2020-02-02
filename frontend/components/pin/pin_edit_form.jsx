@@ -34,17 +34,7 @@ class PinEditForm extends React.Component {
       this.props.updatePin(this.state.pin)
          .then(this.props.hideModal());
    }
-
-   // displayPhoto() {
-   //    if (this.state.photoUrl) {
-   //       return (
-   //          <div className='preview-picture' >
-   //             {/* <img src={this.state.photoUrl} /> */}
-   //          </div>
-   //       )
-   //    }
-   // }
-
+   
    render() {
       const { pin } = this.state;
       if (pin) {
@@ -81,9 +71,8 @@ class PinEditForm extends React.Component {
                            />
                         </div>
                      </div>
-                     <div className='pin-image'>    
-                        <p>{pin.id}.jpg</p>                    
-                        <img src={window.pins[pin.id]} />
+                     <div className='pin-image'>                            
+                        <img src={this.props.pin.pictureUrl} />
                      </div>
                   </div>
                   <div className='form-footer'>

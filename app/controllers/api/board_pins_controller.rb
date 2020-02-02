@@ -48,7 +48,7 @@ class Api::BoardPinsController < ApplicationController
 
   def update
     @board_pin = current_user.board_pins.find(params[:id])      
-
+    
     if @board_pin.update(board_pin_params)        
       render "api/pins/show"
     else

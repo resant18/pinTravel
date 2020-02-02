@@ -21,7 +21,7 @@ const pinsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_PINS:      
       return merge({}, state, action.pins);
-    case RECEIVE_PIN:
+    case RECEIVE_PIN:      
       return merge({}, state, { [action.pin.id]: action.pin });
     case REMOVE_PIN:
       const newState = merge({}, state);

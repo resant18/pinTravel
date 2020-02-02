@@ -17,12 +17,12 @@ export const receivePins = ({ users, boards, pins }) => {
   };
 };
 
-export const receivePin = ({ users, boards, pins }) => {
+export const receivePin = ({ user, board, pin }) => {
   return {
     type: RECEIVE_PIN,
-    users,
-    boards,
-    pins
+    user,
+    board,
+    pin
   };
 };
 

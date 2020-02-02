@@ -22,7 +22,7 @@ const usersReducer = (state = {}, action) => {
       return merge({}, state, { [action.user.username]: action.user });
     case RECEIVE_PINS:
       return merge({}, state, action.users);
-    case RECEIVE_PIN:
+    case RECEIVE_PIN:       
       return merge({}, state, { [action.user.username]: action.user });
     default:
       return state;

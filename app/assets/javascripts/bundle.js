@@ -282,14 +282,14 @@ var receivePins = function receivePins(_ref) {
   };
 };
 var receivePin = function receivePin(_ref2) {
-  var users = _ref2.users,
-      boards = _ref2.boards,
-      pins = _ref2.pins;
+  var user = _ref2.user,
+      board = _ref2.board,
+      pin = _ref2.pin;
   return {
     type: RECEIVE_PIN,
-    users: users,
-    boards: boards,
-    pins: pins
+    user: user,
+    board: board,
+    pin: pin
   };
 };
 var removePin = function removePin(payload) {
@@ -2252,16 +2252,7 @@ function (_React$Component) {
     value: function handleSubmit(e) {
       e.preventDefault();
       this.props.updatePin(this.state.pin).then(this.props.hideModal());
-    } // displayPhoto() {
-    //    if (this.state.photoUrl) {
-    //       return (
-    //          <div className='preview-picture' >
-    //             {/* <img src={this.state.photoUrl} /> */}
-    //          </div>
-    //       )
-    //    }
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
@@ -2297,8 +2288,8 @@ function (_React$Component) {
           onChange: this.update('detail')
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-image"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.id, ".jpg"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: window.pins[pin.id]
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.pin.pictureUrl
         }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "form-footer"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
