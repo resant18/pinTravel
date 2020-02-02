@@ -20,7 +20,7 @@
     color: var(--color-surface);    
 }
 
-@mixsecondary-button {    
+@mixin secondary-button {    
     background-color: var(--color-secondary);
     color: var(--color-surface);    
 }

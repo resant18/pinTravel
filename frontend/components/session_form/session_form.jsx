@@ -226,7 +226,7 @@ class SessionForm extends React.Component {
                   {this.renderPasswordError()}
                   <div>
                     <button
-                      className='primary'
+                      className='form-primary'
                       type='submit'
                       onClick={this.handleDemoUser}
                     >

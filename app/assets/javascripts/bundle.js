@@ -3361,7 +3361,7 @@ function (_React$Component) {
         placeholder: passwordHolder,
         "aria-invalid": "false"
       })), this.renderPasswordError(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "primary",
+        className: "form-primary",
         type: "submit",
         onClick: this.handleDemoUser
       }, "Demo User")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {

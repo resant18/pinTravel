@@ -6,12 +6,18 @@
 // form button
 .form-primary {
     @include form-button;
-    @include primary-button;    
+    @include primary-button;  
+    &:hover {
+        filter: brightness(85%);
+    }  
 }
 
 .form-secondary {
     @include form-button;
     @include secondary-button;    
+    &:hover {
+        filter: brightness(85%);
+    }
 }
 
 .form-container {
