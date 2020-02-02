@@ -1409,102 +1409,19 @@ function (_React$Component) {
     _this.state = {
       editable: false
     };
-    _this.displayDefaultBoardCover = _this.displayDefaultBoardCover.bind(_assertThisInitialized(_this));
-    _this.displayBoardCoverPins = _this.displayBoardCoverPins.bind(_assertThisInitialized(_this));
     _this.toggleEdit = _this.toggleEdit.bind(_assertThisInitialized(_this));
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BoardIndexItem, [{
-    key: "displayDefaultBoardCover",
-    value: function displayDefaultBoardCover() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-cover"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
-        style: {
-          width: '50%',
-          height: '100%'
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          width: '100%',
-          height: '100%'
-        }
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "border-line",
-        style: {
-          width: '25%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column'
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
-        style: {
-          width: '100%',
-          height: '75%'
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
-        style: {
-          width: '100%',
-          height: '25%'
-        }
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        style: {
-          width: '25%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column'
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
-        style: {
-          width: '100%',
-          height: '50%'
-        }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "p-item border-line",
-        style: {
-          width: '100%',
-          height: '50%'
-        }
-      })));
-    }
-  }, {
-    key: "_generateRandomNumber",
-    value: function _generateRandomNumber(limit, count) {
-      var arr = [];
-
-      while (arr.length < 6) {
-        var r = Math.floor(Math.random() * limit) + 1;
-        if (arr.indexOf(r) === -1) if (arr.length >= count) arr.push(-1);else arr.push(r);
-      }
-
-      return arr;
-    }
-  }, {
-    key: "_pinsIndex",
-    value: function _pinsIndex(pins) {
-      var pinsIdx = [];
-      var i = 0;
-
-      while (i < 5) {
-        if (i < pins.length) pinsIdx.push(pins[i].pin_id);else pinsIdx.push(-1);
-        i++;
-      }
-
-      return pinsIdx;
+    key: "_getPictureUrl",
+    value: function _getPictureUrl(pin) {
+      return pin ? "url('".concat(pin.pictureUrl, "')") : 'none';
     }
   }, {
     key: "displayBoardCoverPins",
     value: function displayBoardCoverPins(pins) {
-      // let pins = this._generateRandomNumber(25, pinCount);
-      //TODO: Do something for undefined image file
-      var pinsIdx = this._pinsIndex(pins);
-
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-cover"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1518,7 +1435,7 @@ function (_React$Component) {
         style: {
           width: '100%',
           height: '100%',
-          background: "url(".concat(window.pins[pinsIdx[0]], ")")
+          background: "".concat(this._getPictureUrl(pins[0]))
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "border-line",
@@ -1533,14 +1450,14 @@ function (_React$Component) {
         style: {
           width: '100%',
           height: '75%',
-          background: "url(".concat(window.pins[pinsIdx[1]], ")")
+          background: "".concat(this._getPictureUrl(pins[1]))
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-item border-line bg-cover",
         style: {
           width: '100%',
           height: '25%',
-          background: "url(".concat(window.pins[pinsIdx[2]], ")")
+          background: "".concat(this._getPictureUrl(pins[2]))
         }
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         style: {
@@ -1554,51 +1471,16 @@ function (_React$Component) {
         style: {
           width: '100%',
           height: '50%',
-          background: "url(".concat(window.pins[pinsIdx[3]], ")")
+          background: "".concat(this._getPictureUrl(pins[3]))
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "p-item border-line bg-cover",
         style: {
           width: '100%',
           height: '50%',
-          background: "url(".concat(window.pins[pinsIdx[4]], ")")
+          background: "".concat(this._getPictureUrl(pins[4]))
         }
       })));
-    } // TODO: Use Pinterest's logic to render the board cover pin images dynamically
-
-  }, {
-    key: "displayBoardCoverPins2",
-    value: function displayBoardCoverPins2(pins) {
-      var itemsHeight = [0, 0, 0];
-      var pinsLayout = '<div></div>';
-
-      for (var i = 0; i++; i < 6) {
-        console.log(pins.length);
-
-        if (i < pins.length) {
-          var img = void 0,
-              width = void 0,
-              height = void 0,
-              ratio = void 0;
-          img = document.createElement('div');
-          img.id = 'm-item' + i.toString();
-          img.src = window.pin2;
-          ratio = img.naturalWidth / 98.66;
-          height = img.naturalHeight * ratio;
-          img.height = height;
-          imgStyle = {
-            background: "url(".concat(window.pin3),
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          };
-          pinsLayout = "<div style='".concat(imgStyle, "'>\n                    </div>");
-        } else {
-          pinsLayout = "<h2>something<h2>";
-        }
-      }
-
-      console.log(pinsLayout);
-      return pinsLayout;
     }
   }, {
     key: "toggleEdit",
@@ -1648,16 +1530,14 @@ function (_React$Component) {
           pins = _this$props.pins;
       var pinsData = Object.values(pins);
       var pinCount = pinsData.length;
-      if (!board) return null; // let pinIdx = this._generateRandomNumber(25);
-
-      var boardCover = pinCount === 0 ? this.displayDefaultBoardCover() : this.displayBoardCoverPins(pinsData);
+      if (!board) return null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-item-content",
         onMouseEnter: this.toggleEdit,
         onMouseLeave: this.toggleEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(this.props.username, "/boards/").concat(board.id)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, boardCover, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.displayBoardCoverPins(pinsData), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? 'Pins' : 'Pin')))), this.displayEdit());
     }
@@ -2857,7 +2737,7 @@ function (_React$Component) {
         className: "pin-content-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "pin-img",
-        src: window.pins[pin.pin_id]
+        src: pin.pictureUrl
       }), this.renderLinks()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-content-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)));

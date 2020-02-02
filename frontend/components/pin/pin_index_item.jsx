@@ -108,7 +108,7 @@ class PinIndexItem extends React.Component {
         onMouseLeave={this.turnOffVisibility}
       >
         <div className='pin-content-img'>
-          <img className='pin-img' src={window.pins[pin.pin_id]} />
+          <img className='pin-img' src={pin.pictureUrl} />
           {this.renderLinks()}
         </div>
         <div className='pin-content-title'>
