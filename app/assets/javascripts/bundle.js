@@ -3356,14 +3356,14 @@ function (_React$Component) {
         placeholder: passwordHolder,
         "aria-invalid": "false"
       })), this.renderPasswordError(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "prim",
+        className: "primary",
         type: "submit",
         onClick: this.handleDemoUser
       }, "Demo User")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "prim",
+        className: "primary",
         type: "submit"
       }, formType))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "OR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "sec",
+        className: "secondary",
         type: "button",
         onClick: this.props.switchAction
       }, formType === 'Sign up' ? 'Log in' : 'Sign up'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "By continuing, you agree to Pinterest's", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {

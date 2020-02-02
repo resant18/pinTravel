@@ -14,7 +14,6 @@
  *= require_self
  */
 
-
  :root {
   --color-surface: white;
   --color-solid: black;
@@ -60,21 +59,21 @@ button, input {
 
 button, .button {
     border: 0px;
-    height: 36px;
+    /* height: 36px; */
     display: inline-block;
-    border-radius: 4px;
+    /* border-radius: 4px; */
     -webkit-font-smoothing: antialiased;
-    padding: 0px 18px;
+    /* padding: 0px 18px; */
     font-size: 15px;
     font-weight: bold;
     outline: none;
     box-shadow: none;
     cursor: pointer;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     vertical-align: middle;
     text-align: center;    
     color: var(--color-surface);
-    width: 100%;
+    /* width: 100%; */
 } 
 
 .button-footer {
@@ -92,27 +91,19 @@ button, .button {
 }  
 
 .cancel-btn, .delete-btn {
-    color: #333;
-    background-color: #efefef;                                 
+    color: var(--color-pBj);
+    background-color: var(--color-lightest-gray);                                 
 }   
 
 .save-btn {
-    color: #8e8e8e;
-    background-color: #efefef;                
+    color: var(--color-wyg);
+    background-color: var(--color-lightest-gray);                
 }
 
 .save-btn-focus {
-    color: #333;
+    color: var(--color-pBj);
     background-color: var(--color-secondary);           
 }  
-
-.prim {
-  background-color: var(--color-primary);
-}
-
-.sec {
-  background-color: var(--color-secondary);
-}
 
 input {
     box-sizing: border-box;

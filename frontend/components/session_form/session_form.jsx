@@ -226,7 +226,7 @@ class SessionForm extends React.Component {
                   {this.renderPasswordError()}
                   <div>
                     <button
-                      className='prim'
+                      className='primary'
                       type='submit'
                       onClick={this.handleDemoUser}
                     >
@@ -234,14 +234,14 @@ class SessionForm extends React.Component {
                     </button>
                   </div>
                   <div>
-                    <button className='prim' type='submit'>
+                    <button className='primary' type='submit'>
                       {formType}
                     </button>
                   </div>
                 </div>
                 <p>OR</p>
                 <button
-                  className='sec'
+                  className='secondary'
                   type='button'
                   onClick={this.props.switchAction}
                 >
