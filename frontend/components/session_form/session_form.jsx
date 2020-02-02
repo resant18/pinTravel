@@ -234,14 +234,14 @@ class SessionForm extends React.Component {
                     </button>
                   </div>
                   <div>
-                    <button className='primary' type='submit'>
+                    <button className='form-primary' type='submit'>
                       {formType}
                     </button>
                   </div>
                 </div>
                 <p>OR</p>
                 <button
-                  className='secondary'
+                  className='form-secondary'
                   type='button'
                   onClick={this.props.switchAction}
                 >

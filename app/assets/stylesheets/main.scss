@@ -1,3 +1,4 @@
+@import "./inherit.scss";
 // User
 
 .tilted-pins {
@@ -278,8 +279,7 @@ div.svg-40 {
                     button {
                         align-items: center;
                         background-color: var(--color-lightest-gray);
-                        border-radius: 50%;
-                        color: var(--color-surface);
+                        border-radius: 50%;                        
                         margin: 0;
                         padding: 0;
                         height: 32px;
@@ -289,15 +289,35 @@ div.svg-40 {
                         }
                     }
                 }  
-                .pin-save-link {
+                .pin-save-link {                    
                     position: absolute;
-                    top: 0;
-                    right: 0;
+                    top: 10px;
+                    right: 10px;
+                    button {
+                        @include semi-round-button;
+                        @include primary-button;
+                        padding: 0 14px;
+                        height: 32px;                        
+                        font-weight: 500;
+                        &:hover {                            
+                            filter: brightness(85%);
+                        }
+                    }                    
                 }  
                 .pin-url-link {
                     position: absolute;
-                    bottom: 0;
-                    left: 0;
+                    bottom: 10px;
+                    left: 10px;
+                    background-color: white;
+                    filter: brightness(95%);
+                    padding: 10px;
+                    border-radius: 20px;
+                    font-weight: 700;
+                    width: 125px;   
+                    &:hover {
+                        cursor: pointer;
+                        filter: brightness(100%);
+                    }                 
                 }         
             }
             .pin-content-title {    

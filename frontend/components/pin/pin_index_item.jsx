@@ -32,6 +32,10 @@ class PinIndexItem extends React.Component {
     this.setState({ visible: true });
   }
 
+  _formatUrlLink(link) {
+     return link.length > 12 ? link + '...' : link;
+  }
+
   // TO-DO regex the link name later
   renderLinks() {    
     const { currentUser } = this.props;
@@ -47,10 +51,8 @@ class PinIndexItem extends React.Component {
       if (pin.link_url !== '') {
         // const hostname = new URL(pin.link_url).hostname;
         link = (
-          <a href={pin.link_url} target='_blank'>
-            {/* <i className='fas fa-external-link-alt'></i> */}
-            www.something.com
-            {/* <p>{hostname}</p> */}
+          <a href={pin.link_url} target='_blank'>            
+            something.com...
           </a>
         );
       }
@@ -78,12 +80,13 @@ class PinIndexItem extends React.Component {
             {edit}
           </div>
           <div className='pin-save-link'>
-            <button className='pin-save-btn' onClick={this.showCreateModal}>              
-              <p>Save</p>
+            <button className='pin-save-btn' 
+                onClick={this.showCreateModal}>              
+              Save
             </button>
           </div>
-          <div className='pin-url-link'>
-            {link}
+          <div className='pin-url-link'>            
+            {this._formatUrlLink(link)}
           </div>
         </div>          
       );

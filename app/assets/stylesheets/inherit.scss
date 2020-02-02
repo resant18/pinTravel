@@ -1,0 +1,26 @@
+// buttons
+@mixin form-button {
+    height: 36px;    
+    border-radius: 4px;    
+    padding: 0px 18px;    
+    margin-top: 10px;    
+    width: 100%;    
+}
+
+@mixin round-button {
+   border-radius: 50%;   
+}
+
+@mixin semi-round-button {
+   border-radius: 20px;
+}
+
+@mixin primary-button {        
+    background-color: var(--color-primary);
+    color: var(--color-surface);    
+}
+
+@mixsecondary-button {    
+    background-color: var(--color-secondary);
+    color: var(--color-surface);    
+}

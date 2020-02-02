@@ -1,24 +1,17 @@
 // Place all the styles related to the api/sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "./inherit.scss";
 
-// buttons
-@mixin form-button {
-    height: 36px;    
-    border-radius: 4px;    
-    padding: 0px 18px;    
-    margin-top: 10px;    
-    width: 100%;
+// form button
+.form-primary {
+    @include form-button;
+    @include primary-button;    
 }
 
-.primary {
+.form-secondary {
     @include form-button;
-    background-color: var(--color-primary);
-}
-
-.secondary {
-    @include form-button;
-    background-color: var(--color-secondary);
+    @include secondary-button;    
 }
 
 .form-container {

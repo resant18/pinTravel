@@ -58,22 +58,16 @@ button, input {
 }
 
 button, .button {
-    border: 0px;
-    /* height: 36px; */
-    display: inline-block;
-    /* border-radius: 4px; */
-    -webkit-font-smoothing: antialiased;
-    /* padding: 0px 18px; */
+    border: 0px;    
+    display: inline-block;    
+    -webkit-font-smoothing: antialiased;    
     font-size: 15px;
     font-weight: bold;
     outline: none;
     box-shadow: none;
-    cursor: pointer;
-    /* margin-top: 10px; */
+    cursor: pointer;    
     vertical-align: middle;
-    text-align: center;    
-    color: var(--color-surface);
-    /* width: 100%; */
+    text-align: center;        
 } 
 
 .button-footer {

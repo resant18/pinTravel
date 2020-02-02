@@ -2781,6 +2781,11 @@ function (_React$Component) {
       this.setState({
         visible: true
       });
+    }
+  }, {
+    key: "_formatUrlLink",
+    value: function _formatUrlLink(link) {
+      return link.length > 12 ? link + '...' : link;
     } // TO-DO regex the link name later
 
   }, {
@@ -2799,7 +2804,7 @@ function (_React$Component) {
         link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: pin.link_url,
           target: "_blank"
-        }, "www.something.com");
+        }, "something.com...");
       }
 
       if (currentUser.username === pin.user.username) {
@@ -2834,9 +2839,9 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "pin-save-btn",
           onClick: this.showCreateModal
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-url-link"
-        }, link))
+        }, this._formatUrlLink(link)))
       ); // }
     }
   }, {
@@ -3360,10 +3365,10 @@ function (_React$Component) {
         type: "submit",
         onClick: this.handleDemoUser
       }, "Demo User")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "primary",
+        className: "form-primary",
         type: "submit"
       }, formType))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "OR"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "secondary",
+        className: "form-secondary",
         type: "button",
         onClick: this.props.switchAction
       }, formType === 'Sign up' ? 'Log in' : 'Sign up'), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "By continuing, you agree to Pinterest's", ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
