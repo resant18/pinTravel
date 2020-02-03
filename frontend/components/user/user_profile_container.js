@@ -9,19 +9,16 @@ const mapStateToProps = (state, ownProps) => {
   const username = ownProps.match.params.username;
   const user = state.entities.users[username];  
   const permitted = currentUser ? (username === currentUser.username) : false;
-  const boards = selectUserBoards(state.entities, user);
-  const userPins = selectUserPins(state.entities, user)    
-  const pinIds = user ? user["pin_ids"] : [];  
+  const boards = selectUserBoards(state.entities, user, permitted);
+  const userPins = selectUserPins(state.entities, user)      
   
   return {
     currentUser,
     username,
     user,
     permitted,
-    boards,
-    //pinIds,
-    userPins,
-    //pins
+    boards,    
+    userPins,    
   };
 };
 

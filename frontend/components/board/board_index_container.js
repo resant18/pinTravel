@@ -13,7 +13,7 @@
 //   const username = user.username;
 //   const boards = ownProps.boards;
 //   const pins = ownProps.pins;  
-  
+
 //   return {
 //     currentUser,
 //     user,

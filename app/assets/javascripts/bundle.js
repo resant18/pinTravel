@@ -1536,6 +1536,25 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "renderSecretIcon",
+    value: function renderSecretIcon() {
+      debugger;
+
+      if (this.props.board.secret) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "secret"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          height: "16",
+          width: "16",
+          viewBox: "0 0 24 24",
+          "aria-label": "Secret board",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M8 10V7c0-2.206 1.794-4 4-4s4 1.794 4 4v3H8zm11 .017V7c0-3.86-3.141-7-7-7S5 3.14 5 7v3.017a8.698 8.698 0 0 0-1.75 5.233 8.75 8.75 0 1 0 17.5 0A8.698 8.698 0 0 0 19 10.017z"
+        })));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -1550,9 +1569,13 @@ function (_React$Component) {
         onMouseLeave: this.toggleEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(this.props.username, "/boards/").concat(board.id)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.displayBoardCoverPins(pinsData), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-item-box"
+      }, this.displayBoardCoverPins(pinsData), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? 'Pins' : 'Pin')))), this.displayEdit());
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-secret-pin"
+      }, this.renderSecretIcon(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pinCount, " ", pinCount > 1 ? 'Pins' : 'Pin'))))), this.displayEdit());
     }
   }]);
 
@@ -1765,6 +1788,25 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "renderSecretIcon",
+    value: function renderSecretIcon() {
+      debugger;
+
+      if (this.props.board.secret) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "secret"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          height: "16",
+          width: "16",
+          viewBox: "0 0 24 24",
+          "aria-label": "Secret board",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M8 10V7c0-2.206 1.794-4 4-4s4 1.794 4 4v3H8zm11 .017V7c0-3.86-3.141-7-7-7S5 3.14 5 7v3.017a8.698 8.698 0 0 0-1.75 5.233 8.75 8.75 0 1 0 17.5 0A8.698 8.698 0 0 0 19 10.017z"
+        })));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -1782,8 +1824,10 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "board-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, board.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "board-secret-pin"
+        }, this.renderSecretIcon(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "total-pins"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pinTotal), "\xA0", pinWord)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pinTotal), "\xA0", pinWord))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
           className: "board-pins-detail"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pins"
@@ -2137,7 +2181,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   var currentUser = state.entities.users[state.session.id] || {};
   var username = ownProps.match.params.username;
   var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_4__["selectUserBoards"])(state.entities, currentUser);
@@ -2389,7 +2432,6 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "upload-btn"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-        "class": "gUZ B9u U9O kVc",
         height: "32",
         width: "32",
         viewBox: "0 0 24 24",
@@ -3946,18 +3988,15 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var username = ownProps.match.params.username;
   var user = state.entities.users[username];
   var permitted = currentUser ? username === currentUser.username : false;
-  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user);
+  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user, permitted);
   var userPins = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserPins"])(state.entities, user);
-  var pinIds = user ? user["pin_ids"] : [];
   return {
     currentUser: currentUser,
     username: username,
     user: user,
     permitted: permitted,
     boards: boards,
-    //pinIds,
-    userPins: userPins //pins
-
+    userPins: userPins
   };
 };
 
@@ -4308,11 +4347,11 @@ var selectBoard = function selectBoard(_ref, boardId) {
   var boards = _ref.boards;
   return boards[boardId];
 };
-var selectUserBoards = function selectUserBoards(_ref2, user) {
+var selectUserBoards = function selectUserBoards(_ref2, user, permitted) {
   var boards = _ref2.boards;
   if (!user) return [];
   return Object.values(boards).filter(function (board) {
-    return board.user_id === user.id;
+    return permitted ? board.user_id === user.id : board.secret === false && board.user_id === user.id;
   });
 };
 var selectUserPins = function selectUserPins(_ref3, user) {

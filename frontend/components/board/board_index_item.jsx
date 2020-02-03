@@ -63,6 +63,17 @@ class BoardIndexItem extends React.Component {
         this.props.showModal({ name: 'edit-board', selectedData: this.props.board.id });
     }
 
+    renderSecretIcon() {
+        debugger
+        if (this.props.board.secret) {
+            return (
+                <div className='secret'>
+                    <svg height="16" width="16" viewBox="0 0 24 24" aria-label="Secret board" role="img"><path d="M8 10V7c0-2.206 1.794-4 4-4s4 1.794 4 4v3H8zm11 .017V7c0-3.86-3.141-7-7-7S5 3.14 5 7v3.017a8.698 8.698 0 0 0-1.75 5.233 8.75 8.75 0 1 0 17.5 0A8.698 8.698 0 0 0 19 10.017z"></path></svg>
+                </div>
+            )
+        }
+    }
+
     render() {
         const { board, pins } = this.props;       
         const pinsData = Object.values(pins);         
@@ -76,14 +87,17 @@ class BoardIndexItem extends React.Component {
                 onMouseLeave={this.toggleEdit}>
             
                 <Link to={`/${this.props.username}/boards/${board.id}`} >
-                    <div>
+                    <div className='board-item-box'>
                         {                        
                             this.displayBoardCoverPins(pinsData)
                         }
                     
                         <div className='board-info'>
-                            <h2>{board.name}</h2>                            
-                            <p>{pinCount} {pinCount > 1 ? 'Pins' : 'Pin'}</p>
+                            <h2>{board.name}</h2> 
+                            <div className='board-secret-pin'>
+                                {this.renderSecretIcon()}                           
+                                <p>{pinCount} {pinCount > 1 ? 'Pins' : 'Pin'}</p>
+                            </div>
                         </div>
                     </div>
                 </Link>

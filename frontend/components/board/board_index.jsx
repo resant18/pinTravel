@@ -17,7 +17,7 @@ class BoardIndex extends React.Component {
         const { user, boards, pins, permitted, showModal } = this.props;
 
         if (!boards) return null;
-        const userBoards = boards.map((board, i) => {                                    
+        const userBoards = boards.map((board, i) => {                                                
             const user_board_pins = pins.filter(pin => pin.board_id === board.id);
 
             return (   
