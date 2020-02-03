@@ -8,7 +8,7 @@ import { showModal, hideModal } from "../../actions/modal_actions";
 import PinEditForm from './pin_edit_form';
 
 
-const msp = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {
    const currentUser = state.entities.users[state.session.id] || {};
    const pinId = state.ui.modal.selectedData;
    const pin = state.entities.pins[pinId];
@@ -19,11 +19,13 @@ const msp = (state, ownProps) => {
    };
 };
 
-const mdp = dispatch => ({
+const mapDispatchToProps = dispatch => ({
    updatePin: pin => dispatch(updatePin(pin)),
    deletePin: pinId => dispatch(deletePin(pinId)),
    showModal: modal => dispatch(showModal(modal)),
    hideModal: modal => dispatch(hideModal(modal)),   
 });
 
-export default withRouter(connect(msp, mdp)(PinEditForm));
+export default withRouter(
+   connect(mapStateToProps, mapDispatchToProps)(PinEditForm)
+);

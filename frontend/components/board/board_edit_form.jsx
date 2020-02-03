@@ -62,10 +62,10 @@ class BoardEditForm extends React.Component {
 
    render() {
       const isCreateButtonDisabled = (this.state.name === '') ? true : false;                  
-      const createButtonStyle = (this.state.name === '') ? '' : 'save-btn-focus';                        
+      const createButtonStyle = (this.state.name === '') ? '' : 'focus';                        
 
       return (
-         <div aria-label='Create' className='board-form-box'>
+         <div aria-label='Edit' className='board-form-box'>
             <div className='header'>
                <h1>Edit your board</h1>
                <button
@@ -74,8 +74,7 @@ class BoardEditForm extends React.Component {
                >
                   <svg height='20' width='20' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'><path d='M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z'></path></svg>
                </button>
-            </div>
-            <hr className='borderline' />
+            </div>            
             <div className='body'>
                <form className='board-form'>
                   <div className='board-name'>
@@ -91,8 +90,7 @@ class BoardEditForm extends React.Component {
                      {this.renderBoardNameValidationError()}
                      <div className='error-text'>{this.renderErrors()}</div>
                   </div>
-
-                  <hr className='borderline' />
+                  
                   <div className='board-visibility'>
                      <p>Visibility</p>
                      <div className='secret'>
@@ -104,11 +102,10 @@ class BoardEditForm extends React.Component {
                      </div>
                   </div>
                </form>
-
-               <hr className='borderline' />
+ 
                <div className='button-footer'>
                   <div className='button-group button-group-edit'>
-                     <div className='left'>
+                     <div className='button-group-left'>
                         <button
                            id='delete-btn'
                            className='delete-btn'
@@ -116,7 +113,7 @@ class BoardEditForm extends React.Component {
                            Delete
                         </button>
                      </div>
-                     <div className='right'>
+                     <div className='button-group-right'>
                         <button
                            id='cancel-btn'
                            className='cancel-btn'

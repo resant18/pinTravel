@@ -46,13 +46,13 @@ export const createPin = (formData) => {
   });
 };
 
-// export const createPinJoin = (pin, id) => {
-//   return $.ajax({
-//     method: 'POST',
-//     url: `api/boards/${id}/pin_joins`,
-//     data: { pin }
-//   });
-// };
+export const createPinInBoard = (pin, boardId) => {
+  return $.ajax({
+    method: 'POST',
+    url: `api/boards/${boardId}/pin_joins`,
+    data: { pin }
+  });
+};
 
 export const updatePin = pin => {
   return $.ajax({

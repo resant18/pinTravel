@@ -240,7 +240,7 @@ var hideModal = function hideModal() {
 /*!*****************************************!*\
   !*** ./frontend/actions/pin_actions.js ***!
   \*****************************************/
-/*! exports provided: RECEIVE_PINS, RECEIVE_PIN, REMOVE_PIN, RECEIVE_PIN_ERRORS, CLEAR_PINS, receivePins, receivePin, removePin, clearPins, receivePinErrors, fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPin, createPin, updatePin, deletePin */
+/*! exports provided: RECEIVE_PINS, RECEIVE_PIN, REMOVE_PIN, RECEIVE_PIN_ERRORS, CLEAR_PINS, receivePins, receivePin, removePin, clearPins, receivePinErrors, fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPin, createPin, createPinInBoard, updatePin, deletePin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -261,6 +261,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoardPins", function() { return fetchBoardPins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPin", function() { return fetchPin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPin", function() { return createPin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinInBoard", function() { return createPinInBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePin", function() { return updatePin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePin", function() { return deletePin; });
 /* harmony import */ var _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/pin_api_util */ "./frontend/util/pin_api_util.js");
@@ -363,13 +364,16 @@ var createPin = function createPin(formData, boardId) {
       return dispatch(receivePinErrors(err.responseJSON));
     });
   };
-}; // export const createPinJoin = (pin, boardId) => dispatch =>
-//   ApiUtil.createPinJoin(pin, boardId)
-//   .then(
-//     payload => dispatch(receivePin(payload)),
-//     err => dispatch(receivePinErrors(err.responseJSON))
-//   );
-
+};
+var createPinInBoard = function createPinInBoard(pin, boardId) {
+  return function (dispatch) {
+    return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["createPinInBoard"](pin, boardId).then(function (payload) {
+      return dispatch(receivePin(payload));
+    }, function (err) {
+      return dispatch(receivePinErrors(err.responseJSON));
+    });
+  };
+};
 var updatePin = function updatePin(pin) {
   return function (dispatch) {
     return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["updatePin"](pin).then(function (payload) {
@@ -955,19 +959,26 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "aria-label": "Delete Confirm",
+        className: "board-delete-confirm-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Are you sure?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "borderline"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Are you sure?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Once you delete a board and all of its Pins, you can't undo it."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Once you delete a board and all of its Pins, you can't undo it.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "delete-btn",
         onClick: this.handleDelete
       }, "Delete forever"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "cancel-btn",
+        className: "cancel-btn focus",
         onClick: this.handleCancel
-      }, "Cancel"))));
+      }, "Cancel")))));
     }
   }]);
 
@@ -1177,9 +1188,9 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var isCreateButtonDisabled = this.state.name === '' ? true : false;
-      var createButtonStyle = this.state.name === '' ? '' : 'save-btn-focus';
+      var createButtonStyle = this.state.name === '' ? '' : 'focus';
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "aria-label": "Create",
+        "aria-label": "Edit",
         className: "board-form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
@@ -1195,9 +1206,7 @@ function (_React$Component) {
         role: "img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
         d: "M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z"
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "borderline"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "board-form"
@@ -1212,9 +1221,7 @@ function (_React$Component) {
         required: true
       }), this.renderBoardNameValidationError(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error-text"
-      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "borderline"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "secret"
@@ -1227,20 +1234,18 @@ function (_React$Component) {
         className: "secret-info"
       }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create"
-      }, "Learn more"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
-        className: "borderline"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Learn more"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-group button-group-edit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "left"
+        className: "button-group-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "delete-btn",
         className: "delete-btn",
         onClick: this.handleDelete
       }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "right"
+        className: "button-group-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "cancel-btn",
         className: "cancel-btn",
@@ -2104,7 +2109,28 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-
+// import { withRouter } from 'react-router-dom';
+// import { connect } from 'react-redux';
+// import { createPin } from '../../actions/pin_actions';
+// import { fetchBoards } from '../../actions/board_actions';
+// import CreatePinForm from './create_pin_form';
+// const msp = (state, ownProps) => {
+//    const currentUser = state.entities.users[state.session.id] || {};
+//    const username = ownProps.match.params.username;
+//    const boards = Object.values(state.entities.boards).filter(
+//       board => board.creator_id === currentUser.id
+//    );
+//    return {
+//       currentUser,
+//       username,
+//       boards
+//    };
+// };
+// const mdp = dispatch => ({
+//    createPin: (pin, boardId) => dispatch(createPin(pin, boardId)),
+//    fetchBoards: () => dispatch(fetchBoards())
+// });
+// export default withRouter(connect(msp, mdp)(CreatePinForm));
 
 /***/ }),
 
@@ -2128,7 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var msp = function msp(state, ownProps) {
+var mapStateToProps = function mapStateToProps(state, ownProps) {
   var currentUser = state.entities.users[state.session.id] || {};
   var pinId = state.ui.modal.selectedData;
   var pin = state.entities.pins[pinId];
@@ -2138,7 +2164,7 @@ var msp = function msp(state, ownProps) {
   };
 };
 
-var mdp = function mdp(dispatch) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     updatePin: function updatePin(pin) {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["updatePin"])(pin));
@@ -2155,7 +2181,7 @@ var mdp = function mdp(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(msp, mdp)(_pin_edit_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_0__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_edit_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
 
 /***/ }),
 
@@ -4328,7 +4354,7 @@ var deleteBoard = function deleteBoard(id) {
 /*!***************************************!*\
   !*** ./frontend/util/pin_api_util.js ***!
   \***************************************/
-/*! exports provided: fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPin, createPin, updatePin, deletePin */
+/*! exports provided: fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPin, createPin, createPinInBoard, updatePin, deletePin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4339,6 +4365,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoardPins", function() { return fetchBoardPins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPin", function() { return fetchPin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPin", function() { return createPin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinInBoard", function() { return createPinInBoard; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePin", function() { return updatePin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePin", function() { return deletePin; });
 var fetchAllPins = function fetchAllPins() {
@@ -4388,14 +4415,16 @@ var createPin = function createPin(formData) {
     contentType: false,
     processData: false
   });
-}; // export const createPinJoin = (pin, id) => {
-//   return $.ajax({
-//     method: 'POST',
-//     url: `api/boards/${id}/pin_joins`,
-//     data: { pin }
-//   });
-// };
-
+};
+var createPinInBoard = function createPinInBoard(pin, boardId) {
+  return $.ajax({
+    method: 'POST',
+    url: "api/boards/".concat(boardId, "/pin_joins"),
+    data: {
+      pin: pin
+    }
+  });
+};
 var updatePin = function updatePin(pin) {
   return $.ajax({
     method: 'PATCH',

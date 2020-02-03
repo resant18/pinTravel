@@ -84,12 +84,12 @@ export const createPin = (formData, boardId) => dispatch =>
     err => dispatch(receivePinErrors(err.responseJSON))
   );
 
-// export const createPinJoin = (pin, boardId) => dispatch =>
-//   ApiUtil.createPinJoin(pin, boardId)
-//   .then(
-//     payload => dispatch(receivePin(payload)),
-//     err => dispatch(receivePinErrors(err.responseJSON))
-//   );
+export const createPinInBoard = (pin, boardId) => dispatch =>
+  ApiUtil.createPinInBoard(pin, boardId)
+  .then(
+    payload => dispatch(receivePin(payload)),
+    err => dispatch(receivePinErrors(err.responseJSON))
+  );
 
 export const updatePin = pin => dispatch =>
   ApiUtil.updatePin(pin)

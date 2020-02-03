@@ -30,25 +30,29 @@ class BoardDeleteConfirmation extends React.Component {
 
    render() {      
       return (
-         <div>
+         <div aria-label='Delete Confirm' className='board-delete-confirm-form'>
             <div className='header'>
-               <h1>Are you sure?</h1>
-               <hr className='borderline' />
-               <div className='body'>
-                  <p>Once you delete a board and all of its Pins, you can't undo it.</p>
-                  <button
-                     className='delete-btn'
-                     onClick={this.handleDelete}
-                  >
-                     Delete forever
-                  </button>
-                  <button
-                     className='cancel-btn'
-                     onClick={this.handleCancel}
-                  >
-                     Cancel
-                  </button>
-
+               <h1>Are you sure?</h1>                  
+            </div>            
+            <div className='body'>
+               <p>Once you delete a board and all of its Pins, you can't undo it.</p>               
+            </div>
+            <div className='button-footer'>
+               <div className='button-group'>
+                  <div className='button-group-right'>
+                     <button
+                        className='delete-btn'
+                        onClick={this.handleDelete}
+                     >
+                        Delete forever
+                     </button>
+                        <button
+                           className='cancel-btn focus'
+                           onClick={this.handleCancel}
+                        >
+                           Cancel
+                     </button>
+                  </div>
                </div>
             </div>
          </div>

@@ -1,10 +1,30 @@
-// Place all the styles related to the api/boards controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.board-form-box {
-   width: 544px;   
-   flex: 1 1 auto;
+.board-form-box {   
+   width: 544px;
+}
+
+.board-delete-confirm-form {
+   width: 380px;
+   .body {
+      padding: 21px;
+      color: #333;
+      font-size: 14px;
+      line-height: 21px;
+      padding: 21px;
+      border-bottom: 1px solid var(--color-lightest-gray);
+      p {
+         font-size: 16px;
+      }
+   }
    
+}
+
+.button-group-right {
+   display: flex;
+   justify-content: flex-end;
+}
+
+.board-form-box, .board-delete-confirm-form {      
+   flex: 1 1 auto;   
    .header {
       padding-top: 20px;
       padding-bottom: 20px;
@@ -13,9 +33,10 @@
       border-bottom: 1px solid var(--color-lightest-gray);
    }
 
-   .body {
-      flex: 1 1 auto;
-   }
+   // .body {
+   //    flex: 1 1 auto;
+      
+   // }
 
    .close-btn {
       position: absolute;
