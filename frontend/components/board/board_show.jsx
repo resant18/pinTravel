@@ -1,5 +1,6 @@
 import React from 'react';
 import PinIndexBoardContainer from '../pin/pin_index_board_container';
+import { Link } from 'react-router-dom';
 
 class BoardShow extends React.Component {
    constructor(props) {
@@ -9,7 +10,7 @@ class BoardShow extends React.Component {
          dropDown: false
       }
 
-      this.browseBack = this.browseBack.bind(this);
+      this.browseBack = this.browseBack.bind(this);      
       this.showDropDown = this.showDropDown.bind(this);
       this.hideDropDown = this.hideDropDown.bind(this);            
       this.showModal = this.showModal.bind(this);
@@ -45,13 +46,9 @@ class BoardShow extends React.Component {
             <div id='drop-down' ref={ node => this.node = node } className='board-show-add-pin drop-down'>
                <div className='frame'>
                   <div className='list' role='list'>
-                     <div
-                        title='Add Pin'
-                        className='create-pin add-pin'
-                        onClick={this.showModal({ name: 'create-pin' })}
-                     >
-                        Create Pin
-                           </div>
+                     <a href='#/pin-builder' className='create-pin add-pin' >                        
+                        Create Pin                        
+                     </a>              
                   </div>
                </div>
             </div>

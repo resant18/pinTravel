@@ -4,13 +4,13 @@ import PinIndexUserContainer from '../pin/pin_index_user_container';
 
 class UserProfile extends React.Component {
   constructor(props) {
-    super(props);    
+    super(props); 
     
     this.state = {
-      tabItem: 'boards',
-      dropDown: false
+       tabItem: location.hash.includes('/pins') ? 'pins' : 'boards',
+       dropDown: false
     };
-    
+
     this.showDropDown = this.showDropDown.bind(this);
     this.hideDropDown = this.hideDropDown.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -112,31 +112,27 @@ class UserProfile extends React.Component {
   }
 
   showUserBoards() {
-    this.setState({ tabItem: 'boards' });
-    document.getElementById('board-tab').classList.add('active');
-    document.getElementById('pin-tab').classList.remove('active');
+    this.setState({ tabItem: 'boards' });    
   }
 
   showUserPins() {    
-    this.setState({ tabItem: 'pins' });
-    document.getElementById('board-tab').classList.remove('active');
-    document.getElementById('pin-tab').classList.add('active');
+    this.setState({ tabItem: 'pins' });    
   }
 
-  displayTabList() {
+  displayTabList() {    
     return (
        <nav>
           <button
              id='board-tab'
              onClick={this.showUserBoards.bind(this)}
-             className='board-tab active'
+             className={`board-tab ${this.state.tabItem==='boards' ? 'active' : ''}`}
           >
              Boards
           </button>          
           <button
             id='pin-tab'
             onClick={this.showUserPins.bind(this)}
-            className='pin-tab'
+            className={`pin-tab ${this.state.tabItem==='pins' ? 'active' : ''}`}
           >
             Pins
           </button>          

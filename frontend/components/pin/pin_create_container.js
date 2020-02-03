@@ -6,6 +6,7 @@ import { selectUserBoards } from '../../reducers/selector';
 import PinCreateForm from './pin_create_form';
 
 const mapStateToProps = (state, ownProps) => {
+   debugger
    const currentUser = state.entities.users[state.session.id] || {};
    const username = ownProps.match.params.username;
    const boards = selectUserBoards(state.entities, currentUser);

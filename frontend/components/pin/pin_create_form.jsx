@@ -9,7 +9,10 @@ class PinCreateForm extends React.Component {
             lat: 0.0, lng: 0.0, link_url: ''
          },
          showBoardDropDown: false,
-
+         ImageFile: null,
+         ImageUrl: null,
+         ImageError: null,
+         ImageType: null,
       };
 
       this.handleSubmit = this.handleSubmit.bind(this);
@@ -58,7 +61,7 @@ class PinCreateForm extends React.Component {
       img.src = this.state.photoUrl;
    }
 
-   handleSaveImageUpload(e) {
+   handleUploadImage(e) {
       const file = e.currentTarget.files[0];
       const fileReader = new FileReader();
 
@@ -81,7 +84,15 @@ class PinCreateForm extends React.Component {
       }
    }
 
-   
+   displayImagePreview() {
+      if (this.state.ImageUrl) {
+         return (
+            <div className="image-preview" >
+               <img src={this.state.ImageUrl} />
+            </div>
+         )
+      }
+   }
 
    update(field) {
       return (e) => {
@@ -95,21 +106,17 @@ class PinCreateForm extends React.Component {
 
    }
 
-   renderFileError() {
+   renderUploadNote() {
       if (this.state.imageError) {
          return (
             <div className="error" >{this.state.photoError}</div>
          )
       } else {
-         this.renderFileConstraint();
+         return (
+            <div className='constraint'>Recommendation: use .jpg files smaller than 2 MB</div>
+         )
       }
-   }
-
-   renderFileConstraint() {
-      return (
-         <div className='constraint'>Recommendation: use .jpg files smaller than 2 MB</div>
-      )
-   }
+   }   
 
    render() {      
       return (
@@ -125,10 +132,48 @@ class PinCreateForm extends React.Component {
                   <div className='pin-form-bottom'>
                      <div className='pin-form'>
                         <div className='pin-form-left'>
-
+                           {this.displayImagePreview()}                           
+                           <div className='upload-box'>
+                              <div className='upload-box-border'>
+                                 <button className='upload-btn'>
+                                    <svg class="gUZ B9u U9O kVc" height="32" width="32" viewBox="0 0 24 24" aria-label="Add an image or video" role="img"><path d="M24 12c0-6.627-5.372-12-12-12C5.373 0 0 5.373 0 12s5.373 12 12 12c6.628 0 12-5.373 12-12zm-10.767 3.75a1.25 1.25 0 0 1-2.5 0v-3.948l-1.031 1.031a1.25 1.25 0 0 1-1.768-1.768L12 7l4.066 4.065a1.25 1.25 0 0 1-1.768 1.768l-1.065-1.065v3.982z"></path></svg>
+                                 </button>
+                                 <p>Click to upload</p>
+                                 <input type='file' accept='image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp'
+                                    onChange={this.handleUploadImage.bind(this)}>
+                                 </input>
+                                 <div className="upload-note">
+                                    {this.renderUploadNote()}
+                                 </div>
+                              </div>
+                           </div>
+                           <div
+                              className='save-from-site'
+                              onClick={this.renderImageInputFromUrl}>
+                              <p>Save from site</p>
+                           </div>
                         </div>
                         <div className='pin-form-right'>
+                           <div className='pin-title'>
+                              <textarea
+                                 placeholder='Add your title'
+                                 onChange={this.update('title')}>
+                              </textarea>
+                           </div>
 
+                           <div className='pin-detail'>
+                              <textarea
+                                 placeholder='Tell everyone what your Pin is about'
+                                 onChange={this.update('detail')}>
+                              </textarea>
+                           </div>
+
+                           <div className='pin-url'>
+                              <textarea
+                                 placeholder='Add a destination link'
+                                 onChange={this.update('link_url')}>
+                              </textarea>
+                           </div>                           
                         </div>
                      </div>
                   </div>

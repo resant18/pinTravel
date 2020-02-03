@@ -41,7 +41,14 @@
 .board-show-add-pin {
     position: absolute;
     top: 110px;
-    left: 150px;
+    // left: 150px;
+    left: 100px;
+}
+
+.add-pin {
+    display: block;
+    color: var(--color-pBj);
+    text-decoration: none;
 }
 
 .user-profile-image {
