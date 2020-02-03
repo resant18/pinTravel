@@ -127,4 +127,77 @@
    }
 }
 
+.pin-form-container {
+   background-color: #EBEBEB;
+   position: fixed;
+   top: 64px;
+   left: 0;
+   width: 100%;
+   height: 100%;
+}
+
+.pin-form-box {
+   padding-bottom: 12px;
+   padding-top: 12px;
+}
+
+.pin-form-content {
+   width: 880px;
+   padding: 20px 20px 0 20px;
+   display: flex;
+   flex-direction: column;
+}
+
+.pin-form-top {
+   margin-bottom: 20px;
+}
+
+.pin-form-top-content {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;   
+}
+
+.empty {
+   align-items: center;
+   display: flex;
+   flex-direction: row;
+}
+
+.board-list {
+   min-height: 40px;
+   align-items: center;
+   display: flex;
+   flex-direction: row;
+   width: 236px;
+   position: relative;
+   border-radius: 8px;
+}
+
+.pin-form-bottom {
+   padding-bottom: 40px;
+}
+
+.pin-form {
+   display: flex;
+   justify-content: space-between;
+   height: 510px;
+}
+
+.pin-form-left {
+   justify-content: space-between;
+   height: inherit;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.pin-form-right {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+
 

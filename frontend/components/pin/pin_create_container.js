@@ -1,26 +1,25 @@
-// import { withRouter } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import { createPin } from '../../actions/pin_actions';
-// import { fetchBoards } from '../../actions/board_actions';
-// import CreatePinForm from './create_pin_form';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createPin } from '../../actions/pin_actions';
+import { fetchBoards } from '../../actions/board_actions';
+import { selectUserBoards } from '../../reducers/selector';
+import PinCreateForm from './pin_create_form';
 
-// const msp = (state, ownProps) => {
-//    const currentUser = state.entities.users[state.session.id] || {};
-//    const username = ownProps.match.params.username;
-//    const boards = Object.values(state.entities.boards).filter(
-//       board => board.creator_id === currentUser.id
-//    );
+const mapStateToProps = (state, ownProps) => {
+   const currentUser = state.entities.users[state.session.id] || {};
+   const username = ownProps.match.params.username;
+   const boards = selectUserBoards(state.entities, currentUser);
 
-//    return {
-//       currentUser,
-//       username,
-//       boards
-//    };
-// };
+   return {
+      currentUser,
+      username,
+      boards
+   };
+};
 
-// const mdp = dispatch => ({
-//    createPin: (pin, boardId) => dispatch(createPin(pin, boardId)),
-//    fetchBoards: () => dispatch(fetchBoards())
-// });
+const mapDispatchToProps = dispatch => ({
+   createPin: (pin, boardId) => dispatch(createPin(pin, boardId)),
+   fetchBoards: () => dispatch(fetchBoards())
+});
 
-// export default withRouter(connect(msp, mdp)(CreatePinForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PinCreateForm));

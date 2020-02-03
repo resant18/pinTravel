@@ -1,14 +1,3 @@
-// export const selectUsername = (state, props) => {
-//     return props.match.params.username ||
-//         state.entities.users[state.session.id].username;
-// };
-
-// export const selectUser = (users, username) => {
-//     return Object.values(users).filter(
-//       user => user.username === username
-//     );
-// };
-
 export const selectBoard = ({ boards }, boardId) => {
     return boards[boardId];
 };
