@@ -137,8 +137,8 @@
 }
 
 .pin-form-box {
-   padding-bottom: 12px;
-   padding-top: 12px;
+   padding-bottom: 45px;
+   padding-top: 45px;
 }
 
 .pin-form-content {
@@ -183,10 +183,12 @@
    padding-bottom: 40px;
 }
 
-.pin-form {
+.pin-form-bottom-content {
    display: flex;
    justify-content: space-between;
+   width: 800px;
    height: 510px;
+   margin: 0 auto;
 }
 
 .pin-form-left {
@@ -197,10 +199,142 @@
    align-items: center;
 }
 
+.upload-box {
+   height: 454px;
+   cursor: pointer;
+   width: 340px;
+   background-color: #EBEBEB;
+   align-items: center;
+   padding: 12px;
+   border-radius: 12px;
+   .border {
+      justify-content: center;
+      border: 2px dashed #dadada;
+      border-radius: 6px;
+      height: 100%;
+      width: 100%;
+      color: #8E8E8E;
+      position: relative;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      .upload-btn {
+         justify-content: center;
+         height: 48px;
+         width: 48px;
+         margin-bottom: 14px;
+         background-color: transparent;
+      }
+      p {
+         font-size: 16px;
+         color: var(--color-pBj);
+         font-weight: 400;
+         letter-spacing: -.4px;
+      }
+      input {
+         cursor: pointer;
+         height: 100%;
+         opacity: 0;
+         position: absolute;
+         width: 100%;
+         left: 0;
+         top: 0;
+         font-size: 0;
+      }
+      .upload-note {
+         position: absolute;
+         z-index: 3;
+         bottom: 0;
+         line-height: 18px;
+         text-align: center;
+         overflow: hidden;
+         margin: 32px;
+         left: 0;
+         right: 0;
+         .note {
+            color: #8E8E8E;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: -.4px;
+         }
+      }
+   }
+}
+
+.save-from-site {
+   align-items: center;
+   background-color: #EBEBEB;
+   border-radius: 12px;
+   cursor: pointer;   
+   display: flex;
+   font-size: 18px;
+   font-weight: bold;
+   height: 48px;
+   justify-content: center;
+   width: 340px;
+}
+
 .pin-form-right {
    display: flex;
    flex-direction: column;
    align-items: center;
+   width: 420px;
+   height: inherit;
+   .pin-title {
+      align-items: center;
+      border-bottom: 1px solid #8E8E8E;
+      height: 55px;
+      margin-top: 38px;
+      width: 100%;
+      textarea {         
+         font-size: 36px;
+         font-weight: 700;
+         height: 43px;
+         resize: none;
+      }
+   }
+   .pin-detail {
+      align-items: center;
+      min-height: 40px;
+      margin-top: 24px;
+      width: 100%;
+      height: 310px;
+      textarea {
+         align-items: center;
+         border-bottom: 1px solid #8E8E8E;
+         min-height: 40px;
+         margin-top: 24px;
+         width: 100%;
+         font-size: 18px;
+         height: 21px;
+      }
+   }
+   .pin-destination-link {
+      align-items: center;
+      border-bottom: 1px solid #8E8E8E;
+      min-height: 40px;
+      margin-top: 24px;
+      width: 100%;
+      textarea {         
+         font-size: 18px;
+         height: 21px;         
+         width: 420px;         
+      }
+   }
+   textarea {
+      color: var(--input-text);
+      cursor: text;
+      caret-color: #333333;
+      overflow: auto;
+      vertical-align: top;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      resize: none;
+      border: none;
+      appearance: none;
+      -webkit-appearance: none;
+      letter-spacing: -.4px;
+   }
 }
 
 

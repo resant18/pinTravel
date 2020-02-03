@@ -2438,7 +2438,7 @@ function (_React$Component) {
         }, this.state.photoError);
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "constraint"
+          className: "note"
         }, "Recommendation: use .jpg files smaller than 2 MB");
       }
     }
@@ -2463,13 +2463,13 @@ function (_React$Component) {
       }, "Board List"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-form-bottom"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-form"
+        className: "pin-form-bottom-content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-form-left"
       }, this.displayImagePreview(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "upload-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "upload-box-border"
+        className: "border"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "upload-btn"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -2502,7 +2502,7 @@ function (_React$Component) {
         placeholder: "Tell everyone what your Pin is about",
         onChange: this.update('detail')
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-url"
+        className: "pin-destination-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Add a destination link",
         onChange: this.update('link_url')
