@@ -1538,8 +1538,6 @@ function (_React$Component) {
   }, {
     key: "renderSecretIcon",
     value: function renderSecretIcon() {
-      debugger;
-
       if (this.props.board.secret) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "secret"
@@ -2100,13 +2098,13 @@ function (_React$Component) {
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "pin-travel"
       }, "Pintravel"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "right-nav"
+        className: "right-nav-session"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/",
-        className: "button prim"
+        className: "button form-primary"
       }, "Sign Up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/",
-        className: "button sec"
+        className: "button form-secondary"
       }, "Login")))));
     }
   }]);

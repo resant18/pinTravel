@@ -50,11 +50,11 @@ class NavBar extends React.Component {
                                 </a>
                                 <a><span className='pin-travel'>Pintravel</span></a>
                             </div>
-                            <div className='right-nav'>                               
-                                <Link to='/' className='button prim'>
+                            <div className='right-nav-session'>                               
+                                <Link to='/' className='button form-primary'>
                                     Sign Up
                                 </Link>
-                                <Link to='/' className='button sec'>
+                                <Link to='/' className='button form-secondary'>
                                     Login
                                 </Link>                            
                             </div>

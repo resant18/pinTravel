@@ -56,21 +56,24 @@
                     width: 30px;
                     height: 30px;
                 }                
-            }   
+            }               
+        }
+
+        .right-nav-session {
             .button {
                 width: 128px;
                 height: 40px; 
                 padding: 0;  
                 line-height: 36px;                  
             }  
-            .prim {
+            .form-primary {
                 margin-right: 20px;
             }  
-            .prim:focus, .prim:hover {
+            .form-primary:focus, .form-primary:hover {
                 background-color: #005c9d;
                 border-radius: 4px;           
             }
-            .sec:focus, .sec:hover {
+            .form-secondary:focus, .form-secondary:hover {
                 background-color: #28b1ff;
                 border-radius: 4px;           
             }

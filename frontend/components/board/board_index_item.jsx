@@ -63,8 +63,7 @@ class BoardIndexItem extends React.Component {
         this.props.showModal({ name: 'edit-board', selectedData: this.props.board.id });
     }
 
-    renderSecretIcon() {
-        debugger
+    renderSecretIcon() {        
         if (this.props.board.secret) {
             return (
                 <div className='secret'>
