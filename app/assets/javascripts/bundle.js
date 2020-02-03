@@ -596,11 +596,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _modal_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modal/modal */ "./frontend/components/modal/modal.jsx");
-/* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
-/* harmony import */ var _user_user_profile_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./user/user_profile_container */ "./frontend/components/user/user_profile_container.js");
-/* harmony import */ var _board_board_show_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./board/board_show_container */ "./frontend/components/board/board_show_container.js");
-/* harmony import */ var _pin_pin_create_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pin/pin_create_container */ "./frontend/components/pin/pin_create_container.js");
-/* harmony import */ var _pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pin/pin_index_feed_container */ "./frontend/components/pin/pin_index_feed_container.js");
+/* harmony import */ var _footer_footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./footer/footer */ "./frontend/components/footer/footer.jsx");
+/* harmony import */ var _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./navbar/navbar_container */ "./frontend/components/navbar/navbar_container.js");
+/* harmony import */ var _user_user_profile_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./user/user_profile_container */ "./frontend/components/user/user_profile_container.js");
+/* harmony import */ var _board_board_show_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./board/board_show_container */ "./frontend/components/board/board_show_container.js");
+/* harmony import */ var _pin_pin_create_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pin/pin_create_container */ "./frontend/components/pin/pin_create_container.js");
+/* harmony import */ var _pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pin/pin_index_feed_container */ "./frontend/components/pin/pin_index_feed_container.js");
+
 
 
 
@@ -617,32 +619,32 @@ var App = function App() {
     path: "/"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/",
-    component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _navbar_navbar_container__WEBPACK_IMPORTED_MODULE_5__["default"]
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/:username/boards/:boardId",
-    component: _board_board_show_container__WEBPACK_IMPORTED_MODULE_6__["default"]
+    component: _board_board_show_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     exact: true,
     path: "/pin-builder",
-    component: _pin_pin_create_container__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _pin_pin_create_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/:username/boards",
-    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/:username/pins",
-    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/:username",
-    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _user_user_profile_container__WEBPACK_IMPORTED_MODULE_6__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/",
-    component: _pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_8__["default"]
-  })));
+    component: _pin_pin_index_feed_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_footer_footer__WEBPACK_IMPORTED_MODULE_4__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -1894,6 +1896,47 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_board_show__WEBPACK_IMPORTED_MODULE_4__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/footer/footer.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/footer/footer.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return footer; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function footer() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
+    className: "footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    className: "footer-nav"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-links",
+    target: "_blank",
+    href: "https://resant18.github.io/portfolio/"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.personal_logo
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-links",
+    target: "_blank",
+    href: "https://github.com/resant18"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.personal_logo
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-links",
+    target: "_blank",
+    href: "https://www.linkedin.com/in/renata-santoso/"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.personal_logo
+  })))));
+}
 
 /***/ }),
 

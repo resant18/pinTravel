@@ -10,6 +10,7 @@ import {
 import { AuthRoute, ProtectedRoute, SessionRoute } from '../util/route_util';
 
 import Modal from './modal/modal';
+import Footer from './footer/footer';
 import NavBarContainer from './navbar/navbar_container';
 import UserProfileContainer from './user/user_profile_container';
 import BoardShowContainer from './board/board_show_container';
@@ -32,6 +33,7 @@ const App = () => (
       <Route exact path='/:username' component={UserProfileContainer} />            
       <Route exact path='/' component={PinIndexFeedContainer} />
     </Switch>
+    <Footer />
   </div>
 );
 
