@@ -2535,9 +2535,11 @@ function (_React$Component) {
       if (this.state.imageUrl) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "image-preview-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "image-preview-content"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: this.state.imageUrl
-        }), this._displayTrash());
+        }), this._displayTrash()));
       }
     }
   }, {

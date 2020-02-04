@@ -117,8 +117,10 @@ class PinCreateForm extends React.Component {
       if (this.state.imageUrl) {
          return (
             <div className="image-preview-container" >
-               <img src={this.state.imageUrl} />
-               {this._displayTrash()}
+               <div className='image-preview-content'>
+                  <img src={this.state.imageUrl} />
+                  {this._displayTrash()}
+               </div>
             </div>
          )
       }
