@@ -2405,6 +2405,7 @@ function (_React$Component) {
       imageDesc: null
     };
     _this.handleImageUpload = _this.handleImageUpload.bind(_assertThisInitialized(_this));
+    _this.deleteImage = _this.deleteImage.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -2447,33 +2448,13 @@ function (_React$Component) {
       this.hideBoardDropDown();
     }
   }, {
-    key: "renderImageInputFromUrl",
-    value: function renderImageInputFromUrl() {} // render the input box
-    //handleExternalFile
-
-  }, {
-    key: "handleSaveImageFromUrl",
-    value: function handleSaveImageFromUrl() {
-      var _this2 = this;
-
-      var img = new Image();
-
-      img.onload = function () {
-        _this2.setState({
-          photoType: 'external'
-        });
-      };
-
-      img.src = this.state.photoUrl;
-    }
-  }, {
     key: "update",
     value: function update(field) {
-      var _this3 = this;
+      var _this2 = this;
 
       return function (e) {
-        _this3.setState({
-          pin: _objectSpread({}, _this3.state.pin, _defineProperty({}, field, e.target.value))
+        _this2.setState({
+          pin: _objectSpread({}, _this2.state.pin, _defineProperty({}, field, e.target.value))
         });
       };
     }
@@ -2491,7 +2472,7 @@ function (_React$Component) {
   }, {
     key: "handleImageUpload",
     value: function handleImageUpload(e) {
-      var _this4 = this;
+      var _this3 = this;
 
       var file = e.currentTarget.files[0];
 
@@ -2503,7 +2484,7 @@ function (_React$Component) {
             var img = new Image();
             img.src = fileReader.result;
 
-            _this4.setState({
+            _this3.setState({
               imageFile: file,
               imageUrl: fileReader.result,
               imageDesc: null
@@ -2519,6 +2500,36 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "deleteImage",
+    value: function deleteImage() {
+      this.setState({
+        imageUrl: null
+      });
+    }
+  }, {
+    key: "_displayTrash",
+    value: function _displayTrash() {
+      if (this.state.imageUrl) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "trash-wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "trash-btn",
+          onClick: this.deleteImage
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "trash-icon"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          height: "20",
+          width: "20",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M4.878 22.116A2 2 0 0 0 6.875 24h10.229a2 2 0 0 0 1.995-1.881L20 7H4l.88 15.116zM22 3.5A1.5 1.5 0 0 1 20.5 5h-17a1.5 1.5 0 0 1 0-3h6V1a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1h6A1.5 1.5 0 0 1 22 3.5z"
+        })))));
+      }
+    }
+  }, {
     key: "displayImagePreview",
     value: function displayImagePreview() {
       if (this.state.imageUrl) {
@@ -2526,7 +2537,7 @@ function (_React$Component) {
           className: "image-preview-container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: this.state.imageUrl
-        }));
+        }), this._displayTrash());
       }
     }
   }, {

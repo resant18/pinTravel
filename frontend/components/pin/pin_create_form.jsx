@@ -16,7 +16,8 @@ class PinCreateForm extends React.Component {
       };
 
       this.handleImageUpload = this.handleImageUpload.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+      this.deleteImage = this.deleteImage.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);      
    }
 
 
@@ -46,22 +47,7 @@ class PinCreateForm extends React.Component {
    handleSelectBoard(board) {
       this.setState({ boardId: board.id, selectedBoard: board.name });
       this.hideBoardDropDown();
-   }   
-
-   renderImageInputFromUrl() {
-      // render the input box
-   }
-
-   //handleExternalFile
-   handleSaveImageFromUrl() {
-      const img = new Image();
-      img.onload = () => {         
-         this.setState({                        
-            photoType: 'external'
-         });
-      };
-      img.src = this.state.photoUrl;
-   }
+   }      
 
    update(field) {
       return (e) => {
@@ -71,10 +57,7 @@ class PinCreateForm extends React.Component {
 
    handleSubmit(e) {
       e.preventDefault();
-
-
    }
-
 
    _checkValidImageFile(file) {      
       return (
@@ -110,11 +93,32 @@ class PinCreateForm extends React.Component {
       }      
    }
 
+   deleteImage() {
+      this.setState({ imageUrl: null});
+   }
+
+   _displayTrash() {
+      if (this.state.imageUrl) {
+         return (
+            <div className='trash-wrapper'>
+               <button className='trash-btn' onClick={this.deleteImage}>
+                  <div className='trash-icon'>
+                     <svg height="20" width="20" viewBox="0 0 24 24" aria-hidden="true" aria-label="" role="img">
+                        <path d="M4.878 22.116A2 2 0 0 0 6.875 24h10.229a2 2 0 0 0 1.995-1.881L20 7H4l.88 15.116zM22 3.5A1.5 1.5 0 0 1 20.5 5h-17a1.5 1.5 0 0 1 0-3h6V1a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1h6A1.5 1.5 0 0 1 22 3.5z"></path>
+                     </svg>
+                  </div>
+               </button>
+            </div>
+         )
+      }
+   }
+
    displayImagePreview() {             
       if (this.state.imageUrl) {
          return (
             <div className="image-preview-container" >
                <img src={this.state.imageUrl} />
+               {this._displayTrash()}
             </div>
          )
       }
