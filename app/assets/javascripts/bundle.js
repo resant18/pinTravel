@@ -1586,6 +1586,107 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./frontend/components/board/board_list.jsx":
+/*!**************************************************!*\
+  !*** ./frontend/components/board/board_list.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var BoardList =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(BoardList, _React$Component);
+
+  function BoardList(props) {
+    var _this;
+
+    _classCallCheck(this, BoardList);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardList).call(this, props));
+    _this.state = {
+      visible: false
+    };
+    _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
+    _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
+    _this.handleSelectLink = _this.handleSelectLink.bind(_assertThisInitialized(_this));
+    _this.handleSelectBoard = _this.handleSelectBoard.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(BoardList, [{
+    key: "hideVisibility",
+    value: function hideVisibility(e) {
+      this.setState({
+        visible: false
+      });
+    }
+  }, {
+    key: "showVisibility",
+    value: function showVisibility(e) {
+      this.setState({
+        visible: true
+      });
+    }
+  }, {
+    key: "handleSelectBoard",
+    value: function handleSelectBoard(e) {
+      this.props.onSelectBoard(this.props.board);
+    }
+  }, {
+    key: "handleSelectLink",
+    value: function handleSelectLink() {
+      if (this.state.visible) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "select-btn",
+          onClick: this.handleSelectBoard
+        }, this.props.text);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var board = this.props.board;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-option",
+        onMouseEnter: this.showVisibility,
+        onMouseLeave: this.hideVisibility,
+        value: board.id
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, board.name), this.handleSelectLink());
+    }
+  }]);
+
+  return BoardList;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (BoardList);
+
+/***/ }),
+
 /***/ "./frontend/components/board/board_show.jsx":
 /*!**************************************************!*\
   !*** ./frontend/components/board/board_show.jsx ***!
@@ -2258,6 +2359,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _board_board_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../board/board_list */ "./frontend/components/board/board_list.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -2284,6 +2386,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var PinCreateForm =
 /*#__PURE__*/
 function (_React$Component) {
@@ -2305,11 +2408,11 @@ function (_React$Component) {
         link_url: ''
       },
       showBoardDropDown: false,
-      ImageFile: null,
-      ImageUrl: null,
-      ImageError: null,
-      ImageType: null
+      imageFile: null,
+      imageUrl: null,
+      imageDesc: null
     };
+    _this.handleImageUpload = _this.handleImageUpload.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -2353,8 +2456,9 @@ function (_React$Component) {
     }
   }, {
     key: "renderImageInputFromUrl",
-    value: function renderImageInputFromUrl() {// render the input box
-    }
+    value: function renderImageInputFromUrl() {} // render the input box
+    //handleExternalFile
+
   }, {
     key: "handleSaveImageFromUrl",
     value: function handleSaveImageFromUrl() {
@@ -2371,56 +2475,13 @@ function (_React$Component) {
       img.src = this.state.photoUrl;
     }
   }, {
-    key: "handleUploadImage",
-    value: function handleUploadImage(e) {
-      var _this3 = this;
-
-      var file = e.currentTarget.files[0];
-      var fileReader = new FileReader();
-
-      fileReader.onloadend = function () {
-        var img = new Image();
-        img.src = fileReader.result;
-
-        _this3.setState({
-          imageFile: file,
-          imageUrl: fileReader.result,
-          imageType: 'upload'
-        });
-      };
-
-      if (file && file.type === 'image/jpeg') {
-        if (file.size < 2000000) {
-          fileReader.readAsDataURL(file);
-          this.setState({
-            imageError: null
-          });
-        } else {
-          this.setState({
-            imageError: 'Please use a .jpg file less than 2MB'
-          });
-        }
-      }
-    }
-  }, {
-    key: "displayImagePreview",
-    value: function displayImagePreview() {
-      if (this.state.ImageUrl) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "image-preview"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: this.state.ImageUrl
-        }));
-      }
-    }
-  }, {
     key: "update",
     value: function update(field) {
-      var _this4 = this;
+      var _this3 = this;
 
       return function (e) {
-        _this4.setState({
-          pin: _objectSpread({}, _this4.state.pin, _defineProperty({}, field, e.target.value))
+        _this3.setState({
+          pin: _objectSpread({}, _this3.state.pin, _defineProperty({}, field, e.target.value))
         });
       };
     }
@@ -2430,15 +2491,62 @@ function (_React$Component) {
       e.preventDefault();
     }
   }, {
-    key: "renderUploadNote",
-    value: function renderUploadNote() {
-      if (this.state.imageError) {
+    key: "_checkValidImageFile",
+    value: function _checkValidImageFile(file) {
+      return file.type === 'image/bmp' || file.type === 'image/gif' || file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/tiff' || file.type === 'image/webp';
+    } //handleUploadFile
+
+  }, {
+    key: "handleImageUpload",
+    value: function handleImageUpload(e) {
+      var _this4 = this;
+
+      var file = e.currentTarget.files[0];
+
+      if (file && this._checkValidImageFile(file)) {
+        var fileReader = new FileReader();
+
+        if (file.size < 2000000) {
+          fileReader.onloadend = function () {
+            var img = new Image();
+            img.src = fileReader.result;
+
+            _this4.setState({
+              imageFile: file,
+              imageUrl: fileReader.result,
+              imageDesc: null
+            });
+          };
+
+          fileReader.readAsDataURL(file);
+        } else {
+          this.setState({
+            imageDesc: 'Please use a image file less than 2MB'
+          });
+        }
+      }
+    }
+  }, {
+    key: "displayImagePreview",
+    value: function displayImagePreview() {
+      if (this.state.imageUrl) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "error"
-        }, this.state.photoError);
+          className: "image-preview-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.state.imageUrl
+        }));
+      }
+    }
+  }, {
+    key: "displayImageDesc",
+    value: function displayImageDesc() {
+      if (this.state.imageDesc) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "error-text"
+        }, this.state.imageDesc);
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "note"
+          className: "desc"
         }, "Recommendation: use .jpg files smaller than 2 MB");
       }
     }
@@ -2483,13 +2591,10 @@ function (_React$Component) {
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Click to upload"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "file",
         accept: "image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp",
-        onChange: this.handleUploadImage.bind(this)
+        onChange: this.handleImageUpload
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "upload-note"
-      }, this.renderUploadNote()))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "save-from-site",
-        onClick: this.renderImageInputFromUrl
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Save from site"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "upload-desc-container"
+      }, this.displayImageDesc())))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-form-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-title"
@@ -3016,8 +3121,8 @@ function (_React$Component) {
     _this.state = {
       visible: false
     };
-    _this.turnOffVisibility = _this.turnOffVisibility.bind(_assertThisInitialized(_this));
-    _this.turnOnVisibility = _this.turnOnVisibility.bind(_assertThisInitialized(_this));
+    _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
+    _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
     _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
     _this.showPinPage = _this.showPinPage.bind(_assertThisInitialized(_this));
@@ -3039,15 +3144,15 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "turnOffVisibility",
-    value: function turnOffVisibility(e) {
+    key: "hideVisibility",
+    value: function hideVisibility(e) {
       this.setState({
         visible: false
       });
     }
   }, {
-    key: "turnOnVisibility",
-    value: function turnOnVisibility(e) {
+    key: "showVisibility",
+    value: function showVisibility(e) {
       this.setState({
         visible: true
       });
@@ -3127,8 +3232,8 @@ function (_React$Component) {
         className: "pin-index-item" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         // onClick={this.showPinPage}
         ,
-        onMouseEnter: this.turnOnVisibility,
-        onMouseLeave: this.turnOffVisibility
+        onMouseEnter: this.showVisibility,
+        onMouseLeave: this.hideVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-content-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

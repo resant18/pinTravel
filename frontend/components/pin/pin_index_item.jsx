@@ -7,8 +7,8 @@ class PinIndexItem extends React.Component {
     this.state = { 
       visible: false 
     };
-    this.turnOffVisibility = this.turnOffVisibility.bind(this);
-    this.turnOnVisibility = this.turnOnVisibility.bind(this);
+    this.hideVisibility = this.hideVisibility.bind(this);
+    this.showVisibility = this.showVisibility.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
     this.showEditForm = this.showEditForm.bind(this);    
     this.showPinPage = this.showPinPage.bind(this);
@@ -24,11 +24,11 @@ class PinIndexItem extends React.Component {
     this.props.showModal({ name: 'edit-pin', selectedData: this.props.pin.id });
   }  
 
-  turnOffVisibility(e) {
+  hideVisibility(e) {
     this.setState({ visible: false });
   }
 
-  turnOnVisibility(e) {
+  showVisibility(e) {
     this.setState({ visible: true });
   }
 
@@ -104,8 +104,8 @@ class PinIndexItem extends React.Component {
       <div className='pin-index-item'
         // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         // onClick={this.showPinPage}
-        onMouseEnter={this.turnOnVisibility}
-        onMouseLeave={this.turnOffVisibility}
+        onMouseEnter={this.showVisibility}
+        onMouseLeave={this.hideVisibility}
       >
         <div className='pin-content-img'>
           <img className='pin-img' src={pin.pictureUrl} />

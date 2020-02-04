@@ -199,8 +199,21 @@
    align-items: center;
 }
 
+.image-preview-container {
+   position: absolute;
+    height: 510px;
+    width: 340px;
+    background-color: #FFFFFF;
+    z-index: 5;    
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+}
+
 .upload-box {
-   height: 454px;
+   height: 100%; // height: 454px;
    cursor: pointer;
    width: 340px;
    background-color: #EBEBEB;
@@ -241,7 +254,7 @@
          top: 0;
          font-size: 0;
       }
-      .upload-note {
+      .upload-desc-container {
          position: absolute;
          z-index: 3;
          bottom: 0;
@@ -251,7 +264,7 @@
          margin: 32px;
          left: 0;
          right: 0;
-         .note {
+         .upload-desc {
             color: #8E8E8E;
             font-size: 14px;
             font-weight: 400;
@@ -336,6 +349,5 @@
       letter-spacing: -.4px;
    }
 }
-
 
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import BoardList from '../board/board_list';
 
 class PinCreateForm extends React.Component {
    constructor(props) {
@@ -9,12 +10,12 @@ class PinCreateForm extends React.Component {
             lat: 0.0, lng: 0.0, link_url: ''
          },
          showBoardDropDown: false,
-         ImageFile: null,
-         ImageUrl: null,
-         ImageError: null,
-         ImageType: null,
+         imageFile: null,
+         imageUrl: null,
+         imageDesc: null,         
       };
 
+      this.handleImageUpload = this.handleImageUpload.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
    }
 
@@ -51,6 +52,7 @@ class PinCreateForm extends React.Component {
       // render the input box
    }
 
+   //handleExternalFile
    handleSaveImageFromUrl() {
       const img = new Image();
       img.onload = () => {         
@@ -59,39 +61,6 @@ class PinCreateForm extends React.Component {
          });
       };
       img.src = this.state.photoUrl;
-   }
-
-   handleUploadImage(e) {
-      const file = e.currentTarget.files[0];
-      const fileReader = new FileReader();
-
-      fileReader.onloadend = () => {
-         const img = new Image();         
-         img.src = fileReader.result;
-         this.setState({
-            imageFile: file,
-            imageUrl: fileReader.result,
-            imageType: 'upload'
-         });
-      };
-      if (file && file.type === 'image/jpeg') {
-         if (file.size < 2000000) {
-            fileReader.readAsDataURL(file);
-            this.setState({ imageError: null });
-         } else {
-            this.setState({ imageError: 'Please use a .jpg file less than 2MB' });
-         }
-      }
-   }
-
-   displayImagePreview() {
-      if (this.state.ImageUrl) {
-         return (
-            <div className="image-preview" >
-               <img src={this.state.ImageUrl} />
-            </div>
-         )
-      }
    }
 
    update(field) {
@@ -106,14 +75,59 @@ class PinCreateForm extends React.Component {
 
    }
 
-   renderUploadNote() {
-      if (this.state.imageError) {
+
+   _checkValidImageFile(file) {      
+      return (
+         file.type === 'image/bmp' || file.type === 'image/gif' || file.type === 'image/jpeg' ||
+         file.type === 'image/png' || file.type === 'image/tiff' || file.type === 'image/webp'
+      );
+   }
+
+   //handleUploadFile
+   handleImageUpload(e) {      
+      const file = e.currentTarget.files[0];      
+      
+      if (file && this._checkValidImageFile(file)) {
+         const fileReader = new FileReader();
+
+         if (file.size < 2000000) {
+            fileReader.onloadend = () => {
+               const img = new Image();
+               img.src = fileReader.result;
+
+               this.setState({
+                  imageFile: file,
+                  imageUrl: fileReader.result,                  
+                  imageDesc: null
+               });
+
+            };
+            fileReader.readAsDataURL(file);
+            
+         } else {
+            this.setState({ imageDesc: 'Please use a image file less than 2MB' });
+         }
+      }      
+   }
+
+   displayImagePreview() {             
+      if (this.state.imageUrl) {
          return (
-            <div className="error" >{this.state.photoError}</div>
+            <div className="image-preview-container" >
+               <img src={this.state.imageUrl} />
+            </div>
+         )
+      }
+   }
+   
+   displayImageDesc() {
+      if (this.state.imageDesc) {
+         return (
+            <div className="error-text" >{this.state.imageDesc}</div>
          )
       } else {
          return (
-            <div className='note'>Recommendation: use .jpg files smaller than 2 MB</div>
+            <div className='desc'>Recommendation: use .jpg files smaller than 2 MB</div>
          )
       }
    }   
@@ -132,7 +146,10 @@ class PinCreateForm extends React.Component {
                   <div className='pin-form-bottom'>
                      <div className='pin-form-bottom-content'>
                         <div className='pin-form-left'>
-                           {this.displayImagePreview()}                           
+                           {/* <div id='image-preview-container'>
+                              <img id='image-preview' alt='Image Preview'></img>                         
+                           </div> */}
+                           {this.displayImagePreview()}
                            <div className='upload-box'>
                               <div className='border'>
                                  <button className='upload-btn'>
@@ -140,18 +157,18 @@ class PinCreateForm extends React.Component {
                                  </button>
                                  <p>Click to upload</p>
                                  <input type='file' accept='image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp'
-                                    onChange={this.handleUploadImage.bind(this)}>
+                                    onChange={this.handleImageUpload}>
                                  </input>
-                                 <div className="upload-note">
-                                    {this.renderUploadNote()}
+                                 <div className="upload-desc-container">
+                                    {this.displayImageDesc()}
                                  </div>
                               </div>
                            </div>
-                           <div
+                           {/* <div
                               className='save-from-site'
                               onClick={this.renderImageInputFromUrl}>
                               <p>Save from site</p>
-                           </div>
+                           </div> */}
                         </div>
                         <div className='pin-form-right'>
                            <div className='pin-title'>
