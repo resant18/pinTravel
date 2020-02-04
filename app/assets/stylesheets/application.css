@@ -88,6 +88,15 @@ button, .button {
     margin-left: 16px;                            
 }  
 
+a {
+    text-decoration: none;
+    color: var(--color-pBj);
+}
+
+a:focus, a:hover, a:active {
+    color: var(--color-pBj);
+}
+
 .cancel-btn, .delete-btn {
     color: var(--color-pBj);
     background-color: var(--color-lightest-gray);                                 

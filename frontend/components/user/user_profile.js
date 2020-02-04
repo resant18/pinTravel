@@ -49,24 +49,24 @@ class UserProfile extends React.Component {
   renderDropDown() {    
     if (this.state.dropDown) {
       return (
-         <div id='drop-down' 
-              ref={ node => this.node = node }
-              className='profile-add-board-pin drop-down'>
-            <div className='frame'>
-               <div className='list' role='list'>
+         <div
+            id="drop-down"
+            ref={node => (this.node = node)}
+            className="profile-add-board-pin drop-down"
+         >
+            <div className="frame">
+               <div className="list" role="list">
                   <div
-                     title='Create board'
-                     className='create-board'
-                     onClick={this.showModal({ name: 'create-board' })}
+                     title="Create board"
+                     className="create-board"
+                     onClick={this.showModal({ name: "create-board" })}
                   >
                      Create board
                   </div>
-                  <div
-                     title='Create pin'
-                     className='create-pin'
-                     onClick={this.showModal({ name: 'create-pin' })}
-                  >
-                     Create Pin
+                  <div title="Create pin" className="create-pin">
+                     <a href="#/pin-builder">
+                        Create Pin
+                     </a>
                   </div>
                </div>
             </div>

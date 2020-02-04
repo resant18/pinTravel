@@ -1891,8 +1891,6 @@ function (_React$Component) {
   }, {
     key: "renderSecretIcon",
     value: function renderSecretIcon() {
-      debugger;
-
       if (this.props.board.secret) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "secret"
@@ -2057,9 +2055,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/board/board_create_container */ "./frontend/components/board/board_create_container.js");
 /* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/board/board_edit_container */ "./frontend/components/board/board_edit_container.js");
 /* harmony import */ var _components_board_board_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/board/board_delete_confirmation */ "./frontend/components/board/board_delete_confirmation.jsx");
-/* harmony import */ var _components_pin_pin_create_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/pin/pin_create_container */ "./frontend/components/pin/pin_create_container.js");
-/* harmony import */ var _components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/pin/pin_edit_container */ "./frontend/components/pin/pin_edit_container.js");
-
+/* harmony import */ var _components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/pin/pin_edit_container */ "./frontend/components/pin/pin_edit_container.js");
 
 
 
@@ -2096,12 +2092,8 @@ var Modal = function Modal(_ref) {
       });
       break;
 
-    case 'create-pin':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_create_container__WEBPACK_IMPORTED_MODULE_6__["default"], null);
-      break;
-
     case 'edit-pin':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
         selectedData: selectedData
       });
       break;
@@ -3959,15 +3951,14 @@ function (_React$Component) {
           title: "Create board",
           className: "create-board",
           onClick: this.showModal({
-            name: 'create-board'
+            name: "create-board"
           })
         }, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Create pin",
-          className: "create-pin",
-          onClick: this.showModal({
-            name: 'create-pin'
-          })
-        }, "Create Pin"))));
+          className: "create-pin"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: "#/pin-builder"
+        }, "Create Pin")))));
       }
     }
   }, {

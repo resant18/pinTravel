@@ -110,8 +110,7 @@ class BoardShow extends React.Component {
       }
    }  
    
-   renderSecretIcon() {
-      debugger
+   renderSecretIcon() {      
       if (this.props.board.secret) {
          return (
             <div className='secret'>

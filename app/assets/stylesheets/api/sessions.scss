@@ -131,6 +131,9 @@
                 letter-spacing: -.4px;
                 hyphens: auto;
                 word-wrap: break-word;
+                a {
+                    display: block;
+                }
             }
         }
     }

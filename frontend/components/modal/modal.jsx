@@ -4,7 +4,6 @@ import { hideModal } from '../../actions/modal_actions';
 import BoardCreateContainer from '../../components/board/board_create_container';
 import BoardEditContainer from '../../components/board/board_edit_container';
 import BoardDeleteConfirmation from '../../components/board/board_delete_confirmation';
-import PinCreateContainer from '../../components/pin/pin_create_container';
 import PinEditContainer from '../../components/pin/pin_edit_container';
 
 const Modal = ({ modal, hideModal, selectedData }) => { 
@@ -22,10 +21,7 @@ const Modal = ({ modal, hideModal, selectedData }) => {
             break;
         case 'delete-board-confirm':
             component = <BoardDeleteConfirmation selectedData={selectedData} />
-            break;
-        case 'create-pin':
-            component = <PinCreateContainer />
-            break;
+            break;        
         case 'edit-pin':
             component = <PinEditContainer selectedData={selectedData} />
             break;
