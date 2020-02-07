@@ -10,14 +10,7 @@ class PinIndexItem extends React.Component {
     this.hideVisibility = this.hideVisibility.bind(this);
     this.showVisibility = this.showVisibility.bind(this);
     this.renderLinks = this.renderLinks.bind(this);
-    this.showEditForm = this.showEditForm.bind(this);    
-    this.showPinPage = this.showPinPage.bind(this);
-  }
-
-  showPinPage(e) {
-    // if (e.target.className.includes('p-link')) {
-      this.props.history.push(`/pins/${this.props.pin.id}`);
-    // }
+    this.showEditForm = this.showEditForm.bind(this);        
   }
 
   showEditForm() {
@@ -36,15 +29,14 @@ class PinIndexItem extends React.Component {
      return link.length > 12 ? link + '...' : link;
   }
 
-  // TO-DO regex the link name later
+  // TO-DO: update url link with real data
   renderLinks() {    
     const { currentUser } = this.props;
 
     if (!currentUser) return null;    
     
     if (this.state.visible) {
-      const { pin } = this.props;
-      // const imageHeight = pin.row_height * 10;
+      const { pin } = this.props;      
       let link;
       let edit;
 
@@ -69,12 +61,7 @@ class PinIndexItem extends React.Component {
         edit = <div></div>;
       }
 
-      return (
-        // <div
-        //   className='pin-content-links visible'
-        //   onClick={this.toPinShow}
-          // style={{ height: imageHeight }}
-        // >
+      return (        
         <div className='pin-links visible'>
           <div className='pin-edit-link'>
             {edit}
@@ -96,30 +83,24 @@ class PinIndexItem extends React.Component {
   render() {
     const { pin } = this.props;
     
-    // const frameHeight = pin.row_height * 10 + 45;
-    // const imageHeight = pin.row_height * 10;
-    // const gridSpan = `span ${pin.row_height + 6}`;
-
     return (   
       <Link to={`/pin/${pin.id}`}>
-      <div className='pin-index-item'
-        // style={{ height: frameHeight, gridRowEnd: gridSpan }}
-        // onClick={this.showPinPage}
-        onMouseEnter={this.showVisibility}
-        onMouseLeave={this.hideVisibility}
-      >
-        <div className='pin-content-img'>
-          <img className='pin-img' src={pin.pictureUrl} />
-          {this.renderLinks()}
+        <div className='pin-index-item'
+          onMouseEnter={this.showVisibility}
+          onMouseLeave={this.hideVisibility}
+        >
+          <div className='pin-content-img'>
+            <img className='pin-img' src={pin.pictureUrl} />
+            {this.renderLinks()}
+          </div>
+          <div className='pin-content-title'>
+            <p>{pin.title}</p>
+          </div>
+          
         </div>
-        <div className='pin-content-title'>
-          <p>{pin.title}</p>
-        </div>
-        
-      </div>
       </Link>   
     );
   }
 }
 
-export default withRouter(PinIndexItem);
+export default PinIndexItem;

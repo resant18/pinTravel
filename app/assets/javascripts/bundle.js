@@ -3136,17 +3136,10 @@ function (_React$Component) {
     _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
     _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
     _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
-    _this.showPinPage = _this.showPinPage.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(PinIndexItem, [{
-    key: "showPinPage",
-    value: function showPinPage(e) {
-      // if (e.target.className.includes('p-link')) {
-      this.props.history.push("/pins/".concat(this.props.pin.id)); // }
-    }
-  }, {
     key: "showEditForm",
     value: function showEditForm() {
       this.props.showModal({
@@ -3172,7 +3165,7 @@ function (_React$Component) {
     key: "_formatUrlLink",
     value: function _formatUrlLink(link) {
       return link.length > 12 ? link + '...' : link;
-    } // TO-DO regex the link name later
+    } // TO-DO: update url link with real data
 
   }, {
     key: "renderLinks",
@@ -3181,8 +3174,7 @@ function (_React$Component) {
       if (!currentUser) return null;
 
       if (this.state.visible) {
-        var pin = this.props.pin; // const imageHeight = pin.row_height * 10;
-
+        var pin = this.props.pin;
         var link;
         var edit;
 
@@ -3212,39 +3204,28 @@ function (_React$Component) {
           edit = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
         }
 
-        return (// <div
-          //   className='pin-content-links visible'
-          //   onClick={this.toPinShow}
-          // style={{ height: imageHeight }}
-          // >
-          react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "pin-links visible"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "pin-edit-link"
-          }, edit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "pin-save-link"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-            className: "pin-save-btn",
-            onClick: this.showCreateModal
-          }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            className: "pin-url-link"
-          }, this._formatUrlLink(link)))
-        );
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-links visible"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-edit-link"
+        }, edit), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-save-link"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "pin-save-btn",
+          onClick: this.showCreateModal
+        }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-url-link"
+        }, this._formatUrlLink(link)));
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var pin = this.props.pin; // const frameHeight = pin.row_height * 10 + 45;
-      // const imageHeight = pin.row_height * 10;
-      // const gridSpan = `span ${pin.row_height + 6}`;
-
+      var pin = this.props.pin;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/pin/".concat(pin.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-index-item" // style={{ height: frameHeight, gridRowEnd: gridSpan }}
-        // onClick={this.showPinPage}
-        ,
+        className: "pin-index-item",
         onMouseEnter: this.showVisibility,
         onMouseLeave: this.hideVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3261,7 +3242,7 @@ function (_React$Component) {
   return PinIndexItem;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(PinIndexItem));
+/* harmony default export */ __webpack_exports__["default"] = (PinIndexItem);
 
 /***/ }),
 
