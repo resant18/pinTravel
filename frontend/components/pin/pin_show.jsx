@@ -22,13 +22,13 @@ class PinShow extends React.Component {
    }
 
    displaySaveInfo() {
-      
+
    }
 
    render() {
       return (
          <div>
-            
+            Pin Show
          </div>
       )
    }

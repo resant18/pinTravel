@@ -100,7 +100,8 @@ class PinIndexItem extends React.Component {
     // const imageHeight = pin.row_height * 10;
     // const gridSpan = `span ${pin.row_height + 6}`;
 
-    return (      
+    return (   
+      <Link to={`/pin/${pin.id}`}>
       <div className='pin-index-item'
         // style={{ height: frameHeight, gridRowEnd: gridSpan }}
         // onClick={this.showPinPage}
@@ -116,7 +117,7 @@ class PinIndexItem extends React.Component {
         </div>
         
       </div>
-    
+      </Link>   
     );
   }
 }

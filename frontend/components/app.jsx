@@ -13,6 +13,7 @@ import Modal from './modal/modal';
 import Footer from './footer/footer';
 import NavBarContainer from './navbar/navbar_container';
 import UserProfileContainer from './user/user_profile_container';
+import PinShowContainer from './pin/pin_show_container';
 import BoardShowContainer from './board/board_show_container';
 import PinCreateContainer from './pin/pin_create_container';
 import PinIndexFeedContainer from './pin/pin_index_feed_container';
@@ -26,10 +27,11 @@ const App = () => (
       <Route path='/' component={NavBarContainer} />
     </Switch>
     <Switch>
-      <Route exact path='/:username/boards/:boardId' component={BoardShowContainer} />            
+      <Route exact path='/:username/boards/:boardId' component={BoardShowContainer} />                  
       <ProtectedRoute exact path='/pin-builder' component={PinCreateContainer} />
       <Route exact path='/:username/boards' component={UserProfileContainer} />            
       <Route exact path='/:username/pins' component={UserProfileContainer} />            
+      <Route exact path='/pin/:pinId' component={PinShowContainer} />            
       <Route exact path='/:username' component={UserProfileContainer} />            
       <Route exact path='/' component={PinIndexFeedContainer} />
     </Switch>
