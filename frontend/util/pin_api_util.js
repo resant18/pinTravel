@@ -32,7 +32,7 @@ export const fetchBoardPins = (boardId, page) => {
 export const fetchPin = id => {
   return $.ajax({
     method: 'GET',
-    url: `api/pin_joins/${id}`
+    url: `api/board_pins/${id}`
   });
 };
 
@@ -49,7 +49,7 @@ export const createPin = (formData) => {
 export const createPinInBoard = (pin, boardId) => {
   return $.ajax({
     method: 'POST',
-    url: `api/boards/${boardId}/pin_joins`,
+    url: `api/boards/${boardId}/board_pins`,
     data: { pin }
   });
 };

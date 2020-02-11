@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     end
 
     resources :pins, only: [:show, :update, :destroy]
-    resources :board_pins, only: [:index, :update, :destroy] do
+    resources :board_pins, only: [:index, :show, :update, :destroy] do
       collection do
         get "feeds"
       end
