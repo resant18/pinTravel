@@ -3311,6 +3311,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3331,6 +3332,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var PinShow =
 /*#__PURE__*/
 function (_React$Component) {
@@ -3343,7 +3345,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
     _this.state = {
-      pinUrlVisibility: false
+      pinUrlVisibility: true
     };
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     _this.showUrlLink = _this.showUrlLink.bind(_assertThisInitialized(_this));
@@ -3386,7 +3388,7 @@ function (_React$Component) {
     key: "hideUrlLink",
     value: function hideUrlLink() {
       this.setState({
-        pinUrlVisibility: false
+        pinUrlVisibility: true
       });
     }
   }, {
@@ -3396,8 +3398,8 @@ function (_React$Component) {
       return hostname.toString();
     }
   }, {
-    key: "displayUrlLink",
-    value: function displayUrlLink() {
+    key: "displayUrlLinkOverImage",
+    value: function displayUrlLinkOverImage() {
       if (this.state.pinUrlVisibility) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-url"
@@ -3413,7 +3415,7 @@ function (_React$Component) {
         })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: this.props.pin.url_link,
           target: "_blank"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this._formattedUrlLink())));
+        }, this._formattedUrlLink()));
       }
     }
   }, {
@@ -3448,8 +3450,8 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "renderTitle",
-    value: function renderTitle() {
+    key: "displayTitle",
+    value: function displayTitle() {
       if (this.props.pin.link_url) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: this.props.pin.link_url,
@@ -3460,8 +3462,8 @@ function (_React$Component) {
       }
     }
   }, {
-    key: "renderUrlLink",
-    value: function renderUrlLink() {
+    key: "displayUrlLink",
+    value: function displayUrlLink() {
       if (this.props.pin.link_url) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: this.props.pin.link_url,
@@ -3472,13 +3474,37 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "displayImage",
+    value: function displayImage() {
+      if (this.props.pin.link_url) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-image"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: this.props.pin.link_url,
+          target: "_blank",
+          alt: this.props.pin.title
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.pin.pictureUrl,
+          alt: this.props.pin.title
+        })));
+      } else {
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-image"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: this.props.pin.pictureUrl,
+          alt: this.props.pin.title
+        }));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
-      if (!this.props.pin) return null; // let onHoverStyle;
-      // if (this.state.pinUrlVisibility) {
-      //    onHoverStyle = `cursor: 'pointer'; background-color: '#e2e2e2';`;
-      // }
-
+      if (!this.props.pin) return null;
+      var _this$props = this.props,
+          pin = _this$props.pin,
+          board = _this$props.board,
+          creator = _this$props.creator;
+      var user = this._isSameUser() ? 'You' : "".concat(this.props.creator);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3486,26 +3512,24 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-show-content-top" // style={onHoverStyle}
-        ,
+        className: "pin-show-content-top",
         onMouseEnter: this.showUrlLink,
         onMouseLeave: this.hideUrlLink
-      }, this.displayUrlLink(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-image"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: this.props.pin.pictureUrl,
-        alt: this.props.pin.title
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.displayUrlLinkOverImage(), this.displayImage()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content-bottom"
       }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-url-link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.renderUrlLink())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.displayUrlLink()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-title"
-      }, this.renderTitle()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, this.displayTitle()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-detail"
-      }, this.props.pin.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pin.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-creator-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this._isSameUser() ? 'You' : "".concat(this.props.creator), " saved to ", this.props.board.name))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/".concat(pin.creator)
+      }, user), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " saved to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/boards/".concat(board.id)
+      }, board.name)))))));
     }
   }]);
 

@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class PinShow extends React.Component {
    constructor(props) {
       super(props);      
 
       this.state = {
-         pinUrlVisibility: false
+         pinUrlVisibility: true
       };
 
       this.showModal = this.showModal.bind(this);
@@ -39,7 +40,7 @@ class PinShow extends React.Component {
    }
 
    hideUrlLink() {
-      this.setState({ pinUrlVisibility: false });
+      this.setState({ pinUrlVisibility: true });
    }
 
    _formattedUrlLink() {
@@ -47,7 +48,7 @@ class PinShow extends React.Component {
       return hostname.toString();
    }
 
-   displayUrlLink() {
+   displayUrlLinkOverImage() {
       if (this.state.pinUrlVisibility) {
          return (
             <div className='pin-url'>
@@ -55,7 +56,7 @@ class PinShow extends React.Component {
                   width="24" height="24" viewBox="0 0 24 24" >
                   <path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"></path>
                </svg>
-               <a href={ this.props.pin.url_link } target='_blank' ><span>{this._formattedUrlLink()}</span></a>
+               <a href={ this.props.pin.url_link } target='_blank' >{this._formattedUrlLink()}</a>
             </div>
          )
       }
@@ -82,7 +83,7 @@ class PinShow extends React.Component {
       }
    }  
 
-   renderTitle() {
+   displayTitle() {
       if (this.props.pin.link_url) {
          return (
             <a href={this.props.pin.link_url} target='_blank'>{ this.props.pin.title }</a>
@@ -92,7 +93,7 @@ class PinShow extends React.Component {
       }
    }
 
-   renderUrlLink() {
+   displayUrlLink() {
       if (this.props.pin.link_url) {
          return (
             <a href={this.props.pin.link_url} target='_blank'>{ this._formattedUrlLink() }</a>
@@ -102,44 +103,55 @@ class PinShow extends React.Component {
       }
    }
 
+   displayImage() {
+      if (this.props.pin.link_url) {
+         return (
+            <div className='pin-image'>
+               <a href={this.props.pin.link_url} target='_blank' alt={this.props.pin.title}>
+                  <img src={this.props.pin.pictureUrl} alt={this.props.pin.title} />
+               </a>
+            </div>
+         )
+      } else {
+         <div className='pin-image'>            
+            <img src={this.props.pin.pictureUrl} alt={this.props.pin.title} />            
+         </div>
+      }
+   }
 
    render() {
-      if (!this.props.pin) return null;
+      if (!this.props.pin) return null;    
 
-      // let onHoverStyle;
-      // if (this.state.pinUrlVisibility) {
-      //    onHoverStyle = `cursor: 'pointer'; background-color: '#e2e2e2';`;
-      // }
-
+      const { pin, board, creator } = this.props;
+      let user = this._isSameUser() ? 'You' : `${this.props.creator}`;
+         
       return (
          <div className='pin-show-wrapper'>
             <div className='pin-show-container'>
                <div className='pin-show-box'>
-                  <div className='pin-show-content-top' 
-                     // style={onHoverStyle}
+                  <div className='pin-show-content-top'                      
                      onMouseEnter={this.showUrlLink}
                      onMouseLeave={this.hideUrlLink}>
-                     { this.displayUrlLink() }
-                     <div className='pin-image'>                        
-                        <img src={this.props.pin.pictureUrl} alt={this.props.pin.title} />
-                     </div>
+                     { this.displayUrlLinkOverImage() }
+                     { this.displayImage()}
                   </div>
                   <div className='pin-show-content-bottom'>
                      {this.displayToolbar()}   
                      <div className='pin-url-link'>
-                        <p>{this.renderUrlLink() }</p>
+                        {this.displayUrlLink() }
                      </div>                      
                      <div className='pin-title'>                                             
-                        { this.renderTitle() }
+                        { this.displayTitle() }
                      </div> 
                      <div className='pin-detail'>
-                        { this.props.pin.detail }
+                        { pin.detail }
                      </div>
                      <div className='pin-creator-info'>
-                        <p>{this._isSameUser() ? 'You' : `${this.props.creator}`} saved to {this.props.board.name}</p>
+                        <p>
+                           <Link to={`/${pin.creator}`}>{user}</Link><span> saved to </span><Link to={`/boards/${board.id}`}>{board.name}</Link>
+                        </p>
                      </div>                
                   </div>
-
                </div>
             </div>
          </div>

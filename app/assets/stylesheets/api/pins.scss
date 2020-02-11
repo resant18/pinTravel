@@ -386,11 +386,15 @@
                color: white;
                font-weight: 600;
                letter-spacing: -.4px;
-               font-size: 1.2em;               
+               font-size: 1.3em;                              
                svg {
                   color: var(--color-surface);
                   vertical-align: middle;
                   margin-right: 5px;
+               }
+               a {
+                  color: var(--color-surface);
+                  cursor: pointer;
                }
             }
             .pin-image {               
@@ -399,9 +403,54 @@
                padding: 0;
                width: 100%;
                display: inline-block;
+               &:hover, &:focus {
+                  filter: brightness(55%);
+               }
                img {
                   width: 100%;
                   border-radius: 32px 32px 0 0;
+                  
+               }               
+            }
+         }
+         .pin-show-content-bottom {
+            color: #111;
+            letter-spacing: -.4px;
+            line-height: normal;
+            padding-left: 40px;
+            padding-right: 40px;  
+            .pin-url-link {
+               color: #111;
+               font-size: 18px;
+               text-decoration: underline;
+               hyphens: auto;
+               word-break: break-word;
+            }       
+            .pin-title {
+               margin-top: 16px;
+               a {
+                  font-size: 36px;
+                  font-weight: bold;                  
+                  -webkit-font-smoothing: antialiased;                       
+               }
+            }
+            .pin-detail {
+               font-size: 14px;               
+               text-align: left;
+               hyphens: auto;
+               word-wrap: break-word;
+               font-weight: 400;   
+               margin-top: 8px;            
+            }
+            .pin-creator-info { 
+               font-size: 14px;
+               margin-top: 40px;
+               margin-bottom: 20px;
+               a {
+                  font-weight: bold;
+                  &:hover, &:focus {
+                     text-decoration: underline;
+                  }
                }
             }
          }
