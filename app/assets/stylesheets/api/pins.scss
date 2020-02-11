@@ -372,13 +372,36 @@
          display: flex;
          flex-direction: column;
          .pin-show-content-top {
+            position: relative;
+            display: inline-block;
+            .pin-url {
+               position: absolute;
+               z-index: 999;
+               margin: 0 auto;
+               left: 0;
+               right: 0;
+               top: 50%;
+               width: 60%;
+               text-align: center;
+               color: white;
+               font-weight: 600;
+               letter-spacing: -.4px;
+               font-size: 1.2em;
+               svg {
+                  color: var(--color-surface);
+                  vertical-align: middle;
+                  margin-right: 5px;
+               }
+            }
             .pin-image {               
                border-radius: 32px 32px 0 0;
                overflow: hidden;
                padding: 0;
                width: 100%;
+               display: inline-block;
                img {
                   width: 100%;
+                  border-radius: 32px 32px 0 0;
                }
             }
          }
