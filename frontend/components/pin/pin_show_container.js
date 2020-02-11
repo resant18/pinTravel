@@ -1,22 +1,26 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchPin } from '../../actions/pin_actions';
 import { showModal } from '../../actions/modal_actions';
 import PinShow from './pin_show';
 
 const mapStateToProps = (state, ownProps) => {
-   const currentUser = state.entities.users[state.session.id] || {};   
-   const pin = state.entities.pins[pinId];
+   const currentUser = state.entities.users[state.session.id].username || {};   
    const pinId = ownProps.match.params.pinId;
-   let board, user;
+   const pin = state.entities.pins[pinId];      
+   let board, creator;
 
    if (pin) {
       board = state.entities.boards[pin.board_id];
-      user = state.entities.users[pin.user.username];
+      creator = state.entities.users[pin.user.username].username;
    }
 
    return ({
       currentUser, 
-      user, board, pin, pinId
+      creator, 
+      board, 
+      pinId,
+      pin
    });
 };
 
@@ -25,5 +29,5 @@ const mapDispatchToProps = dispatch => ({
    showModal: modal => dispatch(showModal(modal)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PinShow);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PinShow));
 

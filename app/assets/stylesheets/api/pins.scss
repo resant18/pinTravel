@@ -351,3 +351,24 @@
 }
 
 
+.pin-show-wrapper {
+   max-width: 508px;
+   width: 100%;
+   height: 100%;
+   margin-bottom: 32px;
+   border-radius: 32px;
+   cursor: auto;
+   .pin-show-container {
+      margin-bottom: 0px;
+      margin-top: 0px;
+      max-width: 740px;
+      min-width: 508px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 20px 0px;
+      border-radius: 32px;
+      background-color: var(--color-surface);
+   }
+   .pin-show-box {
+      display: flex;
+      flex-direction: column;
+   }
+}

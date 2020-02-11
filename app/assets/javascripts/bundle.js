@@ -3321,9 +3321,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -3337,9 +3337,13 @@ function (_React$Component) {
   _inherits(PinShow, _React$Component);
 
   function PinShow(props) {
+    var _this;
+
     _classCallCheck(this, PinShow);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
+    _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(PinShow, [{
@@ -3351,15 +3355,71 @@ function (_React$Component) {
     key: "handleSave",
     value: function handleSave() {}
   }, {
-    key: "displayEditLink",
-    value: function displayEditLink() {}
+    key: "_isSameUser",
+    value: function _isSameUser() {
+      return this.props.currentUser === this.props.creator;
+    }
   }, {
-    key: "displaySaveInfo",
-    value: function displaySaveInfo() {}
+    key: "showModal",
+    value: function showModal(modal) {
+      var _this2 = this;
+
+      return function (e) {
+        _this2.props.showModal(modal);
+      };
+    }
+  }, {
+    key: "displayToolbar",
+    value: function displayToolbar() {
+      debugger;
+
+      if (this._isSameUser()) {
+        debugger;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar-left"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          "aria-label": "Edit board",
+          className: "tool-buttons edit-button",
+          type: "button",
+          onClick: this.showModal({
+            name: 'edit-pin',
+            selectedData: this.props.pinId
+          })
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          className: "svg",
+          height: "24",
+          width: "24",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
+        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar-right"
+        }, "Save to Board"));
+      }
+    }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Pin Show");
+      if (!this.props.pin) return null;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-box"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-content-top"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: this.props.pin.pictureUrl,
+        alt: this.props.pin.title
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-content-bottom"
+      }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this._isSameUser() ? "Uploaded by ".concat(this.props.creator) : "Saved by ".concat(this.props.creator)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.pin.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You saved to ", this.props.board.name))))));
     }
   }]);
 
@@ -3380,46 +3440,48 @@ function (_React$Component) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _pin_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pin_show */ "./frontend/components/pin/pin_show.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _pin_show__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pin_show */ "./frontend/components/pin/pin_show.jsx");
+
 
 
 
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var currentUser = state.entities.users[state.session.id] || {};
-  var pin = state.entities.pins[pinId];
+  var currentUser = state.entities.users[state.session.id].username || {};
   var pinId = ownProps.match.params.pinId;
-  var board, user;
+  var pin = state.entities.pins[pinId];
+  var board, creator;
 
   if (pin) {
     board = state.entities.boards[pin.board_id];
-    user = state.entities.users[pin.user.username];
+    creator = state.entities.users[pin.user.username].username;
   }
 
   return {
     currentUser: currentUser,
-    user: user,
+    creator: creator,
     board: board,
-    pin: pin,
-    pinId: pinId
+    pinId: pinId,
+    pin: pin
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchPin: function fetchPin(id) {
-      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPin"])(id));
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPin"])(id));
     },
     showModal: function showModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["showModal"])(modal));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])(modal));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_show__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_pin_show__WEBPACK_IMPORTED_MODULE_4__["default"])));
 
 /***/ }),
 
@@ -4992,7 +5054,7 @@ var fetchBoardPins = function fetchBoardPins(boardId, page) {
 var fetchPin = function fetchPin(id) {
   return $.ajax({
     method: 'GET',
-    url: "api/pin_joins/".concat(id)
+    url: "api/board_pins/".concat(id)
   });
 };
 var createPin = function createPin(formData) {
@@ -5007,7 +5069,7 @@ var createPin = function createPin(formData) {
 var createPinInBoard = function createPinInBoard(pin, boardId) {
   return $.ajax({
     method: 'POST',
-    url: "api/boards/".concat(boardId, "/pin_joins"),
+    url: "api/boards/".concat(boardId, "/board_pins"),
     data: {
       pin: pin
     }

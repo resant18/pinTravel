@@ -30,7 +30,12 @@
         .secret {
             font-size: 14px;
         }
-    }      
+    }     
+    
+    .pin-show-box {
+      display: flex;
+      flex-direction: row;
+    }
 }
 
 // 5 columns
@@ -57,6 +62,11 @@
 
     .user-boards-pins-count {
         font-size: 0.9em;
+    }
+
+    .pin-show-box {
+      display: flex;
+      flex-direction: row;
     }
 }
 
