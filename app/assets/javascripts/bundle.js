@@ -3525,11 +3525,11 @@ function (_React$Component) {
         className: "pin-detail"
       }, pin.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-creator-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(pin.creator)
       }, user), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " saved to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/boards/".concat(board.id)
-      }, board.name)))))));
+      }, board.name))))));
     }
   }]);
 

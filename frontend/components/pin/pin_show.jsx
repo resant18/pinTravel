@@ -147,9 +147,7 @@ class PinShow extends React.Component {
                         { pin.detail }
                      </div>
                      <div className='pin-creator-info'>
-                        <p>
-                           <Link to={`/${pin.creator}`}>{user}</Link><span> saved to </span><Link to={`/boards/${board.id}`}>{board.name}</Link>
-                        </p>
+                        <Link to={`/${pin.creator}`}>{user}</Link><span> saved to </span><Link to={`/boards/${board.id}`}>{board.name}</Link>                        
                      </div>                
                   </div>
                </div>
