@@ -28,9 +28,7 @@ class PinShow extends React.Component {
    }
 
    displayToolbar() {
-      debugger
       if (this._isSameUser()) {
-         debugger
          return (
             <div className='toolbar'>
                <div className='toolbar-left'>
@@ -62,7 +60,9 @@ class PinShow extends React.Component {
             <div className='pin-show-container'>
                <div className='pin-show-box'>
                   <div className='pin-show-content-top'>
-                     <img src={this.props.pin.pictureUrl} alt={this.props.pin.title} />
+                     <div className='pin-image'>
+                        <img src={this.props.pin.pictureUrl} alt={this.props.pin.title} />
+                     </div>
                   </div>
                   <div className='pin-show-content-bottom'>
                      {this.displayToolbar()}    

@@ -357,7 +357,9 @@
    height: 100%;
    margin-bottom: 32px;
    border-radius: 32px;
+   margin: 0 auto;
    cursor: auto;
+   padding-top: 32px;
    .pin-show-container {
       margin-bottom: 0px;
       margin-top: 0px;
@@ -366,9 +368,21 @@
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 20px 0px;
       border-radius: 32px;
       background-color: var(--color-surface);
+      .pin-show-box {
+         display: flex;
+         flex-direction: column;
+         .pin-show-content-top {
+            .pin-image {               
+               border-radius: 32px 32px 0 0;
+               overflow: hidden;
+               padding: 0;
+               width: 100%;
+               img {
+                  width: 100%;
+               }
+            }
+         }
+      }
    }
-   .pin-show-box {
-      display: flex;
-      flex-direction: column;
-   }
+   
 }

@@ -3371,10 +3371,7 @@ function (_React$Component) {
   }, {
     key: "displayToolbar",
     value: function displayToolbar() {
-      debugger;
-
       if (this._isSameUser()) {
-        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3414,10 +3411,12 @@ function (_React$Component) {
         className: "pin-show-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content-top"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-image"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         src: this.props.pin.pictureUrl,
         alt: this.props.pin.title
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content-bottom"
       }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this._isSameUser() ? "Uploaded by ".concat(this.props.creator) : "Saved by ".concat(this.props.creator)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.pin.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You saved to ", this.props.board.name))))));
     }
