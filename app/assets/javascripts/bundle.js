@@ -3390,6 +3390,12 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "_formattedUrlLink",
+    value: function _formattedUrlLink() {
+      var hostname = new URL(this.props.pin.link_url).hostname;
+      return hostname.toString();
+    }
+  }, {
     key: "displayUrlLink",
     value: function displayUrlLink() {
       if (this.state.pinUrlVisibility) {
@@ -3404,7 +3410,10 @@ function (_React$Component) {
           viewBox: "0 0 24 24"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.pin.link_url));
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: this.props.pin.url_link,
+          target: "_blank"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this._formattedUrlLink())));
       }
     }
   }, {
@@ -3451,6 +3460,18 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "renderUrlLink",
+    value: function renderUrlLink() {
+      if (this.props.pin.link_url) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: this.props.pin.link_url,
+          target: "_blank"
+        }, this._formattedUrlLink());
+      } else {
+        return this._formattedUrlLink();
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       if (!this.props.pin) return null; // let onHoverStyle;
@@ -3476,7 +3497,15 @@ function (_React$Component) {
         alt: this.props.pin.title
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content-bottom"
-      }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.props.pin.link_url)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.renderTitle()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.props.pin.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this._isSameUser() ? 'You' : "".concat(this.props.creator), " saved to ", this.props.board.name))))));
+      }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-url-link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.renderUrlLink())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-title"
+      }, this.renderTitle()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-detail"
+      }, this.props.pin.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-creator-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this._isSameUser() ? 'You' : "".concat(this.props.creator), " saved to ", this.props.board.name))))));
     }
   }]);
 

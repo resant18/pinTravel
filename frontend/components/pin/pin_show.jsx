@@ -42,6 +42,11 @@ class PinShow extends React.Component {
       this.setState({ pinUrlVisibility: false });
    }
 
+   _formattedUrlLink() {
+      const hostname = new URL(this.props.pin.link_url).hostname;
+      return hostname.toString();
+   }
+
    displayUrlLink() {
       if (this.state.pinUrlVisibility) {
          return (
@@ -50,7 +55,7 @@ class PinShow extends React.Component {
                   width="24" height="24" viewBox="0 0 24 24" >
                   <path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"></path>
                </svg>
-               <span>{this.props.pin.link_url}</span>
+               <a href={ this.props.pin.url_link } target='_blank' ><span>{this._formattedUrlLink()}</span></a>
             </div>
          )
       }
@@ -80,12 +85,20 @@ class PinShow extends React.Component {
    renderTitle() {
       if (this.props.pin.link_url) {
          return (
-            <a href={this.props.pin.link_url} target='_blank'>{this.props.pin.title}</a>
+            <a href={this.props.pin.link_url} target='_blank'>{ this.props.pin.title }</a>
          )
       } else {
+         return this.props.pin.title;
+      }
+   }
+
+   renderUrlLink() {
+      if (this.props.pin.link_url) {
          return (
-            this.props.pin.title
+            <a href={this.props.pin.link_url} target='_blank'>{ this._formattedUrlLink() }</a>
          )
+      } else {
+         return this._formattedUrlLink();
       }
    }
 
@@ -113,16 +126,16 @@ class PinShow extends React.Component {
                   </div>
                   <div className='pin-show-content-bottom'>
                      {this.displayToolbar()}   
-                     <div>
-                        <p>{this.props.pin.link_url}</p>
+                     <div className='pin-url-link'>
+                        <p>{this.renderUrlLink() }</p>
                      </div>                      
-                     <div>                                             
+                     <div className='pin-title'>                                             
                         { this.renderTitle() }
                      </div> 
-                     <div>
+                     <div className='pin-detail'>
                         { this.props.pin.detail }
                      </div>
-                     <div>
+                     <div className='pin-creator-info'>
                         <p>{this._isSameUser() ? 'You' : `${this.props.creator}`} saved to {this.props.board.name}</p>
                      </div>                
                   </div>
