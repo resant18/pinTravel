@@ -418,13 +418,23 @@
             letter-spacing: -.4px;
             line-height: normal;
             padding-left: 40px;
-            padding-right: 40px;  
-            justify-content: space-between;
+            padding-right: 40px;              
             .toolbar {
                width: 100%;
                min-height: 72px;
                display: flex;
-               align-items: center;
+               align-items: center;               
+               justify-content: space-between;
+               .toolbar-left {
+                  button {
+                     width: 44px;
+                     height: 44px;
+                     div {
+                        width: 44px;
+                        height: 44px;
+                     }
+                  }
+               }
             }
             .pin-url-link {
                color: #111;
