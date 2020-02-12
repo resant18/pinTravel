@@ -31,10 +31,18 @@
             font-size: 14px;
         }
     }     
-    
-    .pin-show-box {
-      display: flex;
-      flex-direction: row;
+
+    .pin-show-wrapper {
+        max-width: 1016px;
+        .pin-show-box {            
+            flex-direction: row;
+            .pin-show-content-top {
+                width: 65%;
+            }
+            .pin-image {
+                border-radius: 32px 0 0 32px;
+            }
+        }
     }
 }
 
@@ -64,9 +72,17 @@
         font-size: 0.9em;
     }
 
-    .pin-show-box {
-      display: flex;
-      flex-direction: row;
+    .pin-show-wrapper {
+        max-width: 1016px;
+        .pin-show-box {            
+            flex-direction: row;
+            .pin-show-content-top {
+                width: 65%;
+            }
+            .pin-image {
+                border-radius: 32px 0 0 32px;
+            }
+        }
     }
 }
 
@@ -81,6 +97,18 @@
     }
     .pin-index-container .pin-index, .toolbar, .board-pins-header {
         width: 1018px;        
+    }
+    .pin-show-wrapper {
+        max-width: 740px;
+        .pin-show-box {            
+            flex-direction: row;
+            .pin-show-content-top {
+                width: 65%;
+            }
+            .pin-image {
+                border-radius: 32px 0 0 32px;
+            }
+        }
     }
       
 }
@@ -100,6 +128,15 @@
     .pin-form {
         width: 544px;
     }
+    .pin-show-wrapper {
+        max-width: 740px;
+        .pin-show-box {            
+            flex-direction: column;
+            .pin-image {
+                border-radius: 32px 32px 0 0;
+            }
+        }
+    }
 }
 
 // 2 columns
@@ -116,6 +153,15 @@
     }
     .tilted-pins {
         height: 25vh;
+    }
+    .pin-show-wrapper {
+        max-width: 740px;
+        .pin-show-box {            
+            flex-direction: column;
+            .pin-image {
+                border-radius: 32px 32px 0 0;
+            }
+        }
     }
 }
 
@@ -142,5 +188,14 @@
     }
     .user-boards-pins-count {
         font-size: 0.9em;
+    }
+    .pin-show-wrapper {
+        max-width: 740px;
+        .pin-show-box {            
+            flex-direction: column;
+            .pin-image {
+                border-radius: 32px 32px 0 0;
+            }
+        }
     }
 }
