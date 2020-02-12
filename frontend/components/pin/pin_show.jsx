@@ -6,7 +6,7 @@ class PinShow extends React.Component {
       super(props);      
 
       this.state = {
-         pinUrlVisibility: true
+         pinUrlVisibility: false
       };
 
       this.showModal = this.showModal.bind(this);
@@ -40,7 +40,7 @@ class PinShow extends React.Component {
    }
 
    hideUrlLink() {
-      this.setState({ pinUrlVisibility: true });
+      this.setState({ pinUrlVisibility: false });
    }
 
    _formattedUrlLink() {
@@ -55,15 +55,19 @@ class PinShow extends React.Component {
    displayUrlLinkOverImage() {
       if (this.state.pinUrlVisibility) {
          return (
-            <div className='pin-url'>
-               <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                  width="24" height="24" viewBox="0 0 24 24" >
-                  <path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"></path>
-               </svg>
-               <a href={ this.props.pin.url_link } target='_blank' >{this._formattedUrlLink()}</a>
-            </div>
+            
+               <div className='pin-url'>
+               <a href={this.props.pin.url_link} target='_blank' >
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                     width="24" height="24" viewBox="0 0 24 24" >
+                     <path d="M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"></path>
+                  </svg>
+                  {this._formattedUrlLink()}
+               </a>
+               </div>
+            
          )
-      }
+      } 
    }
 
    displayToolbar() {
@@ -78,6 +82,16 @@ class PinShow extends React.Component {
                         </svg>
                      </div>
                   </button>
+               </div>
+               <div className='toolbar-right'>
+                  Save to Board
+               </div>
+            </div>
+         )
+      } else {
+         return (
+            <div className='toolbar'>
+               <div className='toolbar-left'>                  
                </div>
                <div className='toolbar-right'>
                   Save to Board

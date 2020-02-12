@@ -3345,7 +3345,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(PinShow).call(this, props));
     _this.state = {
-      pinUrlVisibility: true
+      pinUrlVisibility: false
     };
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     _this.showUrlLink = _this.showUrlLink.bind(_assertThisInitialized(_this));
@@ -3388,7 +3388,7 @@ function (_React$Component) {
     key: "hideUrlLink",
     value: function hideUrlLink() {
       this.setState({
-        pinUrlVisibility: true
+        pinUrlVisibility: false
       });
     }
   }, {
@@ -3407,6 +3407,9 @@ function (_React$Component) {
       if (this.state.pinUrlVisibility) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-url"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: this.props.pin.url_link,
+          target: "_blank"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           xmlns: "http://www.w3.org/2000/svg",
           x: "0px",
@@ -3416,10 +3419,7 @@ function (_React$Component) {
           viewBox: "0 0 24 24"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: this.props.pin.url_link,
-          target: "_blank"
-        }, this._formattedUrlLink()));
+        })), this._formattedUrlLink()));
       }
     }
   }, {
@@ -3449,6 +3449,14 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
         }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar-right"
+        }, "Save to Board"));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "toolbar-left"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar-right"
         }, "Save to Board"));
       }

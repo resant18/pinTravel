@@ -376,17 +376,21 @@
             display: inline-block;
             .pin-url {
                position: absolute;
-               z-index: 999;
-               margin: 0 auto;
-               left: 0;
-               right: 0;
-               top: 50%;
-               width: 60%;
-               text-align: center;
+               z-index: 999;             
                color: white;
                font-weight: 600;
                letter-spacing: -.4px;
-               font-size: 1.3em;                              
+               font-size: 1.3em;
+               width: 100%;
+               height: 100%;
+               border-radius: 32px 32px 0 0;
+               display: flex;
+               align-items: center;
+               justify-content: center;       
+               cursor: pointer;   
+               &:hover, &:focus {
+                  background-color: rgba(0, 0, 0, 0.25);
+               }               
                svg {
                   color: var(--color-surface);
                   vertical-align: middle;
@@ -394,7 +398,7 @@
                }
                a {
                   color: var(--color-surface);
-                  cursor: pointer;
+                  cursor: pointer;                  
                }
             }
             .pin-image {               
@@ -402,10 +406,7 @@
                overflow: hidden;
                padding: 0;
                width: 100%;
-               display: inline-block;
-               &:hover, &:focus {
-                  filter: brightness(55%);
-               }
+               display: inline-block;               
                img {
                   width: 100%;
                   border-radius: 32px 32px 0 0;
