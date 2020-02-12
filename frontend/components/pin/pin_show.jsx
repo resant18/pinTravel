@@ -151,7 +151,7 @@ class PinShow extends React.Component {
          
       return (
          <div>
-            <div className='back-button'>
+            <div className='pin-show-back-button'>
                <button aria-label='Browse back' className='tool-buttons' type='button' onClick={this.browseBack} >
                   <div>
                      <svg height="20" width="20" viewBox="0 0 24 24" aria-label="Back button" role="img">

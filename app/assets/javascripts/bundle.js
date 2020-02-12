@@ -3519,7 +3519,7 @@ function (_React$Component) {
           creator = _this$props.creator;
       var user = this._isSameUser() ? 'You' : "".concat(creator.username);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "back-button"
+        className: "pin-show-back-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         "aria-label": "Browse back",
         className: "tool-buttons",
