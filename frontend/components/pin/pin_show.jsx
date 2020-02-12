@@ -10,13 +10,19 @@ class PinShow extends React.Component {
       };
 
       this.showModal = this.showModal.bind(this);
+      this.browseBack = this.browseBack.bind(this);
       this.showUrlLink = this.showUrlLink.bind(this);
-      this.hideUrlLink = this.hideUrlLink.bind(this);      
+      this.hideUrlLink = this.hideUrlLink.bind(this);   
+   
    }
 
    componentDidMount() {
       if (!this.props.pin) 
          this.props.fetchPin(this.props.pinId);
+   }
+
+   browseBack(e) {
+      this.props.history.goBack();
    }
 
    handleSave() {
@@ -75,7 +81,7 @@ class PinShow extends React.Component {
          return (
             <div className='toolbar'>
                <div className='toolbar-left'>
-                  <button aria-label='Edit board' className='tool-buttons edit-button' type='button' onClick={this.showModal({ name: 'edit-pin', selectedData: this.props.pinId })} >
+                  <button aria-label='Edit board' className='tool-buttons edit-button' type='button' onClick={this.browseBack} >
                      <div>
                         <svg className='svg' height='20' width='20' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
                            <path d='M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z'></path>
@@ -144,29 +150,42 @@ class PinShow extends React.Component {
       let user = this._isSameUser() ? 'You' : `${creator.username}`;
          
       return (
-         <div className='pin-show-wrapper'>
-            <div className='pin-show-container'>
-               <div className='pin-show-box'>
-                  <div className='pin-show-content-top'                      
-                     onMouseEnter={this.showUrlLink}
-                     onMouseLeave={this.hideUrlLink}>
-                     { this.displayUrlLinkOverImage() }
-                     { this.displayImage()}
+         <div>
+            <div className='back-button'>
+               <button aria-label='Browse back' className='tool-buttons' type='button' onClick={this.browseBack} >
+                  <div>
+                     <svg height="20" width="20" viewBox="0 0 24 24" aria-label="Back button" role="img">
+                        <path d="M24 12a2 2 0 0 1-2 2H7.676l4.631 4.586a2 2 0 1 1-2.829 2.828L0 12l9.478-9.414a2 2 0 0 1 2.829 2.828L7.676 10H22a2 2 0 0 1 2 2"></path>
+                     </svg>
                   </div>
-                  <div className='pin-show-content-bottom'>
-                     {this.displayToolbar()}   
-                     <div className='pin-url-link'>
-                        {this.displayUrlLink() }
-                     </div>                      
-                     <div className='pin-title'>                                             
-                        { this.displayTitle() }
-                     </div> 
-                     <div className='pin-detail'>
-                        { pin.detail }
+               </button>
+            </div>
+            <div className='pin-show-wrapper'>
+               <div className='pin-show-container'>
+                  <div className='pin-show-box'>
+                     <div className='pin-show-content-top'                      
+                        onMouseEnter={this.showUrlLink}
+                        onMouseLeave={this.hideUrlLink}>
+                        { this.displayUrlLinkOverImage() }
+                        { this.displayImage()}
                      </div>
-                     <div className='pin-creator-info'>
-                        <Link to={`/${creator.username}`}>{user}</Link><span> saved to </span><Link to={`/boards/${board.id}`}>{board.name}</Link>                        
-                     </div>                
+                     <div className='pin-show-content-bottom'>
+                        {this.displayToolbar()} 
+                        <div className='pin-show-content-middle'>
+                           <div className='pin-url-link'>
+                              {this.displayUrlLink() }
+                           </div>                      
+                           <div className='pin-title'>                                             
+                              { this.displayTitle() }
+                           </div> 
+                           <div className='pin-detail'>
+                              { pin.detail }
+                           </div>
+                        </div>  
+                        <div className='pin-creator-info'>
+                           <Link to={`/${creator.username}`}>{user}</Link><span> saved to </span><Link to={`/boards/${board.id}`}>{board.name}</Link>                        
+                        </div>                
+                     </div>
                   </div>
                </div>
             </div>

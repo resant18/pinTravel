@@ -3348,6 +3348,7 @@ function (_React$Component) {
       pinUrlVisibility: false
     };
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
+    _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
     _this.showUrlLink = _this.showUrlLink.bind(_assertThisInitialized(_this));
     _this.hideUrlLink = _this.hideUrlLink.bind(_assertThisInitialized(_this));
     return _this;
@@ -3357,6 +3358,11 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (!this.props.pin) this.props.fetchPin(this.props.pinId);
+    }
+  }, {
+    key: "browseBack",
+    value: function browseBack(e) {
+      this.props.history.goBack();
     }
   }, {
     key: "handleSave",
@@ -3434,10 +3440,7 @@ function (_React$Component) {
           "aria-label": "Edit board",
           className: "tool-buttons edit-button",
           type: "button",
-          onClick: this.showModal({
-            name: 'edit-pin',
-            selectedData: this.props.pinId
-          })
+          onClick: this.browseBack
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
           height: "20",
@@ -3515,7 +3518,22 @@ function (_React$Component) {
           board = _this$props.board,
           creator = _this$props.creator;
       var user = this._isSameUser() ? 'You' : "".concat(creator.username);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "back-button"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        "aria-label": "Browse back",
+        className: "tool-buttons",
+        type: "button",
+        onClick: this.browseBack
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        height: "20",
+        width: "20",
+        viewBox: "0 0 24 24",
+        "aria-label": "Back button",
+        role: "img"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M24 12a2 2 0 0 1-2 2H7.676l4.631 4.586a2 2 0 1 1-2.829 2.828L0 12l9.478-9.414a2 2 0 0 1 2.829 2.828L7.676 10H22a2 2 0 0 1 2 2"
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-container"
@@ -3528,18 +3546,20 @@ function (_React$Component) {
       }, this.displayUrlLinkOverImage(), this.displayImage()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content-bottom"
       }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-content-middle"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-url-link"
       }, this.displayUrlLink()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-title"
       }, this.displayTitle()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-detail"
-      }, pin.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, pin.detail)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-creator-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(creator.username)
       }, user), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " saved to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/boards/".concat(board.id)
-      }, board.name))))));
+      }, board.name)))))));
     }
   }]);
 
