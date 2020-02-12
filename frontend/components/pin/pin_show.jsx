@@ -44,8 +44,12 @@ class PinShow extends React.Component {
    }
 
    _formattedUrlLink() {
-      const hostname = new URL(this.props.pin.link_url).hostname;
-      return hostname.toString();
+      if (this.props.pin.link_url) {
+         const hostname = new URL(this.props.pin.link_url).hostname;
+         return hostname.toString();
+      } else {
+         return '';
+      }
    }
 
    displayUrlLinkOverImage() {
@@ -96,10 +100,8 @@ class PinShow extends React.Component {
    displayUrlLink() {
       if (this.props.pin.link_url) {
          return (
-            <a href={this.props.pin.link_url} target='_blank'>{ this._formattedUrlLink() }</a>
+            <a href={this.props.pin.link_url} target='_blank'>{this._formattedUrlLink()}</a>
          )
-      } else {
-         return this._formattedUrlLink();
       }
    }
 
@@ -113,9 +115,11 @@ class PinShow extends React.Component {
             </div>
          )
       } else {
-         <div className='pin-image'>            
-            <img src={this.props.pin.pictureUrl} alt={this.props.pin.title} />            
-         </div>
+         return (
+            <div className='pin-image'>            
+               <img src={this.props.pin.pictureUrl} alt={this.props.pin.title} />            
+            </div>
+         )
       }
    }
 

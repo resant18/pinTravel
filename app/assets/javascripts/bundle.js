@@ -3394,8 +3394,12 @@ function (_React$Component) {
   }, {
     key: "_formattedUrlLink",
     value: function _formattedUrlLink() {
-      var hostname = new URL(this.props.pin.link_url).hostname;
-      return hostname.toString();
+      if (this.props.pin.link_url) {
+        var hostname = new URL(this.props.pin.link_url).hostname;
+        return hostname.toString();
+      } else {
+        return '';
+      }
     }
   }, {
     key: "displayUrlLinkOverImage",
@@ -3469,8 +3473,6 @@ function (_React$Component) {
           href: this.props.pin.link_url,
           target: "_blank"
         }, this._formattedUrlLink());
-      } else {
-        return this._formattedUrlLink();
       }
     }
   }, {
@@ -3488,7 +3490,7 @@ function (_React$Component) {
           alt: this.props.pin.title
         })));
       } else {
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "pin-image"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: this.props.pin.pictureUrl,

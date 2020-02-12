@@ -421,6 +421,7 @@
             padding-right: 40px;              
             .toolbar {
                width: 100%;
+               min-width: 100%;
                min-height: 72px;
                display: flex;
                align-items: center;               
@@ -444,12 +445,10 @@
                word-break: break-word;
             }       
             .pin-title {
-               margin-top: 16px;
-               a {
-                  font-size: 36px;
-                  font-weight: bold;                  
-                  -webkit-font-smoothing: antialiased;                       
-               }
+               margin-top: 16px;         
+               font-size: 36px;
+               font-weight: bold;                  
+               -webkit-font-smoothing: antialiased;                                      
             }
             .pin-detail {
                font-size: 14px;               
