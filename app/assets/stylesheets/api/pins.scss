@@ -419,6 +419,13 @@
             line-height: normal;
             padding-left: 40px;
             padding-right: 40px;  
+            justify-content: space-between;
+            .toolbar {
+               width: 100%;
+               min-height: 72px;
+               display: flex;
+               align-items: center;
+            }
             .pin-url-link {
                color: #111;
                font-size: 18px;

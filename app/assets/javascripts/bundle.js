@@ -3364,7 +3364,7 @@ function (_React$Component) {
   }, {
     key: "_isSameUser",
     value: function _isSameUser() {
-      return this.props.currentUser === this.props.creator;
+      return this.props.currentUser.username === this.props.creator.username;
     }
   }, {
     key: "showModal",
@@ -3436,8 +3436,8 @@ function (_React$Component) {
           })
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
-          height: "24",
-          width: "24",
+          height: "20",
+          width: "20",
           viewBox: "0 0 24 24",
           "aria-hidden": "true",
           "aria-label": "",
@@ -3504,7 +3504,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           board = _this$props.board,
           creator = _this$props.creator;
-      var user = this._isSameUser() ? 'You' : "".concat(this.props.creator);
+      var user = this._isSameUser() ? 'You' : "".concat(creator.username);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3526,7 +3526,7 @@ function (_React$Component) {
       }, pin.detail), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-creator-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/".concat(pin.creator)
+        to: "/".concat(creator.username)
       }, user), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " saved to "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/boards/".concat(board.id)
       }, board.name))))));
@@ -3561,14 +3561,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var currentUser = state.entities.users[state.session.id].username || {};
+  var currentUser = state.entities.users[state.session.id] || {};
   var pinId = ownProps.match.params.pinId;
   var pin = state.entities.pins[pinId];
   var board, creator;
 
   if (pin) {
     board = state.entities.boards[pin.board_id];
-    creator = state.entities.users[pin.user.username].username;
+    creator = state.entities.users[pin.user.username];
   }
 
   return {

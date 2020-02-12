@@ -24,7 +24,7 @@ class PinShow extends React.Component {
    }
 
    _isSameUser() {
-      return (this.props.currentUser === this.props.creator);
+      return (this.props.currentUser.username === this.props.creator.username);
    }
 
    showModal(modal) {
@@ -69,7 +69,7 @@ class PinShow extends React.Component {
                <div className='toolbar-left'>
                   <button aria-label='Edit board' className='tool-buttons edit-button' type='button' onClick={this.showModal({ name: 'edit-pin', selectedData: this.props.pinId })} >
                      <div>
-                        <svg className='svg' height='24' width='24' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
+                        <svg className='svg' height='20' width='20' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
                            <path d='M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z'></path>
                         </svg>
                      </div>
@@ -123,7 +123,7 @@ class PinShow extends React.Component {
       if (!this.props.pin) return null;    
 
       const { pin, board, creator } = this.props;
-      let user = this._isSameUser() ? 'You' : `${this.props.creator}`;
+      let user = this._isSameUser() ? 'You' : `${creator.username}`;
          
       return (
          <div className='pin-show-wrapper'>
@@ -147,7 +147,7 @@ class PinShow extends React.Component {
                         { pin.detail }
                      </div>
                      <div className='pin-creator-info'>
-                        <Link to={`/${pin.creator}`}>{user}</Link><span> saved to </span><Link to={`/boards/${board.id}`}>{board.name}</Link>                        
+                        <Link to={`/${creator.username}`}>{user}</Link><span> saved to </span><Link to={`/boards/${board.id}`}>{board.name}</Link>                        
                      </div>                
                   </div>
                </div>

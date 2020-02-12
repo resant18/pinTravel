@@ -5,14 +5,14 @@ import { showModal } from '../../actions/modal_actions';
 import PinShow from './pin_show';
 
 const mapStateToProps = (state, ownProps) => {
-   const currentUser = state.entities.users[state.session.id].username || {};   
+   const currentUser = state.entities.users[state.session.id] || {};   
    const pinId = ownProps.match.params.pinId;
    const pin = state.entities.pins[pinId];      
    let board, creator;
 
    if (pin) {
       board = state.entities.boards[pin.board_id];
-      creator = state.entities.users[pin.user.username].username;
+      creator = state.entities.users[pin.user.username];
    }
 
    return ({
