@@ -3134,7 +3134,7 @@ function (_React$Component) {
     };
     _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
     _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
-    _this.renderLinks = _this.renderLinks.bind(_assertThisInitialized(_this));
+    _this.renderOverlayLinks = _this.renderOverlayLinks.bind(_assertThisInitialized(_this));
     _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -3164,12 +3164,12 @@ function (_React$Component) {
   }, {
     key: "_formatUrlLink",
     value: function _formatUrlLink(link) {
-      return link.length > 12 ? link + '...' : link;
-    } // TO-DO: update url link with real data
-
+      var link_hostname = new URL(link).hostname;
+      return link_hostname.length > 12 ? link_hostname.slice(0, 12) + '...' : link_hostname;
+    }
   }, {
-    key: "renderLinks",
-    value: function renderLinks() {
+    key: "renderOverlayLinks",
+    value: function renderOverlayLinks() {
       var currentUser = this.props.currentUser;
       if (!currentUser) return null;
 
@@ -3178,12 +3178,13 @@ function (_React$Component) {
         var link;
         var edit;
 
-        if (pin.link_url !== '') {
-          // const hostname = new URL(pin.link_url).hostname;
-          link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        if (pin.link_url && pin.link_url !== '') {
+          link = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "pin-url-link"
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
             href: pin.link_url,
             target: "_blank"
-          }, "something.com...");
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " \u2197 "), " ", this._formatUrlLink(pin.link_url)));
         }
 
         if (currentUser.username === pin.user.username) {
@@ -3213,9 +3214,7 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "pin-save-btn",
           onClick: this.showCreateModal
-        }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-url-link"
-        }, this._formatUrlLink(link)));
+        }, "Save")), link);
       }
     }
   }, {
@@ -3233,7 +3232,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "pin-img",
         src: pin.pictureUrl
-      })), this.renderLinks()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), this.renderOverlayLinks()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-content-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)));
     }

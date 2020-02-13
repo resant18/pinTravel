@@ -313,12 +313,15 @@ div.svg-40 {
                     padding: 10px;
                     border-radius: 20px;
                     font-weight: 700;
-                    width: 125px;   
+                    width: 140px;   
                     &:hover {
                         cursor: pointer;
                         filter: brightness(100%);
                     }                 
-                }         
+                }   
+                span {
+                    vertical-align: middle;
+                }      
             }
             .pin-content-title {    
                 display: inline-block;                

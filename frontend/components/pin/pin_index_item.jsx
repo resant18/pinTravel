@@ -9,7 +9,7 @@ class PinIndexItem extends React.Component {
     };
     this.hideVisibility = this.hideVisibility.bind(this);
     this.showVisibility = this.showVisibility.bind(this);
-    this.renderLinks = this.renderLinks.bind(this);
+    this.renderOverlayLinks = this.renderOverlayLinks.bind(this);
     this.showEditForm = this.showEditForm.bind(this);        
   }
 
@@ -26,11 +26,12 @@ class PinIndexItem extends React.Component {
   }
 
   _formatUrlLink(link) {
-     return link.length > 12 ? link + '...' : link;
+    const link_hostname = new URL(link).hostname;
+
+    return link_hostname.length > 12 ? link_hostname.slice(0, 12) + '...' : link_hostname;    
   }
 
-  // TO-DO: update url link with real data
-  renderLinks() {    
+  renderOverlayLinks() {    
     const { currentUser } = this.props;
 
     if (!currentUser) return null;    
@@ -39,13 +40,14 @@ class PinIndexItem extends React.Component {
       const { pin } = this.props;      
       let link;
       let edit;
-
-      if (pin.link_url !== '') {
-        // const hostname = new URL(pin.link_url).hostname;
+      
+      if (pin.link_url && pin.link_url !== '') {        
         link = (
-          <a href={pin.link_url} target='_blank'>            
-            something.com...
-          </a>
+          <div className='pin-url-link'>
+            <a href={pin.link_url} target='_blank'>            
+              <span> &#x2197; </span> {this._formatUrlLink(pin.link_url)} 
+            </a>
+          </div>
         );
       }
       
@@ -71,10 +73,8 @@ class PinIndexItem extends React.Component {
                 onClick={this.showCreateModal}>              
               Save
             </button>
-          </div>
-          <div className='pin-url-link'>            
-            {this._formatUrlLink(link)}
-          </div>
+          </div>          
+          { link } 
         </div>          
       );
     }
@@ -93,7 +93,7 @@ class PinIndexItem extends React.Component {
           <Link to={`/pin/${pin.id}`}>
             <img className='pin-img' src={pin.pictureUrl} />
           </Link>
-          {this.renderLinks()}
+          {this.renderOverlayLinks()}
         </div>        
           <div className='pin-content-title'>
             <p>{pin.title}</p>
