@@ -84,21 +84,21 @@ class PinIndexItem extends React.Component {
     const { pin } = this.props;
     
     return (   
-      <Link to={`/pin/${pin.id}`}>
+      
         <div className='pin-index-item'
           onMouseEnter={this.showVisibility}
           onMouseLeave={this.hideVisibility}
-        >
-          <div className='pin-content-img'>
+        >        
+        <div className='pin-content-img'>
+          <Link to={`/pin/${pin.id}`}>
             <img className='pin-img' src={pin.pictureUrl} />
-            {this.renderLinks()}
-          </div>
+          </Link>
+          {this.renderLinks()}
+        </div>        
           <div className='pin-content-title'>
             <p>{pin.title}</p>
-          </div>
-          
-        </div>
-      </Link>   
+          </div>          
+        </div>      
     );
   }
 }

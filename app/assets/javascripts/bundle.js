@@ -3222,20 +3222,20 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var pin = this.props.pin;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/pin/".concat(pin.id)
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item",
         onMouseEnter: this.showVisibility,
         onMouseLeave: this.hideVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-content-img"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/pin/".concat(pin.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "pin-img",
         src: pin.pictureUrl
-      }), this.renderLinks()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), this.renderLinks()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-content-title"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, pin.title)));
     }
   }]);
 
