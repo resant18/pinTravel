@@ -1679,7 +1679,7 @@ function (_React$Component) {
       }],
       fruit: [{
         id: 0,
-        title: 'Apple',
+        title: 'Apple asdjhgsdjhgaSJDHGA,SJ',
         selected: false,
         key: 'fruit'
       }, {
