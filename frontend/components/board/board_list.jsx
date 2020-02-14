@@ -1,54 +1,124 @@
 import React from 'react';
+import DropDown from '../element/drop_down';
 
 class BoardList extends React.Component {
    constructor(props) {
       super(props);
 
-      this.state = { visible: false };
-
-      this.hideVisibility = this.hideVisibility.bind(this);
-      this.showVisibility = this.showVisibility.bind(this);
-      this.handleSelectLink = this.handleSelectLink.bind(this);
-      this.handleSelectBoard = this.handleSelectBoard.bind(this);
+      // this.state = this.props.boards;
+      this.state = {
+         location: [
+            {
+               id: 0,
+               title: 'New York',
+               selected: false,
+               key: 'location'
+            },
+            {
+               id: 1,
+               title: 'Dublin',
+               selected: false,
+               key: 'location'
+            },
+            {
+               id: 2,
+               title: 'California',
+               selected: false,
+               key: 'location'
+            },
+            {
+               id: 3,
+               title: 'Istanbul',
+               selected: false,
+               key: 'location'
+            },
+            {
+               id: 4,
+               title: 'Izmir',
+               selected: false,
+               key: 'location'
+            },
+            {
+               id: 5,
+               title: 'Oslo',
+               selected: false,
+               key: 'location'
+            },
+            {
+               id: 6,
+               title: 'Zurich',
+               selected: false,
+               key: 'location'
+            }
+         ],
+         fruit: [
+            {
+               id: 0,
+               title: 'Apple',
+               selected: false,
+               key: 'fruit'
+            },
+            {
+               id: 1,
+               title: 'Orange',
+               selected: false,
+               key: 'fruit'
+            },
+            {
+               id: 2,
+               title: 'Grape',
+               selected: false,
+               key: 'fruit'
+            },
+            {
+               id: 3,
+               title: 'Pomegranate',
+               selected: false,
+               key: 'fruit'
+            },
+            {
+               id: 4,
+               title: 'Strawberry',
+               selected: false,
+               key: 'fruit'
+            }
+         ]
+      };
+      
+      this.resetThenSet = this.resetThenSet.bind(this);
    }
 
-   hideVisibility(e) {
-      this.setState({ visible: false });
+   toggleSelected(id, key) {      
+      let temp = JSON.parse(JSON.stringify(this.state[key]));
+      
+      temp[id].selected = !temp[id].selected;
+      this.setState({
+         [key]: temp
+      });
    }
 
-   showVisibility(e) {
-      this.setState({ visible: true });
-   }
-
-   handleSelectBoard(e) {
-      this.props.onSelectBoard(this.props.board);
-   }
-
-   handleSelectLink() {
-      if (this.state.visible) {
-         return (
-            <button
-               className='select-btn'
-               onClick={this.handleSelectBoard}>
-               {this.props.text}
-            </button>
-         )
-      }
+   resetThenSet(id, key) {      
+      let temp = JSON.parse(JSON.stringify(this.state[key]));
+      
+      temp.forEach(item => (item.selected = false));
+      temp[id].selected = true;
+      this.setState({
+         [key]: temp
+      });      
    }
 
    render() {
-      const { board } = this.props;
-
       return (
-         <div
-            className='board-option'
-            onMouseEnter={this.showVisibility}
-            onMouseLeave={this.hideVisibility}
-            value={board.id}>
-            <p>{board.name}</p>
-            {this.handleSelectLink()}
+         <div className='dropdown-board-list'>
+            <div>
+               <DropDown
+                  title='Select fruit'
+                  list={this.state.fruit}
+                  resetThenSet={this.resetThenSet}
+               />
+            </div>
          </div>
-      )
+      );
    }
 }
 
