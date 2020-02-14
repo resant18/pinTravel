@@ -2166,8 +2166,10 @@ function (_React$Component) {
           return _this3.toggleList();
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-header-left"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-header-title"
-      }, headerTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+      }, headerTitle), listOpen ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
         height: "12",
         width: "12",
         viewBox: "0 0 24 24",
@@ -2175,9 +2177,19 @@ function (_React$Component) {
         role: "img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
         d: "M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"
-      })), listOpen ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-header-right"
+      }, listOpen ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        height: "12",
+        width: "12",
+        viewBox: "0 0 24 24",
+        "aria-label": "Choose a board",
+        role: "img"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "dd-list-save"
-      }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Save"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-wrapper"
       }, listOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "dd-list",
@@ -2192,8 +2204,14 @@ function (_React$Component) {
             return _this3.selectItem(item.title, item.id, item.key);
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dd-list-item-img-wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "dd-list-item-img"
-        }, "img"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item.title), item.selected && '<div>Save</div>');
+        }, "img")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dd-list-item-text-wrapper"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dd-list-item-text"
+        }, item.title)), item.selected && "<div>Save</div>");
       }))));
     }
   }]);

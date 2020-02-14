@@ -19,32 +19,44 @@
       position: relative;
       border-radius: 8px;
 
-      .dd-header-title {
-         color: #8e8e8e;
-         font-size: 16px;
+      .dd-header-left {
+         display: flex;
+         justify-content: space-between;
          max-width: 100%;
-         overflow: hidden;
-         text-overflow: ellipsis;
-         white-space: nowrap;
-         hyphens: auto;
-         word-wrap: break-word;
-         font-weight: 400;
-         letter-spacing: -.4px;
+         align-items: center;
+         width: 67%;
+
+         .dd-header-title {
+            color: #8e8e8e;
+            font-size: 16px;            
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            hyphens: auto;
+            word-wrap: break-word;
+            font-weight: 400;
+            letter-spacing: -.4px;
+         }
+         svg {
+            color: #111;
+         }
       }
-      svg {
-         color: #111;
-      }
-      .dd-list-save {
-         background-color: rgb(230, 0, 35);
-         border: none;
-         border-radius: 0px 8px 8px 0px;
-         cursor: pointer;
-         flex: 0 0 auto;
-         height: 40px;
-         outline: 0px;
-         padding: 0px 14px;
-         position: absolute;
-         right: 0;
+      .dd-header-right {    
+         svg {
+            color: #111;    
+            padding-right: 14px;        
+         }     
+         .dd-list-save {
+            background-color: var(--color-primary);
+            border: none;
+            border-radius: 0px 8px 8px 0px;
+            cursor: pointer;
+            flex: 0 0 auto;
+            height: 40px;
+            outline: 0px;
+            padding: 0px 14px;            
+            color: var(--color-surface);
+         }
       }
    }
 
@@ -54,15 +66,70 @@
       visibility: visible;
       top: 52px;
       left: 0;      
-      .dd-list {         
-         min-height: 40px;
-         max-height: 90vh;
-         max-width: 90vw;
-         border: 1px solid;
-         box-shadow: 0 3px 6px rgba(0,0,0,.18);
-         outline: none;
-         border-radius: 8px;
-         background-color: var(--color-surface);
+      .dd-list-item {         
+         // min-height: 40px;
+         // max-height: 90vh;
+         // max-width: 90vw;
+         // border: 1px solid;
+         // box-shadow: 0 3px 6px rgba(0,0,0,.18);
+         // outline: none;
+         // border-radius: 8px;
+         // background-color: var(--color-surface);
+         list-style: none;
+         width: 100%;
+         border-radius: 0;
+         cursor: pointer;
+         height: 52px;
+         margin: 4px 12px;
+         display: flex;
+         flex-direction: row;
+         align-items: center;
+
+         .dd-list-item-img-wrapper {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+
+            .dd-list-item-img {
+               width: 36px;
+               height: 36px;
+               border-radius: 0;
+               position: relative;
+               overflow: hidden;
+
+               img {
+                  background-color: transparent;
+                  background-size: cover;
+                  background-position: 50%;
+                  background-repeat: no-repeat;
+                  height: 100%;
+                  width: 100%;
+                  cursor: pointer;
+               }
+            }
+         }
+
+         .dd-list-item-text-wrapper {
+            flex: 0 0 auto;
+            min-height: 0;
+            min-width: 0;
+            overflow: hidden;
+            padding-bottom: 4px;
+            padding-top: 4px;
+            .dd-list-item-text {
+               color: #111;
+               font-size: 16px;
+               max-width: 100%;
+               overflow: hidden;
+               text-overflow: ellipsis;
+               white-space: nowrap;
+               hyphens: auto;
+               word-wrap: break-word;
+               font-weight: 700;
+               letter-spacing: -.4px;
+               cursor: pointer;
+            }
+         }
       }
    }
 
@@ -70,7 +137,7 @@
       position: absolute;
       stroke: rgb(239, 239, 239);
       visibility: visible;
-      top: 52px;
+      top: 15px;
       left: -166px;
       min-height: 40px;
       max-height: 90vh;

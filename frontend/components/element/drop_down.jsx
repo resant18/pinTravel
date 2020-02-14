@@ -56,17 +56,37 @@ class DropDown extends React.Component {
       return (
          <div className="dd-wrapper">
             <div className="dd-header" onClick={() => this.toggleList()}>
-               <div className="dd-header-title">{headerTitle}</div>
-               <svg
-                  height="12"
-                  width="12"
-                  viewBox="0 0 24 24"
-                  aria-label="Choose a board"
-                  role="img"
-               >
-                  <path d="M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"></path>
-               </svg>
-               {listOpen ? "" : <button className='dd-list-save'>Save</button>}
+               <div className="dd-header-left">
+                  <div className="dd-header-title">{headerTitle}</div>
+                  {listOpen ? (
+                     ""
+                  ) : (
+                     <svg
+                        height="12"
+                        width="12"
+                        viewBox="0 0 24 24"
+                        aria-label="Choose a board"
+                        role="img"
+                     >
+                        <path d="M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"></path>
+                     </svg>
+                  )}
+               </div>
+               <div className="dd-header-right">
+                  {listOpen ? (
+                     <svg
+                        height="12"
+                        width="12"
+                        viewBox="0 0 24 24"
+                        aria-label="Choose a board"
+                        role="img"
+                     >
+                        <path d="M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"></path>
+                     </svg>
+                  ) : (
+                     <button className="dd-list-save">Save</button>
+                  )}
+               </div>
             </div>
             <div className="dd-list-wrapper">
                {listOpen && (
@@ -78,11 +98,18 @@ class DropDown extends React.Component {
                            onClick={() =>
                               this.selectItem(item.title, item.id, item.key)
                            }
+                           
                         >
-                           <div className="dd-list-item-img">img</div>
-                           <div>{item.title}</div>
+                           <div className="dd-list-item-img-wrapper">
+                              <div className="dd-list-item-img">img</div>
+                           </div>
+                           <div className="dd-list-item-text-wrapper">
+                              <div className="dd-list-item-text">
+                                 {item.title}
+                              </div>
+                           </div>
 
-                           {item.selected && '<div>Save</div>'}
+                           {item.selected && "<div>Save</div>"}
                         </li>
                      ))}
                   </ul>
