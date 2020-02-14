@@ -8,7 +8,7 @@ import PinCreateForm from './pin_create_form';
 const mapStateToProps = (state, ownProps) => {   
    const currentUser = state.entities.users[state.session.id] || {};
    const username = ownProps.match.params.username;
-   const boards = selectUserBoards(state.entities, currentUser);
+   const boards = selectUserBoards(state.entities, currentUser, true);
 
    return {
       currentUser,
