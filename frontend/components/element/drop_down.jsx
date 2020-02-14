@@ -1,14 +1,64 @@
 import React from 'react';
 // import '../../../app/assets/stylesheets/dropdown.scss';
 
+class DropDownListItem extends React.Component {
+   constructor(props) {
+      super(props);
+
+      this.state = {
+         visibility: false
+      };
+
+      this.showVisibility = this.showVisibility.bind(this);
+      this.hideVisibility = this.hideVisibility.bind(this);
+      this.displayLink = this.displayLink.bind(this);
+   }
+
+   showVisibility() {
+      this.setState({ visibility: true });
+   }
+
+   hideVisibility() {
+      this.setState({ visibility: false });
+   }
+
+   displayLink() {            
+      // if (this.state.visibility) {
+         return <button className="dd-list-save">Save</button>;
+      // }
+   }
+
+   render() {
+      const { item } = this.props;
+
+      return (
+         <li
+            className="dd-list-item"
+            key={item.id}
+            onMouseEnter={this.showVisibility}
+            onMouseLeave={this.hideVisibility}
+         >
+            <div className="dd-list-item-img-wrapper">
+               <div className="dd-list-item-img">img</div>
+            </div>
+            <div className="dd-list-item-text-wrapper">
+               <div className="dd-list-item-text">{item.title}</div>
+               <div className="dd-list-item-link">{this.displayLink()}</div>
+            </div>
+         </li>
+      );
+   }
+}
+
 class DropDown extends React.Component {
    constructor(props) {
       super(props);
 
       this.state = {
          listOpen: false,
-         headerTitle: this.props.title
-      }
+         headerTitle: this.props.title,
+         visible: false
+      };
 
       this.close = this.close.bind(this);
    }
@@ -18,35 +68,37 @@ class DropDown extends React.Component {
 
       setTimeout(() => {
          if (listOpen) {
-            window.addEventListener('click', this.close);
-         }
-         else {
-            window.removeEventListener('click', this.close);
+            window.addEventListener("click", this.close);
+         } else {
+            window.removeEventListener("click", this.close);
          }
       }, 0);
    }
 
    componentWillUnmount() {
-      window.removeEventListener('click', this.close);
+      window.removeEventListener("click", this.close);
    }
 
    close(timeOut) {
       this.setState({
          listOpen: false
-      })
+      });
    }
 
-   selectItem(title, id, stateKey) {
-      this.setState({
-         headerTitle: title,
-         listOpen: false
-      }, this.props.resetThenSet(id, stateKey));
-   }
+   // selectItem(title, id, stateKey) {
+   //    this.setState(
+   //       {
+   //          headerTitle: title,
+   //          listOpen: false
+   //       },
+   //       this.props.resetThenSet(id, stateKey)
+   //    );
+   // }
 
    toggleList() {
-      this.setState( prevState => ({
+      this.setState(prevState => ({
          listOpen: !prevState.listOpen
-      }))
+      }));
    }
 
    render() {
@@ -92,25 +144,7 @@ class DropDown extends React.Component {
                {listOpen && (
                   <ul className="dd-list" onClick={e => e.stopPropagation()}>
                      {list.map(item => (
-                        <li
-                           className="dd-list-item"
-                           key={item.id}
-                           onClick={() =>
-                              this.selectItem(item.title, item.id, item.key)
-                           }
-                           
-                        >
-                           <div className="dd-list-item-img-wrapper">
-                              <div className="dd-list-item-img">img</div>
-                           </div>
-                           <div className="dd-list-item-text-wrapper">
-                              <div className="dd-list-item-text">
-                                 {item.title}
-                              </div>
-                           </div>
-
-                           {item.selected && "<div>Save</div>"}
-                        </li>
+                        <DropDownListItem key={item.id} item={item} />
                      ))}
                   </ul>
                )}

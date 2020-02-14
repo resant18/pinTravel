@@ -2087,43 +2087,112 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
  // import '../../../app/assets/stylesheets/dropdown.scss';
 
-var DropDown =
+var DropDownListItem =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(DropDown, _React$Component);
+  _inherits(DropDownListItem, _React$Component);
+
+  function DropDownListItem(props) {
+    var _this;
+
+    _classCallCheck(this, DropDownListItem);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DropDownListItem).call(this, props));
+    _this.state = {
+      visibility: false
+    };
+    _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
+    _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
+    _this.displayLink = _this.displayLink.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(DropDownListItem, [{
+    key: "showVisibility",
+    value: function showVisibility() {
+      this.setState({
+        visibility: true
+      });
+    }
+  }, {
+    key: "hideVisibility",
+    value: function hideVisibility() {
+      this.setState({
+        visibility: false
+      });
+    }
+  }, {
+    key: "displayLink",
+    value: function displayLink() {
+      // if (this.state.visibility) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "dd-list-save"
+      }, "Save"); // }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var item = this.props.item;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "dd-list-item",
+        key: item.id,
+        onMouseEnter: this.showVisibility,
+        onMouseLeave: this.hideVisibility
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-img-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-img"
+      }, "img")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-text-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-text"
+      }, item.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-link"
+      }, this.displayLink())));
+    }
+  }]);
+
+  return DropDownListItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var DropDown =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(DropDown, _React$Component2);
 
   function DropDown(props) {
-    var _this;
+    var _this2;
 
     _classCallCheck(this, DropDown);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DropDown).call(this, props));
-    _this.state = {
+    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(DropDown).call(this, props));
+    _this2.state = {
       listOpen: false,
-      headerTitle: _this.props.title
+      headerTitle: _this2.props.title,
+      visible: false
     };
-    _this.close = _this.close.bind(_assertThisInitialized(_this));
-    return _this;
+    _this2.close = _this2.close.bind(_assertThisInitialized(_this2));
+    return _this2;
   }
 
   _createClass(DropDown, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      var _this2 = this;
+      var _this3 = this;
 
       var listOpen = this.state.listOpen;
       setTimeout(function () {
         if (listOpen) {
-          window.addEventListener('click', _this2.close);
+          window.addEventListener("click", _this3.close);
         } else {
-          window.removeEventListener('click', _this2.close);
+          window.removeEventListener("click", _this3.close);
         }
       }, 0);
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      window.removeEventListener('click', this.close);
+      window.removeEventListener("click", this.close);
     }
   }, {
     key: "close",
@@ -2131,15 +2200,16 @@ function (_React$Component) {
       this.setState({
         listOpen: false
       });
-    }
-  }, {
-    key: "selectItem",
-    value: function selectItem(title, id, stateKey) {
-      this.setState({
-        headerTitle: title,
-        listOpen: false
-      }, this.props.resetThenSet(id, stateKey));
-    }
+    } // selectItem(title, id, stateKey) {
+    //    this.setState(
+    //       {
+    //          headerTitle: title,
+    //          listOpen: false
+    //       },
+    //       this.props.resetThenSet(id, stateKey)
+    //    );
+    // }
+
   }, {
     key: "toggleList",
     value: function toggleList() {
@@ -2152,7 +2222,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var list = this.props.list;
       var _this$state = this.state,
@@ -2163,7 +2233,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-header",
         onClick: function onClick() {
-          return _this3.toggleList();
+          return _this4.toggleList();
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-header-left"
@@ -2197,21 +2267,10 @@ function (_React$Component) {
           return e.stopPropagation();
         }
       }, list.map(function (item) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "dd-list-item",
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DropDownListItem, {
           key: item.id,
-          onClick: function onClick() {
-            return _this3.selectItem(item.title, item.id, item.key);
-          }
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dd-list-item-img-wrapper"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dd-list-item-img"
-        }, "img")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dd-list-item-text-wrapper"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "dd-list-item-text"
-        }, item.title)), item.selected && "<div>Save</div>");
+          item: item
+        });
       }))));
     }
   }]);

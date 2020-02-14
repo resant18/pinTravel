@@ -46,17 +46,17 @@
             color: #111;    
             padding-right: 14px;        
          }     
-         .dd-list-save {
-            background-color: var(--color-primary);
-            border: none;
-            border-radius: 0px 8px 8px 0px;
-            cursor: pointer;
-            flex: 0 0 auto;
-            height: 40px;
-            outline: 0px;
-            padding: 0px 14px;            
-            color: var(--color-surface);
-         }
+         // .dd-list-save {
+         //    background-color: var(--color-primary);
+         //    border: none;
+         //    border-radius: 0px 8px 8px 0px;
+         //    cursor: pointer;
+         //    flex: 0 0 auto;
+         //    height: 40px;
+         //    outline: 0px;
+         //    padding: 0px 14px;            
+         //    color: var(--color-surface);
+         // }
       }
    }
 
@@ -66,17 +66,8 @@
       visibility: visible;
       top: 52px;
       left: 0;      
-      .dd-list-item {         
-         // min-height: 40px;
-         // max-height: 90vh;
-         // max-width: 90vw;
-         // border: 1px solid;
-         // box-shadow: 0 3px 6px rgba(0,0,0,.18);
-         // outline: none;
-         // border-radius: 8px;
-         // background-color: var(--color-surface);
-         list-style: none;
-         width: 100%;
+      .dd-list-item {                  
+         list-style: none;         
          border-radius: 0;
          cursor: pointer;
          height: 52px;
@@ -89,6 +80,7 @@
             width: 36px;
             height: 36px;
             border-radius: 8px;
+            margin: 4px 12px 4px 8px;
 
             .dd-list-item-img {
                width: 36px;
@@ -110,7 +102,10 @@
          }
 
          .dd-list-item-text-wrapper {
-            flex: 0 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex: 1 1 auto;
             min-height: 0;
             min-width: 0;
             overflow: hidden;
@@ -124,13 +119,21 @@
                text-overflow: ellipsis;
                white-space: nowrap;
                hyphens: auto;
+               line-height: 40px;
                word-wrap: break-word;
                font-weight: 700;
                letter-spacing: -.4px;
                cursor: pointer;
             }
          }
+
+         &:hover, &:focus {
+            border-radius: 12px;
+            background-color: var(--color-lightest-gray);
+         }
       }
+
+      
    }
 
    .dd-list-wrapper {
@@ -165,6 +168,18 @@
             align-items: center;
          }
       }
-   }
+   }   
+}
+
+.dd-list-save {
+   background-color: var(--color-primary);
+   border: none;
+   border-radius: 0px 8px 8px 0px;
+   cursor: pointer;
+   flex: 0 0 auto;
+   height: 40px;
+   outline: 0px;
+   padding: 0px 14px;            
+   color: var(--color-surface);
 }
 
