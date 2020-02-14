@@ -1,0 +1,103 @@
+.dd-wrapper {
+   width: 236px;
+   position: relative;
+   border-radius: 8px;
+   z-index: 1;
+
+   .dd-header {
+      align-items: center;
+      background-color: rgb(239, 239, 239);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-grow: 1;
+      height: 40px;
+      justify-content: space-between;
+      min-width: 0px;
+      outline: 0px;
+      padding-left: 14px;
+      position: relative;
+      border-radius: 8px;
+
+      .dd-header-title {
+         color: #8e8e8e;
+         font-size: 16px;
+         max-width: 100%;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+         hyphens: auto;
+         word-wrap: break-word;
+         font-weight: 400;
+         letter-spacing: -.4px;
+      }
+      svg {
+         color: #111;
+      }
+      .dd-list-save {
+         background-color: rgb(230, 0, 35);
+         border: none;
+         border-radius: 0px 8px 8px 0px;
+         cursor: pointer;
+         flex: 0 0 auto;
+         height: 40px;
+         outline: 0px;
+         padding: 0px 14px;
+         position: absolute;
+         right: 0;
+      }
+   }
+
+   .dd-list {
+      position: absolute;
+      stroke: rgb(239, 239, 239);
+      visibility: visible;
+      top: 52px;
+      left: 0;      
+      .dd-list {         
+         min-height: 40px;
+         max-height: 90vh;
+         max-width: 90vw;
+         border: 1px solid;
+         box-shadow: 0 3px 6px rgba(0,0,0,.18);
+         outline: none;
+         border-radius: 8px;
+         background-color: var(--color-surface);
+      }
+   }
+
+   .dd-list-wrapper {
+      position: absolute;
+      stroke: rgb(239, 239, 239);
+      visibility: visible;
+      top: 52px;
+      left: -166px;
+      min-height: 40px;
+      max-height: 90vh;
+      max-width: 90vw;
+
+      ul.dd-list {
+         min-height: 322px;
+         max-height: 322px;
+         max-width: 90vw;
+         border: 1px solid;
+         box-shadow: 0 3px 6px rgba(0,0,0,.18);
+         outline: none;
+         border-radius: 8px;
+         background-color: #fff;
+         color: #fff;
+         width: 320px;
+         height: 439px;
+         overflow-x: hidden;
+         overflow-y: scroll;
+
+         li.add-list-item {            
+            height: 52px;
+            border-radius: 12px;
+            margin: 12px 4px;
+            align-items: center;
+         }
+      }
+   }
+}
+

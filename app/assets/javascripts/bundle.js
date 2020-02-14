@@ -1604,7 +1604,10 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _element_drop_down__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../element/drop_down */ "./frontend/components/element/drop_down.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1624,6 +1627,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var BoardList =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1634,56 +1638,103 @@ function (_React$Component) {
 
     _classCallCheck(this, BoardList);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardList).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardList).call(this, props)); // this.state = this.props.boards;
+
     _this.state = {
-      visible: false
+      location: [{
+        id: 0,
+        title: 'New York',
+        selected: false,
+        key: 'location'
+      }, {
+        id: 1,
+        title: 'Dublin',
+        selected: false,
+        key: 'location'
+      }, {
+        id: 2,
+        title: 'California',
+        selected: false,
+        key: 'location'
+      }, {
+        id: 3,
+        title: 'Istanbul',
+        selected: false,
+        key: 'location'
+      }, {
+        id: 4,
+        title: 'Izmir',
+        selected: false,
+        key: 'location'
+      }, {
+        id: 5,
+        title: 'Oslo',
+        selected: false,
+        key: 'location'
+      }, {
+        id: 6,
+        title: 'Zurich',
+        selected: false,
+        key: 'location'
+      }],
+      fruit: [{
+        id: 0,
+        title: 'Apple',
+        selected: false,
+        key: 'fruit'
+      }, {
+        id: 1,
+        title: 'Orange',
+        selected: false,
+        key: 'fruit'
+      }, {
+        id: 2,
+        title: 'Grape',
+        selected: false,
+        key: 'fruit'
+      }, {
+        id: 3,
+        title: 'Pomegranate',
+        selected: false,
+        key: 'fruit'
+      }, {
+        id: 4,
+        title: 'Strawberry',
+        selected: false,
+        key: 'fruit'
+      }]
     };
-    _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
-    _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
-    _this.handleSelectLink = _this.handleSelectLink.bind(_assertThisInitialized(_this));
-    _this.handleSelectBoard = _this.handleSelectBoard.bind(_assertThisInitialized(_this));
+    _this.resetThenSet = _this.resetThenSet.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(BoardList, [{
-    key: "hideVisibility",
-    value: function hideVisibility(e) {
-      this.setState({
-        visible: false
+    key: "toggleSelected",
+    value: function toggleSelected(id, key) {
+      var temp = JSON.parse(JSON.stringify(this.state[key]));
+      temp[id].selected = !temp[id].selected;
+      this.setState(_defineProperty({}, key, temp));
+    }
+  }, {
+    key: "resetThenSet",
+    value: function resetThenSet(id, key) {
+      var temp = JSON.parse(JSON.stringify(this.state[key]));
+      temp.forEach(function (item) {
+        return item.selected = false;
       });
-    }
-  }, {
-    key: "showVisibility",
-    value: function showVisibility(e) {
-      this.setState({
-        visible: true
-      });
-    }
-  }, {
-    key: "handleSelectBoard",
-    value: function handleSelectBoard(e) {
-      this.props.onSelectBoard(this.props.board);
-    }
-  }, {
-    key: "handleSelectLink",
-    value: function handleSelectLink() {
-      if (this.state.visible) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "select-btn",
-          onClick: this.handleSelectBoard
-        }, this.props.text);
-      }
+      temp[id].selected = true;
+      this.setState(_defineProperty({}, key, temp));
     }
   }, {
     key: "render",
     value: function render() {
-      var board = this.props.board;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-option",
-        onMouseEnter: this.showVisibility,
-        onMouseLeave: this.hideVisibility,
-        value: board.id
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, board.name), this.handleSelectLink());
+        className: "dropdown-board-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        title: "Select fruit",
+        list: this.state.fruit,
+        resetThenSet: this.resetThenSet
+      })));
     }
   }]);
 
@@ -2005,6 +2056,155 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/element/drop_down.jsx":
+/*!***************************************************!*\
+  !*** ./frontend/components/element/drop_down.jsx ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+ // import '../../../app/assets/stylesheets/dropdown.scss';
+
+var DropDown =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(DropDown, _React$Component);
+
+  function DropDown(props) {
+    var _this;
+
+    _classCallCheck(this, DropDown);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DropDown).call(this, props));
+    _this.state = {
+      listOpen: false,
+      headerTitle: _this.props.title
+    };
+    _this.close = _this.close.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(DropDown, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var _this2 = this;
+
+      var listOpen = this.state.listOpen;
+      setTimeout(function () {
+        if (listOpen) {
+          window.addEventListener('click', _this2.close);
+        } else {
+          window.removeEventListener('click', _this2.close);
+        }
+      }, 0);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      window.removeEventListener('click', this.close);
+    }
+  }, {
+    key: "close",
+    value: function close(timeOut) {
+      this.setState({
+        listOpen: false
+      });
+    }
+  }, {
+    key: "selectItem",
+    value: function selectItem(title, id, stateKey) {
+      this.setState({
+        headerTitle: title,
+        listOpen: false
+      }, this.props.resetThenSet(id, stateKey));
+    }
+  }, {
+    key: "toggleList",
+    value: function toggleList() {
+      this.setState(function (prevState) {
+        return {
+          listOpen: !prevState.listOpen
+        };
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var list = this.props.list;
+      var _this$state = this.state,
+          listOpen = _this$state.listOpen,
+          headerTitle = _this$state.headerTitle;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-header",
+        onClick: function onClick() {
+          return _this3.toggleList();
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-header-title"
+      }, headerTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        height: "12",
+        width: "12",
+        viewBox: "0 0 24 24",
+        "aria-label": "Choose a board",
+        role: "img"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+        d: "M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"
+      })), listOpen ? "" : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "dd-list-save"
+      }, "Save")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-wrapper"
+      }, listOpen && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "dd-list",
+        onClick: function onClick(e) {
+          return e.stopPropagation();
+        }
+      }, list.map(function (item) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "dd-list-item",
+          key: item.id,
+          onClick: function onClick() {
+            return _this3.selectItem(item.title, item.id, item.key);
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "dd-list-item-img"
+        }, "img"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item.title), item.selected && '<div>Save</div>');
+      }))));
+    }
+  }]);
+
+  return DropDown;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (DropDown);
+
+/***/ }),
+
 /***/ "./frontend/components/footer/footer.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/footer/footer.jsx ***!
@@ -2063,6 +2263,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/board/board_edit_container */ "./frontend/components/board/board_edit_container.js");
 /* harmony import */ var _components_board_board_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/board/board_delete_confirmation */ "./frontend/components/board/board_delete_confirmation.jsx");
 /* harmony import */ var _components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/pin/pin_edit_container */ "./frontend/components/pin/pin_edit_container.js");
+/* harmony import */ var _components_board_board_list__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/board/board_list */ "./frontend/components/board/board_list.jsx");
+
 
 
 
@@ -2103,6 +2305,10 @@ var Modal = function Modal(_ref) {
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
         selectedData: selectedData
       });
+      break;
+
+    case 'save-to-board':
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_list__WEBPACK_IMPORTED_MODULE_7__["default"], null);
       break;
 
     default:
@@ -3148,6 +3354,7 @@ function (_React$Component) {
     _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
     _this.renderOverlayLinks = _this.renderOverlayLinks.bind(_assertThisInitialized(_this));
     _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
+    _this.showSaveToBoard = _this.showSaveToBoard.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3178,6 +3385,13 @@ function (_React$Component) {
     value: function _formatUrlLink(link) {
       var link_hostname = new URL(link).hostname;
       return link_hostname.length > 12 ? link_hostname.slice(0, 12) + '...' : link_hostname;
+    }
+  }, {
+    key: "showSaveToBoard",
+    value: function showSaveToBoard(e) {
+      this.props.showModal({
+        name: 'save-to-board'
+      });
     }
   }, {
     key: "renderOverlayLinks",
@@ -3225,7 +3439,7 @@ function (_React$Component) {
           className: "pin-save-link"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "pin-save-btn",
-          onClick: this.showCreateModal
+          onClick: this.showSaveToBoard
         }, "Save")), link);
       }
     }
