@@ -2124,10 +2124,11 @@ function (_React$Component) {
   }, {
     key: "displayLink",
     value: function displayLink() {
-      // if (this.state.visibility) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "dd-list-save"
-      }, "Save"); // }
+      if (this.state.visibility) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "dd-list-save"
+        }, "Save");
+      }
     }
   }, {
     key: "render",

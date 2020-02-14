@@ -23,9 +23,9 @@ class DropDownListItem extends React.Component {
    }
 
    displayLink() {            
-      // if (this.state.visibility) {
+      if (this.state.visibility) {
          return <button className="dd-list-save">Save</button>;
-      // }
+      }
    }
 
    render() {

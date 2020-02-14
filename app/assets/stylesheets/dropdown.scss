@@ -125,6 +125,11 @@
                letter-spacing: -.4px;
                cursor: pointer;
             }
+            .dd-list-item-link {
+               .dd-list-save {
+                  border-radius: 8px;
+               }
+            }
          }
 
          &:hover, &:focus {
