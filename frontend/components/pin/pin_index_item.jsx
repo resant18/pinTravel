@@ -19,7 +19,8 @@ class PinIndexItem extends React.Component {
     this.hideVisibility = this.hideVisibility.bind(this);
     this.showVisibility = this.showVisibility.bind(this);
     this.renderOverlayLinks = this.renderOverlayLinks.bind(this);
-    this.showEditForm = this.showEditForm.bind(this);        
+    this.showEditForm = this.showEditForm.bind(this);     
+    this.showSaveToBoard = this.showSaveToBoard.bind(this);   
   }
 
   showEditForm() {
@@ -38,6 +39,10 @@ class PinIndexItem extends React.Component {
     const link_hostname = new URL(link).hostname;
 
     return link_hostname.length > 12 ? link_hostname.slice(0, 12) + '...' : link_hostname;    
+  }
+
+  showSaveToBoard(e) {    
+    this.props.showModal({ name: 'save-to-board' });
   }
 
   renderOverlayLinks() {    
@@ -79,7 +84,7 @@ class PinIndexItem extends React.Component {
           </div>
           <div className='pin-save-link'>
             <button className='pin-save-btn' 
-                onClick={this.showCreateModal}>              
+              onClick={this.showSaveToBoard}>              
               Save
             </button>
           </div>          

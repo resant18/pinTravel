@@ -1443,6 +1443,7 @@ function (_React$Component) {
   }, {
     key: "displayBoardCoverPins",
     value: function displayBoardCoverPins(pins) {
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-cover"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4232,14 +4233,13 @@ function (_React$Component) {
     _this.showUserBoards = _this.showUserBoards.bind(_assertThisInitialized(_this));
     _this.showUserPins = _this.showUserPins.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // TODO: How to not fetch again if navigate back from board show
+
 
   _createClass(UserProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (!this.props.user) {
-        this.props.fetchUser(this.props.username);
-      }
+      this.props.fetchUser(this.props.username);
     }
   }, {
     key: "componentDidUpdate",
@@ -4365,10 +4365,10 @@ function (_React$Component) {
     }
   }, {
     key: "renderChildComponent",
-    value: function renderChildComponent(user, boards, userPins, permitted) {
+    value: function renderChildComponent(user, userBoards, userPins, permitted) {
       if (this.state.tabItem === 'boards') return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_index__WEBPACK_IMPORTED_MODULE_1__["default"], {
         user: user,
-        boards: boards,
+        boards: userBoards,
         pins: userPins,
         permitted: permitted,
         showModal: this.props.showModal
