@@ -3118,6 +3118,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var generateRandomColor = function generateRandomColor() {
+  var code = '0123456789ABCDEF';
+  var color = '#';
+
+  for (var i = 0; i < 6; i++) {
+    color += code[Math.floor(Math.random() * 16)];
+  }
+
+  return color;
+};
+
 var PinIndexItem =
 /*#__PURE__*/
 function (_React$Component) {
@@ -3221,12 +3232,16 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var pin = this.props.pin;
+      var pinBackgroundColor = {
+        backgroundColor: generateRandomColor()
+      };
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index-item",
         onMouseEnter: this.showVisibility,
         onMouseLeave: this.hideVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-content-img"
+        className: "pin-content-img",
+        style: pinBackgroundColor
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/pin/".concat(pin.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

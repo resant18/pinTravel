@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
+const generateRandomColor = function() {
+  let code = '0123456789ABCDEF';
+  let color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += code[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
 class PinIndexItem extends React.Component {
   constructor(props) {
     super(props);
@@ -83,13 +92,17 @@ class PinIndexItem extends React.Component {
   render() {
     const { pin } = this.props;
     
+    const pinBackgroundColor = {
+      backgroundColor: generateRandomColor()
+    }
+
     return (   
       
         <div className='pin-index-item'
           onMouseEnter={this.showVisibility}
           onMouseLeave={this.hideVisibility}
         >        
-        <div className='pin-content-img'>
+        <div className='pin-content-img' style={pinBackgroundColor} >
           <Link to={`/pin/${pin.id}`}>
             <img className='pin-img' src={pin.pictureUrl} />
           </Link>
