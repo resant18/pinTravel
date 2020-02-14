@@ -22,10 +22,10 @@ class BoardIndex extends React.Component {
 
             return (   
                 <div className='board-index-item' key={board.id}> 
-                    <BoardIndexItem  board={board} pins={user_board_pins} username={user.username} permitted={permitted} showModal={showModal.bind(this)}/> 
+                    <BoardIndexItem board={board} pins={user_board_pins} username={user.username} permitted={permitted} showModal={showModal.bind(this)}/> 
                 </div>
             )
-        });
+        });        
 
         return (
             <div className='board-index-container'>

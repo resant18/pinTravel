@@ -16,7 +16,8 @@ class BoardIndexItem extends React.Component {
         return pin ? `url('${pin.pictureUrl}')` : 'none';
     }
 
-    displayBoardCoverPins(pins) {          
+    displayBoardCoverPins(pins) {    
+        debugger      
         return (
             <div className='board-cover' >
                 <div className='p-item border-line' style={{ width: '50%', height: '100%' }}>

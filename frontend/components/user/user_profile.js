@@ -15,13 +15,12 @@ class UserProfile extends React.Component {
     this.hideDropDown = this.hideDropDown.bind(this);
     this.showModal = this.showModal.bind(this);
     this.showUserBoards = this.showUserBoards.bind(this);
-    this.showUserPins = this.showUserPins.bind(this);
+    this.showUserPins = this.showUserPins.bind(this);    
   }
 
-  componentDidMount() {
-    if (!this.props.user) {            
-      this.props.fetchUser(this.props.username);
-    }        
+  // TODO: How to not fetch again if navigate back from board show
+  componentDidMount() {               
+    this.props.fetchUser(this.props.username);    
   }
 
   componentDidUpdate(prevProps) {
@@ -140,12 +139,12 @@ class UserProfile extends React.Component {
     );
   }
 
-  renderChildComponent(user, boards, userPins, permitted) {    
+  renderChildComponent(user, userBoards, userPins, permitted) {    
     if (this.state.tabItem === 'boards') 
       return (
         <BoardIndex
           user={user}
-          boards={boards}
+          boards={userBoards}
           pins={userPins}
           permitted={permitted}
           showModal={this.props.showModal}

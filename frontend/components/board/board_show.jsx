@@ -24,7 +24,7 @@ class BoardShow extends React.Component {
       document.removeEventListener('mousedown', this.hideDropDown);
    }
 
-   browseBack() {      
+   browseBack() {            
       this.props.history.goBack();
    }
 
