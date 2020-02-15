@@ -2469,12 +2469,13 @@ function (_React$Component) {
         onMouseLeave: this.hideVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-item-img-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dd-list-item-img"
-      }, thumbnail && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, thumbnail ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "dd-list-item-img",
         src: thumbnail.pictureUrl,
         alt: thumbnail.title
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-blank"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-item-text-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-item-text"

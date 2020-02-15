@@ -60,87 +60,7 @@
       }
    }
 
-   .dd-list {
-      position: absolute;
-      stroke: rgb(239, 239, 239);
-      visibility: visible;
-      top: 52px;
-      left: 0;      
-      .dd-list-item {                  
-         list-style: none;         
-         border-radius: 0;
-         cursor: pointer;
-         height: 52px;
-         margin: 4px 12px;
-         display: flex;
-         flex-direction: row;
-         align-items: center;
-
-         .dd-list-item-img-wrapper {
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            margin: 4px 12px 4px 8px;
-
-            .dd-list-item-img {
-               width: 36px;
-               height: 36px;
-               border-radius: 0;
-               position: relative;
-               overflow: hidden;
-
-               img {
-                  background-color: transparent;
-                  background-size: cover;
-                  background-position: 50%;
-                  background-repeat: no-repeat;
-                  height: 100%;
-                  width: 100%;
-                  cursor: pointer;
-               }
-            }
-         }
-
-         .dd-list-item-text-wrapper {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            flex: 1 1 auto;
-            min-height: 0;
-            min-width: 0;
-            overflow: hidden;
-            padding-bottom: 4px;
-            padding-top: 4px;
-            .dd-list-item-text {
-               color: #111;
-               font-size: 16px;
-               max-width: 100%;
-               overflow: hidden;
-               text-overflow: ellipsis;
-               white-space: nowrap;
-               hyphens: auto;
-               line-height: 40px;
-               word-wrap: break-word;
-               font-weight: 700;
-               letter-spacing: -.4px;
-               cursor: pointer;
-            }
-            .dd-list-item-link {
-               .dd-list-save {
-                  border-radius: 8px;
-                  margin-right: 8px;
-               }
-            }
-         }
-
-         &:hover, &:focus {
-            border-radius: 12px;
-            background-color: var(--color-lightest-gray);
-         }
-      }
-
-      
-   }
+   
 
    .dd-list-wrapper {
       position: absolute;
@@ -150,31 +70,113 @@
       left: -166px;
       min-height: 40px;
       max-height: 90vh;
-      max-width: 90vw;
+      max-width: 90vw;      
+   }   
+}
 
-      ul.dd-list {
-         min-height: 322px;
-         max-height: 322px;
-         max-width: 90vw;
-         border: 1px solid;
-         box-shadow: 0 3px 6px rgba(0,0,0,.18);
-         outline: none;
+.dd-list {
+   position: absolute;
+   stroke: rgb(239, 239, 239);
+   visibility: visible;
+   top: 52px;
+   left: 0;    
+   min-height: 322px;
+   max-height: 322px;
+   max-width: 90vw;
+   border: 1px solid;
+   box-shadow: 0 3px 6px rgba(0,0,0,.18);
+   outline: none;
+   border-radius: 8px;
+   background-color: #fff;
+   color: #fff;
+   width: 320px;
+   height: 439px;
+   overflow-x: hidden;
+   overflow-y: scroll;  
+   .dd-list-item {                  
+      list-style: none;         
+      border-radius: 0;
+      cursor: pointer;
+      height: 52px;
+      margin: 4px 12px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 52px;
+      border-radius: 12px;
+      margin: 12px 4px;
+      align-items: center;
+
+      .dd-list-item-img-wrapper {
+         width: 36px;
+         height: 36px;
          border-radius: 8px;
-         background-color: #fff;
-         color: #fff;
-         width: 320px;
-         height: 439px;
-         overflow-x: hidden;
-         overflow-y: scroll;
+         margin: 4px 12px 4px 8px;
 
-         li.add-list-item {            
-            height: 52px;
-            border-radius: 12px;
-            margin: 12px 4px;
-            align-items: center;
+         .dd-list-item-img {
+            width: 36px;
+            height: 36px;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+
+            img {
+               background-color: transparent;
+               background-size: cover;
+               background-position: 50%;
+               background-repeat: no-repeat;
+               height: 100%;
+               width: 100%;
+               cursor: pointer;
+            }
+         }
+
+         .dd-list-item-blank {
+            width: 36px;
+            height: 36px;
+            background-color: var(--color-light-gray);
          }
       }
-   }   
+
+      .dd-list-item-text-wrapper {
+         display: flex;
+         flex-direction: row;
+         justify-content: space-between;
+         flex: 1 1 auto;
+         min-height: 0;
+         min-width: 0;
+         overflow: hidden;
+         padding-bottom: 4px;
+         padding-top: 4px;
+         .dd-list-item-text {
+            color: #111;
+            font-size: 16px;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            hyphens: auto;
+            line-height: 40px;
+            word-wrap: break-word;
+            font-weight: 700;
+            letter-spacing: -.4px;
+            cursor: pointer;
+         }
+         .dd-list-item-link {
+            .dd-list-save {
+               border-radius: 8px;
+               margin-right: 8px;
+            }
+         }
+      }
+
+      &:hover, &:focus {
+         border-radius: 12px;
+         background-color: var(--color-lightest-gray);
+      }
+   }
+
+   
 }
 
 .dd-list-save {

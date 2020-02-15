@@ -37,14 +37,14 @@ class DropDownList extends React.Component {
             onMouseEnter={this.showVisibility}
             onMouseLeave={this.hideVisibility}
          >
-            <div className="dd-list-item-img-wrapper">
-               <div className="dd-list-item-img">
-                  {
-                     thumbnail && (
-                        <img src={thumbnail.pictureUrl} alt={thumbnail.title} />
-                     )
-                  }
-               </div>
+            <div className="dd-list-item-img-wrapper">               
+               {
+                  thumbnail ? (
+                     <img className='dd-list-item-img' src={thumbnail.pictureUrl} alt={thumbnail.title} />
+                  ) : (
+                     <div className='dd-list-item-blank' />
+                  )
+               }
             </div>
             <div className="dd-list-item-text-wrapper">
                <div className="dd-list-item-text">{item.name}</div>
