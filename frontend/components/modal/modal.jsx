@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { hideModal } from '../../actions/modal_actions';
 import BoardCreateContainer from '../../components/board/board_create_container';
 import BoardEditContainer from '../../components/board/board_edit_container';
-import BoardDeleteConfirmation from '../../components/board/board_delete_confirmation';
+import DeleteConfirmation from '../confirmation/delete_confirmation';
 import PinEditContainer from '../../components/pin/pin_edit_container';
 import BoardPinsCreateContainer from '../../components/board/board_pins_create_container';
 
@@ -13,24 +13,27 @@ const Modal = ({ modal, hideModal, selectedData }) => {
     }
     let component;
 
-    switch (modal) {        
-        case 'create-board':
-            component = <BoardCreateContainer />
-            break;
-        case 'edit-board':
-            component = <BoardEditContainer selectedData={selectedData} />
-            break;
-        case 'delete-board-confirm':
-            component = <BoardDeleteConfirmation selectedData={selectedData} />
-            break;        
-        case 'edit-pin':
-            component = <PinEditContainer selectedData={selectedData} />
-            break;
-        case 'save-to-board':
-            component = <BoardPinsCreateContainer selectedData={selectedData} />
-            break
-        default:
-            return null;
+    switch (modal) {
+       case "create-board":
+          component = <BoardCreateContainer />;
+          break;
+       case "edit-board":
+          component = <BoardEditContainer selectedData={selectedData} />;
+          break;
+       case "delete-board-confirm":
+          component = <DeleteConfirmation selectedData={selectedData} />;
+          break;
+       case "edit-pin":
+          component = <PinEditContainer selectedData={selectedData} />;
+          break;
+       case "delete-boardpins-confirm":
+          component = <DeleteConfirmation selectedData={selectedData} />;
+          break;
+       case "save-to-board":
+          component = <BoardPinsCreateContainer selectedData={selectedData} />;
+          break;
+       default:
+          return null;
     }
   
     return (

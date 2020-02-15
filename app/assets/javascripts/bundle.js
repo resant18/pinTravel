@@ -905,141 +905,6 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./frontend/components/board/board_delete_confirmation.jsx":
-/*!*****************************************************************!*\
-  !*** ./frontend/components/board/board_delete_confirmation.jsx ***!
-  \*****************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _reducers_selector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../reducers/selector */ "./frontend/reducers/selector.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-
-
-var BoardDeleteConfirmation =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(BoardDeleteConfirmation, _React$Component);
-
-  function BoardDeleteConfirmation(props) {
-    var _this;
-
-    _classCallCheck(this, BoardDeleteConfirmation);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardDeleteConfirmation).call(this, props));
-    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
-    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(BoardDeleteConfirmation, [{
-    key: "handleDelete",
-    value: function handleDelete(e) {
-      e.preventDefault();
-      this.props.deleteBoard(this.props.boardId).then(this.props.hideModal()).then(this.props.history.push("/".concat(this.props.user.username)));
-    }
-  }, {
-    key: "handleCancel",
-    value: function handleCancel(e) {
-      e.preventDefault();
-      this.props.hideModal();
-      this.props.showModal({
-        name: 'edit-board',
-        selectedData: this.props.boardId
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "aria-label": "Delete Confirm",
-        className: "board-delete-confirm-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Are you sure?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Once you delete a board and all of its Pins, you can't undo it.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-group-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "delete-btn",
-        onClick: this.handleDelete
-      }, "Delete forever"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "cancel-btn focus",
-        onClick: this.handleCancel
-      }, "Cancel")))));
-    }
-  }]);
-
-  return BoardDeleteConfirmation;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var boardId = state.ui.modal.selectedData;
-  var board = state.entities.boards[boardId];
-  var user = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_5__["selectUserCreator"])(state.entities, board);
-  return {
-    boardId: boardId,
-    board: board,
-    user: user // formType: 'Update Board'
-
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    showModal: function showModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["showModal"])(modal));
-    },
-    hideModal: function hideModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["hideModal"])());
-    },
-    updateBoard: function updateBoard(board) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["updateBoard"])(board));
-    },
-    deleteBoard: function deleteBoard(boardId) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["deleteBoard"])(boardId));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(BoardDeleteConfirmation)));
-
-/***/ }),
-
 /***/ "./frontend/components/board/board_edit_container.js":
 /*!***********************************************************!*\
   !*** ./frontend/components/board/board_edit_container.js ***!
@@ -1184,7 +1049,10 @@ function (_React$Component) {
       this.props.hideModal();
       this.props.showModal({
         name: 'delete-board-confirm',
-        selectedData: this.props.boardId
+        selectedData: {
+          dataType: 'boardId',
+          data: this.props.boardId
+        }
       });
     }
   }, {
@@ -2231,6 +2099,143 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/confirmation/delete_confirmation.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/confirmation/delete_confirmation.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _reducers_selector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../reducers/selector */ "./frontend/reducers/selector.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+
+var DeleteConfirmation =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(DeleteConfirmation, _React$Component);
+
+  function DeleteConfirmation(props) {
+    var _this;
+
+    _classCallCheck(this, DeleteConfirmation);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DeleteConfirmation).call(this, props));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(DeleteConfirmation, [{
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      e.preventDefault();
+      this.props.deleteBoard(this.props.data).then(this.props.hideModal()); // .then(this.props.history.push(`/${this.props.user.username}`))
+    }
+  }, {
+    key: "handleCancel",
+    value: function handleCancel(e) {
+      e.preventDefault();
+      this.props.hideModal();
+      this.props.showModal({
+        name: 'edit-board',
+        selectedData: this.props.boardId
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "aria-label": "Delete Confirm",
+        className: "board-delete-confirm-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Are you sure?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Once you delete a board and all of its Pins, you can't undo it.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "delete-btn",
+        onClick: this.handleDelete
+      }, "Delete forever"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "cancel-btn focus",
+        onClick: this.handleCancel
+      }, "Cancel")))));
+    }
+  }]);
+
+  return DeleteConfirmation;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var data = state.ui.modal.selectedData.data;
+  var dataType = state.ui.modal.selectedData.dataType; // const board = state.entities.boards[boardId];
+  // const user = selectUserCreator(state.entities, board);
+
+  return {
+    // boardId,
+    // board,
+    // user
+    dataType: dataType,
+    data: data
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    showModal: function showModal(modal) {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["showModal"])(modal));
+    },
+    hideModal: function hideModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["hideModal"])());
+    },
+    updateBoard: function updateBoard(board) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["updateBoard"])(board));
+    },
+    deleteBoard: function deleteBoard(boardId) {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["deleteBoard"])(boardId));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(DeleteConfirmation)));
+
+/***/ }),
+
 /***/ "./frontend/components/element/drop_down.jsx":
 /*!***************************************************!*\
   !*** ./frontend/components/element/drop_down.jsx ***!
@@ -2564,7 +2569,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 /* harmony import */ var _components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/board/board_create_container */ "./frontend/components/board/board_create_container.js");
 /* harmony import */ var _components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/board/board_edit_container */ "./frontend/components/board/board_edit_container.js");
-/* harmony import */ var _components_board_board_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/board/board_delete_confirmation */ "./frontend/components/board/board_delete_confirmation.jsx");
+/* harmony import */ var _confirmation_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../confirmation/delete_confirmation */ "./frontend/components/confirmation/delete_confirmation.jsx");
 /* harmony import */ var _components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/pin/pin_edit_container */ "./frontend/components/pin/pin_edit_container.js");
 /* harmony import */ var _components_board_board_pins_create_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../components/board/board_pins_create_container */ "./frontend/components/board/board_pins_create_container.js");
 
@@ -2588,29 +2593,35 @@ var Modal = function Modal(_ref) {
   var component;
 
   switch (modal) {
-    case 'create-board':
+    case "create-board":
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_create_container__WEBPACK_IMPORTED_MODULE_3__["default"], null);
       break;
 
-    case 'edit-board':
+    case "edit-board":
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_edit_container__WEBPACK_IMPORTED_MODULE_4__["default"], {
         selectedData: selectedData
       });
       break;
 
-    case 'delete-board-confirm':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    case "delete-board-confirm":
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_confirmation_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__["default"], {
         selectedData: selectedData
       });
       break;
 
-    case 'edit-pin':
+    case "edit-pin":
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pin_pin_edit_container__WEBPACK_IMPORTED_MODULE_6__["default"], {
         selectedData: selectedData
       });
       break;
 
-    case 'save-to-board':
+    case "delete-boardpins-confirm":
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_confirmation_delete_confirmation__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        selectedData: selectedData
+      });
+      break;
+
+    case "save-to-board":
       component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_pins_create_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
         selectedData: selectedData
       });
@@ -3274,7 +3285,7 @@ function (_React$Component) {
     key: "handleDelete",
     value: function handleDelete(e) {
       this.props.showModal({
-        name: 'delete-pin',
+        name: 'delete-boardpins-confirm',
         selectedData: this.props.pin.id
       });
     }

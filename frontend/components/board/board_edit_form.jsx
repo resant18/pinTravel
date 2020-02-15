@@ -35,7 +35,7 @@ class BoardEditForm extends React.Component {
       e.preventDefault();
       
       this.props.hideModal();      
-      this.props.showModal({ name: 'delete-board-confirm', selectedData: this.props.boardId });         
+      this.props.showModal({ name: 'delete-board-confirm', selectedData: { dataType:'boardId', data: this.props.boardId }});         
    }      
 
    renderErrors() {

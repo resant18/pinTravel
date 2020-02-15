@@ -5,7 +5,7 @@ import { updateBoard, deleteBoard } from '../../actions/board_actions';
 import { showModal, hideModal } from '../../actions/modal_actions';
 import { selectUserCreator } from '../../reducers/selector';
 
-class BoardDeleteConfirmation extends React.Component {
+class DeleteConfirmation extends React.Component {
    constructor(props) {
       super(props);
 
@@ -15,10 +15,10 @@ class BoardDeleteConfirmation extends React.Component {
 
    handleDelete(e) {
       e.preventDefault();
-
-      this.props.deleteBoard(this.props.boardId)
+      
+      this.props.deleteBoard(this.props.data)
          .then(this.props.hideModal())
-         .then(this.props.history.push(`/${this.props.user.username}`))
+         // .then(this.props.history.push(`/${this.props.user.username}`))
    }
 
    handleCancel(e) {      
@@ -60,16 +60,17 @@ class BoardDeleteConfirmation extends React.Component {
    }
 }
 
-const mapStateToProps = (state, ownProps) => {
-   const boardId = state.ui.modal.selectedData;
-   const board = state.entities.boards[boardId];
-   const user = selectUserCreator(state.entities, board);
-
+const mapStateToProps = (state, ownProps) => {   
+   const data = state.ui.modal.selectedData.data;    
+   const dataType = state.ui.modal.selectedData.dataType;
+   // const board = state.entities.boards[boardId];
+   // const user = selectUserCreator(state.entities, board);
    return {
-      boardId,
-      board,
-      user
-      // formType: 'Update Board'
+      // boardId,
+      // board,
+      // user
+      dataType,
+      data
    }
 };
 
@@ -83,6 +84,6 @@ const mapDispatchToProps = dispatch => ({
 export default withRouter(connect(
    mapStateToProps,
    mapDispatchToProps
-)(BoardDeleteConfirmation));
+)(DeleteConfirmation));
 
 
