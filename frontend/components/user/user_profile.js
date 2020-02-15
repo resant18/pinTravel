@@ -152,13 +152,13 @@ class UserProfile extends React.Component {
       );
     else 
       return (
-        <PinIndexUserContainer
-          user={user}
-          boards={boards}
-          pins={userPins}
-          permitted={permitted}
-          showModal={this.props.showModal}
-        />
+         <PinIndexUserContainer
+            user={user}
+            boards={userBoards}
+            pins={userPins}
+            permitted={permitted}
+            showModal={this.props.showModal}
+         />
       );
   }
 

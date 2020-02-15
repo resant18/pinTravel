@@ -4894,7 +4894,7 @@ function (_React$Component) {
         showModal: this.props.showModal
       });else return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pin_pin_index_user_container__WEBPACK_IMPORTED_MODULE_2__["default"], {
         user: user,
-        boards: boards,
+        boards: userBoards,
         pins: userPins,
         permitted: permitted,
         showModal: this.props.showModal
