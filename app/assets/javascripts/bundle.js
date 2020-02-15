@@ -2113,8 +2113,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _reducers_selector__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../reducers/selector */ "./frontend/reducers/selector.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2149,7 +2149,7 @@ var setOptions = function setOptions(dataType) {
     };
   } else if (dataType === 'boardPinsId') {
     return {
-      modalName: "edit-pin",
+      modalName: 'edit-pin',
       confirmText: "Once you delete a Pin, you can't undo it.",
       buttonText: "Delete Pin"
     };
@@ -2177,7 +2177,12 @@ function (_React$Component) {
     key: "handleDelete",
     value: function handleDelete(e) {
       e.preventDefault();
-      this.props.deleteBoard(this.props.data).then(this.props.hideModal()); // .then(this.props.history.push(`/${this.props.user.username}`))
+
+      if (this.props.dataType === 'boardId') {
+        this.props.deleteBoard(this.props.data).then(this.props.hideModal()); // .then(this.props.history.push(`/${this.props.user.username}`))
+      } else if (this.props.dataType === 'boardPinsId') {
+        this.props.deletePin(this.props.data).then(this.props.hideModal());
+      }
     }
   }, {
     key: "handleCancel",
@@ -2220,13 +2225,8 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var data = state.ui.modal.selectedData.data;
-  var dataType = state.ui.modal.selectedData.dataType; // const board = state.entities.boards[boardId];
-  // const user = selectUserCreator(state.entities, board);
-
+  var dataType = state.ui.modal.selectedData.dataType;
   return {
-    // boardId,
-    // board,
-    // user
     dataType: dataType,
     data: data
   };
@@ -2235,16 +2235,16 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     showModal: function showModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["showModal"])(modal));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["showModal"])(modal));
     },
     hideModal: function hideModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["hideModal"])());
-    },
-    updateBoard: function updateBoard(board) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["updateBoard"])(board));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_5__["hideModal"])());
     },
     deleteBoard: function deleteBoard(boardId) {
       return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["deleteBoard"])(boardId));
+    },
+    deletePin: function deletePin(boardPinId) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__["deletePin"])(boardPinId));
     }
   };
 };
@@ -5792,7 +5792,7 @@ var updatePin = function updatePin(pin) {
 var deletePin = function deletePin(id) {
   return $.ajax({
     method: 'DELETE',
-    url: "api/pin/".concat(id)
+    url: "api/board_pins/".concat(id)
   });
 };
 

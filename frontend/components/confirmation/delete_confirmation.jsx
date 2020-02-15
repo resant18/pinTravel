@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { updateBoard, deleteBoard } from '../../actions/board_actions';
+import { deleteBoard } from '../../actions/board_actions';
+import { deletePin } from '../../actions/pin_actions';
 import { showModal, hideModal } from '../../actions/modal_actions';
-import { selectUserCreator } from '../../reducers/selector';
 
 const setOptions = (dataType) => {
    if (dataType === 'boardId') {
@@ -14,7 +14,7 @@ const setOptions = (dataType) => {
       }
    } else if (dataType === 'boardPinsId') {
       return {
-         modalName: "edit-pin",
+         modalName: 'edit-pin',
          confirmText: `Once you delete a Pin, you can't undo it.`,
          buttonText: "Delete Pin"
       };
@@ -34,9 +34,15 @@ class DeleteConfirmation extends React.Component {
    handleDelete(e) {
       e.preventDefault();
       
-      this.props.deleteBoard(this.props.data)
-         .then(this.props.hideModal())
-         // .then(this.props.history.push(`/${this.props.user.username}`))
+      if (this.props.dataType === 'boardId') {
+         this.props.deleteBoard(this.props.data)
+            .then(this.props.hideModal())
+            // .then(this.props.history.push(`/${this.props.user.username}`))
+      }
+      else if (this.props.dataType === 'boardPinsId') {
+         this.props.deletePin(this.props.data)
+            .then(this.props.hideModal());
+      }
    }
 
    handleCancel(e) {      
@@ -81,12 +87,8 @@ class DeleteConfirmation extends React.Component {
 const mapStateToProps = (state, ownProps) => {   
    const data = state.ui.modal.selectedData.data;    
    const dataType = state.ui.modal.selectedData.dataType;
-   // const board = state.entities.boards[boardId];
-   // const user = selectUserCreator(state.entities, board);
-   return {
-      // boardId,
-      // board,
-      // user
+   
+   return {      
       dataType,
       data
    }
@@ -94,9 +96,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
    showModal: modal => dispatch(showModal(modal)),
-   hideModal: () => dispatch(hideModal()),
-   updateBoard: board => dispatch(updateBoard(board)),
-   deleteBoard: boardId => dispatch(deleteBoard(boardId))
+   hideModal: () => dispatch(hideModal()),   
+   deleteBoard: boardId => dispatch(deleteBoard(boardId)),
+   deletePin: boardPinId => dispatch(deletePin(boardPinId))
 });
 
 export default withRouter(connect(

@@ -65,6 +65,6 @@ export const updatePin = pin => {
 export const deletePin = id => {
   return $.ajax({
     method: 'DELETE',
-    url: `api/pin/${id}`
+    url: `api/board_pins/${id}`
   });
 };

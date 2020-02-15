@@ -45,11 +45,11 @@ class Api::BoardPinsController < ApplicationController
     end
   end
 
-  def update
-    @board_pin = current_user.board_pins.find(params[:id])
-    @board_pin.update!(board_pin_params)
-    render 'api/pins/show'
-  end  
+  # def update
+  #   @board_pin = current_user.board_pins.find(params[:id])
+  #   @board_pin.update!(board_pin_params)
+  #   render 'api/pins/show'
+  # end  
 
   def update
     @board_pin = current_user.board_pins.find(params[:id])      
@@ -62,7 +62,7 @@ class Api::BoardPinsController < ApplicationController
   end
 
   def destroy
-    @board_pin = current_user.pin_joins.find(params[:id])
+    @board_pin = current_user.board_pins.find(params[:id])
     @board_pin.destroy
     render 'api/pins/show'
   end
