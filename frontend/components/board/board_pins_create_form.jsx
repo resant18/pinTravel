@@ -47,6 +47,7 @@ class BoardPinsCreateForm extends React.Component {
                      />
                   </div>
                   <div className="bp-form-right">
+                     <p>All boards</p>
                      { boards && (
                         <ul className="dd-list">                        
                            {boards.map(board => (

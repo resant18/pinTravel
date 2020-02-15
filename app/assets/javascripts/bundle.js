@@ -1895,7 +1895,7 @@ function (_React$Component) {
         src: pin.pictureUrl
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bp-form-right"
-      }, boards && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "All boards"), boards && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "dd-list"
       }, boards.map(function (board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
