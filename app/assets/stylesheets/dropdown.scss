@@ -119,22 +119,14 @@
             border-radius: 0;
             position: relative;
             overflow: hidden;
-
-            img {
-               background-color: transparent;
-               background-size: cover;
-               background-position: 50%;
-               background-repeat: no-repeat;
-               height: 100%;
-               width: 100%;
-               cursor: pointer;
-            }
+            border-radius: 8px;
          }
 
          .dd-list-item-blank {
             width: 36px;
             height: 36px;
             background-color: var(--color-light-gray);
+            border-radius: 8px;
          }
       }
 

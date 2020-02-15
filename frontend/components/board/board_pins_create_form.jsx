@@ -11,9 +11,10 @@ class BoardPinsCreateForm extends React.Component {
       this.props.fetchBoards();
    }
 
-   handleSaveToBoard() {
+   handleSaveToBoard(selectedItem) {
+      debugger
       this.props
-         .createPinInBoard(this.props.pin, board.id)
+         .createPinInBoard(this.props.pin, selectedItem)
          .then(this.props.hideModal());
    }
 
@@ -49,7 +50,12 @@ class BoardPinsCreateForm extends React.Component {
                      { boards && (
                         <ul className="dd-list">                        
                            {boards.map(board => (
-                              <DropDownList key={board.id} item={board} thumbnail={pins[board.cover_id]} />
+                              <DropDownList 
+                                 key={board.id} 
+                                 item={board} 
+                                 thumbnail={pins[board.cover_id]}
+                                 onSelectItem={this.handleSaveToBoard} 
+                              />
                            ))}
                      </ul>
                      )}

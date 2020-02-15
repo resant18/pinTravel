@@ -1855,12 +1855,15 @@ function (_React$Component) {
     }
   }, {
     key: "handleSaveToBoard",
-    value: function handleSaveToBoard() {
-      this.props.createPinInBoard(this.props.pin, board.id).then(this.props.hideModal());
+    value: function handleSaveToBoard(selectedItem) {
+      debugger;
+      this.props.createPinInBoard(this.props.pin, selectedItem).then(this.props.hideModal());
     }
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var _this$props = this.props,
           pins = _this$props.pins,
           pin = _this$props.pin,
@@ -1898,7 +1901,8 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: board.id,
           item: board,
-          thumbnail: pins[board.cover_id]
+          thumbnail: pins[board.cover_id],
+          onSelectItem: _this.handleSaveToBoard
         });
       }))))));
     }
@@ -2430,6 +2434,7 @@ function (_React$Component) {
     _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
     _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
     _this.displayLink = _this.displayLink.bind(_assertThisInitialized(_this));
+    _this.handleSelectedItem = _this.handleSelectedItem.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2452,9 +2457,15 @@ function (_React$Component) {
     value: function displayLink() {
       if (this.state.visibility) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "dd-list-save"
+          className: "dd-list-save",
+          onClick: this.handleSelectedItem
         }, "Save");
       }
+    }
+  }, {
+    key: "handleSelectedItem",
+    value: function handleSelectedItem() {
+      this.props.onSelectItem(item.id);
     }
   }, {
     key: "render",

@@ -11,6 +11,7 @@ class DropDownList extends React.Component {
       this.showVisibility = this.showVisibility.bind(this);
       this.hideVisibility = this.hideVisibility.bind(this);
       this.displayLink = this.displayLink.bind(this);
+      this.handleSelectedItem = this.handleSelectedItem.bind(this);
    }
 
    showVisibility() {
@@ -23,8 +24,18 @@ class DropDownList extends React.Component {
 
    displayLink() {
       if (this.state.visibility) {
-         return <button className="dd-list-save">Save</button>;
+         return (
+         <button className="dd-list-save"
+            onClick={this.handleSelectedItem}
+         >
+            Save
+         </button>
+         );
       }
+   }
+
+   handleSelectedItem() {
+      this.props.onSelectItem(item.id);
    }
 
    render() {
