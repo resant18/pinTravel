@@ -818,7 +818,7 @@ function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.props.createBoard(this.state);
+      this.props.createBoard(this.state).then(this.props.hideModal());
     }
   }, {
     key: "renderErrors",
