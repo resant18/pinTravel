@@ -2140,6 +2140,22 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+var setOptions = function setOptions(dataType) {
+  if (dataType === 'boardId') {
+    return {
+      modalName: 'edit-board',
+      confirmText: "Once you delete a board and all of its Pins, you can't undo it.",
+      buttonText: 'Delete forever'
+    };
+  } else if (dataType === 'boardPinsId') {
+    return {
+      modalName: "edit-pin",
+      confirmText: "Once you delete a Pin, you can't undo it.",
+      buttonText: "Delete Pin"
+    };
+  }
+};
+
 var DeleteConfirmation =
 /*#__PURE__*/
 function (_React$Component) {
@@ -2151,6 +2167,7 @@ function (_React$Component) {
     _classCallCheck(this, DeleteConfirmation);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DeleteConfirmation).call(this, props));
+    _this.options = setOptions(_this.props.dataType);
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     _this.handleCancel = _this.handleCancel.bind(_assertThisInitialized(_this));
     return _this;
@@ -2168,8 +2185,8 @@ function (_React$Component) {
       e.preventDefault();
       this.props.hideModal();
       this.props.showModal({
-        name: 'edit-board',
-        selectedData: this.props.boardId
+        name: this.options.modalName,
+        selectedData: this.props.data
       });
     }
   }, {
@@ -2182,7 +2199,7 @@ function (_React$Component) {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Are you sure?")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Once you delete a board and all of its Pins, you can't undo it.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, this.options.confirmText)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-footer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-group"
@@ -2191,7 +2208,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "delete-btn",
         onClick: this.handleDelete
-      }, "Delete forever"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, this.options.buttonText), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "cancel-btn focus",
         onClick: this.handleCancel
       }, "Cancel")))));
@@ -3286,7 +3303,10 @@ function (_React$Component) {
     value: function handleDelete(e) {
       this.props.showModal({
         name: 'delete-boardpins-confirm',
-        selectedData: this.props.pin.id
+        selectedData: {
+          dataType: 'boardPinsId',
+          data: this.props.pin.id
+        }
       });
     }
   }, {

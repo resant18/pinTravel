@@ -5,12 +5,30 @@ import { updateBoard, deleteBoard } from '../../actions/board_actions';
 import { showModal, hideModal } from '../../actions/modal_actions';
 import { selectUserCreator } from '../../reducers/selector';
 
+const setOptions = (dataType) => {
+   if (dataType === 'boardId') {
+      return {
+         modalName: 'edit-board',
+         confirmText: `Once you delete a board and all of its Pins, you can't undo it.`,
+         buttonText: 'Delete forever'
+      }
+   } else if (dataType === 'boardPinsId') {
+      return {
+         modalName: "edit-pin",
+         confirmText: `Once you delete a Pin, you can't undo it.`,
+         buttonText: "Delete Pin"
+      };
+   }
+}
+
 class DeleteConfirmation extends React.Component {
    constructor(props) {
       super(props);
 
+      this.options = setOptions(this.props.dataType);
       this.handleDelete = this.handleDelete.bind(this);
       this.handleCancel = this.handleCancel.bind(this);
+      
    }
 
    handleDelete(e) {
@@ -25,38 +43,38 @@ class DeleteConfirmation extends React.Component {
       e.preventDefault();
 
       this.props.hideModal();
-      this.props.showModal({ name: 'edit-board', selectedData: this.props.boardId })
-   }
+      this.props.showModal({
+         name: this.options.modalName,
+         selectedData: this.props.data
+      });
+   }   
 
    render() {      
       return (
-         <div aria-label='Delete Confirm' className='board-delete-confirm-form'>
-            <div className='header'>
-               <h1>Are you sure?</h1>                  
-            </div>            
-            <div className='body'>
-               <p>Once you delete a board and all of its Pins, you can't undo it.</p>               
+         <div aria-label="Delete Confirm" className="board-delete-confirm-form">
+            <div className="header">
+               <h1>Are you sure?</h1>
             </div>
-            <div className='button-footer'>
-               <div className='button-group'>
-                  <div className='button-group-right'>
-                     <button
-                        className='delete-btn'
-                        onClick={this.handleDelete}
-                     >
-                        Delete forever
+            <div className="body">
+               <p>{this.options.confirmText}</p>
+            </div>
+            <div className="button-footer">
+               <div className="button-group">
+                  <div className="button-group-right">
+                     <button className="delete-btn" onClick={this.handleDelete}>
+                        {this.options.buttonText}
                      </button>
-                        <button
-                           className='cancel-btn focus'
-                           onClick={this.handleCancel}
-                        >
-                           Cancel
+                     <button
+                        className="cancel-btn focus"
+                        onClick={this.handleCancel}
+                     >
+                        Cancel
                      </button>
                   </div>
                </div>
             </div>
          </div>
-      )
+      );
    }
 }
 

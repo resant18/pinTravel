@@ -26,7 +26,7 @@ class PinEditForm extends React.Component {
    }
 
    handleDelete(e) {
-      this.props.showModal({ name: 'delete-boardpins-confirm', selectedData: this.props.pin.id });
+      this.props.showModal({ name: 'delete-boardpins-confirm', selectedData: { dataType: 'boardPinsId', data: this.props.pin.id }});
    }
 
    handleSubmit(e) {
