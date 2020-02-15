@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom';
 import { fetchBoards } from '../../actions/board_actions';
 import { createPinInBoard } from '../../actions/pin_actions';
 import { hideModal } from '../../actions/modal_actions';
-import BoardPinsCreateForm from './board_pins_create_form';
 import { selectUserBoards } from '../../reducers/selector';
+import BoardPinsCreateForm from "./board_pins_create_form";
 
 const mapStateToProps = (state, ownProps) => {
    const username = state.session.id;
@@ -16,7 +16,7 @@ const mapStateToProps = (state, ownProps) => {
    return {
       username,
       currentUser,
-      pin,
+      pin, 
       boards
    };
 };

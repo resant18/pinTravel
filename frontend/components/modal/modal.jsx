@@ -5,7 +5,7 @@ import BoardCreateContainer from '../../components/board/board_create_container'
 import BoardEditContainer from '../../components/board/board_edit_container';
 import BoardDeleteConfirmation from '../../components/board/board_delete_confirmation';
 import PinEditContainer from '../../components/pin/pin_edit_container';
-import BoardList from '../../components/board/board_list';
+import BoardPinsCreateContainer from '../../components/board/board_pins_create_container';
 
 const Modal = ({ modal, hideModal, selectedData }) => { 
     if (!modal || modal === 'login' || modal === 'signup') {
@@ -27,7 +27,7 @@ const Modal = ({ modal, hideModal, selectedData }) => {
             component = <PinEditContainer selectedData={selectedData} />
             break;
         case 'save-to-board':
-            component = <BoardList />
+            component = <BoardPinsCreateContainer />
             break
         default:
             return null;
