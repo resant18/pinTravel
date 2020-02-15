@@ -1,4 +1,5 @@
 import React from 'react';
+import DropDownList from '../element/drop_down_list';
 import BoardList from '../board/board_list';
 
 class BoardPinsCreateForm extends React.Component {
@@ -6,10 +7,19 @@ class BoardPinsCreateForm extends React.Component {
       super(props);
    }
 
+   componentDidMount() {
+      this.props.fetchBoards();
+   }
 
+   handleSaveToBoard() {
+      this.props
+         .createPinInBoard(this.props.pin, board.id)
+         .then(this.props.hideModal());
+   }
 
    render() {
-      
+      const { pins, pin, boards } = this.props;
+
       return (
          <div className="bp-create-form-container">
             <div className="bp-create-form">
@@ -32,11 +42,17 @@ class BoardPinsCreateForm extends React.Component {
                   <div className="bp-form-left">
                      <img
                         className="bp-form-pic"
-                        src={this.props.pin.pictureUrl}
-                     />                     
+                        src={pin.pictureUrl}
+                     />
                   </div>
                   <div className="bp-form-right">
-                     <BoardList />
+                     { boards && (
+                        <ul className="dd-list">                        
+                           {boards.map(board => (
+                              <DropDownList key={board.id} item={board} thumbnail={pins[board.cover_id]} />
+                           ))}
+                     </ul>
+                     )}
                   </div>
                </div>
             </div>

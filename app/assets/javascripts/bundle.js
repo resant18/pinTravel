@@ -1772,12 +1772,14 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var username = state.session.id;
   var currentUser = state.entities.users[username] || {};
+  var pins = state.entities.pins || {};
   var pin = state.ui.modal.selectedData;
   var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_5__["selectUserBoards"])(state.entities, currentUser, true);
   return {
     currentUser: currentUser,
     username: username,
     boards: boards,
+    pins: pins,
     pin: pin
   };
 };
@@ -1811,7 +1813,8 @@ var mapStateToDispatch = function mapStateToDispatch(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _board_board_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../board/board_list */ "./frontend/components/board/board_list.jsx");
+/* harmony import */ var _element_drop_down_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../element/drop_down_list */ "./frontend/components/element/drop_down_list.jsx");
+/* harmony import */ var _board_board_list__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../board/board_list */ "./frontend/components/board/board_list.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1833,6 +1836,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var BoardPinsCreateForm =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1845,8 +1849,22 @@ function (_React$Component) {
   }
 
   _createClass(BoardPinsCreateForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchBoards();
+    }
+  }, {
+    key: "handleSaveToBoard",
+    value: function handleSaveToBoard() {
+      this.props.createPinInBoard(this.props.pin, board.id).then(this.props.hideModal());
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          pins = _this$props.pins,
+          pin = _this$props.pin,
+          boards = _this$props.boards;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bp-create-form-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1871,10 +1889,18 @@ function (_React$Component) {
         className: "bp-form-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "bp-form-pic",
-        src: this.props.pin.pictureUrl
+        src: pin.pictureUrl
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "bp-form-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_list__WEBPACK_IMPORTED_MODULE_1__["default"], null)))));
+      }, boards && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "dd-list"
+      }, boards.map(function (board) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: board.id,
+          item: board,
+          thumbnail: pins[board.cover_id]
+        });
+      }))))));
     }
   }]);
 
@@ -2207,6 +2233,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _drop_down_list__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./drop_down_list */ "./frontend/components/element/drop_down_list.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2225,108 +2252,40 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
- // import '../../../app/assets/stylesheets/dropdown.scss';
 
-var DropDownListItem =
-/*#__PURE__*/
-function (_React$Component) {
-  _inherits(DropDownListItem, _React$Component);
 
-  function DropDownListItem(props) {
-    var _this;
-
-    _classCallCheck(this, DropDownListItem);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(DropDownListItem).call(this, props));
-    _this.state = {
-      visibility: false
-    };
-    _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
-    _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
-    _this.displayLink = _this.displayLink.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(DropDownListItem, [{
-    key: "showVisibility",
-    value: function showVisibility() {
-      this.setState({
-        visibility: true
-      });
-    }
-  }, {
-    key: "hideVisibility",
-    value: function hideVisibility() {
-      this.setState({
-        visibility: false
-      });
-    }
-  }, {
-    key: "displayLink",
-    value: function displayLink() {
-      if (this.state.visibility) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "dd-list-save"
-        }, "Save");
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var item = this.props.item;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "dd-list-item",
-        key: item.id,
-        onMouseEnter: this.showVisibility,
-        onMouseLeave: this.hideVisibility
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dd-list-item-img-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dd-list-item-img"
-      }, "img")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dd-list-item-text-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dd-list-item-text"
-      }, item.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "dd-list-item-link"
-      }, this.displayLink())));
-    }
-  }]);
-
-  return DropDownListItem;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var DropDown =
 /*#__PURE__*/
-function (_React$Component2) {
-  _inherits(DropDown, _React$Component2);
+function (_React$Component) {
+  _inherits(DropDown, _React$Component);
 
   function DropDown(props) {
-    var _this2;
+    var _this;
 
     _classCallCheck(this, DropDown);
 
-    _this2 = _possibleConstructorReturn(this, _getPrototypeOf(DropDown).call(this, props));
-    _this2.state = {
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DropDown).call(this, props));
+    _this.state = {
       listOpen: false,
-      headerTitle: _this2.props.title,
+      headerTitle: _this.props.title,
       visible: false
     };
-    _this2.close = _this2.close.bind(_assertThisInitialized(_this2));
-    return _this2;
+    _this.close = _this.close.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(DropDown, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      var _this3 = this;
+      var _this2 = this;
 
       var listOpen = this.state.listOpen;
       setTimeout(function () {
         if (listOpen) {
-          window.addEventListener("click", _this3.close);
+          window.addEventListener("click", _this2.close);
         } else {
-          window.removeEventListener("click", _this3.close);
+          window.removeEventListener("click", _this2.close);
         }
       }, 0);
     }
@@ -2363,7 +2322,7 @@ function (_React$Component2) {
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this3 = this;
 
       var list = this.props.list;
       var _this$state = this.state,
@@ -2374,7 +2333,7 @@ function (_React$Component2) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-header",
         onClick: function onClick() {
-          return _this4.toggleList();
+          return _this3.toggleList();
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-header-left"
@@ -2408,7 +2367,7 @@ function (_React$Component2) {
           return e.stopPropagation();
         }
       }, list.map(function (item) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DropDownListItem, {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: item.id,
           item: item
         });
@@ -2420,6 +2379,115 @@ function (_React$Component2) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (DropDown);
+
+/***/ }),
+
+/***/ "./frontend/components/element/drop_down_list.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/element/drop_down_list.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var DropDownList =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(DropDownList, _React$Component);
+
+  function DropDownList(props) {
+    var _this;
+
+    _classCallCheck(this, DropDownList);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DropDownList).call(this, props));
+    _this.state = {
+      visibility: false
+    };
+    _this.showVisibility = _this.showVisibility.bind(_assertThisInitialized(_this));
+    _this.hideVisibility = _this.hideVisibility.bind(_assertThisInitialized(_this));
+    _this.displayLink = _this.displayLink.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(DropDownList, [{
+    key: "showVisibility",
+    value: function showVisibility() {
+      this.setState({
+        visibility: true
+      });
+    }
+  }, {
+    key: "hideVisibility",
+    value: function hideVisibility() {
+      this.setState({
+        visibility: false
+      });
+    }
+  }, {
+    key: "displayLink",
+    value: function displayLink() {
+      if (this.state.visibility) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "dd-list-save"
+        }, "Save");
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          item = _this$props.item,
+          thumbnail = _this$props.thumbnail;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "dd-list-item",
+        key: item.id,
+        onMouseEnter: this.showVisibility,
+        onMouseLeave: this.hideVisibility
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-img-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-img"
+      }, thumbnail && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: thumbnail.pictureUrl,
+        alt: thumbnail.title
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-text-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-text"
+      }, item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dd-list-item-link"
+      }, this.displayLink())));
+    }
+  }]);
+
+  return DropDownList;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (DropDownList);
 
 /***/ }),
 

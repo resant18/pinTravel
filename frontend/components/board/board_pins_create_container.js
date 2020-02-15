@@ -9,6 +9,7 @@ import BoardPinsCreateForm from "./board_pins_create_form";
 const mapStateToProps = (state, ownProps) => {   
    const username = state.session.id;
    const currentUser = state.entities.users[username] || {};
+   const pins = state.entities.pins || {};
    const pin = state.ui.modal.selectedData;   
    const boards = selectUserBoards(state.entities, currentUser, true);
 
@@ -16,6 +17,7 @@ const mapStateToProps = (state, ownProps) => {
       currentUser,
       username,      
       boards,
+      pins,
       pin,
    };
 };
