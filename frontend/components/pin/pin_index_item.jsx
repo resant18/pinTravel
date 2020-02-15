@@ -42,7 +42,7 @@ class PinIndexItem extends React.Component {
   }
 
   showSaveToBoard(e) {    
-    this.props.showModal({ name: 'save-to-board' });
+    this.props.showModal({ name: 'save-to-board', selectedData: this.props.pin });
   }
 
   renderOverlayLinks() {    

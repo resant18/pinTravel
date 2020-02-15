@@ -9,6 +9,7 @@ class BoardPinsCreateForm extends React.Component {
 
 
    render() {
+      
       return (
          <div className="bp-create-form-container">
             <div className="bp-create-form">

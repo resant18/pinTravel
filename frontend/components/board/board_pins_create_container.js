@@ -6,18 +6,17 @@ import { hideModal } from '../../actions/modal_actions';
 import { selectUserBoards } from '../../reducers/selector';
 import BoardPinsCreateForm from "./board_pins_create_form";
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, ownProps) => {   
    const username = state.session.id;
    const currentUser = state.entities.users[username] || {};
-   const pinId = state.ui.currentObject;
-   const pin = state.entities.pins[pinId];
+   const pin = state.ui.modal.selectedData;   
    const boards = selectUserBoards(state.entities, currentUser, true);
 
    return {
-      username,
       currentUser,
-      pin, 
-      boards
+      username,      
+      boards,
+      pin,
    };
 };
 

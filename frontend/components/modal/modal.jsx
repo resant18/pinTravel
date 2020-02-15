@@ -27,7 +27,7 @@ const Modal = ({ modal, hideModal, selectedData }) => {
             component = <PinEditContainer selectedData={selectedData} />
             break;
         case 'save-to-board':
-            component = <BoardPinsCreateContainer />
+            component = <BoardPinsCreateContainer selectedData={selectedData} />
             break
         default:
             return null;

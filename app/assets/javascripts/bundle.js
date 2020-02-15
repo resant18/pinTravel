@@ -1772,14 +1772,13 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   var username = state.session.id;
   var currentUser = state.entities.users[username] || {};
-  var pinId = state.ui.currentObject;
-  var pin = state.entities.pins[pinId];
+  var pin = state.ui.modal.selectedData;
   var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_5__["selectUserBoards"])(state.entities, currentUser, true);
   return {
-    username: username,
     currentUser: currentUser,
-    pin: pin,
-    boards: boards
+    username: username,
+    boards: boards,
+    pin: pin
   };
 };
 
@@ -2527,7 +2526,9 @@ var Modal = function Modal(_ref) {
       break;
 
     case 'save-to-board':
-      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_pins_create_container__WEBPACK_IMPORTED_MODULE_7__["default"], null);
+      component = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_board_board_pins_create_container__WEBPACK_IMPORTED_MODULE_7__["default"], {
+        selectedData: selectedData
+      });
       break;
 
     default:
@@ -3609,7 +3610,8 @@ function (_React$Component) {
     key: "showSaveToBoard",
     value: function showSaveToBoard(e) {
       this.props.showModal({
-        name: 'save-to-board'
+        name: 'save-to-board',
+        selectedData: this.props.pin
       });
     }
   }, {
