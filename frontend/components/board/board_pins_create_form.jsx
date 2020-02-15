@@ -5,14 +5,19 @@ import BoardList from '../board/board_list';
 class BoardPinsCreateForm extends React.Component {
    constructor(props) {
       super(props);
+
+      this.handleSaveToBoard = this.handleSaveToBoard.bind(this);
    }
 
    componentDidMount() {
-      this.props.fetchBoards();
+      // if (!this.props.boards) {
+         this.props.fetchBoards();
+      // }
    }
 
+   // handle passing data from child to parent component
    handleSaveToBoard(selectedItem) {
-      debugger
+      console.log('selected board id:' + selectedItem);
       this.props
          .createPinInBoard(this.props.pin, selectedItem)
          .then(this.props.hideModal());

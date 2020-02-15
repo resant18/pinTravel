@@ -1443,7 +1443,6 @@ function (_React$Component) {
   }, {
     key: "displayBoardCoverPins",
     value: function displayBoardCoverPins(pins) {
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-cover"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1825,9 +1824,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1843,26 +1842,32 @@ function (_React$Component) {
   _inherits(BoardPinsCreateForm, _React$Component);
 
   function BoardPinsCreateForm(props) {
+    var _this;
+
     _classCallCheck(this, BoardPinsCreateForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BoardPinsCreateForm).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardPinsCreateForm).call(this, props));
+    _this.handleSaveToBoard = _this.handleSaveToBoard.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(BoardPinsCreateForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchBoards();
-    }
+      // if (!this.props.boards) {
+      this.props.fetchBoards(); // }
+    } // handle passing data from child to parent component
+
   }, {
     key: "handleSaveToBoard",
     value: function handleSaveToBoard(selectedItem) {
-      debugger;
+      console.log('selected board id:' + selectedItem);
       this.props.createPinInBoard(this.props.pin, selectedItem).then(this.props.hideModal());
     }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       var _this$props = this.props,
           pins = _this$props.pins,
@@ -1902,7 +1907,7 @@ function (_React$Component) {
           key: board.id,
           item: board,
           thumbnail: pins[board.cover_id],
-          onSelectItem: _this.handleSaveToBoard
+          onSelectItem: _this2.handleSaveToBoard
         });
       }))))));
     }
@@ -2465,7 +2470,7 @@ function (_React$Component) {
   }, {
     key: "handleSelectedItem",
     value: function handleSelectedItem() {
-      this.props.onSelectItem(item.id);
+      this.props.onSelectItem(this.props.item.id);
     }
   }, {
     key: "render",

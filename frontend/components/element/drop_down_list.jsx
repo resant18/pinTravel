@@ -35,7 +35,7 @@ class DropDownList extends React.Component {
    }
 
    handleSelectedItem() {
-      this.props.onSelectItem(item.id);
+      this.props.onSelectItem(this.props.item.id);
    }
 
    render() {

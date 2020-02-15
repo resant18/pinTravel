@@ -33,18 +33,23 @@ class Api::BoardPinsController < ApplicationController
     render 'api/pins/show'
   end
 
-  # def create
-  #   @board_pin = PinJoin.new(board_pin_params)
-  #   @board_pin.board_id = params[:board_id]
-  #   @board_pin.save!
-  #   render 'api/pins/show'
-  # end
+  def create
+    @board_pin = BoardPin.new(board_pin_params)
+    @board_pin.board_id = params[:board_id]
+    
+    if @board_pin.save    
+      render 'api/pins/show'
+    else
+      debugger
+      render json: @board_pin.errors.full_messages, status: 422
+    end
+  end
 
-  # def update
-  #   @board_pin = current_user.board_pins.find(params[:id])
-  #   @board_pin.update!(board_pin_params)
-  #   render 'api/pins/show'
-  # end  
+  def update
+    @board_pin = current_user.board_pins.find(params[:id])
+    @board_pin.update!(board_pin_params)
+    render 'api/pins/show'
+  end  
 
   def update
     @board_pin = current_user.board_pins.find(params[:id])      

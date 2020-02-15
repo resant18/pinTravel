@@ -1,6 +1,5 @@
 class BoardPin < ApplicationRecord
-    validates :board_id, :pin_id, presence: true
-    validates :pin_id, uniqueness: { scope: [:board_id] }
+    validates :board_id, :pin_id, presence: true    
 
     belongs_to :pin,
         foreign_key: :pin_id,

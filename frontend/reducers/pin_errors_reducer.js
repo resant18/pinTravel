@@ -5,7 +5,8 @@ const pinErrorsReducer = (state = [], action) => {
 
   switch (action.type) {
     case RECEIVE_PIN_ERRORS:
-      return action.errors.error_message || [];    
+      debugger
+      return action.errors || [];    
     default:
       return state;
   }

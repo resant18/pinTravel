@@ -17,7 +17,6 @@ class BoardIndexItem extends React.Component {
     }
 
     displayBoardCoverPins(pins) {    
-        debugger      
         return (
             <div className='board-cover' >
                 <div className='p-item border-line' style={{ width: '50%', height: '100%' }}>
