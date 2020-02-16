@@ -317,6 +317,7 @@ div.svg-40 {
                     width: 140px;   
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    white-space: nowrap;
                     &:hover {
                         cursor: pointer;
                         filter: brightness(100%);
@@ -332,6 +333,7 @@ div.svg-40 {
                 max-width: 200px;
                 font-weight: 700;
                 margin-top: 10px;
+                line-height: 1.2em;
             }
             
         }
