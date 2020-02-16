@@ -35,9 +35,9 @@ class BoardList extends React.Component {
             <div>
                <DropDown
                   title={
-                     this.props.boards[0]
-                        ? this.props.boards[0].name
-                        : "Choose board"
+                     this.props.headerTitle
+                        ? this.props.headerTitle
+                        : this.props.boards[0].name
                   }
                   list={this.props.boards}
                   images={this.props.pins}

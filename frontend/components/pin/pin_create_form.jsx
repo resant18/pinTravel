@@ -137,7 +137,7 @@ class PinCreateForm extends React.Component {
                      <div className="pin-form-top-content">
                         <div className="empty"></div>
                         <div className="board-list">
-                           {<BoardList onSelectItem={this.handleSubmit} />}
+                           {<BoardList onSelectItem={this.handleSubmit} headerTitle='Select'/>}
                         </div>
                      </div>
                   </div>
