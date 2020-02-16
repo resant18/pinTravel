@@ -18,7 +18,7 @@ class DropDown extends React.Component {
    componentDidUpdate() {
       const { listOpen } = this.state;
 
-      setTimeout(() => {
+      this.timeoutId = setTimeout(() => {
          if (listOpen) {
             window.addEventListener("click", this.close);
          } else {
@@ -29,6 +29,7 @@ class DropDown extends React.Component {
 
    componentWillUnmount() {
       window.removeEventListener("click", this.close);
+      clearTimeout(this.timeoutId);
    }
 
    close(timeOut) {

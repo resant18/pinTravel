@@ -3928,7 +3928,7 @@ function (_React$Component) {
     key: "_getDomain",
     value: function _getDomain(link) {
       if (!link) return '';
-      var link_domain = link.replace("http://", "").replace("https://", "").replace("www.", "").split(/[/?#]/)[0];
+      var link_domain = link.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
       return link_domain;
     }
   }, {
@@ -4041,7 +4041,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           board = _this$props.board,
           creator = _this$props.creator;
-      var user = this._isSameUser() ? "You" : "".concat(creator.username);
+      var user = this._isSameUser() ? 'You' : "".concat(creator.username);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-back-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
