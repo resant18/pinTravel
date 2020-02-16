@@ -28,17 +28,21 @@ class PinIndexItem extends React.Component {
   }  
 
   hideVisibility(e) {
-    this.setState({ visible: false });
+    this.setState({ visible: true });
   }
 
   showVisibility(e) {
     this.setState({ visible: true });
   }
 
-  _formatUrlLink(link) {
-    const link_hostname = new URL(link).hostname;
+  _getDomain(link) {
+    const link_domain = link
+       .replace("http://", "")
+       .replace("https://", "")
+       .replace("www.", "")
+       .split(/[/?#]/)[0];
 
-    return link_hostname.length > 12 ? link_hostname.slice(0, 12) + '...' : link_hostname;    
+    return link_domain;
   }
 
   showSaveToBoard(e) {    
@@ -59,7 +63,7 @@ class PinIndexItem extends React.Component {
         link = (
           <div className='pin-url-link'>
             <a href={pin.link_url} target='_blank'>            
-              <span> &#x2197; </span> {this._formatUrlLink(pin.link_url)} 
+              <span> &#x2197; </span> {this._getDomain(pin.link_url)} 
             </a>
           </div>
         );

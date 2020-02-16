@@ -315,6 +315,8 @@ div.svg-40 {
                     border-radius: 20px;
                     font-weight: 700;
                     width: 140px;   
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                     &:hover {
                         cursor: pointer;
                         filter: brightness(100%);
