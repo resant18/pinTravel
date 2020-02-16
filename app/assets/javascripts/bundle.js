@@ -3328,7 +3328,8 @@ function (_React$Component) {
             return _this3.props.hideModal();
           }
         }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "save-btn-focus",
+          id: "save-btn",
+          className: "save-btn focus",
           onClick: this.handleSubmit
         }, "Save")))));
       } else {

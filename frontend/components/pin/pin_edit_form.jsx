@@ -90,7 +90,8 @@ class PinEditForm extends React.Component {
                            Cancel
                         </button>
                         <button
-                           className='save-btn-focus'
+                           id='save-btn'
+                           className='save-btn focus'
                            onClick={this.handleSubmit} >
                            Save
                      </button>
