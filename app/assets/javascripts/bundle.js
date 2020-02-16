@@ -2289,7 +2289,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var listOpen = this.state.listOpen;
-      setTimeout(function () {
+      this.timeoutId = setTimeout(function () {
         if (listOpen) {
           window.addEventListener("click", _this2.close);
         } else {
@@ -2301,6 +2301,7 @@ function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       window.removeEventListener("click", this.close);
+      clearTimeout(this.timeoutId);
     }
   }, {
     key: "close",
@@ -3926,6 +3927,7 @@ function (_React$Component) {
   }, {
     key: "_getDomain",
     value: function _getDomain(link) {
+      if (!link) return '';
       var link_domain = link.replace("http://", "").replace("https://", "").replace("www.", "").split(/[/?#]/)[0];
       return link_domain;
     }

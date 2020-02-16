@@ -46,6 +46,8 @@ class PinShow extends React.Component {
    }
 
    _getDomain(link) {
+      if (!link) return '';
+      
       const link_domain = link
          .replace("http://", "")
          .replace("https://", "")
