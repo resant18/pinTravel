@@ -1,120 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { selectUserBoards, selectUserPins } from '../../reducers/selector';
+import { fetchBoards } from '../../actions/board_actions';
+import { fetchUserPins } from '../../actions/pin_actions';
 import DropDown from '../element/drop_down';
 
 class BoardList extends React.Component {
    constructor(props) {
       super(props);
-
-      // this.state = this.props.boards;
-      this.state = {
-         location: [
-            {
-               id: 0,
-               title: 'New York',
-               selected: false,
-               key: 'location'
-            },
-            {
-               id: 1,
-               title: 'Dublin',
-               selected: false,
-               key: 'location'
-            },
-            {
-               id: 2,
-               title: 'California',
-               selected: false,
-               key: 'location'
-            },
-            {
-               id: 3,
-               title: 'Istanbul',
-               selected: false,
-               key: 'location'
-            },
-            {
-               id: 4,
-               title: 'Izmir',
-               selected: false,
-               key: 'location'
-            },
-            {
-               id: 5,
-               title: 'Oslo',
-               selected: false,
-               key: 'location'
-            },
-            {
-               id: 6,
-               title: 'Zurich',
-               selected: false,
-               key: 'location'
-            }
-         ],
-         fruit: [
-            {
-               id: 0,
-               title: 'Apple asdjhgsdjhgaSJDHGA,SJ',
-               selected: false,
-               key: 'fruit'
-            },
-            {
-               id: 1,
-               title: 'Orange',
-               selected: false,
-               key: 'fruit'
-            },
-            {
-               id: 2,
-               title: 'Grape',
-               selected: false,
-               key: 'fruit'
-            },
-            {
-               id: 3,
-               title: 'Pomegranate',
-               selected: false,
-               key: 'fruit'
-            },
-            {
-               id: 4,
-               title: 'Strawberry',
-               selected: false,
-               key: 'fruit'
-            }
-         ]
-      };
-      
-      this.resetThenSet = this.resetThenSet.bind(this);
    }
 
-   toggleSelected(id, key) {      
-      let temp = JSON.parse(JSON.stringify(this.state[key]));
-      
-      temp[id].selected = !temp[id].selected;
-      this.setState({
-         [key]: temp
-      });
+   componentDidMount() {
+      if (!this.props.boards) {
+         debugger
+         this.props.fetchBoards();
+      }
+      if (!this.props.pins) {
+         debugger
+         this.props.fetchUserPins(this.props.username, 0);
+      }
    }
-
-   resetThenSet(id, key) {      
-      let temp = JSON.parse(JSON.stringify(this.state[key]));
-      
-      temp.forEach(item => (item.selected = false));
-      temp[id].selected = true;
-      this.setState({
-         [key]: temp
-      });      
-   }
-
+   
    render() {
+      if (this.props.boards.length === 0 || this.props.pins.length === 0) return null;
+      
       return (
          <div className='dropdown-board-list'>
             <div>
                <DropDown
-                  title='Select fruit'
-                  list={this.state.fruit}
-                  resetThenSet={this.resetThenSet}
+                  title={this.props.boards[0] ? this.props.boards[0].name : 'Choose board'}
+                  list={this.props.boards}
+                  images={this.props.pins}
+                  // resetThenSet={this.resetThenSet}
                />
             </div>
          </div>
@@ -122,4 +39,22 @@ class BoardList extends React.Component {
    }
 }
 
-export default BoardList;
+
+const mapStateToProps = (state, ownProps) => {      
+   const currentUser = state.entities.users[state.session.id] || {}; 
+   const boards = selectUserBoards(state.entities, currentUser, true);
+   const pins = selectUserPins(state.entities, currentUser);
+
+   return {
+      boards,
+      pins
+   }
+};
+
+
+const mapDispatchToProps = dispatch => ({
+   fetchBoards: () => dispatch(fetchBoards()),
+   fetchUserPins: (username, page) => dispatch(fetchUserPins(username, page))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BoardList);

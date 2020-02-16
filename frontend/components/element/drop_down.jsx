@@ -8,8 +8,7 @@ class DropDown extends React.Component {
 
       this.state = {
          listOpen: false,
-         headerTitle: this.props.title,
-         visible: false
+         headerTitle: this.props.title,         
       };
 
       this.close = this.close.bind(this);
@@ -54,8 +53,10 @@ class DropDown extends React.Component {
    }
 
    render() {
-      const { list } = this.props;
+      const { list, images } = this.props;
       const { listOpen, headerTitle } = this.state;
+
+      debugger
 
       return (
          <div className="dd-wrapper">
@@ -95,9 +96,18 @@ class DropDown extends React.Component {
             <div className="dd-list-wrapper">
                {listOpen && (
                   <ul className="dd-list" onClick={e => e.stopPropagation()}>
-                     {list.map(item => (
-                        <DropDownList key={item.id} item={item} />
-                     ))}
+                     {list.map(item => {
+                        debugger
+                        return (
+                           <DropDownList
+                              key={item.id}
+                              item={item}
+                              thumbnail={Object.values(images).filter(
+                                 pin => pin.pin_id === item.cover_id
+                              )}
+                              onSelectItem={this.handleSaveToBoard}
+                           />
+                        );})}
                   </ul>
                )}
             </div>

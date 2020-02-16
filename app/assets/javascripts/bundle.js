@@ -240,7 +240,7 @@ var hideModal = function hideModal() {
 /*!*****************************************!*\
   !*** ./frontend/actions/pin_actions.js ***!
   \*****************************************/
-/*! exports provided: RECEIVE_PINS, RECEIVE_PIN, REMOVE_PIN, RECEIVE_PIN_ERRORS, CLEAR_PINS, receivePins, receivePin, removePin, clearPins, receivePinErrors, fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPin, createPin, createPinInBoard, updatePin, deletePin */
+/*! exports provided: RECEIVE_PINS, RECEIVE_PIN, REMOVE_PIN, RECEIVE_PIN_ERRORS, CLEAR_PINS, receivePins, receivePin, removePin, clearPins, receivePinErrors, fetchAllPins, fetchPinsFeed, fetchUserPins, fetchBoardPins, fetchPins, fetchPin, createPin, createPinInBoard, updatePin, deletePin */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -259,6 +259,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPinsFeed", function() { return fetchPinsFeed; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserPins", function() { return fetchUserPins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBoardPins", function() { return fetchBoardPins; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPins", function() { return fetchPins; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPin", function() { return fetchPin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPin", function() { return createPin; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPinInBoard", function() { return createPinInBoard; });
@@ -342,6 +343,15 @@ var fetchBoardPins = function fetchBoardPins(id, page) {
   return function (dispatch) {
     return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchBoardPins"](id, page).then(function (payload) {
       return dispatch(receivePins(payload));
+    }, function (err) {
+      return dispatch(receivePinErrors(err.responseJSON));
+    });
+  };
+};
+var fetchPins = function fetchPins(id) {
+  return function (dispatch) {
+    return _util_pin_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPin"](id).then(function (payload) {
+      return dispatch(receivePin(payload));
     }, function (err) {
       return dispatch(receivePinErrors(err.responseJSON));
     });
@@ -1471,10 +1481,12 @@ function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _element_drop_down__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../element/drop_down */ "./frontend/components/element/drop_down.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _reducers_selector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../reducers/selector */ "./frontend/reducers/selector.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/pin_actions */ "./frontend/actions/pin_actions.js");
+/* harmony import */ var _element_drop_down__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../element/drop_down */ "./frontend/components/element/drop_down.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1484,13 +1496,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
 
 
 
@@ -1501,106 +1517,35 @@ function (_React$Component) {
   _inherits(BoardList, _React$Component);
 
   function BoardList(props) {
-    var _this;
-
     _classCallCheck(this, BoardList);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardList).call(this, props)); // this.state = this.props.boards;
-
-    _this.state = {
-      location: [{
-        id: 0,
-        title: 'New York',
-        selected: false,
-        key: 'location'
-      }, {
-        id: 1,
-        title: 'Dublin',
-        selected: false,
-        key: 'location'
-      }, {
-        id: 2,
-        title: 'California',
-        selected: false,
-        key: 'location'
-      }, {
-        id: 3,
-        title: 'Istanbul',
-        selected: false,
-        key: 'location'
-      }, {
-        id: 4,
-        title: 'Izmir',
-        selected: false,
-        key: 'location'
-      }, {
-        id: 5,
-        title: 'Oslo',
-        selected: false,
-        key: 'location'
-      }, {
-        id: 6,
-        title: 'Zurich',
-        selected: false,
-        key: 'location'
-      }],
-      fruit: [{
-        id: 0,
-        title: 'Apple asdjhgsdjhgaSJDHGA,SJ',
-        selected: false,
-        key: 'fruit'
-      }, {
-        id: 1,
-        title: 'Orange',
-        selected: false,
-        key: 'fruit'
-      }, {
-        id: 2,
-        title: 'Grape',
-        selected: false,
-        key: 'fruit'
-      }, {
-        id: 3,
-        title: 'Pomegranate',
-        selected: false,
-        key: 'fruit'
-      }, {
-        id: 4,
-        title: 'Strawberry',
-        selected: false,
-        key: 'fruit'
-      }]
-    };
-    _this.resetThenSet = _this.resetThenSet.bind(_assertThisInitialized(_this));
-    return _this;
+    return _possibleConstructorReturn(this, _getPrototypeOf(BoardList).call(this, props));
   }
 
   _createClass(BoardList, [{
-    key: "toggleSelected",
-    value: function toggleSelected(id, key) {
-      var temp = JSON.parse(JSON.stringify(this.state[key]));
-      temp[id].selected = !temp[id].selected;
-      this.setState(_defineProperty({}, key, temp));
-    }
-  }, {
-    key: "resetThenSet",
-    value: function resetThenSet(id, key) {
-      var temp = JSON.parse(JSON.stringify(this.state[key]));
-      temp.forEach(function (item) {
-        return item.selected = false;
-      });
-      temp[id].selected = true;
-      this.setState(_defineProperty({}, key, temp));
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (!this.props.boards) {
+        debugger;
+        this.props.fetchBoards();
+      }
+
+      if (!this.props.pins) {
+        debugger;
+        this.props.fetchUserPins(this.props.username, 0);
+      }
     }
   }, {
     key: "render",
     value: function render() {
+      if (this.props.boards.length === 0 || this.props.pins.length === 0) return null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown-board-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        title: "Select fruit",
-        list: this.state.fruit,
-        resetThenSet: this.resetThenSet
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        title: this.props.boards[0] ? this.props.boards[0].name : 'Choose board',
+        list: this.props.boards,
+        images: this.props.pins // resetThenSet={this.resetThenSet}
+
       })));
     }
   }]);
@@ -1608,7 +1553,28 @@ function (_React$Component) {
   return BoardList;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (BoardList);
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var currentUser = state.entities.users[state.session.id] || {};
+  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_2__["selectUserBoards"])(state.entities, currentUser, true);
+  var pins = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_2__["selectUserPins"])(state.entities, currentUser);
+  return {
+    boards: boards,
+    pins: pins
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchBoards: function fetchBoards() {
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoards"])());
+    },
+    fetchUserPins: function fetchUserPins(username, page) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_4__["fetchUserPins"])(username, page));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(BoardList));
 
 /***/ }),
 
@@ -1729,7 +1695,6 @@ function (_React$Component) {
   }, {
     key: "handleSaveToBoard",
     value: function handleSaveToBoard(selectedItem) {
-      console.log('selected board id:' + selectedItem);
       this.props.createPinInBoard(this.props.pin, selectedItem).then(this.props.hideModal());
     }
   }, {
@@ -1771,10 +1736,13 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "All boards"), boards && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "dd-list"
       }, boards.map(function (board) {
+        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: board.id,
           item: board,
-          thumbnail: pins[board.cover_id],
+          thumbnail: Object.values(pins).filter(function (pin) {
+            return pin.pin_id === board.cover_id;
+          }),
           onSelectItem: _this2.handleSaveToBoard
         });
       }))))));
@@ -2299,8 +2267,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DropDown).call(this, props));
     _this.state = {
       listOpen: false,
-      headerTitle: _this.props.title,
-      visible: false
+      headerTitle: _this.props.title
     };
     _this.close = _this.close.bind(_assertThisInitialized(_this));
     return _this;
@@ -2355,10 +2322,13 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var list = this.props.list;
+      var _this$props = this.props,
+          list = _this$props.list,
+          images = _this$props.images;
       var _this$state = this.state,
           listOpen = _this$state.listOpen,
           headerTitle = _this$state.headerTitle;
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2398,9 +2368,14 @@ function (_React$Component) {
           return e.stopPropagation();
         }
       }, list.map(function (item) {
+        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: item.id,
-          item: item
+          item: item,
+          thumbnail: Object.values(images).filter(function (pin) {
+            return pin.pin_id === item.cover_id;
+          }),
+          onSelectItem: _this3.handleSaveToBoard
         });
       }))));
     }
@@ -2500,6 +2475,7 @@ function (_React$Component) {
       var _this$props = this.props,
           item = _this$props.item,
           thumbnail = _this$props.thumbnail;
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "dd-list-item",
         key: item.id,
@@ -2507,9 +2483,9 @@ function (_React$Component) {
         onMouseLeave: this.hideVisibility
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-item-img-wrapper"
-      }, thumbnail ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      }, thumbnail.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "dd-list-item-img",
-        src: thumbnail.pictureUrl,
+        src: thumbnail[0].pictureUrl,
         alt: thumbnail.title
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-item-blank"
@@ -2861,13 +2837,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  var currentUser = state.entities.users[state.session.id] || {};
-  var username = ownProps.match.params.username;
-  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_4__["selectUserBoards"])(state.entities, currentUser, true);
+  var currentUser = state.entities.users[state.session.id] || {}; // const boards = selectUserBoards(state.entities, currentUser, true);
+  // const pins = selectUserPins(state.entities, currentUser);
+
   return {
-    currentUser: currentUser,
-    username: username,
-    boards: boards
+    currentUser: currentUser // boards,
+    // pins
+
   };
 };
 
@@ -2875,10 +2851,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createPin: function createPin(pin, boardId) {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["createPin"])(pin, boardId));
-    },
-    fetchBoards: function fetchBoards() {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_3__["fetchBoards"])());
-    }
+    } // fetchBoards: () => dispatch(fetchBoards()),
+
   };
 };
 
@@ -2954,46 +2928,13 @@ function (_React$Component) {
     _this.deleteImage = _this.deleteImage.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // goBack(e) {
+  //    e.preventDefault();
+  //    this.props.history.goBack();
+  // }
+
 
   _createClass(PinCreateForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.props.fetchBoards();
-    }
-  }, {
-    key: "goBack",
-    value: function goBack(e) {
-      e.preventDefault();
-      this.props.history.goBack();
-    }
-  }, {
-    key: "displayBoardList",
-    value: function displayBoardList() {}
-  }, {
-    key: "hideBoardDropDown",
-    value: function hideBoardDropDown(e) {
-      this.setState({
-        showBoardDropDown: false
-      });
-    }
-  }, {
-    key: "showBoardDropDown",
-    value: function showBoardDropDown(e) {
-      this.setState({
-        showBoardDropDown: true
-      });
-    }
-  }, {
-    key: "handleSelectBoard",
-    value: function handleSelectBoard(board) {
-      this.setState({
-        boardId: board.id,
-        selectedBoard: board.name
-      });
-      this.hideBoardDropDown();
-    }
-  }, {
     key: "update",
     value: function update(field) {
       var _this2 = this;
@@ -3119,7 +3060,7 @@ function (_React$Component) {
         className: "empty"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-list"
-      }, "Board List"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_list__WEBPACK_IMPORTED_MODULE_1__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-form-bottom"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-form-bottom-content"

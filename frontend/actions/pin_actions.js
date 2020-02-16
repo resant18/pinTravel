@@ -70,6 +70,13 @@ export const fetchBoardPins = (id, page) => dispatch =>
     err => dispatch(receivePinErrors(err.responseJSON))
   );
 
+export const fetchPins = id => dispatch =>
+   ApiUtil.fetchPin(id).then(
+      payload => dispatch(receivePin(payload)),
+      err => dispatch(receivePinErrors(err.responseJSON))
+   );
+
+
 export const fetchPin = id => dispatch =>
   ApiUtil.fetchPin(id)
   .then(

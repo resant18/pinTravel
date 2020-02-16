@@ -4,16 +4,21 @@ export const selectBoard = ({ boards }, boardId) => {
 
 export const selectUserBoards = ({ boards }, user, permitted) => {
     if (!user) return [];
+
     return Object.values(boards).filter(board => 
         permitted ? (board.user_id === user.id) : (board.secret === false && board.user_id === user.id)
     )
 };
 
-export const selectUserPins = ({ pins }, user) => {
+export const selectUserPins = ({ pins }, user) => {    
     if (!user) return [];    
 
-    return Object.values(pins).filter(pin =>
+    return Object.values(pins).filter(pin => {
+
+        return (
        user.board_pin_ids.includes(pin.id)
+        )
+    }
     );
     // Code to get unique pins    
     // return Object.values(pins).filter(

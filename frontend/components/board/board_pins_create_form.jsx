@@ -16,8 +16,7 @@ class BoardPinsCreateForm extends React.Component {
    }
 
    // handle passing data from child to parent component
-   handleSaveToBoard(selectedItem) {
-      console.log('selected board id:' + selectedItem);
+   handleSaveToBoard(selectedItem) {      
       this.props
          .createPinInBoard(this.props.pin, selectedItem)
          .then(this.props.hideModal());
@@ -46,24 +45,25 @@ class BoardPinsCreateForm extends React.Component {
                </div>
                <div className="bp-create-form-body">
                   <div className="bp-form-left">
-                     <img
-                        className="bp-form-pic"
-                        src={pin.pictureUrl}
-                     />
+                     <img className="bp-form-pic" src={pin.pictureUrl} />
                   </div>
                   <div className="bp-form-right">
                      <p>All boards</p>
-                     { boards && (
-                        <ul className="dd-list">                        
-                           {boards.map(board => (
-                              <DropDownList 
-                                 key={board.id} 
-                                 item={board} 
-                                 thumbnail={pins[board.cover_id]}
-                                 onSelectItem={this.handleSaveToBoard} 
+                     {boards && (
+                        <ul className="dd-list">
+                           {boards.map(board => {
+                              debugger
+                              return (
+                              <DropDownList
+                                 key={board.id}
+                                 item={board}
+                                 thumbnail={Object.values(pins).filter(
+                                    pin => pin.pin_id === board.cover_id
+                                 )}
+                                 onSelectItem={this.handleSaveToBoard}
                               />
-                           ))}
-                     </ul>
+                           )})}
+                        </ul>
                      )}
                   </div>
                </div>

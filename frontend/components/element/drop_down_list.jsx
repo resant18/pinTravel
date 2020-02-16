@@ -40,7 +40,7 @@ class DropDownList extends React.Component {
 
    render() {
       const { item, thumbnail } = this.props;
-
+debugger
       return (
          <li
             className="dd-list-item"
@@ -50,8 +50,8 @@ class DropDownList extends React.Component {
          >
             <div className="dd-list-item-img-wrapper">               
                {
-                  thumbnail ? (
-                     <img className='dd-list-item-img' src={thumbnail.pictureUrl} alt={thumbnail.title} />
+                  thumbnail.length > 0 ? (
+                     <img className='dd-list-item-img' src={thumbnail[0].pictureUrl} alt={thumbnail.title} />
                   ) : (
                      <div className='dd-list-item-blank' />
                   )

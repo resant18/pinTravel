@@ -20,34 +20,11 @@ class PinCreateForm extends React.Component {
       this.handleSubmit = this.handleSubmit.bind(this);      
    }
 
-
-
-   componentDidMount() {
-      this.props.fetchBoards();
-   }
-
-   goBack(e) {
-      e.preventDefault();
-      this.props.history.goBack();
-   }
-   
-
-   displayBoardList() {
-
-   }
-
-   hideBoardDropDown(e) {
-      this.setState({ showBoardDropDown: false });
-   }
-
-   showBoardDropDown(e) {
-      this.setState({ showBoardDropDown: true });
-   }
-
-   handleSelectBoard(board) {
-      this.setState({ boardId: board.id, selectedBoard: board.name });
-      this.hideBoardDropDown();
-   }      
+   // goBack(e) {
+   //    e.preventDefault();
+   //    this.props.history.goBack();
+   // }
+       
 
    update(field) {
       return (e) => {
@@ -146,7 +123,11 @@ class PinCreateForm extends React.Component {
                   <div className='pin-form-top'>
                      <div className='pin-form-top-content'>
                         <div className='empty'></div>
-                        <div className='board-list'>Board List</div>
+                        <div className='board-list'>
+                           { 
+                              <BoardList />
+                           }
+                        </div>
                      </div>
                   </div>
                   <div className='pin-form-bottom'>
