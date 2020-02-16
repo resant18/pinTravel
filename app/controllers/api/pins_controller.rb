@@ -32,10 +32,9 @@ class Api::PinsController < ApplicationController
     def create
       @pin = Pin.new(pin_params)
       @board = Board.find(params[:board_id])
-
       if @pin.save
         @board.pins << @pin
-        @board_pins = BoardPin.create!(
+        @board_pin = BoardPin.create!(
           pin_id: @pin.id,
           board_id: @board.id,
           title: params[:pin][:title],
@@ -63,10 +62,10 @@ class Api::PinsController < ApplicationController
     private
 
     def pin_params
-      params.require(:pin).permit(:title, :detail, :lat, :lng, :board_id)
+      params.require(:pin).permit(:link_url, :lat, :lng, :picture)
     end
 
     def board_pin_params
-      params.require(:pin).permit(:board_id, :pin_id)
+      params.require(:pin).permit(:title, :detail)
     end
 end

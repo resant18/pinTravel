@@ -24,7 +24,6 @@ class BoardList extends React.Component {
    }
 
    handleSelectItem(selectedItem) {
-      debugger
       this.props.onSelectItem(selectedItem);
    }
    

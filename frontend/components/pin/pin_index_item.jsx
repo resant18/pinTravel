@@ -28,7 +28,7 @@ class PinIndexItem extends React.Component {
   }  
 
   hideVisibility(e) {
-    this.setState({ visible: true });
+    this.setState({ visible: false });
   }
 
   showVisibility(e) {
@@ -37,9 +37,9 @@ class PinIndexItem extends React.Component {
 
   _getDomain(link) {
     const link_domain = link
-       .replace("http://", "")
-       .replace("https://", "")
-       .replace("www.", "")
+       .replace('http://', '')
+       .replace('https://', '')
+       .replace('www.', '')
        .split(/[/?#]/)[0];
 
     return link_domain;

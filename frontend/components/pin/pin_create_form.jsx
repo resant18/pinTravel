@@ -8,8 +8,7 @@ class PinCreateForm extends React.Component {
          pin: {
             pin_id: null, title: '', detail: '',
             lat: 0.0, lng: 0.0, link_url: ''
-         },
-         showBoardDropDown: false,
+         },         
          imageFile: null,
          imageUrl: null,
          imageDesc: null,         
@@ -32,11 +31,22 @@ class PinCreateForm extends React.Component {
       };
    }
 
-   handleSubmit(selectedItem) {
-      console.log(selectedItem);
-      debugger
-
-
+   handleSubmit(selectedItem) {      
+      const formData = new FormData();
+      formData.append("pin[title]", this.state.pin.title);
+      formData.append("pin[detail]", this.state.pin.detail);
+      formData.append("pin[link_url]", this.state.pin.link_url);
+      formData.append("pin[lat]", this.state.pin.lat);
+      formData.append("pin[lng]", this.state.pin.lng);
+      formData.append("pin[picture]", this.state.imageFile);
+      
+      this.props
+         .createPin(formData, selectedItem)  
+         .then(() =>
+            this.props.history.push(
+               `${this.props.currentUser.username}/boards/${selectedItem}`
+            )
+         );
    }
 
    _checkValidImageFile(file) {      
@@ -172,7 +182,7 @@ class PinCreateForm extends React.Component {
                            <div className="pin-title">
                               <textarea
                                  placeholder="Add your title"
-                                 value="San Diego Old Town"
+                                 // value="San Diego Old Town"
                                  onChange={this.update("title")}
                               ></textarea>
                            </div>
@@ -180,7 +190,7 @@ class PinCreateForm extends React.Component {
                            <div className="pin-detail">
                               <textarea
                                  placeholder="Tell everyone what your Pin is about"
-                                 value="attractive mix of popularized Mexican food, tourist-focused shopping and occasional live entertainment"
+                                 // value="attractive mix of popularized Mexican food, tourist-focused shopping and occasional live entertainment"
                                  onChange={this.update("detail")}
                               ></textarea>
                            </div>
@@ -188,7 +198,7 @@ class PinCreateForm extends React.Component {
                            <div className="pin-destination-link">
                               <textarea
                                  placeholder="Add a destination link"
-                                 value="https://lajollamom.com/old-town-san-diego/"
+                                 // value="https://lajollamom.com/old-town-san-diego/"
                                  onChange={this.update("link_url")}
                               ></textarea>
                            </div>

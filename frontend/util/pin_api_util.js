@@ -36,10 +36,10 @@ export const fetchPin = id => {
   });
 };
 
-export const createPin = (formData) => {
+export const createPin = (formData, boardId) => {
   return $.ajax({
     method: 'POST',
-    url: `api/pins`,
+    url: `api/boards/${boardId}/pins`,
     data: formData,
     contentType: false,
     processData: false

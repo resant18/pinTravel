@@ -38,7 +38,6 @@ class DropDown extends React.Component {
    }
 
    handleSelectItem(selectedItem) {
-      debugger
       this.props.onSelectItem(selectedItem);
    }
 
@@ -51,7 +50,6 @@ class DropDown extends React.Component {
    render() {
       const { list, images } = this.props;
       const { listOpen, headerTitle } = this.state;
-
 
       return (
          <div className="dd-wrapper">
@@ -92,7 +90,7 @@ class DropDown extends React.Component {
                {listOpen && (
                   <ul className="dd-list" onClick={e => e.stopPropagation()}>
                      {list.map(item => {
-                        debugger
+                        // debugger
                         return (
                            <DropDownList
                               key={item.id}

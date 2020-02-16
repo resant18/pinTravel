@@ -1542,7 +1542,6 @@ function (_React$Component) {
   }, {
     key: "handleSelectItem",
     value: function handleSelectItem(selectedItem) {
-      debugger;
       this.props.onSelectItem(selectedItem);
     }
   }, {
@@ -2313,7 +2312,6 @@ function (_React$Component) {
   }, {
     key: "handleSelectItem",
     value: function handleSelectItem(selectedItem) {
-      debugger;
       this.props.onSelectItem(selectedItem);
     }
   }, {
@@ -2375,7 +2373,7 @@ function (_React$Component) {
           return e.stopPropagation();
         }
       }, list.map(function (item) {
-        debugger;
+        // debugger
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: item.id,
           item: item,
@@ -2925,7 +2923,6 @@ function (_React$Component) {
         lng: 0.0,
         link_url: ''
       },
-      showBoardDropDown: false,
       imageFile: null,
       imageUrl: null,
       imageDesc: null
@@ -2954,8 +2951,18 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(selectedItem) {
-      console.log(selectedItem);
-      debugger;
+      var _this3 = this;
+
+      var formData = new FormData();
+      formData.append("pin[title]", this.state.pin.title);
+      formData.append("pin[detail]", this.state.pin.detail);
+      formData.append("pin[link_url]", this.state.pin.link_url);
+      formData.append("pin[lat]", this.state.pin.lat);
+      formData.append("pin[lng]", this.state.pin.lng);
+      formData.append("pin[picture]", this.state.imageFile);
+      this.props.createPin(formData, selectedItem).then(function () {
+        return _this3.props.history.push("".concat(_this3.props.currentUser.username, "/boards/").concat(selectedItem));
+      });
     }
   }, {
     key: "_checkValidImageFile",
@@ -2966,7 +2973,7 @@ function (_React$Component) {
   }, {
     key: "handleImageUpload",
     value: function handleImageUpload(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       var file = e.currentTarget.files[0];
 
@@ -2978,7 +2985,7 @@ function (_React$Component) {
             var img = new Image();
             img.src = fileReader.result;
 
-            _this3.setState({
+            _this4.setState({
               imageFile: file,
               imageUrl: fileReader.result,
               imageDesc: null
@@ -3100,20 +3107,20 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        placeholder: "Add your title",
-        value: "San Diego Old Town",
+        placeholder: "Add your title" // value="San Diego Old Town"
+        ,
         onChange: this.update("title")
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-detail"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        placeholder: "Tell everyone what your Pin is about",
-        value: "attractive mix of popularized Mexican food, tourist-focused shopping and occasional live entertainment",
+        placeholder: "Tell everyone what your Pin is about" // value="attractive mix of popularized Mexican food, tourist-focused shopping and occasional live entertainment"
+        ,
         onChange: this.update("detail")
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-destination-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        placeholder: "Add a destination link",
-        value: "https://lajollamom.com/old-town-san-diego/",
+        placeholder: "Add a destination link" // value="https://lajollamom.com/old-town-san-diego/"
+        ,
         onChange: this.update("link_url")
       }))))))));
     }
@@ -3670,10 +3677,10 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "_formatUrlLink",
-    value: function _formatUrlLink(link) {
-      var link_hostname = new URL(link).hostname;
-      return link_hostname.length > 12 ? link_hostname.slice(0, 12) + '...' : link_hostname;
+    key: "_getDomain",
+    value: function _getDomain(link) {
+      var link_domain = link.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
+      return link_domain;
     }
   }, {
     key: "showSaveToBoard",
@@ -3700,7 +3707,7 @@ function (_React$Component) {
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
             href: pin.link_url,
             target: "_blank"
-          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " \u2197 "), " ", this._formatUrlLink(pin.link_url)));
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " \u2197 "), " ", this._getDomain(pin.link_url)));
         }
 
         if (currentUser.username === pin.user.username) {
@@ -3917,14 +3924,10 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "_formattedUrlLink",
-    value: function _formattedUrlLink() {
-      if (this.props.pin.link_url) {
-        var hostname = new URL(this.props.pin.link_url).hostname;
-        return hostname.toString();
-      } else {
-        return '';
-      }
+    key: "_getDomain",
+    value: function _getDomain(link) {
+      var link_domain = link.replace("http://", "").replace("https://", "").replace("www.", "").split(/[/?#]/)[0];
+      return link_domain;
     }
   }, {
     key: "displayUrlLinkOverImage",
@@ -3944,7 +3947,7 @@ function (_React$Component) {
           viewBox: "0 0 24 24"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"
-        })), this._formattedUrlLink()));
+        })), this._getDomain()));
       }
     }
   }, {
@@ -4002,7 +4005,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: this.props.pin.link_url,
           target: "_blank"
-        }, this._formattedUrlLink());
+        }, this._getDomain());
       }
     }
   }, {
@@ -4036,7 +4039,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           board = _this$props.board,
           creator = _this$props.creator;
-      var user = this._isSameUser() ? 'You' : "".concat(creator.username);
+      var user = this._isSameUser() ? "You" : "".concat(creator.username);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-back-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -5708,10 +5711,10 @@ var fetchPin = function fetchPin(id) {
     url: "api/board_pins/".concat(id)
   });
 };
-var createPin = function createPin(formData) {
+var createPin = function createPin(formData, boardId) {
   return $.ajax({
     method: 'POST',
-    url: "api/pins",
+    url: "api/boards/".concat(boardId, "/pins"),
     data: formData,
     contentType: false,
     processData: false
