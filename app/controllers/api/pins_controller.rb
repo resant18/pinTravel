@@ -32,14 +32,15 @@ class Api::PinsController < ApplicationController
     def create
       @pin = Pin.new(pin_params)
       @board = Board.find(params[:board_id])
-      if @pin.save
-        @board.pins << @pin
+
+      if @pin.save        
+        # @board.pins << @pin // Note: this code is not used, because it actually saves a pin to board pin, but without the detail
         @board_pin = BoardPin.create!(
           pin_id: @pin.id,
           board_id: @board.id,
           title: params[:pin][:title],
           detail: params[:pin][:detail]
-        )
+        )        
         render "api/pins/show"
       else
         render json: @pin.errors.full_messages, status: 422

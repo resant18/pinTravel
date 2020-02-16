@@ -40,16 +40,9 @@ class Api::BoardPinsController < ApplicationController
     if @board_pin.save    
       render 'api/pins/show'
     else
-      debugger
       render json: @board_pin.errors.full_messages, status: 422
     end
   end
-
-  # def update
-  #   @board_pin = current_user.board_pins.find(params[:id])
-  #   @board_pin.update!(board_pin_params)
-  #   render 'api/pins/show'
-  # end  
 
   def update
     @board_pin = current_user.board_pins.find(params[:id])      

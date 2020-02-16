@@ -31,7 +31,7 @@ class PinCreateForm extends React.Component {
       };
    }
 
-   handleSubmit(selectedItem) {      
+   handleSubmit(selectedItem) {    
       const formData = new FormData();
       formData.append("pin[title]", this.state.pin.title);
       formData.append("pin[detail]", this.state.pin.detail);

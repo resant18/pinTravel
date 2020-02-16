@@ -16,7 +16,7 @@ class BoardPinsCreateForm extends React.Component {
    }
 
    // handle passing data from child to parent component
-   handleSaveToBoard(selectedItem) {      
+   handleSaveToBoard(selectedItem) {  
       this.props
          .createPinInBoard(this.props.pin, selectedItem)
          .then(this.props.hideModal());
@@ -52,7 +52,6 @@ class BoardPinsCreateForm extends React.Component {
                      {boards && (
                         <ul className="dd-list">
                            {boards.map(board => {
-                              debugger
                               return (
                               <DropDownList
                                  key={board.id}

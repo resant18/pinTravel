@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import BoardList from '../board/board_list';
 
 class PinShow extends React.Component {
    constructor(props) {
@@ -85,6 +86,10 @@ class PinShow extends React.Component {
             </div>
          );
       }
+   }
+
+   displaySaveToBoard() {
+      
    }
 
    displayToolbar() {
