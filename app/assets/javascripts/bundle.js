@@ -3878,6 +3878,7 @@ function (_React$Component) {
     _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
     _this.showUrlLink = _this.showUrlLink.bind(_assertThisInitialized(_this));
     _this.hideUrlLink = _this.hideUrlLink.bind(_assertThisInitialized(_this));
+    _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3890,6 +3891,14 @@ function (_React$Component) {
     key: "browseBack",
     value: function browseBack(e) {
       this.props.history.goBack();
+    }
+  }, {
+    key: "showEditForm",
+    value: function showEditForm() {
+      this.props.showModal({
+        name: "edit-pin",
+        selectedData: this.props.pin.id
+      });
     }
   }, {
     key: "handleSave",
@@ -3927,8 +3936,8 @@ function (_React$Component) {
   }, {
     key: "_getDomain",
     value: function _getDomain(link) {
-      if (!link) return '';
-      var link_domain = link.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
+      if (!link) return "";
+      var link_domain = link.replace("http://", "").replace("https://", "").replace("www.", "").split(/[/?#]/)[0];
       return link_domain;
     }
   }, {
@@ -3964,7 +3973,7 @@ function (_React$Component) {
           "aria-label": "Edit board",
           className: "tool-buttons edit-button",
           type: "button",
-          onClick: this.browseBack
+          onClick: this.showEditForm
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
           height: "20",
@@ -4041,7 +4050,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           board = _this$props.board,
           creator = _this$props.creator;
-      var user = this._isSameUser() ? 'You' : "".concat(creator.username);
+      var user = this._isSameUser() ? "You" : "".concat(creator.username);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-back-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
