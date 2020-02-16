@@ -1496,9 +1496,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -1517,9 +1517,13 @@ function (_React$Component) {
   _inherits(BoardList, _React$Component);
 
   function BoardList(props) {
+    var _this;
+
     _classCallCheck(this, BoardList);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(BoardList).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardList).call(this, props));
+    _this.handleSelectItem = _this.handleSelectItem.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(BoardList, [{
@@ -1536,16 +1540,22 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "handleSelectItem",
+    value: function handleSelectItem(selectedItem) {
+      debugger;
+      this.props.onSelectItem(selectedItem);
+    }
+  }, {
     key: "render",
     value: function render() {
       if (this.props.boards.length === 0 || this.props.pins.length === 0) return null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown-board-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        title: this.props.boards[0] ? this.props.boards[0].name : 'Choose board',
+        title: this.props.boards[0] ? this.props.boards[0].name : "Choose board",
         list: this.props.boards,
-        images: this.props.pins // resetThenSet={this.resetThenSet}
-
+        images: this.props.pins,
+        onSelectItem: this.handleSelectItem
       })));
     }
   }]);
@@ -2270,6 +2280,7 @@ function (_React$Component) {
       headerTitle: _this.props.title
     };
     _this.close = _this.close.bind(_assertThisInitialized(_this));
+    _this.handleSelectItem = _this.handleSelectItem.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2298,16 +2309,13 @@ function (_React$Component) {
       this.setState({
         listOpen: false
       });
-    } // selectItem(title, id, stateKey) {
-    //    this.setState(
-    //       {
-    //          headerTitle: title,
-    //          listOpen: false
-    //       },
-    //       this.props.resetThenSet(id, stateKey)
-    //    );
-    // }
-
+    }
+  }, {
+    key: "handleSelectItem",
+    value: function handleSelectItem(selectedItem) {
+      debugger;
+      this.props.onSelectItem(selectedItem);
+    }
   }, {
     key: "toggleList",
     value: function toggleList() {
@@ -2328,7 +2336,6 @@ function (_React$Component) {
       var _this$state = this.state,
           listOpen = _this$state.listOpen,
           headerTitle = _this$state.headerTitle;
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2375,7 +2382,7 @@ function (_React$Component) {
           thumbnail: Object.values(images).filter(function (pin) {
             return pin.pin_id === item.cover_id;
           }),
-          onSelectItem: _this3.handleSaveToBoard
+          onSelectItem: _this3.handleSelectItem
         });
       }))));
     }
@@ -2475,7 +2482,6 @@ function (_React$Component) {
       var _this$props = this.props,
           item = _this$props.item,
           thumbnail = _this$props.thumbnail;
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "dd-list-item",
         key: item.id,
@@ -2947,8 +2953,9 @@ function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(e) {
-      e.preventDefault();
+    value: function handleSubmit(selectedItem) {
+      console.log(selectedItem);
+      debugger;
     }
   }, {
     key: "_checkValidImageFile",
@@ -3060,7 +3067,9 @@ function (_React$Component) {
         className: "empty"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-list"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_list__WEBPACK_IMPORTED_MODULE_1__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        onSelectItem: this.handleSubmit
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-form-bottom"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-form-bottom-content"
@@ -3092,17 +3101,20 @@ function (_React$Component) {
         className: "pin-title"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Add your title",
-        onChange: this.update('title')
+        value: "San Diego Old Town",
+        onChange: this.update("title")
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-detail"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Tell everyone what your Pin is about",
-        onChange: this.update('detail')
+        value: "attractive mix of popularized Mexican food, tourist-focused shopping and occasional live entertainment",
+        onChange: this.update("detail")
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-destination-link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         placeholder: "Add a destination link",
-        onChange: this.update('link_url')
+        value: "https://lajollamom.com/old-town-san-diego/",
+        onChange: this.update("link_url")
       }))))))));
     }
   }]);
@@ -5329,10 +5341,7 @@ var selectUserPins = function selectUserPins(_ref3, user) {
   if (!user) return [];
   return Object.values(pins).filter(function (pin) {
     return user.board_pin_ids.includes(pin.id);
-  }); // Code to get unique pins    
-  // return Object.values(pins).filter(
-  //     pin => user.pin_ids.includes(pin.pin_id)        
-  // );        
+  });
 };
 var selectUserBoardPins = function selectUserBoardPins(_ref4, boardId) {
   var pins = _ref4.pins;
@@ -5347,11 +5356,7 @@ var selectUserCreator = function selectUserCreator(_ref5, board) {
   return Object.values(users).filter(function (user) {
     return user.id === board.user_id;
   })[0];
-}; // export const selectReviewsForBench = ({ benches, reviews }, bench) => {
-//   return bench.reviewIds.map(reviewId => reviews[reviewId]);
-// };
-// export const asArray = ({ benches }) =>
-//   Object.keys(benches).map(key => benches[key]);
+};
 
 /***/ }),
 

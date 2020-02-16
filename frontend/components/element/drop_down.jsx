@@ -12,6 +12,7 @@ class DropDown extends React.Component {
       };
 
       this.close = this.close.bind(this);
+      this.handleSelectItem = this.handleSelectItem.bind(this);
    }
 
    componentDidUpdate() {
@@ -36,15 +37,10 @@ class DropDown extends React.Component {
       });
    }
 
-   // selectItem(title, id, stateKey) {
-   //    this.setState(
-   //       {
-   //          headerTitle: title,
-   //          listOpen: false
-   //       },
-   //       this.props.resetThenSet(id, stateKey)
-   //    );
-   // }
+   handleSelectItem(selectedItem) {
+      debugger
+      this.props.onSelectItem(selectedItem);
+   }
 
    toggleList() {
       this.setState(prevState => ({
@@ -56,7 +52,6 @@ class DropDown extends React.Component {
       const { list, images } = this.props;
       const { listOpen, headerTitle } = this.state;
 
-      debugger
 
       return (
          <div className="dd-wrapper">
@@ -105,7 +100,7 @@ class DropDown extends React.Component {
                               thumbnail={Object.values(images).filter(
                                  pin => pin.pin_id === item.cover_id
                               )}
-                              onSelectItem={this.handleSaveToBoard}
+                              onSelectItem={this.handleSelectItem}
                            />
                         );})}
                   </ul>

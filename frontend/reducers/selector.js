@@ -13,17 +13,9 @@ export const selectUserBoards = ({ boards }, user, permitted) => {
 export const selectUserPins = ({ pins }, user) => {    
     if (!user) return [];    
 
-    return Object.values(pins).filter(pin => {
-
-        return (
-       user.board_pin_ids.includes(pin.id)
-        )
-    }
-    );
-    // Code to get unique pins    
-    // return Object.values(pins).filter(
-    //     pin => user.pin_ids.includes(pin.pin_id)        
-    // );        
+    return Object.values(pins).filter(pin => 
+        user.board_pin_ids.includes(pin.id)
+    )    
 }; 
 
 export const selectUserBoardPins = ({ pins }, boardId) => {
@@ -40,9 +32,3 @@ export const selectUserCreator = ({ users }, board) => {
     return Object.values(users).filter(user => user.id === board.user_id)[0];
 }
 
-// export const selectReviewsForBench = ({ benches, reviews }, bench) => {
-//   return bench.reviewIds.map(reviewId => reviews[reviewId]);
-// };
-
-// export const asArray = ({ benches }) =>
-//   Object.keys(benches).map(key => benches[key]);

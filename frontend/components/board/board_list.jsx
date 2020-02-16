@@ -8,6 +8,8 @@ import DropDown from '../element/drop_down';
 class BoardList extends React.Component {
    constructor(props) {
       super(props);
+
+      this.handleSelectItem = this.handleSelectItem.bind(this);
    }
 
    componentDidMount() {
@@ -20,18 +22,27 @@ class BoardList extends React.Component {
          this.props.fetchUserPins(this.props.username, 0);
       }
    }
+
+   handleSelectItem(selectedItem) {
+      debugger
+      this.props.onSelectItem(selectedItem);
+   }
    
    render() {
       if (this.props.boards.length === 0 || this.props.pins.length === 0) return null;
       
       return (
-         <div className='dropdown-board-list'>
+         <div className="dropdown-board-list">
             <div>
                <DropDown
-                  title={this.props.boards[0] ? this.props.boards[0].name : 'Choose board'}
+                  title={
+                     this.props.boards[0]
+                        ? this.props.boards[0].name
+                        : "Choose board"
+                  }
                   list={this.props.boards}
                   images={this.props.pins}
-                  // resetThenSet={this.resetThenSet}
+                  onSelectItem={this.handleSelectItem}
                />
             </div>
          </div>

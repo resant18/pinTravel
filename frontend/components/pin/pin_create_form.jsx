@@ -32,8 +32,11 @@ class PinCreateForm extends React.Component {
       };
    }
 
-   handleSubmit(e) {
-      e.preventDefault();
+   handleSubmit(selectedItem) {
+      console.log(selectedItem);
+      debugger
+
+
    }
 
    _checkValidImageFile(file) {      
@@ -117,35 +120,43 @@ class PinCreateForm extends React.Component {
 
    render() {      
       return (
-         <div className='pin-form-container'>
-            <div aria-label='Create' className='pin-form-box'>
-               <div className='pin-form-content'>
-                  <div className='pin-form-top'>
-                     <div className='pin-form-top-content'>
-                        <div className='empty'></div>
-                        <div className='board-list'>
-                           { 
-                              <BoardList />
-                           }
+         <div className="pin-form-container">
+            <div aria-label="Create" className="pin-form-box">
+               <div className="pin-form-content">
+                  <div className="pin-form-top">
+                     <div className="pin-form-top-content">
+                        <div className="empty"></div>
+                        <div className="board-list">
+                           {<BoardList onSelectItem={this.handleSubmit} />}
                         </div>
                      </div>
                   </div>
-                  <div className='pin-form-bottom'>
-                     <div className='pin-form-bottom-content'>
-                        <div className='pin-form-left'>
+                  <div className="pin-form-bottom">
+                     <div className="pin-form-bottom-content">
+                        <div className="pin-form-left">
                            {/* <div id='image-preview-container'>
                               <img id='image-preview' alt='Image Preview'></img>                         
                            </div> */}
                            {this.displayImagePreview()}
-                           <div className='upload-box'>
-                              <div className='border'>
-                                 <button className='upload-btn'>
-                                    <svg height="32" width="32" viewBox="0 0 24 24" aria-label="Add an image or video" role="img"><path d="M24 12c0-6.627-5.372-12-12-12C5.373 0 0 5.373 0 12s5.373 12 12 12c6.628 0 12-5.373 12-12zm-10.767 3.75a1.25 1.25 0 0 1-2.5 0v-3.948l-1.031 1.031a1.25 1.25 0 0 1-1.768-1.768L12 7l4.066 4.065a1.25 1.25 0 0 1-1.768 1.768l-1.065-1.065v3.982z"></path></svg>
+                           <div className="upload-box">
+                              <div className="border">
+                                 <button className="upload-btn">
+                                    <svg
+                                       height="32"
+                                       width="32"
+                                       viewBox="0 0 24 24"
+                                       aria-label="Add an image or video"
+                                       role="img"
+                                    >
+                                       <path d="M24 12c0-6.627-5.372-12-12-12C5.373 0 0 5.373 0 12s5.373 12 12 12c6.628 0 12-5.373 12-12zm-10.767 3.75a1.25 1.25 0 0 1-2.5 0v-3.948l-1.031 1.031a1.25 1.25 0 0 1-1.768-1.768L12 7l4.066 4.065a1.25 1.25 0 0 1-1.768 1.768l-1.065-1.065v3.982z"></path>
+                                    </svg>
                                  </button>
                                  <p>Click to upload</p>
-                                 <input type='file' accept='image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp'
-                                    onChange={this.handleImageUpload}>
-                                 </input>
+                                 <input
+                                    type="file"
+                                    accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp"
+                                    onChange={this.handleImageUpload}
+                                 ></input>
                                  <div className="upload-desc-container">
                                     {this.displayImageDesc()}
                                  </div>
@@ -157,34 +168,37 @@ class PinCreateForm extends React.Component {
                               <p>Save from site</p>
                            </div> */}
                         </div>
-                        <div className='pin-form-right'>
-                           <div className='pin-title'>
+                        <div className="pin-form-right">
+                           <div className="pin-title">
                               <textarea
-                                 placeholder='Add your title'
-                                 onChange={this.update('title')}>
-                              </textarea>
+                                 placeholder="Add your title"
+                                 value="San Diego Old Town"
+                                 onChange={this.update("title")}
+                              ></textarea>
                            </div>
 
-                           <div className='pin-detail'>
+                           <div className="pin-detail">
                               <textarea
-                                 placeholder='Tell everyone what your Pin is about'
-                                 onChange={this.update('detail')}>
-                              </textarea>
+                                 placeholder="Tell everyone what your Pin is about"
+                                 value="attractive mix of popularized Mexican food, tourist-focused shopping and occasional live entertainment"
+                                 onChange={this.update("detail")}
+                              ></textarea>
                            </div>
 
-                           <div className='pin-destination-link'>
+                           <div className="pin-destination-link">
                               <textarea
-                                 placeholder='Add a destination link'
-                                 onChange={this.update('link_url')}>
-                              </textarea>
-                           </div>                           
+                                 placeholder="Add a destination link"
+                                 value="https://lajollamom.com/old-town-san-diego/"
+                                 onChange={this.update("link_url")}
+                              ></textarea>
+                           </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-      )
+      );
    }
 }
 
