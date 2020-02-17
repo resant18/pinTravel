@@ -3881,6 +3881,7 @@ function (_React$Component) {
     _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
     _this.showUrlLink = _this.showUrlLink.bind(_assertThisInitialized(_this));
     _this.hideUrlLink = _this.hideUrlLink.bind(_assertThisInitialized(_this));
+    _this.displayUrlLinkOverImage = _this.displayUrlLinkOverImage.bind(_assertThisInitialized(_this));
     _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -3899,7 +3900,7 @@ function (_React$Component) {
     key: "showEditForm",
     value: function showEditForm() {
       this.props.showModal({
-        name: "edit-pin",
+        name: 'edit-pin',
         selectedData: this.props.pin.id
       });
     }
@@ -3935,34 +3936,6 @@ function (_React$Component) {
       this.setState({
         pinUrlVisibility: false
       });
-    }
-  }, {
-    key: "_getDomain",
-    value: function _getDomain(link) {
-      if (!link) return "";
-      var link_domain = link.replace("http://", "").replace("https://", "").replace("www.", "").split(/[/?#]/)[0];
-      return link_domain;
-    }
-  }, {
-    key: "displayUrlLinkOverImage",
-    value: function displayUrlLinkOverImage() {
-      if (this.state.pinUrlVisibility) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "pin-url"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: this.props.pin.url_link,
-          target: "_blank"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          xmlns: "http://www.w3.org/2000/svg",
-          x: "0px",
-          y: "0px",
-          width: "24",
-          height: "24",
-          viewBox: "0 0 24 24"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-          d: "M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"
-        })), this._getDomain()));
-      }
     }
   }, {
     key: "displaySaveToBoard",
@@ -4016,13 +3989,40 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "_getDomain",
+    value: function _getDomain(link) {
+      if (!link) return '';
+      var link_domain = link.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
+      return link_domain;
+    }
+  }, {
     key: "displayUrlLink",
     value: function displayUrlLink() {
       if (this.props.pin.link_url) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: this.props.pin.link_url,
           target: "_blank"
-        }, this._getDomain());
+        }, this._getDomain(this.props.pin.link_url));
+      }
+    }
+  }, {
+    key: "displayUrlLinkOverImage",
+    value: function displayUrlLinkOverImage() {
+      if (this.state.pinUrlVisibility) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "pin-url",
+          href: "".concat(this.props.pin.link_url),
+          target: "_blank"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          xmlns: "http://www.w3.org/2000/svg",
+          x: "0px",
+          y: "0px",
+          width: "24",
+          height: "24",
+          viewBox: "0 0 24 24"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M 3 3 L 3 21 L 21 21 L 21 12 L 19 12 L 19 19 L 5 19 L 5 5 L 12 5 L 12 3 L 3 3 z M 14 3 L 14 5 L 17.585938 5 L 8.2929688 14.292969 L 9.7070312 15.707031 L 19 6.4140625 L 19 10 L 21 10 L 21 3 L 14 3 z"
+        })), this._getDomain(this.props.pin.link_url));
       }
     }
   }, {
@@ -4056,7 +4056,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           board = _this$props.board,
           creator = _this$props.creator;
-      var user = this._isSameUser() ? "You" : "".concat(creator.username);
+      var user = this._isSameUser() ? 'You' : "".concat(creator.username);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-back-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -4082,7 +4082,9 @@ function (_React$Component) {
         className: "pin-show-content-top",
         onMouseEnter: this.showUrlLink,
         onMouseLeave: this.hideUrlLink
-      }, this.displayUrlLinkOverImage(), this.displayImage()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "pin-show-image-url-wrapper"
+      }, this.displayUrlLinkOverImage(), this.displayImage())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content-bottom"
       }, this.displayToolbar(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-content-middle"
