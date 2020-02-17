@@ -2708,74 +2708,78 @@ function (_React$Component) {
   _createClass(NavBar, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.props.loggedIn) {
+      if (this.props.currentUser.username) {
         this.props.fetchUser(this.props.currentUser.username);
       }
     }
   }, {
     key: "render",
     value: function render() {
-      if (this.props.loggedIn) return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-        className: "navbar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "navbar-content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "left-nav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "logo",
-        "aria-current": "page",
-        href: "#/"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "logo",
-        src: window.logo,
-        alt: "PinTravel"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "logo-title",
-        src: window.logoTitle,
-        alt: "PinTravel"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "right-nav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        "aria-current": "page",
-        href: "#/"
-      }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/".concat(this.props.currentUser.username),
-        className: "username"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "user-img",
-        src: window.userProfile[this.props.currentUser.username] || "https://s.pinimg.com/images/user/default_280.png"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "fname"
-      }, this.props.currentUser.first_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/",
-        onClick: this.props.logout
-      }, "Log out")))));else return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-        className: "navbar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "navbar-content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "left-nav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "active",
-        "aria-current": "page",
-        href: "#/"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "logo",
-        src: window.logo,
-        alt: "Pintravel"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        className: "logo-title",
-        src: window.logoTitle,
-        alt: "PinTravel"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "right-nav-session"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/",
-        className: "button form-primary"
-      }, "Sign Up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/",
-        className: "button form-secondary"
-      }, "Login")))));
+      if (this.props.loggedIn) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+          className: "navbar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "navbar-content"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "left-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "logo",
+          "aria-current": "page",
+          href: "#/"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "logo",
+          src: window.logo,
+          alt: "PinTravel"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "logo-title",
+          src: window.logoTitle,
+          alt: "PinTravel"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "right-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          "aria-current": "page",
+          href: "#/"
+        }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/".concat(this.props.currentUser.username),
+          className: "username"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "user-img",
+          src: window.userProfile[this.props.currentUser.username] || "https://s.pinimg.com/images/user/default_280.png"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "fname"
+        }, this.props.currentUser.first_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/",
+          onClick: this.props.logout
+        }, "Log out")))));
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+          className: "navbar"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "navbar-content"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "left-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "active",
+          "aria-current": "page",
+          href: "#/"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "logo",
+          src: window.logo,
+          alt: "Pintravel"
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          className: "logo-title",
+          src: window.logoTitle,
+          alt: "PinTravel"
+        }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "right-nav-session"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/",
+          className: "button form-primary"
+        }, "Sign Up"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/",
+          className: "button form-secondary"
+        }, "Login")))));
+      }
     }
   }]);
 
@@ -4807,12 +4811,7 @@ function (_React$Component) {
   _createClass(UserProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchUser(this.props.username);
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      if (!this.props.user) {
+      if (this.props.currentUser.username !== this.props.username) {
         this.props.fetchUser(this.props.username);
       }
     }
@@ -4860,7 +4859,7 @@ function (_React$Component) {
           title: "Create board",
           className: "create-board",
           onClick: this.showModal({
-            name: "create-board"
+            name: 'create-board'
           })
         }, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Create pin",
@@ -4884,7 +4883,7 @@ function (_React$Component) {
   }, {
     key: "displayProfileToolbar",
     value: function displayProfileToolbar() {
-      if (this.props.user === this.props.currentUser) {
+      if (this.props.permitted) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
           className: "profile-toolbar"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -4954,7 +4953,7 @@ function (_React$Component) {
       var _this$props = this.props,
           user = _this$props.user,
           permitted = _this$props.permitted,
-          boards = _this$props.boards,
+          userBoards = _this$props.userBoards,
           userPins = _this$props.userPins,
           pins = _this$props.pins,
           pinIds = _this$props.pinIds;
@@ -4988,7 +4987,7 @@ function (_React$Component) {
         className: "boards-count-title"
       }, "Boards"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "boards-count-number"
-      }, boards.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, userBoards.length)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pins-count"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "boards-count-title"
@@ -4998,7 +4997,7 @@ function (_React$Component) {
         className: "tab-list"
       }, this.displayTabList()), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "user-profile-content"
-      }, this.renderChildComponent(user, boards, userPins, permitted)));
+      }, this.renderChildComponent(user, userBoards, userPins, permitted)));
     }
   }]);
 
@@ -5034,14 +5033,14 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var username = ownProps.match.params.username;
   var user = state.entities.users[username];
   var permitted = currentUser ? username === currentUser.username : false;
-  var boards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user, permitted);
+  var userBoards = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserBoards"])(state.entities, user, permitted);
   var userPins = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_3__["selectUserPins"])(state.entities, user);
   return {
     currentUser: currentUser,
     username: username,
     user: user,
     permitted: permitted,
-    boards: boards,
+    userBoards: userBoards,
     userPins: userPins
   };
 };
@@ -5105,14 +5104,14 @@ document.addEventListener('DOMContentLoaded', function () {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])(preloadedState);
   } else {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
-  } // for testing only
-  // window.getState = store.getState;
-  // window.dispatch = store.dispatch;
-  // window.login = login;
-  // window.signup = signup;
-  // window.logout = logout;
+  } //for testing only
 
 
+  window.getState = store.getState;
+  window.dispatch = store.dispatch;
+  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"];
+  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["signup"];
+  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"];
   var root = document.getElementById('root');
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
@@ -5653,12 +5652,9 @@ __webpack_require__.r(__webpack_exports__);
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   // store for prod  
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"])); // store for testing
-  // return createStore(
-  //   rootReducer,
-  //   preloadedState,
-  //   composeWithDevTools(applyMiddleware(thunk, logger))
-  // );
+  //return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
+  // store for testing
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);

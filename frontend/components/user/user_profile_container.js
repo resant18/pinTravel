@@ -4,12 +4,12 @@ import { fetchUser } from '../../actions/user_actions';
 import { selectUserBoards, selectUserPins } from '../../reducers/selector';
 import { showModal, hideModal } from '../../actions/modal_actions';
 
-const mapStateToProps = (state, ownProps) => {      
+const mapStateToProps = (state, ownProps) => {       
   const currentUser = state.entities.users[state.session.id];  
   const username = ownProps.match.params.username;
   const user = state.entities.users[username];  
   const permitted = currentUser ? (username === currentUser.username) : false;
-  const boards = selectUserBoards(state.entities, user, permitted);
+  const userBoards = selectUserBoards(state.entities, user, permitted);
   const userPins = selectUserPins(state.entities, user)      
   
   return {
@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
     username,
     user,
     permitted,
-    boards,    
+    userBoards,    
     userPins,    
   };
 };
