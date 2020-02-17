@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { fetchPin } from '../../actions/pin_actions';
-import { showModal } from '../../actions/modal_actions';
+import { fetchPin, createPinInBoard } from '../../actions/pin_actions';
+import { showModal, hideModal } from '../../actions/modal_actions';
 import PinShow from './pin_show';
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
       // creator = state.entities.users[pin.user.username];
       creator = pin.user;
    }
-
+   
    return ({
       currentUser, 
       creator, 

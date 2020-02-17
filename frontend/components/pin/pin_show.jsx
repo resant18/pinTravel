@@ -67,9 +67,8 @@ class PinShow extends React.Component {
    displaySaveToBoard() {
       // TODO: render simple Save board (list) if the pin hasn't been saved in the board yet,
       // and render the Save board (drop down) if pin has been saved in a board
-
       if (this.props.board) {
-         return <BoardList onSelectItem={this.handleSaveToBoard} />;
+         return <BoardList onSelectItem={this.handleSaveToBoard} boardId={this.props.pin.board_id} />;
       } else {
          return (
             <div className="pin-save-link">

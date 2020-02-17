@@ -1547,7 +1547,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.boards.length === 0 || this.props.pins.length === 0) return null;
+      if (this.props.boards.length === 0) return null;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dropdown-board-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down__WEBPACK_IMPORTED_MODULE_5__["default"], {
@@ -3965,7 +3965,8 @@ function (_React$Component) {
       // and render the Save board (drop down) if pin has been saved in a board
       if (this.props.board) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_list__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          onSelectItem: this.handleSaveToBoard
+          onSelectItem: this.handleSaveToBoard,
+          boardId: this.props.pin.board_id
         });
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4193,35 +4194,15 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchPin: function fetchPin(id) {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPin"])(id));
     },
-    createPinInBoard: function (_createPinInBoard) {
-      function createPinInBoard(_x, _x2) {
-        return _createPinInBoard.apply(this, arguments);
-      }
-
-      createPinInBoard.toString = function () {
-        return _createPinInBoard.toString();
-      };
-
-      return createPinInBoard;
-    }(function (pin, boardId) {
-      return dispatch(createPinInBoard(pin, boardId));
-    }),
+    createPinInBoard: function createPinInBoard(pin, boardId) {
+      return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["createPinInBoard"])(pin, boardId));
+    },
     showModal: function showModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])(modal));
     },
-    hideModal: function (_hideModal) {
-      function hideModal() {
-        return _hideModal.apply(this, arguments);
-      }
-
-      hideModal.toString = function () {
-        return _hideModal.toString();
-      };
-
-      return hideModal;
-    }(function () {
-      return dispatch(hideModal());
-    })
+    hideModal: function hideModal() {
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["hideModal"])());
+    }
   };
 };
 

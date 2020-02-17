@@ -25,10 +25,10 @@ class BoardList extends React.Component {
 
    handleSelectItem(selectedItem) {
       this.props.onSelectItem(selectedItem);
-   }
+   }   
    
-   render() {
-      if (this.props.boards.length === 0 || this.props.pins.length === 0) return null;
+   render() {      
+      if (this.props.boards.length === 0) return null;
       
       return (
          <div className="dropdown-board-list">
