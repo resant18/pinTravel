@@ -2999,7 +2999,17 @@ function (_React$Component) {
           });
         }
       }
-    }
+    } // handleImageUploadFromSite() {
+    //    const img = new Image();
+    //    img.onload = () => {         
+    //       this.setState({            
+    //          chooseFile: false,
+    //          photoType: "external"
+    //       });
+    //    };
+    //    img.src = this.state.imageUrl;
+    // }
+
   }, {
     key: "deleteImage",
     value: function deleteImage() {
@@ -3883,6 +3893,7 @@ function (_React$Component) {
     _this.hideUrlLink = _this.hideUrlLink.bind(_assertThisInitialized(_this));
     _this.displayUrlLinkOverImage = _this.displayUrlLinkOverImage.bind(_assertThisInitialized(_this));
     _this.showEditForm = _this.showEditForm.bind(_assertThisInitialized(_this));
+    _this.showSaveToBoard = _this.showSaveToBoard.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3905,8 +3916,10 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "handleSave",
-    value: function handleSave() {}
+    key: "handleSaveToBoard",
+    value: function handleSaveToBoard(selectedItem) {
+      this.props.createPinInBoard(this.props.pin, selectedItem).then(this.props.hideModal());
+    }
   }, {
     key: "_isSameUser",
     value: function _isSameUser() {
@@ -3938,8 +3951,31 @@ function (_React$Component) {
       });
     }
   }, {
+    key: "showSaveToBoard",
+    value: function showSaveToBoard(e) {
+      this.props.showModal({
+        name: 'save-to-board',
+        selectedData: this.props.pin
+      });
+    }
+  }, {
     key: "displaySaveToBoard",
-    value: function displaySaveToBoard() {}
+    value: function displaySaveToBoard() {
+      // TODO: render simple Save board (list) if the pin hasn't been saved in the board yet,
+      // and render the Save board (drop down) if pin has been saved in a board
+      if (this.props.board) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_board_list__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          onSelectItem: this.handleSaveToBoard
+        });
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "pin-save-link"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "pin-save-btn",
+          onClick: this.showSaveToBoard
+        }, "Save"));
+      }
+    }
   }, {
     key: "displayToolbar",
     value: function displayToolbar() {
@@ -3965,7 +4001,7 @@ function (_React$Component) {
           d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
         }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar-right"
-        }, "Save to Board"));
+        }, this.displaySaveToBoard()));
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar"
@@ -4138,8 +4174,9 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var board, creator;
 
   if (pin) {
-    board = state.entities.boards[pin.board_id];
-    creator = state.entities.users[pin.user.username];
+    board = state.entities.boards[pin.board_id]; // creator = state.entities.users[pin.user.username];
+
+    creator = pin.user;
   }
 
   return {
@@ -4156,9 +4193,35 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     fetchPin: function fetchPin(id) {
       return dispatch(Object(_actions_pin_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPin"])(id));
     },
+    createPinInBoard: function (_createPinInBoard) {
+      function createPinInBoard(_x, _x2) {
+        return _createPinInBoard.apply(this, arguments);
+      }
+
+      createPinInBoard.toString = function () {
+        return _createPinInBoard.toString();
+      };
+
+      return createPinInBoard;
+    }(function (pin, boardId) {
+      return dispatch(createPinInBoard(pin, boardId));
+    }),
     showModal: function showModal(modal) {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])(modal));
-    }
+    },
+    hideModal: function (_hideModal) {
+      function hideModal() {
+        return _hideModal.apply(this, arguments);
+      }
+
+      hideModal.toString = function () {
+        return _hideModal.toString();
+      };
+
+      return hideModal;
+    }(function () {
+      return dispatch(hideModal());
+    })
   };
 };
 

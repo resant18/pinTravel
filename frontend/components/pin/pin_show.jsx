@@ -16,6 +16,7 @@ class PinShow extends React.Component {
       this.hideUrlLink = this.hideUrlLink.bind(this);
       this.displayUrlLinkOverImage = this.displayUrlLinkOverImage.bind(this);
       this.showEditForm = this.showEditForm.bind(this);
+      this.showSaveToBoard = this.showSaveToBoard.bind(this);
    }
 
    componentDidMount() {
@@ -33,7 +34,11 @@ class PinShow extends React.Component {
       });
    }
 
-   handleSave() {}
+   handleSaveToBoard(selectedItem) {
+      this.props
+         .createPinInBoard(this.props.pin, selectedItem)
+         .then(this.props.hideModal());
+   }
 
    _isSameUser() {
       return this.props.currentUser.username === this.props.creator.username;
@@ -55,7 +60,26 @@ class PinShow extends React.Component {
       this.setState({ pinUrlVisibility: false });
    }
 
-   displaySaveToBoard() {}
+   showSaveToBoard(e) {          
+      this.props.showModal({ name: 'save-to-board', selectedData: this.props.pin });
+   }
+
+   displaySaveToBoard() {
+      // TODO: render simple Save board (list) if the pin hasn't been saved in the board yet,
+      // and render the Save board (drop down) if pin has been saved in a board
+
+      if (this.props.board) {
+         return <BoardList onSelectItem={this.handleSaveToBoard} />;
+      } else {
+         return (
+            <div className="pin-save-link">
+               <button className="pin-save-btn" onClick={this.showSaveToBoard}>
+                  Save
+               </button>
+            </div>
+         );
+      }
+   }
 
    displayToolbar() {
       if (this._isSameUser()) {
@@ -83,7 +107,9 @@ class PinShow extends React.Component {
                      </div>
                   </button>
                </div>
-               <div className='toolbar-right'>Save to Board</div>
+               <div className='toolbar-right'>
+                  { this.displaySaveToBoard() }
+               </div>
             </div>
          );
       } else {

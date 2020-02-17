@@ -12,7 +12,8 @@ const mapStateToProps = (state, ownProps) => {
 
    if (pin) {
       board = state.entities.boards[pin.board_id];
-      creator = state.entities.users[pin.user.username];
+      // creator = state.entities.users[pin.user.username];
+      creator = pin.user;
    }
 
    return ({
@@ -26,7 +27,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
    fetchPin: id => dispatch(fetchPin(id)),
+   createPinInBoard: (pin, boardId) => dispatch(createPinInBoard(pin, boardId)),
    showModal: modal => dispatch(showModal(modal)),
+   hideModal: () => dispatch(hideModal())
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PinShow));

@@ -83,6 +83,17 @@ class PinCreateForm extends React.Component {
       }      
    }
 
+   // handleImageUploadFromSite() {
+   //    const img = new Image();
+   //    img.onload = () => {         
+   //       this.setState({            
+   //          chooseFile: false,
+   //          photoType: "external"
+   //       });
+   //    };
+   //    img.src = this.state.imageUrl;
+   // }
+
    deleteImage() {
       this.setState({ imageUrl: null});
    }
@@ -143,10 +154,7 @@ class PinCreateForm extends React.Component {
                   </div>
                   <div className="pin-form-bottom">
                      <div className="pin-form-bottom-content">
-                        <div className="pin-form-left">
-                           {/* <div id='image-preview-container'>
-                              <img id='image-preview' alt='Image Preview'></img>                         
-                           </div> */}
+                        <div className="pin-form-left">                           
                            {this.displayImagePreview()}
                            <div className="upload-box">
                               <div className="border">
