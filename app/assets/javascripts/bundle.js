@@ -2691,7 +2691,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
- //import SearchBarContainer from '../search_bar/searchBarContainer';
+
 
 var NavBar =
 /*#__PURE__*/
@@ -2728,9 +2728,11 @@ function (_React$Component) {
         className: "logo",
         src: window.logo,
         alt: "PinTravel"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "pin-travel"
-      }, "Pintravel"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "logo-title",
+        src: window.logoTitle,
+        alt: "PinTravel"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "right-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         "aria-current": "page",
@@ -2739,7 +2741,7 @@ function (_React$Component) {
         to: "/".concat(this.props.currentUser.username)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "user-img",
-        src: window.userProfile[this.props.currentUser.username] || 'https://s.pinimg.com/images/user/default_280.png'
+        src: window.userProfile[this.props.currentUser.username] || "https://s.pinimg.com/images/user/default_280.png"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "fname"
       }, this.props.currentUser.first_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -2759,9 +2761,11 @@ function (_React$Component) {
         className: "logo",
         src: window.logo,
         alt: "Pinterest"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "pin-travel"
-      }, "Pintravel"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        className: "logo-title",
+        src: window.logoTitle,
+        alt: "PinTravel"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "right-nav-session"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/",

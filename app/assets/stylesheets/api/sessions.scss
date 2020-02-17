@@ -49,7 +49,10 @@
     padding-top: 10px;
 
 
-    .login-form-box {    
+    .login-form-box {  
+        .logo-title {
+            width: 30%;
+        }  
         .logo {
             background-image: url(/logo.png);
             width: 72px;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect, Route, Link, NavLink } from 'react-router-dom';
-//import SearchBarContainer from '../search_bar/searchBarContainer';
+
 
 class NavBar extends React.Component {  
     constructor(props) {
@@ -17,38 +17,47 @@ class NavBar extends React.Component {
         if (this.props.loggedIn)        
             return (
                <header>
-                  <nav className='navbar'>
-                     <div className='navbar-content'>
-                        <div className='left-nav'>
-                           <a className='logo' aria-current='page' href='#/'>
+                  <nav className="navbar">
+                     <div className="navbar-content">
+                        <div className="left-nav">
+                           <a className="logo" aria-current="page" href="#/">
                               <img
-                                 className='logo'
+                                 className="logo"
                                  src={window.logo}
-                                 alt='PinTravel'
+                                 alt="PinTravel"
                               />
                            </a>
-                           <a>
+                           {/* <a>
                               <span className='pin-travel'>Pintravel</span>
-                           </a>
+                           </a> */}
+                           <div>
+                              <img
+                                 className="logo-title"
+                                 src={window.logoTitle}
+                                 alt="PinTravel"
+                              />
+                           </div>
                         </div>
-                        <div className='right-nav'>
-                           <a aria-current='page' href='#/'>
+                        <div className="right-nav">
+                           <a aria-current="page" href="#/">
                               Home
                            </a>
                            <Link to={`/${this.props.currentUser.username}`}>
                               <img
-                                 className='user-img'
+                                 className="user-img"
                                  src={
-                                    window.userProfile[this.props.currentUser.username] ||
-                                    'https://s.pinimg.com/images/user/default_280.png'
+                                    window.userProfile[
+                                       this.props.currentUser.username
+                                    ] ||
+                                    "https://s.pinimg.com/images/user/default_280.png"
                                  }
                               />
-                              <span className='fname'>
+                              <span className="fname">
                                  {this.props.currentUser.first_name}
                               </span>
                            </Link>
 
-                           <Link to='/' onClick={this.props.logout}>
+                           <Link to="/" onClick={this.props.logout}>
                               Log out
                            </Link>
                         </div>
@@ -58,26 +67,36 @@ class NavBar extends React.Component {
             );
         else 
             return (
-                <header>
-                    <nav className='navbar'>
-                        <div className='navbar-content'>
-                            <div className='left-nav'>
-                                <a className='active' aria-current='page' href='#/'>
-                                    <img className='logo' src={window.logo} alt='Pinterest'/>
-                                </a>
-                                <a><span className='pin-travel'>Pintravel</span></a>
-                            </div>
-                            <div className='right-nav-session'>                               
-                                <Link to='/' className='button form-primary'>
-                                    Sign Up
-                                </Link>
-                                <Link to='/' className='button form-secondary'>
-                                    Login
-                                </Link>                            
-                            </div>
+               <header>
+                  <nav className="navbar">
+                     <div className="navbar-content">
+                        <div className="left-nav">
+                           <a className="active" aria-current="page" href="#/">
+                              <img
+                                 className="logo"
+                                 src={window.logo}
+                                 alt="Pinterest"
+                              />
+                           </a>
+                           <div>
+                              <img
+                                 className="logo-title"
+                                 src={window.logoTitle}
+                                 alt="PinTravel"
+                              />
+                           </div>
                         </div>
-                    </nav>
-                </header>
+                        <div className="right-nav-session">
+                           <Link to="/" className="button form-primary">
+                              Sign Up
+                           </Link>
+                           <Link to="/" className="button form-secondary">
+                              Login
+                           </Link>
+                        </div>
+                     </div>
+                  </nav>
+               </header>
             );
     }
 }
