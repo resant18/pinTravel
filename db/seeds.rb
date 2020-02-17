@@ -10,7 +10,7 @@ guest = User.create( {id: 1, email: 'guest@gmail.com', username: 'guest', first_
 mariko = User.create( {id: 2, email: 'mariko@gmail.com', username: 'mariko', first_name: 'Mariko', password:'password' })
 james = User.create( {id: 3, email: 'james@gmail.com', username: 'james', first_name: 'James', last_name: 'Kai', password:'password' })
 
-# Board.destroy_all
+Board.destroy_all
 # board1 = Board.create({id: 1, name: 'Summer Vacation', category_id: 1, cover_id: 1, secret: false, user_id: guest.id})
 # board2 = Board.create({id: 2, name: 'Bali', category_id: 2, cover_id: 2, secret: false, user_id: guest.id})
 # board3 = Board.create({id: 3, name: 'Cheapest Travel Destination', category_id: 2, cover_id: 3, secret: false, user_id: james.id})
@@ -33,7 +33,7 @@ james = User.create( {id: 3, email: 'james@gmail.com', username: 'james', first_
 # board20 = Board.create({id: 20, name: 'Board 20', category_id: 2, cover_id: 6, secret: false, user_id: guest.id})
 # board21 = Board.create({id: 21, name: 'Board 21', category_id: 1, cover_id: 7, secret: false, user_id: mariko.id})
 
-# Pin.destroy_all
+Pin.destroy_all
 # pin1 = Pin.create({id: 1, lat: 34.052240, lng: -118.243340 })
 # pin2 = Pin.create({id: 2, lat: 34.1391749, lng: -118.3543047 })
 # pin3 = Pin.create({id: 3, lat: 33.8136476, lng: -117.9197157 })
@@ -96,7 +96,7 @@ james = User.create( {id: 3, email: 'james@gmail.com', username: 'james', first_
 # pin55 = Pin.create({id: 55, lat: -8.7891548, lng: 115.1630097 })
 
 
-# BoardPin.destroy_all
+BoardPin.destroy_all
 # bpin1 = BoardPin.create({id: 1, board_id: 1, pin_id: 1, name: 'Croatia Beautiful Neighborhood', detail: 'Croatia'})
 # bpin2 = BoardPin.create({id: 2, board_id: 1, pin_id: 2, name: 'MoCA', detail: 'World-class contemporary art museum'})
 # bpin3 = BoardPin.create({id: 3, board_id: 1, pin_id: 3, name: 'Elephant riding', detail: ''})
