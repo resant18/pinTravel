@@ -1530,12 +1530,12 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (!this.props.boards) {
-        debugger;
+        // debugger
         this.props.fetchBoards();
       }
 
       if (!this.props.pins) {
-        debugger;
+        // debugger
         this.props.fetchUserPins(this.props.username, 0);
       }
     }
@@ -1846,6 +1846,8 @@ function (_React$Component) {
   }, {
     key: "hideDropDown",
     value: function hideDropDown(e) {
+      if (!this.node) return null;
+
       if (!this.node.contains(e.target)) {
         this.setState({
           dropDown: false
@@ -2737,7 +2739,7 @@ function (_React$Component) {
         to: "/".concat(this.props.currentUser.username)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "user-img",
-        src: "https://s.pinimg.com/images/user/default_280.png"
+        src: window.userProfile[this.props.currentUser.username] || 'https://s.pinimg.com/images/user/default_280.png'
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "fname"
       }, this.props.currentUser.first_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -3422,7 +3424,7 @@ function (_React$Component) {
 
       switch (fetchType) {
         case 'feed':
-          console.log('fetch pins');
+          // console.log('fetch pins');        
           fetchPins(this.state.page);
           break;
 
@@ -3473,7 +3475,7 @@ function (_React$Component) {
     key: "renderWaypoint",
     value: function renderWaypoint() {
       // if (!this.state.isLoading) {
-      console.log('calling waypoint:' + this.state.page);
+      // console.log('calling waypoint:' + this.state.page);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
         onEnter: this.loadMorePins
       }); // }
@@ -4726,19 +4728,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     hideModal: function hideModal() {
       return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_4__["hideModal"])());
     },
-    login: function (_login) {
-      function login(_x) {
-        return _login.apply(this, arguments);
-      }
-
-      login.toString = function () {
-        return _login.toString();
-      };
-
-      return login;
-    }(function (user) {
-      return dispatch(login(user));
-    }) // this is for log demo user in
+    login: function login(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_3__["login"])(user));
+    } // this is for log demo user in
 
   };
 };
@@ -4977,7 +4969,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         alt: userProfileName,
         className: "user-profile-image",
-        src: window.userProfile
+        src: window.userProfile[user.username] || 'https://s.pinimg.com/images/user/default_280.png'
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-profile-detail"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5108,13 +5100,13 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     store = Object(_store_store__WEBPACK_IMPORTED_MODULE_3__["default"])();
   } // for testing only
+  // window.getState = store.getState;
+  // window.dispatch = store.dispatch;
+  // window.login = login;
+  // window.signup = signup;
+  // window.logout = logout;
 
 
-  window.getState = store.getState;
-  window.dispatch = store.dispatch;
-  window.login = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["login"];
-  window.signup = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["signup"];
-  window.logout = _actions_session_actions__WEBPACK_IMPORTED_MODULE_4__["logout"];
   var root = document.getElementById('root');
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_root__WEBPACK_IMPORTED_MODULE_2__["default"], {
     store: store
@@ -5655,9 +5647,12 @@ __webpack_require__.r(__webpack_exports__);
 var configureStore = function configureStore() {
   var preloadedState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   // store for prod  
-  //return createStore(rootReducer, preloadedState, applyMiddleware(thunk, logger));
-  // store for testing
-  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a)));
+  return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"])); // store for testing
+  // return createStore(
+  //   rootReducer,
+  //   preloadedState,
+  //   composeWithDevTools(applyMiddleware(thunk, logger))
+  // );
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);

@@ -14,11 +14,11 @@ class BoardList extends React.Component {
 
    componentDidMount() {
       if (!this.props.boards) {
-         debugger
+         // debugger
          this.props.fetchBoards();
       }
       if (!this.props.pins) {
-         debugger
+         // debugger
          this.props.fetchUserPins(this.props.username, 0);
       }
    }

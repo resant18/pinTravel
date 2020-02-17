@@ -21,7 +21,7 @@ class PinIndex extends React.Component {
     // this.setState({ isLoading: true});
     switch (fetchType) {
       case 'feed':
-        console.log('fetch pins');        
+        // console.log('fetch pins');        
         fetchPins(this.state.page);
         break;
       case 'user':
@@ -67,7 +67,7 @@ class PinIndex extends React.Component {
 
   renderWaypoint() {      
     // if (!this.state.isLoading) {
-      console.log('calling waypoint:' + this.state.page);
+      // console.log('calling waypoint:' + this.state.page);
       return (
         <Waypoint onEnter={this.loadMorePins} />
       );

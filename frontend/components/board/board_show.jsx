@@ -34,6 +34,8 @@ class BoardShow extends React.Component {
    }
 
    hideDropDown(e) {
+      if (!this.node) return null;
+      
       if (!this.node.contains(e.target)) {
          this.setState({ dropDown: false }); 
          document.removeEventListener('mousedown', this.hideDropDown);

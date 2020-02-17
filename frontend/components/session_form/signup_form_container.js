@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { signup } from '../../actions/session_actions';
+import { login, signup } from '../../actions/session_actions';
 import { showModal, hideModal } from '../../actions/modal_actions';
 import { clearSessionErrors } from '../../actions/session_actions';
 import SessionForm from './session_form';
