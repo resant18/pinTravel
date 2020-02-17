@@ -72,7 +72,7 @@ class NavBar extends React.Component {
                               <img
                                  className="logo"
                                  src={window.logo}
-                                 alt="Pinterest"
+                                 alt="Pintravel"
                               />
                            </a>
                            <div>

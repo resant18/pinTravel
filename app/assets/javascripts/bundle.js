@@ -2528,27 +2528,28 @@ __webpack_require__.r(__webpack_exports__);
 function footer() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
     className: "footer"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "footer-nav"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "footer-links",
-    target: "_blank",
-    href: "https://resant18.github.io/portfolio/"
+    target: "_blank" // href="https://resant18.github.io/portfolio/"
+    ,
+    href: "https://angel.co/renata-santoso"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.personal_logo
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    src: window.social["angellist"]
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "footer-links",
     target: "_blank",
     href: "https://github.com/resant18"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.personal_logo
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    src: window.social["github"]
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "footer-links",
     target: "_blank",
     href: "https://www.linkedin.com/in/renata-santoso/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: window.personal_logo
-  })))));
+    src: window.social["linkedin"]
+  }))))));
 }
 
 /***/ }),
@@ -2761,7 +2762,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "logo",
         src: window.logo,
-        alt: "Pinterest"
+        alt: "Pintravel"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "logo-title",
         src: window.logoTitle,
@@ -4892,8 +4893,8 @@ function (_React$Component) {
           "aria-label": "Add board or pin",
           type: "button"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
-          height: "16",
-          width: "16",
+          height: "24",
+          width: "24",
           viewBox: "0 0 24 24",
           "aria-hidden": "true",
           "aria-label": "",

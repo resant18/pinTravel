@@ -93,8 +93,8 @@ class UserProfile extends React.Component {
                   type="button"
                >
                   <svg
-                     height="16"
-                     width="16"
+                     height="24"
+                     width="24"
                      viewBox="0 0 24 24"
                      aria-hidden="true"
                      aria-label=""

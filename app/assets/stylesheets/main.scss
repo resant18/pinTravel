@@ -76,8 +76,8 @@
 
 .add-board-pin {
     border-radius: 50%;
-    height: 32px;
-    width: 32px;    
+    height: 40px;
+    width: 40px;    
     padding: 0;
     background-color: var(--color-lightest-gray);
     margin-top: 10px;
@@ -100,7 +100,7 @@
 }
 
 .board-index-container {
-    padding: 0 20px;
+    padding: 0 40px;
     .board-index {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
@@ -370,6 +370,37 @@ button {
         font-size: 14px;                            
         word-wrap: break-word;
         font-weight: 400;                                    
+    }
+}
+
+//Footer
+.footer {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    
+    .footer-nav {
+        justify-content: center;        
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .footer-links {        
+        background-color: #FFFFFF;        
+        margin-bottom: 8px;
+        border-radius: 50%;
+        box-shadow: 0 2px 0 0 rgba(0,0,0,0.1), 0 0 0 0.5px rgba(0,0,0,0.04);
+        cursor: pointer;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        img {
+            width: 40px;
+            height: 40px;
+            opacity: 0.65;
+        }
     }
 }
 
