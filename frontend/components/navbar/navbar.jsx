@@ -26,10 +26,7 @@ class NavBar extends React.Component {
                                  src={window.logo}
                                  alt="PinTravel"
                               />
-                           </a>
-                           {/* <a>
-                              <span className='pin-travel'>Pintravel</span>
-                           </a> */}
+                           </a>                           
                            <div>
                               <img
                                  className="logo-title"
@@ -42,7 +39,7 @@ class NavBar extends React.Component {
                            <a aria-current="page" href="#/">
                               Home
                            </a>
-                           <Link to={`/${this.props.currentUser.username}`}>
+                           <Link to={`/${this.props.currentUser.username}`} className='username'>
                               <img
                                  className="user-img"
                                  src={
@@ -71,7 +68,7 @@ class NavBar extends React.Component {
                   <nav className="navbar">
                      <div className="navbar-content">
                         <div className="left-nav">
-                           <a className="active" aria-current="page" href="#/">
+                           <a className="active" aria-current="page" href="#/" >
                               <img
                                  className="logo"
                                  src={window.logo}

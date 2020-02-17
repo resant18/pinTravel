@@ -52,6 +52,11 @@
             span.fname {
                 margin-left: 10px;
                 color: #333;
+                vertical-align: middle;
+            }
+            .username {
+                padding-top: 6px;
+                padding-bottom: 6px;
             }
             a {
                 // margin-left: 15px;                
@@ -85,7 +90,7 @@
 
 
         a {
-            text-decoration: none;
+            
             padding: 12px;
             cursor: pointer;
             img {
@@ -96,12 +101,11 @@
                 ;
             }
             &:hover, &:focus {
-                background: transparent;
-                background-color:#faf9f9;
+                background: transparent;                
+                background-color: rgba(0, 0, 0, 0.06);
                 border-radius: 999px;
                 transition: transform 0.2s ease-out 0s;
-                color: #262626;
-                // padding: 12px;
+                color: #262626;                
             }
             &:active, &:hover {
                 outline: 0;

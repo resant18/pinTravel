@@ -2738,7 +2738,8 @@ function (_React$Component) {
         "aria-current": "page",
         href: "#/"
       }, "Home"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/".concat(this.props.currentUser.username)
+        to: "/".concat(this.props.currentUser.username),
+        className: "username"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "user-img",
         src: window.userProfile[this.props.currentUser.username] || "https://s.pinimg.com/images/user/default_280.png"
