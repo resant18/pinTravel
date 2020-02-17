@@ -50,8 +50,8 @@
             font-weight: 700;
             color: #b5b5b5;                        
             span.fname {
-                margin-left: 10px;
-                color: #333;
+                margin-left: 8px;
+                color: var(--color-wyg);
                 vertical-align: middle;
             }
             .username {
@@ -65,7 +65,10 @@
                     height: 30px;
                     border-radius: 50%;
                 }                
-            }               
+            }  
+            a.grey {
+                color: var(--color-wyg);
+            }             
         }
 
         .right-nav-session {

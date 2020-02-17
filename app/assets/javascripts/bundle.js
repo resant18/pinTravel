@@ -2375,7 +2375,7 @@ function (_React$Component) {
           return e.stopPropagation();
         }
       }, list.map(function (item) {
-        // debugger
+        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: item.id,
           item: item,
@@ -2482,6 +2482,7 @@ function (_React$Component) {
       var _this$props = this.props,
           item = _this$props.item,
           thumbnail = _this$props.thumbnail;
+      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "dd-list-item",
         key: item.id,
@@ -2749,6 +2750,7 @@ function (_React$Component) {
           className: "fname"
         }, this.props.currentUser.first_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/",
+          className: "grey",
           onClick: this.props.logout
         }, "Log out")))));
       } else {

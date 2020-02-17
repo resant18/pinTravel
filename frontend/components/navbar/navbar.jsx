@@ -41,7 +41,7 @@ class NavBar extends React.Component {
                            <span className='fname'>{this.props.currentUser.first_name}</span>
                         </Link>
 
-                        <Link to='/' onClick={this.props.logout}>
+                        <Link to='/' className='grey' onClick={this.props.logout}>
                            Log out
                         </Link>
                      </div>

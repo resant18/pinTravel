@@ -25,11 +25,9 @@ class DropDownList extends React.Component {
    displayLink() {
       if (this.state.visibility) {
          return (
-         <button className="dd-list-save"
-            onClick={this.handleSelectedItem}
-         >
-            Save
-         </button>
+            <button className='dd-list-save' onClick={this.handleSelectedItem}>
+               Save
+            </button>
          );
       }
    }
@@ -40,26 +38,24 @@ class DropDownList extends React.Component {
 
    render() {
       const { item, thumbnail } = this.props;
-      
+debugger
       return (
          <li
-            className="dd-list-item"
+            className='dd-list-item'
             key={item.id}
             onMouseEnter={this.showVisibility}
             onMouseLeave={this.hideVisibility}
          >
-            <div className="dd-list-item-img-wrapper">               
-               {
-                  thumbnail.length > 0 ? (
-                     <img className='dd-list-item-img' src={thumbnail[0].pictureUrl} alt={thumbnail.title} />
-                  ) : (
-                     <div className='dd-list-item-blank' />
-                  )
-               }
+            <div className='dd-list-item-img-wrapper'>
+               {thumbnail.length > 0 ? (
+                  <img className='dd-list-item-img' src={thumbnail[0].pictureUrl} alt={thumbnail.title} />
+               ) : (
+                  <div className='dd-list-item-blank' />
+               )}
             </div>
-            <div className="dd-list-item-text-wrapper">
-               <div className="dd-list-item-text">{item.name}</div>
-               <div className="dd-list-item-link">{this.displayLink()}</div>
+            <div className='dd-list-item-text-wrapper'>
+               <div className='dd-list-item-text'>{item.name}</div>
+               <div className='dd-list-item-link'>{this.displayLink()}</div>
             </div>
          </li>
       );
