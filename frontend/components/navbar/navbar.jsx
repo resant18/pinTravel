@@ -16,29 +16,46 @@ class NavBar extends React.Component {
     render() { 
         if (this.props.loggedIn)        
             return (
-                <header>
-                    <nav className='navbar'>
-                        <div className='navbar-content'>
-                            <div className='left-nav'>
-                                <a className='logo' aria-current='page' href='#/'>
-                                    <img className='logo' src={window.logo} alt='PinTravel'/>                        
-                                </a>                    
-                                <a><span className='pin-travel'>Pintravel</span></a>
-                            </div>
-                            <div className='right-nav'>
-                                <a aria-current='page' href='#/'>Home</a>
-                                <Link to={`/${this.props.currentUser.username}`}>
-                                    <img className='user-img' 
-                                        src='https://s.pinimg.com/images/user/default_280.png' />                            
-                                    <span className='fname'>{this.props.currentUser.first_name}</span>
-                                </Link>
-                                
-                                <Link to='/' onClick={this.props.logout} >Log out</Link>
-                            </div>
+               <header>
+                  <nav className='navbar'>
+                     <div className='navbar-content'>
+                        <div className='left-nav'>
+                           <a className='logo' aria-current='page' href='#/'>
+                              <img
+                                 className='logo'
+                                 src={window.logo}
+                                 alt='PinTravel'
+                              />
+                           </a>
+                           <a>
+                              <span className='pin-travel'>Pintravel</span>
+                           </a>
                         </div>
-                    </nav>
-                </header>
-            )
+                        <div className='right-nav'>
+                           <a aria-current='page' href='#/'>
+                              Home
+                           </a>
+                           <Link to={`/${this.props.currentUser.username}`}>
+                              <img
+                                 className='user-img'
+                                 src={
+                                    window.userProfile[this.props.currentUser.username] ||
+                                    'https://s.pinimg.com/images/user/default_280.png'
+                                 }
+                              />
+                              <span className='fname'>
+                                 {this.props.currentUser.first_name}
+                              </span>
+                           </Link>
+
+                           <Link to='/' onClick={this.props.logout}>
+                              Log out
+                           </Link>
+                        </div>
+                     </div>
+                  </nav>
+               </header>
+            );
         else 
             return (
                 <header>

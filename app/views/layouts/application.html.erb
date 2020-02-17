@@ -11,7 +11,10 @@
     <%= javascript_include_tag 'application' %>   
     <script type="text/javascript">
       window.logo = "<%= image_url('logo.png') %>";
-      window.userProfile = "<%= image_url('guest.jpg') %>";      
+      window.userProfile = {};
+      window.userProfile['guest'] = "<%= image_url('guest.jpg') %>";      
+      window.userProfile['mariko'] = "<%= image_url('mariko.jpg') %>";      
+      window.userProfile['james'] = "<%= image_url('james.jpg') %>";      
       
     </script>
  

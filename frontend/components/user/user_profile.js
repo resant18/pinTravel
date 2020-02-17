@@ -180,7 +180,7 @@ class UserProfile extends React.Component {
                   <img
                     alt={userProfileName}
                     className='user-profile-image'
-                    src={window.userProfile}
+                    src={window.userProfile[user.username] || 'https://s.pinimg.com/images/user/default_280.png'}
                   />
                 </div>
               </div>
