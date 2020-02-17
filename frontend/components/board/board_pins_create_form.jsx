@@ -52,6 +52,7 @@ class BoardPinsCreateForm extends React.Component {
                      {boards && (
                         <ul className="dd-list">
                            {boards.map(board => {
+                              debugger
                               return (
                               <DropDownList
                                  key={board.id}

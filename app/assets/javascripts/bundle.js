@@ -1745,6 +1745,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "All boards"), boards && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "dd-list"
       }, boards.map(function (board) {
+        debugger;
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: board.id,
           item: board,
@@ -2375,7 +2376,7 @@ function (_React$Component) {
           return e.stopPropagation();
         }
       }, list.map(function (item) {
-        debugger;
+        // debugger
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: item.id,
           item: item,
@@ -3464,8 +3465,8 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.clearPins(); // if (!this.props.selectedBoardPins)
-
+      // this.props.clearPins();
+      // if (!this.props.selectedBoardPins)
       this.loadMorePins();
     }
   }, {
@@ -3925,7 +3926,7 @@ function (_React$Component) {
     key: "showEditForm",
     value: function showEditForm() {
       this.props.showModal({
-        name: 'edit-pin',
+        name: "edit-pin",
         selectedData: this.props.pin.id
       });
     }
@@ -3968,7 +3969,7 @@ function (_React$Component) {
     key: "showSaveToBoard",
     value: function showSaveToBoard(e) {
       this.props.showModal({
-        name: 'save-to-board',
+        name: "save-to-board",
         selectedData: this.props.pin
       });
     }
@@ -4024,7 +4025,7 @@ function (_React$Component) {
           className: "toolbar-left"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar-right"
-        }, "Save to Board"));
+        }, this.displaySaveToBoard()));
       }
     }
   }, {
@@ -4042,8 +4043,8 @@ function (_React$Component) {
   }, {
     key: "_getDomain",
     value: function _getDomain(link) {
-      if (!link) return '';
-      var link_domain = link.replace('http://', '').replace('https://', '').replace('www.', '').split(/[/?#]/)[0];
+      if (!link) return "";
+      var link_domain = link.replace("http://", "").replace("https://", "").replace("www.", "").split(/[/?#]/)[0];
       return link_domain;
     }
   }, {
@@ -4107,7 +4108,7 @@ function (_React$Component) {
           pin = _this$props.pin,
           board = _this$props.board,
           creator = _this$props.creator;
-      var user = this._isSameUser() ? 'You' : "".concat(creator.username);
+      var user = this._isSameUser() ? "You" : "".concat(creator.username);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-show-back-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {

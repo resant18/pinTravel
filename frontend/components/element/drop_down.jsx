@@ -91,7 +91,7 @@ class DropDown extends React.Component {
                {listOpen && (
                   <ul className="dd-list" onClick={e => e.stopPropagation()}>
                      {list.map(item => {
-                        debugger
+                        // debugger
                         return (
                            <DropDownList
                               key={item.id}
