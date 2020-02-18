@@ -8,7 +8,7 @@ import { showModal } from '../../actions/modal_actions';
 const mapStateToProps = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id];
   const pins = Object.values(state.entities.pins);
-  
+
   return {
     fetchType: 'feed',
     currentUser,

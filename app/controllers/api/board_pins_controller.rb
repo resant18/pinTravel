@@ -12,7 +12,8 @@ class Api::BoardPinsController < ApplicationController
   
     @board_pins = BoardPin.includes(:pin, :board)
                         .where.not(board_id: board_ids)
-                        .page(params[:page]).per(10)    
+                        .page(params[:page]).per(5) 
+       
     render 'api/pins/index'
   end   
   

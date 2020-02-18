@@ -2711,7 +2711,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.currentUser.username) {
-        this.props.fetchUser(this.props.currentUser.username);
+        console.log('fetching useeeeeer'); // this.props.fetchUser(this.props.currentUser.username);
       }
     }
   }, {
@@ -3421,23 +3421,30 @@ function (_React$Component) {
       page: 1 // isLoading: false
 
     };
-    _this.loadMorePins = _this.loadMorePins.bind(_assertThisInitialized(_this)); // this.updatePageNumber = this.updatePageNumber.bind(this);
-
+    _this.loadMorePins = _this.loadMorePins.bind(_assertThisInitialized(_this));
+    _this.updatePageNumber = _this.updatePageNumber.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(PinIndex, [{
+    key: "updatePageNumber",
+    value: function updatePageNumber() {
+      var page = this.state.prevPage + 1;
+      this.setState({
+        prevPage: page
+      });
+    }
+  }, {
     key: "loadMorePins",
     value: function loadMorePins() {
       var _this$props = this.props,
           fetchType = _this$props.fetchType,
           fetchPins = _this$props.fetchPins,
           boardId = _this$props.boardId,
-          username = _this$props.username; // this.setState({ isLoading: true});
+          username = _this$props.username; // this.setState({ isLoading: true });
 
       switch (fetchType) {
         case 'feed':
-          // console.log('fetch pins');        
           fetchPins(this.state.page);
           break;
 
@@ -3453,20 +3460,14 @@ function (_React$Component) {
       }
 
       this.setState({
-        // prevPage: this.state.page,
-        page: this.state.page + 1 // isLoading: false
+        page: this.state.page + 1 //  isLoading: false
 
       });
-    } // updatePageNumber() {
-    //   const add = this.state.prevPage + 1;
-    //   this.setState({ prevPage: add });
-    // }
-
+    }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.props.clearPins();
-      // if (!this.props.selectedBoardPins)
+      this.props.clearPins();
       this.loadMorePins();
     }
   }, {
@@ -3487,10 +3488,11 @@ function (_React$Component) {
   }, {
     key: "renderWaypoint",
     value: function renderWaypoint() {
-      // if (!this.state.isLoading) {
-      // console.log('calling waypoint:' + this.state.page);
+      // if (!this.state.isLoading) {      
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
-        onEnter: this.loadMorePins
+        onEnter: this.loadMorePins,
+        debug: true,
+        onUpdatePage: this.updatePageNumber
       }); // }
     }
   }, {
