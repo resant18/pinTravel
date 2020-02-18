@@ -8,14 +8,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 const configureStore = (preloadedState = {}) => {    
   // store for prod  
-  //return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
+  return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
 
   // store for testing
-  return createStore(
-    rootReducer,
-    preloadedState,
-    composeWithDevTools(applyMiddleware(thunk, logger))
-  );
+  // return createStore(
+  //   rootReducer,
+  //   preloadedState,
+  //   composeWithDevTools(applyMiddleware(thunk, logger))
+  // );
 
 }
 
