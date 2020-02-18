@@ -51,6 +51,10 @@ class Api::PinsController < ApplicationController
       @board_pin = current_user.board_pins.find(params[:id])
       @board_pin.destroy
       @pin.destroy
+      @board = current_user.boards.find_by({ cover_id: params[:id] })      
+      if @board
+        @board.update({ cover_id: null })
+      end
       render "api/pins/show"
     end
 
