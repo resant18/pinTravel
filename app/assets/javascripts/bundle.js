@@ -2533,8 +2533,13 @@ function footer() {
     className: "footer-nav"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     className: "footer-links",
-    target: "_blank" // href="https://resant18.github.io/portfolio/"
-    ,
+    target: "_blank",
+    href: "https://resant18.github.io/portfolio/"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: window.social["portfolio"]
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    className: "footer-links",
+    target: "_blank",
     href: "https://angel.co/renata-santoso"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: window.social["angellist"]
