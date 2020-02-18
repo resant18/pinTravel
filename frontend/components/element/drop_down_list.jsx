@@ -38,7 +38,7 @@ class DropDownList extends React.Component {
 
    render() {
       const { item, thumbnail } = this.props;
-debugger
+
       return (
          <li
             className='dd-list-item'

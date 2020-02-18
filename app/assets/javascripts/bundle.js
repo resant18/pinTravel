@@ -1745,7 +1745,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "All boards"), boards && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "dd-list"
       }, boards.map(function (board) {
-        debugger;
+        //debugger
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_element_drop_down_list__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: board.id,
           item: board,
@@ -2483,7 +2483,6 @@ function (_React$Component) {
       var _this$props = this.props,
           item = _this$props.item,
           thumbnail = _this$props.thumbnail;
-      debugger;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "dd-list-item",
         key: item.id,
@@ -2711,7 +2710,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.currentUser.username) {
-        console.log('fetching useeeeeer'); // this.props.fetchUser(this.props.currentUser.username);
+        this.props.fetchUser(this.props.currentUser.username);
       }
     }
   }, {
@@ -3467,7 +3466,7 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.clearPins();
+      // this.props.clearPins();      
       this.loadMorePins();
     }
   }, {
@@ -3491,7 +3490,6 @@ function (_React$Component) {
       // if (!this.state.isLoading) {      
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_waypoint__WEBPACK_IMPORTED_MODULE_2__["Waypoint"], {
         onEnter: this.loadMorePins,
-        debug: true,
         onUpdatePage: this.updatePageNumber
       }); // }
     }
@@ -4816,9 +4814,8 @@ function (_React$Component) {
   _createClass(UserProfile, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      if (this.props.currentUser.username !== this.props.username) {
-        this.props.fetchUser(this.props.username);
-      }
+      // if (this.props.currentUser.username !== this.props.username) {        
+      this.props.fetchUser(this.props.username); // }
     }
   }, {
     key: "componentWillUnmount",

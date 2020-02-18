@@ -8,11 +8,11 @@ class Api::PinsController < ApplicationController
         @board_pins = BoardPin.includes(:board, :user)
               .where(users: { username: params[:user_id] })  
               .order(updated_at: :desc)                       
-              .page(params[:page]).per(10)        
+              # .page(params[:page]).per(10)        
       elsif params[:board_id]                        
         @board_pins = BoardPin.includes(:pin, :board, :user)
               .where(boards: { id: params[:board_id]} )
-              .page(params[:page]).per(10)        
+              # .page(params[:page]).per(10)        
       end
       
       render "api/pins/index"

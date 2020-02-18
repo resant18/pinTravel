@@ -12,7 +12,7 @@ class Api::BoardPinsController < ApplicationController
   
     @board_pins = BoardPin.includes(:pin, :board)
                         .where.not(board_id: board_ids)
-                        .page(params[:page]).per(5) 
+                        # .page(params[:page]).per(5) 
        
     render 'api/pins/index'
   end   
@@ -26,7 +26,7 @@ class Api::BoardPinsController < ApplicationController
   def board_pins
       @board_pins = BoardPin.includes(:pin, :board, :user)
           .where(board_id: params[:board_id])
-          .page(params[:page]).per(10)
+          # .page(params[:page]).per(10)
   end
 
   def show

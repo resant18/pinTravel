@@ -20,9 +20,9 @@ class UserProfile extends React.Component {
 
    // TODO: How to not fetch again if navigate back from board show
    componentDidMount() {      
-      if (this.props.currentUser.username !== this.props.username) {        
+      // if (this.props.currentUser.username !== this.props.username) {        
         this.props.fetchUser(this.props.username);
-      }
+      // }
    }
 
    componentWillUnmount() {
