@@ -1,13 +1,14 @@
 class Api::PinsController < ApplicationController
     before_action :require_logged_in, only: [:create, :edit, :update, :destroy]    
 
-    def index            
+    def index                  
       if params[:user_id]        
         user = User.find_by(username: params[:user_id])                                    
         
         @board_pins = BoardPin.includes(:board, :user)
               .where(users: { username: params[:user_id] })  
               .order(updated_at: :desc)                       
+                      
               # .page(params[:page]).per(10)        
       elsif params[:board_id]                        
         @board_pins = BoardPin.includes(:pin, :board, :user)

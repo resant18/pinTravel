@@ -32,3 +32,11 @@ export const selectUserCreator = ({ users }, board) => {
     return Object.values(users).filter(user => user.id === board.user_id)[0];
 }
 
+export const selectUserPinFeeds = ({ pins }, user) => {
+    // debugger
+    return (Object.values(pins).filter(pin => { 
+        // debugger
+        !user['pin_ids'].includes(pin.pin_id) 
+    }))
+}
+

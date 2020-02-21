@@ -10,15 +10,15 @@ const mapStateToProps = (state, ownProps) => {
   const user = state.entities.users[username];  
   const permitted = currentUser ? (username === currentUser.username) : false;
   const userBoards = selectUserBoards(state.entities, user, permitted);
-  const userPins = selectUserPins(state.entities, user)      
+  const userTotalPins = user ? user['pin_ids'].length : 0;
   
   return {
-    currentUser,
-    username,
-    user,
-    permitted,
-    userBoards,    
-    userPins,    
+     currentUser,
+     username,
+     user,
+     permitted,
+     userBoards,
+     userTotalPins
   };
 };
 

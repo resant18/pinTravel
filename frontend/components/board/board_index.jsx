@@ -7,10 +7,8 @@ class BoardIndex extends React.Component {
         super(props);            
     }
 
-    componentDidMount() {
-        //
-        //this.props.fetchUserBoards(this.props.user[0].id);
-        //this.props.requestUser(this.props.loggedInUser);
+    componentDidMount() {        
+        this.props.fetchUserPins(this.props.user.username, 1);
     }
 
     render() {        

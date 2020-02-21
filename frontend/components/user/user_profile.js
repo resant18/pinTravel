@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardIndex from '../board/board_index';
+import BoardIndexContainer from '../board/board_index_container';
 import PinIndexUserContainer from '../pin/pin_index_user_container';
 
 class UserProfile extends React.Component {
@@ -122,13 +122,12 @@ class UserProfile extends React.Component {
       );
    }
 
-   renderChildComponent(user, userBoards, userPins, permitted) {
+   renderChildComponent(user, userBoards, permitted) {
       if (this.state.tabItem === 'boards')
          return (
-            <BoardIndex
+            <BoardIndexContainer
                user={user}
                boards={userBoards}
-               pins={userPins}
                permitted={permitted}
                showModal={this.props.showModal}
             />
@@ -137,8 +136,7 @@ class UserProfile extends React.Component {
          return (
             <PinIndexUserContainer
                user={user}
-               boards={userBoards}
-               pins={userPins}
+               boards={userBoards}               
                permitted={permitted}
                showModal={this.props.showModal}
             />
@@ -146,7 +144,7 @@ class UserProfile extends React.Component {
    }
 
    render() {
-      const { user, permitted, userBoards, userPins, pins, pinIds } = this.props;
+      const { user, permitted, userBoards, userTotalPins } = this.props;
 
       if (!user) return null;
       let userProfileName = user.first_name + ' ' + (user.last_name === null ? '' : user.last_name);
@@ -163,7 +161,7 @@ class UserProfile extends React.Component {
                               alt={userProfileName}
                               className='user-profile-image'
                               src={
-                                 window.userProfile[user.username] || 'https://s.pinimg.com/images/user/default_280.png'
+                                 window.userProfile[user.username] || "https://s.pinimg.com/images/user/default_280.png"
                               }
                            />
                         </div>
@@ -180,7 +178,7 @@ class UserProfile extends React.Component {
                         </div>
                         <div className='pins-count'>
                            <p className='boards-count-title'>Pins</p>
-                           <p className='boards-count-number'>{userPins.length}</p>
+                           <p className='boards-count-number'>{userTotalPins}</p>
                         </div>
                      </div>
                   </div>
@@ -189,7 +187,7 @@ class UserProfile extends React.Component {
             </section>
             <section className='tab-list'>{this.displayTabList()}</section>
             <section className='user-profile-content'>
-               {this.renderChildComponent(user, userBoards, userPins, permitted)}
+               {this.renderChildComponent(user, userBoards, permitted)}
             </section>
          </div>
       );

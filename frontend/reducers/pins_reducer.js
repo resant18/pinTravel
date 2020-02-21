@@ -20,7 +20,7 @@ const pinsReducer = (state = {}, action) => {
   
   switch (action.type) {
     case RECEIVE_PINS:            
-      return merge({}, state, action.pins);
+      return merge({}, state, action.pins);      
     case RECEIVE_PIN:      
       return merge({}, state, { [action.pin.id]: action.pin });
     case REMOVE_PIN:
@@ -29,8 +29,8 @@ const pinsReducer = (state = {}, action) => {
       return newState;
     case (RECEIVE_BOARDS, RECEIVE_BOARD):
       return merge({}, state, action.pins);
-    case (RECEIVE_CURRENT_USER, RECEIVE_USERS, RECEIVE_USER):      
-      return merge({}, state, action.pins);
+    // case (RECEIVE_CURRENT_USER, RECEIVE_USERS, RECEIVE_USER):      
+    //  return merge({}, state, action.pins);
     case CLEAR_PINS:
       return {};
     default:

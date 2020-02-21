@@ -7,7 +7,9 @@ class NavBar extends React.Component {
    }
 
    componentDidMount() {
-      if (this.props.currentUser.username) {         
+      if (this.props.currentUser.username) {       
+         console.log("fetching pins from navbar");
+           
          this.props.fetchUser(this.props.currentUser.username);
       }
    }
