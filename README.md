@@ -21,7 +21,7 @@ Similar to Pinterest, the application consists of a CRUD functionality of user's
 ### Responsive Design Layout
 I use CSS Grid and CSS Flexbox to handle the whole presentation of front end layout. The website is designed with mobile-first design approach. It is showing fewer columns on smaller viewport sizes, and more columns as the screen estate allows for more.
 <div align="center">
-    <img width=70% src="./readme/m1.png">    
+    <img width=70% src="./readme/main.jpg">    
 </div>
 
 <br>
