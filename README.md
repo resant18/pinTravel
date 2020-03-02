@@ -91,11 +91,6 @@ class Pin < ApplicationRecord
     has_one_attached :picture
 end
 ```
-### Single Page Web Application
-The application is built using ReactJS library with Redux tool to manage local state. It also use React Router to create dynamic, client-side routing, to allow navigation without the page refreshing as the user navigates. React Router uses component structure to call components, which display the appropriate information.
-
-### Pin Image Upload Feature Hosted in AWS S3 using Rails Active Storage
-Pin images are hosted in Amazon Web Service S3 when user upload the image. With the help of Active Storage, the application can transform image and extract meta-data from arbitrary files and save them in PostgreSQL database.
 
 ## Future Enhancement
 
