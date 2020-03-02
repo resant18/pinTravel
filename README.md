@@ -97,15 +97,6 @@ The application is built using ReactJS library with Redux tool to manage local s
 ### Pin Image Upload Feature Hosted in AWS S3 using Rails Active Storage
 Pin images are hosted in Amazon Web Service S3 when user upload the image. With the help of Active Storage, the application can transform image and extract meta-data from arbitrary files and save them in PostgreSQL database.
 
-## Challenges
-
-### Understand the Component Design Architecture
-
-### Database Design and State Management
-
-### Manage Data Traffic and Client Request
-
-
 ## Future Enhancement
 
     Infinite scrolling
