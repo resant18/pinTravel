@@ -1072,7 +1072,8 @@ function (_React$Component) {
         name: 'delete-board-confirm',
         selectedData: {
           dataType: 'boardId',
-          data: this.props.boardId
+          data: this.props.boardId,
+          user: this.props.user
         }
       });
     }
@@ -2219,9 +2220,10 @@ function (_React$Component) {
     key: "handleDelete",
     value: function handleDelete(e) {
       e.preventDefault();
+      var username = this.props.selectedData.user.username;
 
       if (this.props.dataType === 'boardId') {
-        this.props.deleteBoard(this.props.data).then(this.props.hideModal()).then(this.props.history.push("/".concat(this.props.user.username)));
+        this.props.deleteBoard(this.props.data).then(this.props.hideModal()).then(this.props.history.push("/".concat(username)));
       } else if (this.props.dataType === 'boardPinsId') {
         this.props.deletePin(this.props.data).then(this.props.hideModal());
       }
