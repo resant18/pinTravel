@@ -107,11 +107,6 @@ a:focus, a:hover, a:active {
     background-color: var(--color-lightest-gray);                
 }
 
-/* .save-btn-focus {
-    color: var(--color-pBj);
-    background-color: var(--color-secondary);           
-} */
-
 .focus {
     color: var(--color-pBj);
     background-color: var(--color-secondary);           

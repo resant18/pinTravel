@@ -773,6 +773,8 @@ function (_React$Component) {
     _this.state = _objectSpread({}, props.board, {
       showErrors: false
     });
+    _this.saveBtn = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+    _this.boardNameInput = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -788,6 +790,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var timeout = null;
+      var that = this;
       return function (e) {
         switch (field) {
           case 'name':
@@ -795,23 +798,20 @@ function (_React$Component) {
             e.persist();
             document.getElementById('board-name-input').setAttribute('required', 'true');
             timeout = setTimeout(function () {
-              var createBtn = document.getElementById('save-btn');
-              var inputBoardName = document.getElementById('board-name-input');
-
               if (e.target.value === '') {
                 var _this2$setState;
 
                 _this2.setState((_this2$setState = {}, _defineProperty(_this2$setState, field, e.target.value), _defineProperty(_this2$setState, "showErrors", true), _this2$setState));
 
-                createBtn.classList.remove('save-btn-focus');
-                inputBoardName.classList.add('error');
+                that.saveBtn.current.classList.remove('focus');
+                that.boardNameInput.current.classList.add("error");
               } else {
                 var _this2$setState2;
 
                 _this2.setState((_this2$setState2 = {}, _defineProperty(_this2$setState2, field, e.target.value), _defineProperty(_this2$setState2, "showErrors", false), _this2$setState2));
 
-                createBtn.classList.add('save-btn-focus');
-                inputBoardName.classList.remove('error');
+                that.saveBtn.current.classList.add('focus');
+                that.boardNameInput.current.classList.remove("error");
               }
             }, 500);
             break;
@@ -881,6 +881,7 @@ function (_React$Component) {
         className: "board-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "board-name-input",
+        ref: this.boardNameInput,
         className: "input board-name",
         placeholder: "E.g. 'Places to go' or 'Recipes to make'",
         onChange: this.update('name')
@@ -912,6 +913,7 @@ function (_React$Component) {
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "save-btn",
+        ref: this.saveBtn,
         className: "save-btn",
         disabled: createButtonDisabled,
         onClick: this.handleSubmit

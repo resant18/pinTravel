@@ -5,6 +5,9 @@ class BoardCreateForm extends React.Component {
         super(props);
         this.state = { ...props.board, showErrors: false };
         
+        this.saveBtn = React.createRef(); 
+        this.boardNameInput = React.createRef();
+        
         this.handleSubmit = this.handleSubmit.bind(this);        
     }   
     
@@ -14,6 +17,7 @@ class BoardCreateForm extends React.Component {
 
     update(field) {      
         let timeout = null;  
+        let that = this;        
 
         return e => {                        
             switch (field) {
@@ -21,20 +25,16 @@ class BoardCreateForm extends React.Component {
                     clearTimeout(timeout);
                     e.persist();    
                     document.getElementById('board-name-input').setAttribute('required', 'true');
-                    timeout = setTimeout(() => {
-                        let createBtn = document.getElementById('save-btn');                        
-                        let inputBoardName = document.getElementById('board-name-input');
-
+                    timeout = setTimeout(() => {                                                
                         if (e.target.value === '') {
-                            this.setState({ [field]: e.target.value, showErrors: true });
-                            createBtn.classList.remove('save-btn-focus');                            
-                            inputBoardName.classList.add('error');
+                            this.setState({ [field]: e.target.value, showErrors: true });                                                                                   
+                            that.saveBtn.current.classList.remove('focus');
+                            that.boardNameInput.current.classList.add("error");
                         } else {
-                            this.setState({ [field]: e.target.value, showErrors: false });
-                            createBtn.classList.add('save-btn-focus');                            
-                            inputBoardName.classList.remove('error');
+                            this.setState({ [field]: e.target.value, showErrors: false });                            
+                            that.saveBtn.current.classList.add('focus');
+                            that.boardNameInput.current.classList.remove("error");
                         }
-
                     }, 500);    
                     break;
                 case 'secret':                    
@@ -96,6 +96,7 @@ class BoardCreateForm extends React.Component {
                             <p>Name</p>
                             <input
                                 id='board-name-input' 
+                                ref={this.boardNameInput}
                                 className='input board-name'
                                 placeholder="E.g. 'Places to go' or 'Recipes to make'"
                                 onChange={this.update('name')}                                                                
@@ -121,17 +122,18 @@ class BoardCreateForm extends React.Component {
                     <div className='button-footer'>
                         <div className='button-group button-group-create'>                            
                             <button
-                                id='cancel-btn'
+                                id = 'cancel-btn'
                                 className = 'cancel-btn'
-                                tabIndex='1'
-                                onClick={this.props.hideModal} >
+                                tabIndex = '1'
+                                onClick = {this.props.hideModal} >
                                 Cancel
                             </button>
                             <button
-                                id='save-btn'
+                                id = 'save-btn'
+                                ref = {this.saveBtn}
                                 className = 'save-btn'
                                 disabled = {createButtonDisabled}
-                                onClick={this.handleSubmit} >
+                                onClick = {this.handleSubmit} >
                                 Create
                             </button>                        
                         </div>
