@@ -48,9 +48,18 @@ class BoardCreateForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        
+        let username = this.props.currentUser.username;
 
-        this.props.createBoard(this.state)
-            .then(this.props.hideModal());                    
+        this.props
+           .createBoard(this.state)
+           .then(newBoard => {
+               this.props.hideModal();
+               return newBoard.board.id;
+           })
+           .then(newBoardId => {
+              this.props.history.push(`/${username}/boards/${newBoardId}`);
+           });                        
     }
     
     renderErrors() {         

@@ -677,9 +677,11 @@ var App = function App() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
-/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
-/* harmony import */ var _board_create_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./board_create_form */ "./frontend/components/board/board_create_form.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_board_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/board_actions */ "./frontend/actions/board_actions.js");
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _board_create_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./board_create_form */ "./frontend/components/board/board_create_form.jsx");
+
 
 
 
@@ -688,12 +690,12 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     board: {
-      name: '',
+      name: "",
       category_id: 1,
-      cover_id: '',
+      cover_id: "",
       secret: false
     },
-    // formType: 'Create Board',
+    currentUser: state.entities.users[state.session.id] || {},
     errors: state.errors.board
   };
 };
@@ -701,22 +703,22 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     createBoard: function createBoard(board) {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["createBoard"])(board));
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["createBoard"])(board));
     },
     showModal: function showModal(modal) {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["showModal"])(modal));
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["showModal"])(modal));
     },
     hideModal: function hideModal() {
-      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_2__["hideModal"])());
+      return dispatch(Object(_actions_modal_actions__WEBPACK_IMPORTED_MODULE_3__["hideModal"])());
     },
     clearBoardErrors: function clearBoardErrors() {
-      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_1__["clearBoardErrors"])());
+      return dispatch(Object(_actions_board_actions__WEBPACK_IMPORTED_MODULE_2__["clearBoardErrors"])());
     } // receiveBoardErrors: errors => dispatch(receiveBoardErrors(errors)),
 
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_create_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_board_create_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
 
 /***/ }),
 
@@ -827,8 +829,17 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
-      this.props.createBoard(this.state).then(this.props.hideModal());
+      var username = this.props.currentUser.username;
+      this.props.createBoard(this.state).then(function (newBoard) {
+        _this3.props.hideModal();
+
+        return newBoard.board.id;
+      }).then(function (newBoardId) {
+        _this3.props.history.push("/".concat(username, "/boards/").concat(newBoardId));
+      });
     }
   }, {
     key: "renderErrors",
@@ -2210,7 +2221,7 @@ function (_React$Component) {
       e.preventDefault();
 
       if (this.props.dataType === 'boardId') {
-        this.props.deleteBoard(this.props.data).then(this.props.hideModal()); // .then(this.props.history.push(`/${this.props.user.username}`))
+        this.props.deleteBoard(this.props.data).then(this.props.hideModal()).then(this.props.history.push("/".concat(this.props.user.username)));
       } else if (this.props.dataType === 'boardPinsId') {
         this.props.deletePin(this.props.data).then(this.props.hideModal());
       }
@@ -2767,7 +2778,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.currentUser.username) {
-        console.log("fetching pins from navbar");
+        console.log("fetching pins from navbar component");
         this.props.fetchUser(this.props.currentUser.username);
       }
     }

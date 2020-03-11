@@ -1,17 +1,18 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { createBoard, clearBoardErrors } from '../../actions/board_actions';
 import { showModal, hideModal } from '../../actions/modal_actions';
 import BoardCreateForm from './board_create_form';
 
-const mapStateToProps = (state, ownProps) => ({     
-  board: {
-    name: '',
-    category_id: 1,
-    cover_id: '',
-    secret: false,    
-  },
-  // formType: 'Create Board',
-  errors: state.errors.board,
+const mapStateToProps = (state, ownProps) => ({
+   board: {
+      name: "",
+      category_id: 1,
+      cover_id: "",
+      secret: false
+   },
+   currentUser: state.entities.users[state.session.id] || {},
+   errors: state.errors.board
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -22,7 +23,7 @@ const mapDispatchToProps = dispatch => ({
   // receiveBoardErrors: errors => dispatch(receiveBoardErrors(errors)),
 });
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(BoardCreateForm);
+)(BoardCreateForm));

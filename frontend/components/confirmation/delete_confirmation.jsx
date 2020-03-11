@@ -34,10 +34,10 @@ class DeleteConfirmation extends React.Component {
    handleDelete(e) {
       e.preventDefault();
       
-      if (this.props.dataType === 'boardId') {
+      if (this.props.dataType === 'boardId') {         
          this.props.deleteBoard(this.props.data)
             .then(this.props.hideModal())
-            // .then(this.props.history.push(`/${this.props.user.username}`))
+            .then(this.props.history.push(`/${this.props.user.username}`))
       }
       else if (this.props.dataType === 'boardPinsId') {
          this.props.deletePin(this.props.data)
