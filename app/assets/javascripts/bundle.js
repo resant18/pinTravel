@@ -2554,7 +2554,8 @@ function (_React$Component) {
         className: "dd-list-item",
         key: item.id,
         onMouseEnter: this.showVisibility,
-        onMouseLeave: this.hideVisibility
+        onMouseLeave: this.hideVisibility // onClick={this.handleSelectedItem}
+
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-item-img-wrapper"
       }, thumbnail.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
