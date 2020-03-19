@@ -45,7 +45,7 @@ class DropDownList extends React.Component {
             key={item.id}
             onMouseEnter={this.showVisibility}
             onMouseLeave={this.hideVisibility}
-            // onClick={this.handleSelectedItem}
+            onClick={this.handleSelectedItem}
          >
             <div className='dd-list-item-img-wrapper'>
                {thumbnail.length > 0 ? (
