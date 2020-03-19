@@ -32,11 +32,10 @@ class DeleteConfirmation extends React.Component {
    }
 
    handleDelete(e) {
-      e.preventDefault();
-
-      let username = this.props.selectedData.user.username;
+      e.preventDefault();      
       
       if (this.props.dataType === 'boardId') {         
+         let username = this.props.selectedData.user.username;
          this.props
             .deleteBoard(this.props.data)
             .then(this.props.hideModal())
