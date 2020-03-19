@@ -63,9 +63,23 @@ class PinIndex extends React.Component {
       // }
    }
 
+   _isBaseUrl(currentUrl) {
+      let baseUrl = new RegExp(/^.*\//).exec(currentUrl)[0];
+
+       return currentUrl === baseUrl;
+   }
+
    render() {
+      let pinIndexStyle;
+      
+      if (this._isBaseUrl(this.props.location.pathname) && !this.props.loggedIn) {
+         pinIndexStyle = {
+            position: 'fixed'
+         }
+      }
+
       return (
-         <div className='pin-index-container'>
+         <div className='pin-index-container' style={pinIndexStyle}>
             <div className='pin-index'>
                {this.renderPins()}
                {this.renderWaypoint()}               

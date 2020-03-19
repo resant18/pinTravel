@@ -2222,9 +2222,9 @@ function (_React$Component) {
     key: "handleDelete",
     value: function handleDelete(e) {
       e.preventDefault();
-      var username = this.props.selectedData.user.username;
 
       if (this.props.dataType === 'boardId') {
+        var username = this.props.selectedData.user.username;
         this.props.deleteBoard(this.props.data).then(this.props.hideModal()).then(this.props.history.push("/".concat(username)));
       } else if (this.props.dataType === 'boardPinsId') {
         this.props.deletePin(this.props.data).then(this.props.hideModal());
@@ -2554,8 +2554,8 @@ function (_React$Component) {
         className: "dd-list-item",
         key: item.id,
         onMouseEnter: this.showVisibility,
-        onMouseLeave: this.hideVisibility // onClick={this.handleSelectedItem}
-
+        onMouseLeave: this.hideVisibility,
+        onClick: this.handleSelectedItem
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "dd-list-item-img-wrapper"
       }, thumbnail.length > 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -3568,10 +3568,25 @@ function (_React$Component) {
       }); // }
     }
   }, {
+    key: "_isBaseUrl",
+    value: function _isBaseUrl(currentUrl) {
+      var baseUrl = new RegExp(/^.*\//).exec(currentUrl)[0];
+      return currentUrl === baseUrl;
+    }
+  }, {
     key: "render",
     value: function render() {
+      var pinIndexStyle;
+
+      if (this._isBaseUrl(this.props.location.pathname) && !this.props.loggedIn) {
+        pinIndexStyle = {
+          position: 'fixed'
+        };
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "pin-index-container"
+        className: "pin-index-container",
+        style: pinIndexStyle
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "pin-index"
       }, this.renderPins(), this.renderWaypoint()));
@@ -3664,9 +3679,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var loggedIn = state.session.id;
   var currentUser = state.entities.users[state.session.id];
   var pins = Object.values(state.entities.pins);
   return {
+    loggedIn: loggedIn,
     fetchType: 'feed',
     currentUser: currentUser,
     pins: pins
