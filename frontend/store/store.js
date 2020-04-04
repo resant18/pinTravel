@@ -7,16 +7,20 @@ import rootReducer from '../reducers/root_reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const configureStore = (preloadedState = {}) => {    
-  // store for prod  
-  return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
-
-  // store for testing
-  // return createStore(
-  //   rootReducer,
-  //   preloadedState,
-  //   composeWithDevTools(applyMiddleware(thunk, logger))
-  // );
-
+  const hostname = window && window.location && window.location.hostname;
+  
+  // store for testing environment
+  if (/locahost/.test(hostname)) {
+    return createStore(rootReducer, preloadedState, applyMiddleware(thunk));
+  }
+  // store for production environment    
+  else {  
+    return createStore(
+      rootReducer,
+      preloadedState,
+      composeWithDevTools(applyMiddleware(thunk, logger))
+    );
+  }
 }
 
 export default configureStore;
