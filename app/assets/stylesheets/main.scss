@@ -4,7 +4,7 @@
 .tilted-pins {
     background-color: rgb(249, 249, 247);
     background-image: image-url('user-tilted-pins.png');
-    height: 300px;
+    height: 200px;
 }
 
 .user-profile-detail-container {
@@ -107,7 +107,7 @@
         
         grid-gap: 15px;
         margin: 0 auto;
-        max-width: 1620px;
+        max-width: 1680px;
         justify-items: center;
         .board-index-item {
             width: 100%;
@@ -116,7 +116,7 @@
             .board-item-content {
                 width: 100%;
                 height: 100%;
-                min-height: 264px;
+                
                 position: relative;
                 a {                
                     display: block;
@@ -130,7 +130,7 @@
                         transform: translateX(0px) ttranslateY(0px);
                         .board-cover {
                             width: 100%;
-                            height: 264px;
+                            
                             border-radius: 8px;
                             will-change: transform;
                             overflow: hidden;
