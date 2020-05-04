@@ -1,20 +1,18 @@
 // 5 columns
-@media all and (min-width: 1526px) {
-    // Home is dissapear
-    // column count: 4 columns grid
+
+@media all and (min-width: 1920px) {
     html, body {
         font-size: 12pt;
     }
-    .user-profile-detail-container, .tab-list {
-        max-width: 1024px;
-    }        
-    .pin-index-container .pin-index, .toolbar {
-        columns: 6;               
+    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {
+        max-width: 80vw;        
     }
-    .pin-index-container .pin-index, .toolbar, .board-pins-header {
-        width: 1525px;
-        min-width: 985px;
+        
+    .pin-index-container .pin-index {
+        columns: 6;             
+        width: 1525px;  
     }
+    
     .board-name, .board-visibility {
         padding-top: 8px;
         padding-bottom: 8px;
@@ -30,7 +28,67 @@
         .secret {
             font-size: 14px;
         }
-    }     
+    }    
+    
+    .board-item-content {
+        min-height: 200px;
+    }
+
+    .board-cover {
+        height: 200px;
+    }
+
+    .pin-show-wrapper {
+        width: 1016px;
+        .pin-show-box {            
+            flex-direction: row;
+            .pin-show-content-top {
+                width: 65%;
+            }
+            .pin-image {
+                border-radius: 32px 0 0 32px;
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1919px) and (min-width: 1680px){
+    // Home is dissapear
+    // column count: 4 columns grid
+    html, body {
+        font-size: 12pt;
+    }
+    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {
+        max-width: 80vw;
+    }        
+    .pin-index-container .pin-index {
+        columns: 6;          
+        width: 1525px;     
+    }    
+    .board-name, .board-visibility {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        padding-left: 14px;
+        padding-right: 14px;
+        input {
+            width: 75%; 
+        }
+        p {
+            width: 25%; 
+            box-sizing: border-box;            
+        }
+        .secret {
+            font-size: 14px;
+        }
+    }    
+    
+    .board-item-content {
+        min-height: 264px;
+    }
+
+    .board-cover {
+        height: 264px;
+    }
 
     .pin-show-wrapper {
         width: 1016px;
@@ -47,29 +105,30 @@
 }
 
 // 5 columns
-@media all and (max-width: 1525px) and (min-width: 1272px) {          
-    .user-profile-detail-container, .tab-list {
-        max-width: 1005px;
+@media all and (max-width: 1679px) and (min-width: 1272px) {          
+    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {
+        max-width: 80vw;
     }
-
-    .pin-index-container .pin-index, .toolbar {
+    
+    .pin-index-container .pin-index {
         columns: 5;        
-    }
-
-    .pin-index-container .pin-index, .toolbar, .board-pins-header {    
-        width: 1272px;
+        width: 1525px;
     }
     
     .pin-form {
         width: 533px;
-    }
-
-    .tilted-pins {
-        
-    }
+    }    
 
     .user-boards-pins-count {
         font-size: 0.9em;
+    }
+
+    .board-item-content {
+        min-height: 264px;
+    }
+
+    .board-cover {
+        height: 264px;
     }
 
     .pin-show-wrapper {
@@ -87,17 +146,15 @@
 }
 
 // 4 columns
-@media all and (max-width: 1271px) and (min-width: 1018px) {    
-    // 3 columns grid
-    .user-profile-detail-container, .tab-list {
-        max-width: 768px;
+@media all and (max-width: 1271px) and (min-width: 1018px) {        
+    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {
+        max-width: 80vw;
+        
     }    
-    .pin-index-container .pin-index, .toolbar {
+    .pin-index-container .pin-index {
         columns: 4;        
-    }
-    .pin-index-container .pin-index, .toolbar, .board-pins-header {
-        width: 1018px;        
-    }
+        width: 1018px;
+    }    
     .pin-show-wrapper {
         max-width: 740px;
         .pin-show-box {            
@@ -110,24 +167,32 @@
             }
         }
     }
+
+    .board-item-content {
+        min-height: 200px;
+    }
+
+    .board-cover {
+        height: 200px;
+    }
       
 }
 
 // 3 columns
-@media all and (max-width: 1017px) and (min-width: 764px) {    
-    // 2 columns grid
-    .user-profile-detail-container, .tab-list {
-        max-width: 724px;
+@media all and (max-width: 1017px) and (min-width: 764px) {        
+    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {
+        max-width: 80vw;
+        
     }    
-    .pin-index-container .pin-index, .toolbar {
+    .pin-index-container .pin-index {
         columns: 3;        
-    }
-    .pin-index-container .pin-index, .toolbar, .board-pins-header {
         width: 764px;
     }
+    
     .pin-form {
         width: 544px;
     }
+
     .pin-show-wrapper {
         max-width: 740px;
         .pin-show-box {            
@@ -137,23 +202,31 @@
             }
         }
     }
+
+    .board-item-content {
+        min-height: 264px;
+    }
+
+    .board-cover {
+        height: 264px;
+    }
 }
 
 // 2 columns
-@media all and (max-width: 763px) and (min-width: 510px) {    
-    // 2 columns grid
-    .user-profile-detail-container, .tab-list, .pin-index-container  .pin-index, .toolbar, .board-pins-header {
-        width: 510px;
-    }    
-    .pin-index-container  .pin-index, .toolbar  {
+@media all and (max-width: 763px) and (min-width: 510px) {              
+    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {
+        max-width: 80vw;
+    }        
+
+    .pin-index-container .pin-index {
         columns: 2;            
+        width: 510px;
     }
+    
     .pin-form {
         width: 533px;
     }
-    .tilted-pins {
-        height: 25vh;
-    }
+
     .pin-show-wrapper {
         max-width: 740px;        
         .pin-show-box {            
@@ -163,32 +236,32 @@
             }
         }
     }
+
+    .board-item-content {
+        min-height: 264px;
+    }
+
+    .board-cover {
+        height: 264px;
+    }
 }
 
 // 1 columns
 @media all and (max-width: 509px) {    
-    // 2 columns grid
-    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {     
-        width: 90vw;
+    // 2 columns grid    
+    .user-profile-detail-container, .tab-list, .toolbar, .board-pins-header {
+        max-width: 80vw;
+    }    
+
+    .pin-index-container .pin-index {
+        columns: 1;   
+        width: 236px;         
     }
 
-    .tilted-pins {
-        height: 20vh;
-    }
-
-    .pin-index-container  .pin-index { 
-        width: 236px;
-    }
-
-    .pin-index-container {
-        columns: 1;            
-    }
     .pin-form {
         width: 533px;
     }
-    .user-boards-pins-count {
-        font-size: 0.9em;
-    }
+    
     .pin-show-wrapper {
         max-width: 740px;
         .pin-show-box {            
@@ -197,5 +270,25 @@
                 border-radius: 32px 32px 0 0;
             }
         }
+    }
+
+    .board-item-content {
+        min-height: 264px;
+    }
+
+    .board-cover {
+        height: 264px;
+    }
+
+    .user-boards-pins-count {
+        font-size: 0.9em;
+    }
+
+    .user-profile-name h5 {
+        font-size: 1.5em;
+    }
+
+    .fname {
+        display: none;
     }
 }
