@@ -9,7 +9,7 @@ export default function footer() {
                   <a
                      className='footer-links'
                      target='_blank'
-                     href='https://resant18.github.io/portfolio/'                     
+                     href='https://re-sant.com'                     
                   >
                      <img src={window.social["portfolio"]}></img>
                   </a>
