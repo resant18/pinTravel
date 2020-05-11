@@ -8,7 +8,7 @@ class UserProfile extends React.Component {
 
       this.state = {
          tabItem: location.hash.includes('/pins') ? 'pins' : 'boards',
-         dropDown: false
+         dropDownOpen: false
       };
 
       this.showDropDown = this.showDropDown.bind(this);
@@ -30,31 +30,36 @@ class UserProfile extends React.Component {
    }
 
    showDropDown(e) {
-      this.setState({ dropDown: true });
-      document.addEventListener('mousedown', this.hideDropDown);
+      e.preventDefault();
+
+      this.setState({ dropDownOpen: true }, () => {
+         document.addEventListener("mousedown", this.hideDropDown);
+      });      
    }
 
-   hideDropDown(e) {
-      if (!this.node.contains(e.target)) {
-         this.setState({ dropDown: false });
-         document.removeEventListener('mousedown', this.hideDropDown);
-      }
+   hideDropDown(e) {      
+      // if the target is an element (a children) that the menu contains.
+      if (!this.node.contains(e.target)) {         
+         this.setState({ dropDownOpen: false }, () => {
+            document.removeEventListener('mousedown', this.hideDropDown);
+         });
+      }      
    }
 
    renderDropDown() {
-      if (this.state.dropDown) {
+      if (this.state.dropDownOpen) {
          return (
-            <div id='drop-down' ref={node => (this.node = node)} className='profile-add-board-pin drop-down'>
+            <div id='profile-menu-list' ref={node => (this.node = node)} className='profile-add-board-pin drop-down'>
                <div className='frame'>
                   <div className='list' role='list'>
                      <div
                         title='Create board'
-                        className='create-board'
+                        className='create-board item'
                         onClick={this.showModal({ name: 'create-board' })}
                      >
                         Create board
                      </div>
-                     <div title='Create pin' className='create-pin'>
+                     <div title='Create pin' className='create-pin item'>
                         <a href='#/pin-builder'>Create Pin</a>
                      </div>
                   </div>
