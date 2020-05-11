@@ -1882,7 +1882,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardShow).call(this, props));
     _this.state = {
-      dropDown: false
+      dropDownOpen: false
     };
     _this.browseBack = _this.browseBack.bind(_assertThisInitialized(_this));
     _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
@@ -1909,33 +1909,40 @@ function (_React$Component) {
   }, {
     key: "showDropDown",
     value: function showDropDown(e) {
+      var _this2 = this;
+
+      e.preventDefault();
       this.setState({
-        dropDown: true
+        dropDownOpen: true
+      }, function () {
+        document.addEventListener('mousedown', _this2.hideDropDown);
       });
-      document.addEventListener('mousedown', this.hideDropDown);
     }
   }, {
     key: "hideDropDown",
     value: function hideDropDown(e) {
+      var _this3 = this;
+
       if (!this.node) return null;
 
       if (!this.node.contains(e.target)) {
         this.setState({
-          dropDown: false
+          dropDownOpen: false
+        }, function () {
+          document.removeEventListener('mousedown', _this3.hideDropDown);
         });
-        document.removeEventListener('mousedown', this.hideDropDown);
       }
     }
   }, {
     key: "renderDropDown",
     value: function renderDropDown() {
-      var _this2 = this;
+      var _this4 = this;
 
-      if (this.state.dropDown) {
+      if (this.state.dropDownOpen) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "board-show-add-pin",
           ref: function ref(node) {
-            return _this2.node = node;
+            return _this4.node = node;
           },
           className: "drop-down"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1952,12 +1959,12 @@ function (_React$Component) {
   }, {
     key: "showModal",
     value: function showModal(modal) {
-      var _this3 = this;
+      var _this5 = this;
 
       return function (e) {
-        _this3.props.showModal(modal);
+        _this5.props.showModal(modal);
 
-        _this3.hideDropDown(e);
+        _this5.hideDropDown(e);
       };
     }
   }, {

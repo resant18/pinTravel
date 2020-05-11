@@ -7,7 +7,7 @@ class BoardShow extends React.Component {
       super(props);
 
       this.state = {
-         dropDown: false
+         dropDownOpen: false
       }
 
       this.browseBack = this.browseBack.bind(this);      
@@ -29,21 +29,25 @@ class BoardShow extends React.Component {
    }
 
    showDropDown(e) {
-      this.setState({ dropDown: true });
-      document.addEventListener('mousedown', this.hideDropDown);
+      e.preventDefault();
+
+      this.setState({ dropDownOpen: true }, () => {
+         document.addEventListener('mousedown', this.hideDropDown);
+      });
    }
 
    hideDropDown(e) {
       if (!this.node) return null;
       
       if (!this.node.contains(e.target)) {
-         this.setState({ dropDown: false }); 
-         document.removeEventListener('mousedown', this.hideDropDown);
+         this.setState({ dropDownOpen: false }, () => {
+            document.removeEventListener('mousedown', this.hideDropDown);
+         }); 
       }
    }   
 
    renderDropDown() {
-      if (this.state.dropDown) {
+      if (this.state.dropDownOpen) {
          return (
             <div id='board-show-add-pin' ref={(node) => (this.node = node)} className='drop-down'>
                <div className='frame'>
