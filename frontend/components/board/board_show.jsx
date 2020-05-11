@@ -69,7 +69,9 @@ class BoardShow extends React.Component {
       }
    }   
 
-   displayToolbar() {      
+   displayToolbar() {  
+      if (!this.props.currentUser) return;
+
       if (this.props.currentUser.username === this.props.user.username) {
          return (
             <div className='toolbar'>

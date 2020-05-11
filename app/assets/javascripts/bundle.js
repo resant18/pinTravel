@@ -1970,6 +1970,8 @@ function (_React$Component) {
   }, {
     key: "displayToolbar",
     value: function displayToolbar() {
+      if (!this.props.currentUser) return;
+
       if (this.props.currentUser.username === this.props.user.username) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar"
