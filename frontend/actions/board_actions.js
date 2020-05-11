@@ -52,7 +52,10 @@ export const clearBoardErrors = () => {
 }
 
 // =====
-
+// If using a catch instead of second callback, 
+// any errors that might've occurred during the dispatch would be left unhandled. 
+// So you can capture render method errors in your own way. 
+// For more info, give a reading on this tweet by https://twitter.com/dan_abramov/status/770914221638942720?lang=en
 export const fetchBoards = () => dispatch =>
   ApiUtil.fetchBoards().then(
     boards => dispatch(receiveBoards(boards)),
