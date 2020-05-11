@@ -10,7 +10,8 @@ class NavBar extends React.Component {
       };
 
       this.showDropDown = this.showDropDown.bind(this);
-      this.hideDropDown = this.hideDropDown.bind(this);
+      this.hideDropDown = this.hideDropDown.bind(this);    
+      this.handleLogout = this.handleLogout.bind(this);
    }
 
    componentDidMount() {
@@ -37,13 +38,18 @@ class NavBar extends React.Component {
       }
    }
 
+   handleLogout() {
+      this.props.logout();
+      this.props.history.push('/');
+   }
+
    renderDropDown() {
       if (this.state.dropDownOpen) {
          return (
             <div id='navbar-menu-list' ref={(node) => (this.node = node)} onClick={this.showDropDown} className='drop-down'>
                <div className='frame'>
                   <div className='list' role='list'>
-                     <div className='item' onClick={this.props.logout}>
+                     <div className='item' onClick={this.handleLogout}>
                         Logout
                      </div>
                   </div>

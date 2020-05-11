@@ -2788,6 +2788,7 @@ function (_React$Component) {
     };
     _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
     _this.hideDropDown = _this.hideDropDown.bind(_assertThisInitialized(_this));
+    _this.handleLogout = _this.handleLogout.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2825,6 +2826,12 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "handleLogout",
+    value: function handleLogout() {
+      this.props.logout();
+      this.props.history.push('/');
+    }
+  }, {
     key: "renderDropDown",
     value: function renderDropDown() {
       var _this4 = this;
@@ -2844,7 +2851,7 @@ function (_React$Component) {
           role: "list"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "item",
-          onClick: this.props.logout
+          onClick: this.handleLogout
         }, "Logout"))));
       }
     }
