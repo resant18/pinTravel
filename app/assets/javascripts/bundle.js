@@ -5592,7 +5592,7 @@ var selectUserBoards = function selectUserBoards(_ref2, user, permitted) {
 };
 var selectUserPins = function selectUserPins(_ref3, user) {
   var pins = _ref3.pins;
-  if (!user) return [];
+  if (Object.keys(user).length === 0) return [];
   return Object.values(pins).filter(function (pin) {
     return user.board_pin_ids.includes(pin.id);
   });

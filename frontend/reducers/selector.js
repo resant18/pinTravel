@@ -10,8 +10,8 @@ export const selectUserBoards = ({ boards }, user, permitted) => {
     )
 };
 
-export const selectUserPins = ({ pins }, user) => {    
-    if (!user) return [];    
+export const selectUserPins = ({ pins }, user) => {        
+    if (Object.keys(user).length === 0) return [];    
 
     return Object.values(pins).filter(pin => 
         user.board_pin_ids.includes(pin.id)
