@@ -158,6 +158,10 @@ var clearBoardErrors = function clearBoardErrors() {
     type: CLEAR_BOARD_ERRORS
   };
 }; // =====
+// If using a catch instead of second callback, 
+// any errors that might've occurred during the dispatch would be left unhandled. 
+// So you can capture render method errors in your own way. 
+// For more info, give a reading on this tweet by https://twitter.com/dan_abramov/status/770914221638942720?lang=en
 
 var fetchBoards = function fetchBoards() {
   return function (dispatch) {
@@ -1929,11 +1933,11 @@ function (_React$Component) {
 
       if (this.state.dropDown) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "drop-down",
+          id: "board-show-add-pin",
           ref: function ref(node) {
             return _this2.node = node;
           },
-          className: "board-show-add-pin drop-down"
+          className: "drop-down"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "frame"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1941,7 +1945,7 @@ function (_React$Component) {
           role: "list"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: "#/pin-builder",
-          className: "create-pin add-pin"
+          className: "create-pin item add-pin"
         }, "Create Pin"))));
       }
     }
@@ -2757,9 +2761,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -2774,9 +2778,17 @@ function (_React$Component) {
   _inherits(NavBar, _React$Component);
 
   function NavBar(props) {
+    var _this;
+
     _classCallCheck(this, NavBar);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(NavBar).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(NavBar).call(this, props));
+    _this.state = {
+      dropDownOpen: false
+    };
+    _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
+    _this.hideDropDown = _this.hideDropDown.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(NavBar, [{
@@ -2788,10 +2800,61 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "showDropDown",
+    value: function showDropDown(e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      this.setState({
+        dropDownOpen: true
+      }, function () {
+        document.addEventListener("mousedown", _this2.hideDropDown);
+      });
+    }
+  }, {
+    key: "hideDropDown",
+    value: function hideDropDown(e) {
+      var _this3 = this;
+
+      if (!this.node.contains(e.target)) {
+        this.setState({
+          dropDownOpen: false
+        }, function () {
+          document.removeEventListener('mousedown', _this3.hideDropDown);
+        });
+      }
+    }
+  }, {
+    key: "renderDropDown",
+    value: function renderDropDown() {
+      var _this4 = this;
+
+      if (this.state.dropDownOpen) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "navbar-menu-list",
+          ref: function ref(node) {
+            return _this4.node = node;
+          },
+          onClick: this.showDropDown,
+          className: "drop-down"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "frame"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "list",
+          role: "list"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "item",
+          onClick: this.props.logout
+        }, "Logout"))));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       if (this.props.loggedIn) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+          className: "header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
           className: "navbar"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "navbar-content"
@@ -2822,13 +2885,26 @@ function (_React$Component) {
           src: window.userProfile[this.props.currentUser.username] || "https://s.pinimg.com/images/user/default_280.png"
         }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "fname"
-        }, this.props.currentUser.first_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-          to: "/",
-          className: "grey",
-          onClick: this.props.logout
-        }, "Log out")))));
+        }, this.props.currentUser.first_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          className: "menu",
+          type: "button",
+          "aria-label": "Menu options",
+          onClick: this.showDropDown
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+          className: "gUZ B9u U9O kVc",
+          height: "12",
+          width: "12",
+          viewBox: "0 0 24 24",
+          "aria-hidden": "true",
+          "aria-label": "",
+          role: "img"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+          d: "M12 19.5L.66 8.29c-.88-.86-.88-2.27 0-3.14.88-.87 2.3-.87 3.18 0L12 13.21l8.16-8.06c.88-.87 2.3-.87 3.18 0 .88.87.88 2.28 0 3.14L12 19.5z"
+        }))), this.renderDropDown()))));
       } else {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+          className: "header"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
           className: "navbar"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "navbar-content"
@@ -4893,7 +4969,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(UserProfile).call(this, props));
     _this.state = {
       tabItem: location.hash.includes('/pins') ? 'pins' : 'boards',
-      dropDown: false
+      dropDownOpen: false
     };
     _this.showDropDown = _this.showDropDown.bind(_assertThisInitialized(_this));
     _this.hideDropDown = _this.hideDropDown.bind(_assertThisInitialized(_this));
@@ -4918,31 +4994,39 @@ function (_React$Component) {
   }, {
     key: "showDropDown",
     value: function showDropDown(e) {
+      var _this2 = this;
+
+      e.preventDefault();
       this.setState({
-        dropDown: true
+        dropDownOpen: true
+      }, function () {
+        document.addEventListener("mousedown", _this2.hideDropDown);
       });
-      document.addEventListener('mousedown', this.hideDropDown);
     }
   }, {
     key: "hideDropDown",
     value: function hideDropDown(e) {
+      var _this3 = this;
+
+      // if the target is an element (a children) that the menu contains.
       if (!this.node.contains(e.target)) {
         this.setState({
-          dropDown: false
+          dropDownOpen: false
+        }, function () {
+          document.removeEventListener('mousedown', _this3.hideDropDown);
         });
-        document.removeEventListener('mousedown', this.hideDropDown);
       }
     }
   }, {
     key: "renderDropDown",
     value: function renderDropDown() {
-      var _this2 = this;
+      var _this4 = this;
 
-      if (this.state.dropDown) {
+      if (this.state.dropDownOpen) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "drop-down",
+          id: "profile-menu-list",
           ref: function ref(node) {
-            return _this2.node = node;
+            return _this4.node = node;
           },
           className: "profile-add-board-pin drop-down"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4952,13 +5036,13 @@ function (_React$Component) {
           role: "list"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Create board",
-          className: "create-board",
+          className: "create-board item",
           onClick: this.showModal({
             name: 'create-board'
           })
         }, "Create board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           title: "Create pin",
-          className: "create-pin"
+          className: "create-pin item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           href: "#/pin-builder"
         }, "Create Pin")))));
@@ -4967,12 +5051,12 @@ function (_React$Component) {
   }, {
     key: "showModal",
     value: function showModal(modal) {
-      var _this3 = this;
+      var _this5 = this;
 
       return function (e) {
-        _this3.props.showModal(modal);
+        _this5.props.showModal(modal);
 
-        _this3.hideDropDown(e);
+        _this5.hideDropDown(e);
       };
     }
   }, {
@@ -5753,10 +5837,10 @@ var configureStore = function configureStore() {
   var hostname = window && window.location && window.location.hostname; // store for testing environment
 
   if (/locahost/.test(hostname)) {
-    return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a)));
+    return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
   } // store for production environment    
   else {
-      return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
+      return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a)));
     }
 };
 
@@ -59261,7 +59345,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

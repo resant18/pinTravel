@@ -1,4 +1,5 @@
 @import "./inherit.scss";
+
 // User
 
 .tilted-pins {
@@ -32,17 +33,17 @@
     }
 }
 
-.profile-add-board-pin {
+#profile-menu-list {
     top: 65px;
-    right: 0px;    
+    right: 10px;    
     position: absolute;
 }
 
-.board-show-add-pin {
+#board-show-add-pin {
     position: absolute;
-    top: 110px;
+    top: 140px;
     // left: 150px;
-    left: 100px;
+    left: 150px;
 }
 
 .add-pin {

@@ -45,16 +45,16 @@ class BoardShow extends React.Component {
    renderDropDown() {
       if (this.state.dropDown) {
          return (
-            <div id='drop-down' ref={ node => this.node = node } className='board-show-add-pin drop-down'>
+            <div id='board-show-add-pin' ref={(node) => (this.node = node)} className='drop-down'>
                <div className='frame'>
                   <div className='list' role='list'>
-                     <a href='#/pin-builder' className='create-pin add-pin' >                        
-                        Create Pin                        
-                     </a>              
+                     <a href='#/pin-builder' className='create-pin item add-pin'>
+                        Create Pin
+                     </a>
                   </div>
                </div>
             </div>
-         )
+         );
       }
    }
    
