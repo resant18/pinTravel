@@ -38,16 +38,17 @@ class UserProfile extends React.Component {
    }
 
    hideDropDown(e) {      
-      // if the target is an element (a children) that the menu contains.
-      if (!this.node.contains(e.target)) {         
-         this.setState({ dropDownOpen: false }, () => {
+      // if the target is an element (a children) that the menu contains.      
+      if (!this.node.contains(e.target)) {                        
+         this.setState({ dropDownOpen: false }, () => {  
             document.removeEventListener('mousedown', this.hideDropDown);
          });
-      }      
+      }     
    }
 
    renderDropDown() {
       if (this.state.dropDownOpen) {
+         console.log('render dropdown menu');
          return (
             <div id='profile-menu-list' ref={node => (this.node = node)} className='profile-add-board-pin drop-down'>
                <div className='frame'>
@@ -55,7 +56,10 @@ class UserProfile extends React.Component {
                      <div
                         title='Create board'
                         className='create-board item'
-                        onClick={this.showModal({ name: 'create-board' })}
+                        onClick={
+                           
+                           this.showModal({ name: 'create-board' })
+                        }
                      >
                         Create board
                      </div>
@@ -69,10 +73,12 @@ class UserProfile extends React.Component {
       }
    }
 
-   showModal(modal) {
+   showModal(modal) {            
       return e => {
-         this.props.showModal(modal);
-         this.hideDropDown(e);
+         this.setState({ dropDownOpen: false }, () => {
+            document.removeEventListener("mousedown", this.hideDropDown);
+         });            
+         this.props.showModal(modal);                  
       };
    }
 

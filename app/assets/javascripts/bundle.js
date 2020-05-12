@@ -2826,6 +2826,8 @@ function (_React$Component) {
     value: function hideDropDown(e) {
       var _this3 = this;
 
+      if (!this.node) return null;
+
       if (!this.node.contains(e.target)) {
         this.setState({
           dropDownOpen: false
@@ -5024,7 +5026,7 @@ function (_React$Component) {
     value: function hideDropDown(e) {
       var _this3 = this;
 
-      // if the target is an element (a children) that the menu contains.
+      // if the target is an element (a children) that the menu contains.      
       if (!this.node.contains(e.target)) {
         this.setState({
           dropDownOpen: false
@@ -5039,6 +5041,7 @@ function (_React$Component) {
       var _this4 = this;
 
       if (this.state.dropDownOpen) {
+        console.log('render dropdown menu');
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "profile-menu-list",
           ref: function ref(node) {
@@ -5070,9 +5073,13 @@ function (_React$Component) {
       var _this5 = this;
 
       return function (e) {
-        _this5.props.showModal(modal);
+        _this5.setState({
+          dropDownOpen: false
+        }, function () {
+          document.removeEventListener("mousedown", _this5.hideDropDown);
+        });
 
-        _this5.hideDropDown(e);
+        _this5.props.showModal(modal);
       };
     }
   }, {
