@@ -134,10 +134,13 @@
                 letter-spacing: -.4px;
                 hyphens: auto;
                 word-wrap: break-word;
-                a {
-                    display: block;
+                // a {
+                //     display: block;
+                // } not used?
+                &:hover {
+                    background-color: var(--color-lightest-gray);
                 }
-            }
+            }            
         }
     }
 }
