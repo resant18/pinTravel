@@ -2554,7 +2554,8 @@ function (_React$Component) {
     }
   }, {
     key: "handleSelectedItem",
-    value: function handleSelectedItem() {
+    value: function handleSelectedItem(e) {
+      e.stopPropagation();
       this.props.onSelectItem(this.props.item.id);
     }
   }, {

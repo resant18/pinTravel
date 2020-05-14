@@ -32,9 +32,12 @@ class DropDownList extends React.Component {
       }
    }
 
-   handleSelectedItem() {
+   handleSelectedItem(e) {      
+      e.stopPropagation();      
       this.props.onSelectItem(this.props.item.id);
    }
+
+
 
    render() {
       const { item, thumbnail } = this.props;
