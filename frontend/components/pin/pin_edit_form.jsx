@@ -78,14 +78,14 @@ class PinEditForm extends React.Component {
                   <div className='form-footer'>
                      <div className='button-group buttons-left'>
                         <button
-                           className='delete-btn'
+                           className='form-button delete-btn'
                            onClick={this.handleDelete} >
                            Delete
                         </button>
                      </div>
                      <div className='button-group buttons-right'>
                         <button
-                           className='cancel-btn'
+                           className='form-button cancel-btn'
                            onClick={() => this.props.hideModal()} >
                            Cancel
                         </button>

@@ -123,7 +123,7 @@ class BoardCreateForm extends React.Component {
                         <div className='button-group button-group-create'>                            
                             <button
                                 id = 'cancel-btn'
-                                className = 'cancel-btn'
+                                className = 'form-button cancel-btn'
                                 tabIndex = '1'
                                 onClick = {this.props.hideModal} >
                                 Cancel
@@ -131,7 +131,7 @@ class BoardCreateForm extends React.Component {
                             <button
                                 id = 'save-btn'
                                 ref = {this.saveBtn}
-                                className = 'save-btn'
+                                className = 'form-button save-btn'
                                 disabled = {createButtonDisabled}
                                 onClick = {this.handleSubmit} >
                                 Create

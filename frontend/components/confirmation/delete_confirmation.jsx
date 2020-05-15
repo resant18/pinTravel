@@ -70,11 +70,11 @@ class DeleteConfirmation extends React.Component {
             <div className="button-footer">
                <div className="button-group">
                   <div className="button-group-right">
-                     <button className="delete-btn" onClick={this.handleDelete}>
+                     <button className="form-button delete-btn" onClick={this.handleDelete}>
                         {this.options.buttonText}
                      </button>
                      <button
-                        className="cancel-btn focus"
+                        className="form-button cancel-btn focus"
                         onClick={this.handleCancel}
                      >
                         Cancel

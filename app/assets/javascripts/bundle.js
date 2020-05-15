@@ -912,13 +912,13 @@ function (_React$Component) {
         className: "button-group button-group-create"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "cancel-btn",
-        className: "cancel-btn",
+        className: "form-button cancel-btn",
         tabIndex: "1",
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "save-btn",
         ref: this.saveBtn,
-        className: "save-btn",
+        className: "form-button save-btn",
         disabled: createButtonDisabled,
         onClick: this.handleSubmit
       }, "Create")))));
@@ -985,6 +985,77 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/board/board_edit_cover.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/board/board_edit_cover.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var BoardEditCover = function BoardEditCover(props) {
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
+      _React$useState2 = _slicedToArray(_React$useState, 2),
+      visibility = _React$useState2[0],
+      setVisibility = _React$useState2[1];
+
+  var handleCancel = function handleCancel(e) {
+    e.preventDefault();
+    setVisibility(false);
+  };
+
+  var handleSave = function handleSave(e) {
+    e.preventDefault();
+    console.log('Save');
+  };
+
+  var renderComponent = function renderComponent() {
+    if (visibility) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        "aria-label": "Change Board Cover",
+        className: "board-delete-confirm-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "header"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Change board cover ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "body"
+      }, "Pin Gallery here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-footer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "button-group-right"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "form-button cancel-btn focus",
+        onClick: handleCancel
+      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "form-button save-btn",
+        onClick: handleSave
+      }, "Save changes")))));
+    }
+
+    return null;
+  };
+
+  return renderComponent;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (BoardEditCover);
+
+/***/ }),
+
 /***/ "./frontend/components/board/board_edit_form.jsx":
 /*!*******************************************************!*\
   !*** ./frontend/components/board/board_edit_form.jsx ***!
@@ -996,6 +1067,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _board_edit_cover__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./board_edit_cover */ "./frontend/components/board/board_edit_cover.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -1022,6 +1094,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var BoardEditForm =
 /*#__PURE__*/
 function (_React$Component) {
@@ -1034,7 +1107,8 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(BoardEditForm).call(this, props));
     _this.state = _objectSpread({}, props.board, {
-      serverError: props.errors
+      serverError: props.errors,
+      showEditCover: false
     });
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
@@ -1129,25 +1203,29 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "board-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-name"
+        className: "board-field board-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         id: "board-name-input",
         className: "input board-name",
         value: this.state.name,
         placeholder: "E.g. 'Places to go' or 'Recipes to make'",
-        onChange: this.update('name'),
+        onChange: this.update("name"),
         required: true
       }), this.renderBoardNameValidationError(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error-text"
       }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-visibility"
+        className: "board-field"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Cover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "button"
+      }, "Change")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "board-field board-visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "secret"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         className: "secret-box",
         type: "checkbox",
         checked: this.state.secret,
-        onChange: this.update('secret')
+        onChange: this.update("secret")
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "secret-info"
       }, "Keep this board secret."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1160,18 +1238,18 @@ function (_React$Component) {
         className: "button-group-left"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "delete-btn",
-        className: "delete-btn",
+        className: "form-button delete-btn",
         onClick: this.handleDelete
       }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-group-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "cancel-btn",
-        className: "cancel-btn",
+        className: "form-button cancel-btn",
         tabIndex: "1",
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "save-btn",
-        className: 'save-btn ' + createButtonStyle,
+        className: "save-btn ${createButtonStyle}",
         disabled: isCreateButtonDisabled,
         onClick: this.handleSubmit
       }, "Save"))))));
@@ -2270,10 +2348,10 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "button-group-right"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "delete-btn",
+        className: "form-button delete-btn",
         onClick: this.handleDelete
       }, this.options.buttonText), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "cancel-btn focus",
+        className: "form-button cancel-btn focus",
         onClick: this.handleCancel
       }, "Cancel")))));
     }
@@ -3511,12 +3589,12 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "button-group buttons-left"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "delete-btn",
+          className: "form-button delete-btn",
           onClick: this.handleDelete
         }, "Delete")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "button-group buttons-right"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          className: "cancel-btn",
+          className: "form-button cancel-btn",
           onClick: function onClick() {
             return _this3.props.hideModal();
           }

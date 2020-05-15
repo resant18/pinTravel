@@ -1,9 +1,10 @@
 import React from 'react';
-
+import BoardEditCover from './board_edit_cover';
+ 
 class BoardEditForm extends React.Component {
    constructor(props) {
       super(props);
-      this.state = { ...props.board, serverError: props.errors };
+      this.state = { ...props.board, serverError: props.errors, showEditCover: false };
 
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleDelete = this.handleDelete.bind(this);      
@@ -68,64 +69,71 @@ class BoardEditForm extends React.Component {
          <div aria-label='Edit' className='board-form-box'>
             <div className='header'>
                <h1>Edit your board</h1>
-               <button
-                  className='close-btn'
-                  onClick={this.props.hideModal}
-               >
-                  <svg height='20' width='20' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'><path d='M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z'></path></svg>
+               <button className='close-btn' onClick={this.props.hideModal}>
+                  <svg height='20' width='20' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
+                     <path d='M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z'></path>
+                  </svg>
                </button>
-            </div>            
+            </div>
             <div className='body'>
                <form className='board-form'>
-                  <div className='board-name'>
+                  <div className='board-field board-name'>
                      <p>Name</p>
                      <input
                         id='board-name-input'
                         className='input board-name'
                         value={this.state.name}
                         placeholder="E.g. 'Places to go' or 'Recipes to make'"
-                        onChange={this.update('name')}
+                        onChange={this.update("name")}
                         required
                      />
                      {this.renderBoardNameValidationError()}
                      <div className='error-text'>{this.renderErrors()}</div>
                   </div>
-                  
-                  <div className='board-visibility'>
+
+                  <div className='board-field'>
+                     <p>Cover</p>
+                     <button className='button' >
+                        Change
+                     </button>
+                  </div>
+
+                  <div className='board-field board-visibility'>
                      <p>Visibility</p>
                      <div className='secret'>
-                        <input className='secret-box' type='checkbox' checked={this.state.secret} onChange={this.update('secret')} />
+                        <input
+                           className='secret-box'
+                           type='checkbox'
+                           checked={this.state.secret}
+                           onChange={this.update("secret")}
+                        />
                         <div>
                            <div className='secret-info'>Keep this board secret.</div>
-                           <a href='https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create'>Learn more</a>
+                           <a href='https://www.pinterest.com/_/_/help/article/change-board-privacy?source=secret_create'>
+                              Learn more
+                           </a>
                         </div>
                      </div>
                   </div>
                </form>
- 
+
                <div className='button-footer'>
                   <div className='button-group button-group-edit'>
                      <div className='button-group-left'>
-                        <button
-                           id='delete-btn'
-                           className='delete-btn'
-                           onClick={this.handleDelete} >
+                        <button id='delete-btn' className='form-button delete-btn' onClick={this.handleDelete}>
                            Delete
                         </button>
                      </div>
                      <div className='button-group-right'>
-                        <button
-                           id='cancel-btn'
-                           className='cancel-btn'
-                           tabIndex='1'
-                           onClick={this.props.hideModal} >
+                        <button id='cancel-btn' className='form-button cancel-btn' tabIndex='1' onClick={this.props.hideModal}>
                            Cancel
                         </button>
                         <button
                            id='save-btn'
-                           className={'save-btn ' + createButtonStyle}                       
+                           className='save-btn ${createButtonStyle}'
                            disabled={isCreateButtonDisabled}
-                           onClick={this.handleSubmit} > 
+                           onClick={this.handleSubmit}
+                        >
                            Save
                         </button>
                      </div>
@@ -133,7 +141,7 @@ class BoardEditForm extends React.Component {
                </div>
             </div>
          </div>
-      )
+      );
    }
 }
 
