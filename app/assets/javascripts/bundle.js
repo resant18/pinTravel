@@ -956,11 +956,12 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var boardId = state.ui.modal.selectedData;
   var board = state.entities.boards[boardId];
   var user = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_4__["selectUserCreator"])(state.entities, board);
+  var boardpins = Object(_reducers_selector__WEBPACK_IMPORTED_MODULE_4__["selectUserBoardPins"])(state.entities, boardId);
   return {
     boardId: boardId,
     board: board,
-    user: user // formType: 'Update Board'
-
+    user: user,
+    boardpins: boardpins
   };
 };
 
@@ -996,60 +997,72 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var _slider_slider__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../slider/slider */ "./frontend/components/slider/slider.jsx");
 
 
 
-var BoardEditCover = function BoardEditCover(props) {
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_0___default.a.useState(),
-      _React$useState2 = _slicedToArray(_React$useState, 2),
-      visibility = _React$useState2[0],
-      setVisibility = _React$useState2[1];
+var BoardEditCover = function BoardEditCover(_ref) {
+  var onShow = _ref.onShow,
+      boardpins = _ref.boardpins;
 
   var handleCancel = function handleCancel(e) {
     e.preventDefault();
-    setVisibility(false);
+    onShow(false);
   };
 
   var handleSave = function handleSave(e) {
     e.preventDefault();
-    console.log('Save');
-  };
+    onShow(false);
+  }; // const renderPinGallery = () => {      
+  //    const boardPins = boardpins.map( (pin, idx) => 
+  //    ))
+  //    return (
+  //       <div className='slider-wrapper'>
+  //          <div className='bg'>
+  //             <img src={} />
+  //          </div>
+  //          <a class='prev' onclick='navigateSlide(-1)'>
+  //             &#10094;
+  //          </a>
+  //          <a class='next' onclick='navigateSlide(1)'>
+  //             &#10095;
+  //          </a>
+  //          <div className='mask'>
+  //             <span style='top: 0px; left: 0px; right: 0px; height: 32px;'></span>
+  //             <span style='top: 32px; left: 553px; right: 0px; height: 236px;'></span>
+  //             <span style='top: 268px; left: 0px; right: 0px; bottom: 0px;'></span>
+  //             <span style='top: 32px; left: 0px; height: 236px; width: 317px;'></span>
+  //          </div>
+  //          <div className='frame'></div>
+  //       </div>
+  //    );
+  // }
 
-  var renderComponent = function renderComponent() {
-    if (visibility) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        "aria-label": "Change Board Cover",
-        className: "board-delete-confirm-form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Change board cover ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "body"
-      }, "Pin Gallery here"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-footer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-group"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "button-group-right"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "form-button cancel-btn focus",
-        onClick: handleCancel
-      }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "form-button save-btn",
-        onClick: handleSave
-      }, "Save changes")))));
-    }
 
-    return null;
-  };
-
-  return renderComponent;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "aria-label": "Change Board Cover",
+    className: "board-edit-cover"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Change board cover ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "body"
+  }, boardpins.length > 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slider_slider__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    slides: boardpins.map(function (pin) {
+      return pin.pictureUrl;
+    })
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "button-footer"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "button-group"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "button-group-right"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "form-button cancel-btn",
+    onClick: handleCancel
+  }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "form-button save-btn focus",
+    onClick: handleSave
+  }, "Save changes")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (BoardEditCover);
@@ -1110,6 +1123,7 @@ function (_React$Component) {
       serverError: props.errors,
       showEditCover: false
     });
+    _this.handleEditBoardCover = _this.handleEditBoardCover.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
@@ -1122,12 +1136,12 @@ function (_React$Component) {
 
       return function (e) {
         switch (field) {
-          case 'name':
+          case "name":
             _this2.setState(_defineProperty({}, field, e.target.value));
 
             break;
 
-          case 'secret':
+          case "secret":
             _this2.setState(_defineProperty({}, field, e.target.checked));
 
             break;
@@ -1136,6 +1150,13 @@ function (_React$Component) {
             break;
         }
       };
+    }
+  }, {
+    key: "handleEditBoardCover",
+    value: function handleEditBoardCover(showEditCover) {
+      this.setState({
+        showEditCover: showEditCover
+      });
     }
   }, {
     key: "handleSubmit",
@@ -1149,9 +1170,9 @@ function (_React$Component) {
       e.preventDefault();
       this.props.hideModal();
       this.props.showModal({
-        name: 'delete-board-confirm',
+        name: "delete-board-confirm",
         selectedData: {
-          dataType: 'boardId',
+          dataType: "boardId",
           data: this.props.boardId,
           user: this.props.user
         }
@@ -1160,7 +1181,7 @@ function (_React$Component) {
   }, {
     key: "renderErrors",
     value: function renderErrors() {
-      if (this.props.errors === undefined) return '';
+      if (this.props.errors === undefined) return "";
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, this.props.errors.map(function (error, i) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: "error-".concat(i)
@@ -1170,7 +1191,7 @@ function (_React$Component) {
   }, {
     key: "renderBoardNameValidationError",
     value: function renderBoardNameValidationError() {
-      if (this.state.name === '') {
+      if (this.state.name === "") {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "error-text"
         }, "Don't forget to name your board!");
@@ -1179,14 +1200,23 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var isCreateButtonDisabled = this.state.name === '' ? true : false;
-      var createButtonStyle = this.state.name === '' ? '' : 'focus';
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      var _this3 = this;
+
+      var isCreateButtonDisabled = this.state.name === "" ? true : false;
+      var editFormStyle = this.state.showEditCover ? {
+        backgroundColor: "rgba(0,0,0,.4)"
+      } : {};
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.showEditCover && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_board_edit_cover__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        onShow: this.handleEditBoardCover,
+        boardpins: this.props.boardpins
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         "aria-label": "Edit",
+        style: editFormStyle,
         className: "board-form-box"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "header"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit your board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        style: editFormStyle,
         className: "close-btn",
         onClick: this.props.hideModal
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -1216,7 +1246,10 @@ function (_React$Component) {
       }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-field"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Cover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "button"
+        className: "form-button",
+        onClick: function onClick() {
+          return _this3.handleEditBoardCover(true);
+        }
       }, "Change")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-field board-visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1249,10 +1282,10 @@ function (_React$Component) {
         onClick: this.props.hideModal
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "save-btn",
-        className: "save-btn ${createButtonStyle}",
+        className: "form-button save-btn ${createButtonStyle}",
         disabled: isCreateButtonDisabled,
         onClick: this.handleSubmit
-      }, "Save"))))));
+      }, "Save")))))));
     }
   }]);
 
@@ -5015,6 +5048,140 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_session_form__WEBPACK_IMPORTED_MODULE_5__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/slider/slide.jsx":
+/*!**********************************************!*\
+  !*** ./frontend/components/slider/slide.jsx ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Slide = function Slide(_ref) {
+  var content = _ref.content;
+  var divStyle = {
+    width: '236px',
+    backgroundImage: "url(".concat(content),
+    backgroundSize: 'cover',
+    backgroundRepeat: 'repeat',
+    backgroundPosition: 'center'
+  };
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: divStyle
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Slide);
+
+/***/ }),
+
+/***/ "./frontend/components/slider/slider.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/slider/slider.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _slide__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slide */ "./frontend/components/slider/slide.jsx");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var Slider = function Slider(props) {
+  var width = 990;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    translate: 0,
+    transition: 0.45,
+    activeSlide: 0
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      state = _useState2[0],
+      setState = _useState2[1];
+
+  var translate = state.translate,
+      transition = state.transition,
+      activeSlide = state.activeSlide;
+  var divStyle = {
+    translate: "translateX".concat(translate, "px"),
+    transform: "transform ease-out ".concat(transition, "s"),
+    height: '100%',
+    width: "".concat(width * props.slides.length, "px"),
+    display: 'flex'
+  };
+
+  var prevSlide = function prevSlide() {
+    if (activeSlide === 0) {
+      return setState(_objectSpread({}, state, {
+        translate: (props.slides.length - 1) * width,
+        activeSlide: props.slides.length - 1
+      }));
+    }
+
+    setState(_objectSpread({}, state, {
+      translate: (activeSlide - 1) * width,
+      activeSlide: activeSlide - 1
+    }));
+  };
+
+  var nextSlide = function nextSlide() {
+    if (activeSlide === props.slides.length - 1) {
+      return setState(_objectSpread({}, state, {
+        translate: 0,
+        activeSlide: 0
+      }));
+    }
+
+    setState(_objectSpread({}, state, {
+      translate: (activeSlide + 1) * width,
+      activeSlide: activeSlide + 1
+    }));
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slider-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slider-content",
+    style: divStyle
+  }, props.slides.map(function (slide, idx) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slide__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      key: slide + idx,
+      content: slide
+    });
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "arrow-left",
+    onClick: prevSlide
+  }, " Prev "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "arrow-right",
+    onClick: nextSlide
+  }, " Next "));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Slider);
 
 /***/ }),
 

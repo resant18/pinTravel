@@ -2,6 +2,22 @@
    width: 544px;
 }
 
+.board-edit-cover {
+   width: 990px;
+   max-height: calc(100vh - 32px);
+   overflow: hidden;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+   z-index: 10;
+   background-color: white;
+   border-radius: 12px;
+   margin-left: 16px;
+   margin-right: 16px;
+   outline: none;
+}
+
 .board-delete-confirm-form {
    width: 380px;
    .body {
@@ -190,5 +206,34 @@
             }
          }
       }
+   }
+}
+
+// Board Edit Cover
+.slider-wrapper {
+   overflow: hidden;
+   height: 300px;
+   margin: 15px;
+   position: relative;
+   .bg {
+      overflow: hidden;
+      position: absolute;
+
+   }
+   .mask {
+      bottom: 0;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+      span {
+         background: #fff;
+         opacity: .9;
+         position: absolute;
+      }
+   }
+   .frame {
+      box-shadow: 0 2px 3px rgba(34,25,25,.3), inset 0 0 0 1px rgba(0,0,0,.3);
+      position: absolute;
    }
 }
