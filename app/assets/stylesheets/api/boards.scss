@@ -210,30 +210,31 @@
 }
 
 // Board Edit Cover
-.slider-wrapper {
+.slider-wrapper {   
+   height: 236px;
+   margin: 0 auto;
    overflow: hidden;
-   height: 300px;
-   margin: 15px;
    position: relative;
-   .bg {
-      overflow: hidden;
-      position: absolute;
+   width: 236px;
+   // .bg {
+   //    overflow: hidden;
+   //    position: absolute;
 
-   }
-   .mask {
-      bottom: 0;
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-      span {
-         background: #fff;
-         opacity: .9;
-         position: absolute;
-      }
-   }
-   .frame {
-      box-shadow: 0 2px 3px rgba(34,25,25,.3), inset 0 0 0 1px rgba(0,0,0,.3);
-      position: absolute;
-   }
+   // }
+   // .mask {
+   //    bottom: 0;
+   //    left: 0;
+   //    position: absolute;
+   //    right: 0;
+   //    top: 0;
+   //    span {
+   //       background: #fff;
+   //       opacity: .9;
+   //       position: absolute;
+   //    }
+   // }
+   // .frame {
+   //    box-shadow: 0 2px 3px rgba(34,25,25,.3), inset 0 0 0 1px rgba(0,0,0,.3);
+   //    position: absolute;
+   // }
 }

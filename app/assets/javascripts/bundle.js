@@ -5068,6 +5068,7 @@ var Slide = function Slide(_ref) {
   var content = _ref.content;
   var divStyle = {
     width: '236px',
+    height: '100%',
     backgroundImage: "url(".concat(content),
     backgroundSize: 'cover',
     backgroundRepeat: 'repeat',
@@ -5093,7 +5094,8 @@ var Slide = function Slide(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _slide__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slide */ "./frontend/components/slider/slide.jsx");
+/* harmony import */ var _slider_content__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./slider_content */ "./frontend/components/slider/slider_content.jsx");
+/* harmony import */ var _slide__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./slide */ "./frontend/components/slider/slide.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -5111,11 +5113,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Slider = function Slider(props) {
   var width = 990;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    translate: 0,
+    translate: 236,
     transition: 0.45,
     activeSlide: 0
   }),
@@ -5126,15 +5129,11 @@ var Slider = function Slider(props) {
   var translate = state.translate,
       transition = state.transition,
       activeSlide = state.activeSlide;
-  var divStyle = {
-    translate: "translateX".concat(translate, "px"),
-    transform: "transform ease-out ".concat(transition, "s"),
-    height: '100%',
-    width: "".concat(width * props.slides.length, "px"),
-    display: 'flex'
-  };
 
   var prevSlide = function prevSlide() {
+    console.log('prev slide');
+    debugger;
+
     if (activeSlide === 0) {
       return setState(_objectSpread({}, state, {
         translate: (props.slides.length - 1) * width,
@@ -5162,26 +5161,74 @@ var Slider = function Slider(props) {
     }));
   };
 
+  var sliderContentStyle = {
+    transform: "translateX(-".concat(props.translate, "px)"),
+    transition: "transform ease-out ".concat(props.transition, "s"),
+    height: "100%",
+    width: "708px",
+    display: "flex"
+  };
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slider-wrapper"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slider-content",
-    style: divStyle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slider_content__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    translate: translate,
+    transition: transition,
+    width: width
   }, props.slides.map(function (slide, idx) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slide__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slide__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: slide + idx,
       content: slide
     });
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "arrow-left",
     onClick: prevSlide
-  }, " Prev "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, " ", "Prev", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "arrow-right",
     onClick: nextSlide
-  }, " Next "));
+  }, " ", "Next", " "));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Slider);
+/**
+ * 
+ * Slider content:     
+ * transform: translateX(0px);
+    transition: transform ease-out 0.45s;
+    height: 100%;
+    width: 708px;
+    display: flex;
+ */
+
+/***/ }),
+
+/***/ "./frontend/components/slider/slider_content.jsx":
+/*!*******************************************************!*\
+  !*** ./frontend/components/slider/slider_content.jsx ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var SliderContent = function SliderContent(props) {
+  var sliderContentStyle = {
+    transform: "translateX(-".concat(props.translate, "px)"),
+    transition: "transform ease-out ".concat(props.transition, "s"),
+    height: "100%",
+    width: "".concat(props.width, "px"),
+    display: "flex"
+  };
+  console.log(sliderContentStyle);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: sliderContentStyle
+  }, props.children);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SliderContent);
 
 /***/ }),
 
