@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import SliderContent from './slider_content';
 import Slide from './slide';
+// import prevIcon from './prev.svg';
 
 const Slider = (props) => { 
-   const width = 990;  
+   const width = 236;  
    const [state, setState] = useState({
-      translate: 236,
+      translate: 0,
       transition: 0.45,
       activeSlide: 0,
    });
@@ -16,7 +17,7 @@ const Slider = (props) => {
 
    const prevSlide = () => {
       console.log('prev slide');
-      debugger
+      
       if (activeSlide === 0) {
          return setState({
             ...state,
@@ -48,44 +49,34 @@ const Slider = (props) => {
       });
    }
 
-   const sliderContentStyle = {
-      transform: `translateX(-${props.translate}px)`,
-      transition: `transform ease-out ${props.transition}s`,
-      height: `100%`,
-      width: `708px`,
-      display: `flex`,
-   };  
+   // const sliderContentStyle = {
+   //    transform: `translateX(-${props.translate}px)`,
+   //    transition: `transform ease-out ${props.transition}s`,
+   //    height: `100%`,
+   //    width: `708px`,
+   //    display: `flex`,
+   // };  
 
    return (
       <div className='slider-wrapper'>
-         {/* <div className='slider-content' style={sliderContentStyle} > */}
-            <SliderContent translate={translate} transition={transition} width={width}>
+         <SliderContent translate={translate} transition={transition} width='708'>
             {props.slides.map((slide, idx) => (
                <Slide key={slide + idx} content={slide} />
             ))}
-            </SliderContent>
-         {/* </div> */}
+         </SliderContent>
 
-         <div className='arrow-left' onClick={prevSlide}>
-            {" "}
-            Prev{" "}
+         <div className='slide-button tool-button prev' onClick={prevSlide}>
+            <svg height='18' width='18' viewBox='0 0 24 24' aria-hidden='true'>
+               <path d='M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 013.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66' />
+            </svg>
          </div>
-         <div className='arrow-right' onClick={nextSlide}>
-            {" "}
-            Next{" "}
+         <div className='slide-button tools-button next' onClick={nextSlide}>
+            <svg height='18' width='18' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
+               <path d='M6.72 24c.57 0 1.14-.22 1.57-.66L19.5 12 8.29.66c-.86-.88-2.27-.88-3.14 0-.87.88-.87 2.3 0 3.18L13.21 12l-8.06 8.16c-.87.88-.87 2.3 0 3.18.43.44 1 .66 1.57.66'></path>
+            </svg>
          </div>
       </div>
    );   
 }
 
 export default Slider;
-
-/**
- * 
- * Slider content:     
- * transform: translateX(0px);
-    transition: transform ease-out 0.45s;
-    height: 100%;
-    width: 708px;
-    display: flex;
- */

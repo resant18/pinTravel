@@ -1577,7 +1577,7 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit Board",
           onClick: this.showModal,
-          className: "tool-buttons board-edit-button",
+          className: "tool-button board-edit-button",
           type: "button",
           style: {
             width: '40px'
@@ -2091,7 +2091,7 @@ function (_React$Component) {
           className: "toobar-wrapper"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Back",
-          className: "tool-buttons back-button",
+          className: "tool-button back-button",
           type: "button",
           onClick: this.browseBack
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -2105,7 +2105,7 @@ function (_React$Component) {
           d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 0 1 3.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
         })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Add Pin",
-          className: "tool-buttons add-button",
+          className: "tool-button add-button",
           type: "button",
           onClick: this.showDropDown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -2120,7 +2120,7 @@ function (_React$Component) {
           d: "M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"
         })))), this.renderDropDown(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit board",
-          className: "tool-buttons",
+          className: "tool-button",
           type: "button",
           onClick: this.showModal({
             name: 'edit-board',
@@ -2144,7 +2144,7 @@ function (_React$Component) {
           className: "toobar-wrapper"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Back",
-          className: "tool-buttons back-button",
+          className: "tool-button back-button",
           type: "button",
           onClick: this.browseBack
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -4302,7 +4302,7 @@ function (_React$Component) {
           className: "toolbar-left"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit board",
-          className: "tool-buttons",
+          className: "tool-button",
           type: "button",
           onClick: this.showEditForm
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -4413,7 +4413,7 @@ function (_React$Component) {
         className: "pin-show-back-button"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         "aria-label": "Browse back",
-        className: "tool-buttons",
+        className: "tool-button",
         type: "button",
         onClick: this.browseBack
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -5180,7 +5180,7 @@ var Slider = function Slider(props) {
       content: slide
     });
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slide-button tool-buttons prev",
+    className: "slide-button tool-button prev",
     onClick: prevSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     height: "18",
@@ -5190,7 +5190,7 @@ var Slider = function Slider(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 013.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
   }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slide-button tools-buttons next",
+    className: "slide-button tools-button next",
     onClick: nextSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     height: "18",
@@ -5205,15 +5205,6 @@ var Slider = function Slider(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Slider);
-/**
- * 
- * Slider content:     
- * transform: translateX(0px);
-    transition: transform ease-out 0.45s;
-    height: 100%;
-    width: 708px;
-    display: flex;
- */
 
 /***/ }),
 

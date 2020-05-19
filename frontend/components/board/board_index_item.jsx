@@ -46,7 +46,7 @@ class BoardIndexItem extends React.Component {
                 <button
                     aria-label='Edit Board'
                     onClick={this.showModal}
-                    className='tool-buttons board-edit-button'
+                    className='tool-button board-edit-button'
                     type='button'
                     style={{width: '40px'}}
                 >

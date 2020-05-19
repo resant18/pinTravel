@@ -85,7 +85,7 @@ class PinShow extends React.Component {
                <div className='toolbar-left'>
                   <button
                      aria-label='Edit board'
-                     className='tool-buttons'
+                     className='tool-button'
                      type='button'
                      onClick={this.showEditForm}
                   >                     
@@ -189,7 +189,7 @@ class PinShow extends React.Component {
       return (
          <div>
             <div className='pin-show-back-button'>
-               <button aria-label='Browse back' className='tool-buttons' type='button' onClick={this.browseBack}>
+               <button aria-label='Browse back' className='tool-button' type='button' onClick={this.browseBack}>
                   <div>
                      <svg height='20' width='20' viewBox='0 0 24 24' aria-label='Back button' role='img'>
                         <path d='M24 12a2 2 0 0 1-2 2H7.676l4.631 4.586a2 2 0 1 1-2.829 2.828L0 12l9.478-9.414a2 2 0 0 1 2.829 2.828L7.676 10H22a2 2 0 0 1 2 2'></path>
