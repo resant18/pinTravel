@@ -210,30 +210,40 @@
 }
 
 // Board Edit Cover
-.slider-wrapper {   
-   height: 236px;
-   margin: 0 auto;
-   overflow: hidden;
-   position: relative;
-   width: 236px;
+.slider-wrapper {
+   .slider {   
+      height: 236px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+      width: 236px;
+   }
 
    .slide-button {
       cursor: pointer;  
       height: 46px;
       width: 46px;
       border: 0px;
-      position: absolute;
+      position: absolute;      
+      transition: transform ease-in 0.1s;
+      &:hover {
+         transform: scale(1.1);         
+      }
    }
 
    .prev {      
-      top: 50%;
-      left: 25px;          
+      top: 45%;
+      left: 320px;       
+      transform: translateX(-2px);   
    }
 
    .next {      
-      top: 50%;
-      right: 25px;      
-   }
+      top: 45%;
+      right: 312px;      
+      transform: translateX(2px);
+   }   
+}
+
    // .bg {
    //    overflow: hidden;
    //    position: absolute;
@@ -255,4 +265,4 @@
    //    box-shadow: 0 2px 3px rgba(34,25,25,.3), inset 0 0 0 1px rgba(0,0,0,.3);
    //    position: absolute;
    // }
-}
+

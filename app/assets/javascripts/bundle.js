@@ -5121,7 +5121,8 @@ var Slider = function Slider(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     translate: 0,
     transition: 0.45,
-    activeSlide: 0
+    activeSlide: 0,
+    direction: 'next'
   }),
       _useState2 = _slicedToArray(_useState, 2),
       state = _useState2[0],
@@ -5129,7 +5130,8 @@ var Slider = function Slider(props) {
 
   var translate = state.translate,
       transition = state.transition,
-      activeSlide = state.activeSlide;
+      activeSlide = state.activeSlide,
+      direction = state.direction;
 
   var prevSlide = function prevSlide() {
     console.log('prev slide');
@@ -5137,13 +5139,15 @@ var Slider = function Slider(props) {
     if (activeSlide === 0) {
       return setState(_objectSpread({}, state, {
         translate: (props.slides.length - 1) * width,
-        activeSlide: props.slides.length - 1
+        activeSlide: props.slides.length - 1,
+        direction: 'next'
       }));
     }
 
     setState(_objectSpread({}, state, {
       translate: (activeSlide - 1) * width,
-      activeSlide: activeSlide - 1
+      activeSlide: activeSlide - 1,
+      direction: 'both'
     }));
   };
 
@@ -5151,13 +5155,15 @@ var Slider = function Slider(props) {
     if (activeSlide === props.slides.length - 1) {
       return setState(_objectSpread({}, state, {
         translate: 0,
-        activeSlide: 0
+        activeSlide: 0,
+        direction: 'prev'
       }));
     }
 
     setState(_objectSpread({}, state, {
       translate: (activeSlide + 1) * width,
-      activeSlide: activeSlide + 1
+      activeSlide: activeSlide + 1,
+      direction: 'both'
     }));
   }; // const sliderContentStyle = {
   //    transform: `translateX(-${props.translate}px)`,
@@ -5170,6 +5176,8 @@ var Slider = function Slider(props) {
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slider-wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slider"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slider_content__WEBPACK_IMPORTED_MODULE_1__["default"], {
     translate: translate,
     transition: transition,
@@ -5179,7 +5187,7 @@ var Slider = function Slider(props) {
       key: slide + idx,
       content: slide
     });
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), direction !== "next" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slide-button tool-button prev",
     onClick: prevSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -5189,8 +5197,8 @@ var Slider = function Slider(props) {
     "aria-hidden": "true"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 013.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "slide-button tools-button next",
+  }))), direction !== "prev" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slide-button tool-button next",
     onClick: nextSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     height: "18",
