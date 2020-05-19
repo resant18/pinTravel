@@ -216,6 +216,24 @@
    overflow: hidden;
    position: relative;
    width: 236px;
+
+   .slide-button {
+      cursor: pointer;  
+      height: 46px;
+      width: 46px;
+      border: 0px;
+      position: absolute;
+   }
+
+   .prev {      
+      top: 50%;
+      left: 25px;          
+   }
+
+   .next {      
+      top: 50%;
+      right: 25px;      
+   }
    // .bg {
    //    overflow: hidden;
    //    position: absolute;

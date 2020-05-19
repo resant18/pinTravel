@@ -179,23 +179,26 @@
     }
 }
 
-.board-item-content .edit-button {
+.board-edit-button {
     position: absolute;
     right: 0;
     bottom: 0;    
     width: 40px !important;
     height: 40px !important;
-}
-
-div.svg-40 {
-    width: 40px !important;
-    height: 40px !important;        
-    &:hover, &:focus {        
-        border-radius: 50%;        
-        background-color: #d1d1d1;            
-        outline: 0;            
+    &:hover, &:focus {             
+        background-color: #d1d1d1;                     
     }
 }
+
+// div.svg-40 {
+//     width: 40px !important;
+//     height: 40px !important;        
+//     &:hover, &:focus {        
+//         border-radius: 50%;        
+//         background-color: #d1d1d1;            
+//         outline: 0;            
+//     }
+// }
 
 //  Pin
 .toolbar {       

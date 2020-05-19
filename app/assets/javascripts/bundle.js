@@ -1577,10 +1577,11 @@ function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit Board",
           onClick: this.showModal,
-          className: "tool-buttons edit-button",
-          type: "button"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "svg-40"
+          className: "tool-buttons board-edit-button",
+          type: "button",
+          style: {
+            width: '40px'
+          }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
           height: "20",
@@ -1591,7 +1592,7 @@ function (_React$Component) {
           role: "img"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
-        }))));
+        })));
       }
     }
   }, {
@@ -2119,7 +2120,7 @@ function (_React$Component) {
           d: "M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4"
         })))), this.renderDropDown(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit board",
-          className: "tool-buttons edit-button",
+          className: "tool-buttons",
           type: "button",
           onClick: this.showModal({
             name: 'edit-board',
@@ -4301,10 +4302,10 @@ function (_React$Component) {
           className: "toolbar-left"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "aria-label": "Edit board",
-          className: "tool-buttons edit-button",
+          className: "tool-buttons",
           type: "button",
           onClick: this.showEditForm
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
           height: "20",
           width: "20",
@@ -4314,7 +4315,7 @@ function (_React$Component) {
           role: "img"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
           d: "M13.386 6.018l4.596 4.596L7.097 21.499 1 22.999l1.501-6.096L13.386 6.018zm8.662-4.066a3.248 3.248 0 0 1 0 4.596L19.75 8.848 15.154 4.25l2.298-2.299a3.248 3.248 0 0 1 4.596 0z"
-        }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        })), "`")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "toolbar-right"
         }, this.displaySaveToBoard()));
       } else {
@@ -5112,13 +5113,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
+ // import prevIcon from './prev.svg';
 
 var Slider = function Slider(props) {
-  var width = 990;
+  var width = 236;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
-    translate: 236,
+    translate: 0,
     transition: 0.45,
     activeSlide: 0
   }),
@@ -5132,7 +5133,6 @@ var Slider = function Slider(props) {
 
   var prevSlide = function prevSlide() {
     console.log('prev slide');
-    debugger;
 
     if (activeSlide === 0) {
       return setState(_objectSpread({}, state, {
@@ -5159,33 +5159,49 @@ var Slider = function Slider(props) {
       translate: (activeSlide + 1) * width,
       activeSlide: activeSlide + 1
     }));
-  };
+  }; // const sliderContentStyle = {
+  //    transform: `translateX(-${props.translate}px)`,
+  //    transition: `transform ease-out ${props.transition}s`,
+  //    height: `100%`,
+  //    width: `708px`,
+  //    display: `flex`,
+  // };  
 
-  var sliderContentStyle = {
-    transform: "translateX(-".concat(props.translate, "px)"),
-    transition: "transform ease-out ".concat(props.transition, "s"),
-    height: "100%",
-    width: "708px",
-    display: "flex"
-  };
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slider-wrapper"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slider_content__WEBPACK_IMPORTED_MODULE_1__["default"], {
     translate: translate,
     transition: transition,
-    width: width
+    width: "708"
   }, props.slides.map(function (slide, idx) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slide__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: slide + idx,
       content: slide
     });
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "arrow-left",
+    className: "slide-button tool-buttons prev",
     onClick: prevSlide
-  }, " ", "Prev", " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "arrow-right",
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    height: "18",
+    width: "18",
+    viewBox: "0 0 24 24",
+    "aria-hidden": "true"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 013.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "slide-button tools-buttons next",
     onClick: nextSlide
-  }, " ", "Next", " "));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    height: "18",
+    width: "18",
+    viewBox: "0 0 24 24",
+    "aria-hidden": "true",
+    "aria-label": "",
+    role: "img"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M6.72 24c.57 0 1.14-.22 1.57-.66L19.5 12 8.29.66c-.86-.88-2.27-.88-3.14 0-.87.88-.87 2.3 0 3.18L13.21 12l-8.06 8.16c-.87.88-.87 2.3 0 3.18.43.44 1 .66 1.57.66"
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Slider);

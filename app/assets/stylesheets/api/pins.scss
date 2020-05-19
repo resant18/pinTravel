@@ -440,17 +440,7 @@
                min-height: 72px;
                display: flex;
                align-items: center;               
-               justify-content: space-between;
-               .toolbar-left {
-                  button {
-                     width: 44px;
-                     height: 44px;
-                     div {
-                        width: 44px;
-                        height: 44px;
-                     }
-                  }
-               }
+               justify-content: space-between;               
             }
             .pin-url-link {
                color: #111;

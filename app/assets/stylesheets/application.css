@@ -191,6 +191,9 @@ li {
   padding: 0;
   margin: 0 7px 0 0;
   transition: transform 0.2s ease-out 0s;
+  justify-content: center;
+  align-items: center;
+  display: flex;                            
 }
 
 .tool-buttons:hover, .tool-buttons:focus{    
@@ -198,20 +201,19 @@ li {
     border-radius: 50%;
     /* 1px auto #d1d1d1; */
     background-color: rgb(239, 239, 239);
+    border-radius: 50%;            
+    outline: 0;    
 }
 
-.tool-buttons div {
-    width: 48px;
-    height: 48px;
+.board-edit-button {    
+    border-radius: 50%;
+    outline: 0;
+    box-shadow: none;
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;                            
-}
-
-.edit-button {    
-    border-radius: 50%;    
-    outline: 0;    
-    box-shadow: none;
+    width: 44px;
+    height: 44px;
 }
 
 svg {
