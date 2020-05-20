@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 const SliderContent = (props) => {   
    const sliderContentStyle = {
       transform: `translateX(-${props.translate}px)`,
@@ -9,7 +7,8 @@ const SliderContent = (props) => {
       height: `100%`,
       width: `${props.width}px`,
       display: `flex`
-   }
+   }   
+
    console.log(sliderContentStyle);
 
    return (

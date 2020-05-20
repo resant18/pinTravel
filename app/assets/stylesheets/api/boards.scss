@@ -216,7 +216,7 @@
       margin: 0 auto;
       overflow: hidden;
       position: relative;
-      width: 236px;
+      width: 300px;
    }
 
    .slide-button {
@@ -233,13 +233,13 @@
 
    .prev {      
       top: 45%;
-      left: 320px;       
+      left: 288px;       
       transform: translateX(-2px);   
    }
 
    .next {      
       top: 45%;
-      right: 312px;      
+      right: 276px;      
       transform: translateX(2px);
    }   
 }

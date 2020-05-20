@@ -1013,31 +1013,7 @@ var BoardEditCover = function BoardEditCover(_ref) {
   var handleSave = function handleSave(e) {
     e.preventDefault();
     onShow(false);
-  }; // const renderPinGallery = () => {      
-  //    const boardPins = boardpins.map( (pin, idx) => 
-  //    ))
-  //    return (
-  //       <div className='slider-wrapper'>
-  //          <div className='bg'>
-  //             <img src={} />
-  //          </div>
-  //          <a class='prev' onclick='navigateSlide(-1)'>
-  //             &#10094;
-  //          </a>
-  //          <a class='next' onclick='navigateSlide(1)'>
-  //             &#10095;
-  //          </a>
-  //          <div className='mask'>
-  //             <span style='top: 0px; left: 0px; right: 0px; height: 32px;'></span>
-  //             <span style='top: 32px; left: 553px; right: 0px; height: 236px;'></span>
-  //             <span style='top: 268px; left: 0px; right: 0px; bottom: 0px;'></span>
-  //             <span style='top: 32px; left: 0px; height: 236px; width: 317px;'></span>
-  //          </div>
-  //          <div className='frame'></div>
-  //       </div>
-  //    );
-  // }
-
+  };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     "aria-label": "Change Board Cover",
@@ -1049,7 +1025,8 @@ var BoardEditCover = function BoardEditCover(_ref) {
   }, boardpins.length > 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slider_slider__WEBPACK_IMPORTED_MODULE_1__["default"], {
     slides: boardpins.map(function (pin) {
       return pin.pictureUrl;
-    })
+    }),
+    width: "236"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "button-footer"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -5066,14 +5043,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Slide = function Slide(_ref) {
-  var content = _ref.content;
+  var content = _ref.content,
+      slideId = _ref.slideId,
+      activeSlide = _ref.activeSlide;
   var divStyle = {
     width: '236px',
     height: '100%',
     backgroundImage: "url(".concat(content),
     backgroundSize: 'cover',
     backgroundRepeat: 'repeat',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
+    backgroundColor: slideId !== activeSlide ? 'rgba(255, 255, 255)' : null,
+    opacity: slideId !== activeSlide ? '0.5' : null
   };
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: divStyle
@@ -5113,16 +5094,17 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // import prevIcon from './prev.svg';
+
 
 var Slider = function Slider(props) {
-  var width = 236;
+  var width = props.width;
+  var margin = 32;
+  var distance = props.width - margin;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
     translate: 0,
     transition: 0.45,
-    activeSlide: 0,
-    direction: 'next'
+    activeSlide: 0
   }),
       _useState2 = _slicedToArray(_useState, 2),
       state = _useState2[0],
@@ -5130,24 +5112,31 @@ var Slider = function Slider(props) {
 
   var translate = state.translate,
       transition = state.transition,
-      activeSlide = state.activeSlide,
-      direction = state.direction;
+      activeSlide = state.activeSlide;
+
+  var setTranslate = function setTranslate(nextSlide) {
+    if (nextSlide === props.slides.length - 1) {
+      return (nextSlide - 1) * width + distance - margin;
+    } else if (nextSlide === 0) {
+      return 0;
+    } else if (nextSlide === 1) {
+      return distance;
+    } else {
+      return (nextSlide - 1) * width + distance;
+    }
+  };
 
   var prevSlide = function prevSlide() {
-    console.log('prev slide');
-
     if (activeSlide === 0) {
       return setState(_objectSpread({}, state, {
-        translate: (props.slides.length - 1) * width,
-        activeSlide: props.slides.length - 1,
-        direction: 'next'
+        translate: setTranslate(props.slides.length - 1),
+        activeSlide: props.slides.length - 1
       }));
     }
 
     setState(_objectSpread({}, state, {
-      translate: (activeSlide - 1) * width,
-      activeSlide: activeSlide - 1,
-      direction: 'both'
+      translate: setTranslate(activeSlide - 1),
+      activeSlide: activeSlide - 1
     }));
   };
 
@@ -5155,24 +5144,15 @@ var Slider = function Slider(props) {
     if (activeSlide === props.slides.length - 1) {
       return setState(_objectSpread({}, state, {
         translate: 0,
-        activeSlide: 0,
-        direction: 'prev'
+        activeSlide: 0
       }));
     }
 
     setState(_objectSpread({}, state, {
-      translate: (activeSlide + 1) * width,
-      activeSlide: activeSlide + 1,
-      direction: 'both'
+      translate: setTranslate(activeSlide + 1),
+      activeSlide: activeSlide + 1
     }));
-  }; // const sliderContentStyle = {
-  //    transform: `translateX(-${props.translate}px)`,
-  //    transition: `transform ease-out ${props.transition}s`,
-  //    height: `100%`,
-  //    width: `708px`,
-  //    display: `flex`,
-  // };  
-
+  };
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slider-wrapper"
@@ -5181,13 +5161,15 @@ var Slider = function Slider(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slider_content__WEBPACK_IMPORTED_MODULE_1__["default"], {
     translate: translate,
     transition: transition,
-    width: "708"
+    width: props.slides.length * width
   }, props.slides.map(function (slide, idx) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_slide__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: slide + idx,
-      content: slide
+      slideId: idx,
+      content: slide,
+      activeSlide: activeSlide
     });
-  }))), direction !== "next" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slide-button tool-button prev",
     onClick: prevSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -5197,7 +5179,7 @@ var Slider = function Slider(props) {
     "aria-hidden": "true"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 013.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
-  }))), direction !== "prev" && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slide-button tool-button next",
     onClick: nextSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
