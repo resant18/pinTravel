@@ -3,7 +3,7 @@
 }
 
 .board-edit-cover {
-   width: 990px;
+   width: 90vw;
    max-height: calc(100vh - 32px);
    overflow: hidden;
    position: absolute;
@@ -210,6 +210,12 @@
 }
 
 // Board Edit Cover
+.board-edit-cover {
+   .header {
+      justify-content: center;
+   }
+}
+
 .slider-wrapper {
    .slider {   
       height: 236px;
@@ -244,25 +250,4 @@
    }   
 }
 
-   // .bg {
-   //    overflow: hidden;
-   //    position: absolute;
-
-   // }
-   // .mask {
-   //    bottom: 0;
-   //    left: 0;
-   //    position: absolute;
-   //    right: 0;
-   //    top: 0;
-   //    span {
-   //       background: #fff;
-   //       opacity: .9;
-   //       position: absolute;
-   //    }
-   // }
-   // .frame {
-   //    box-shadow: 0 2px 3px rgba(34,25,25,.3), inset 0 0 0 1px rgba(0,0,0,.3);
-   //    position: absolute;
-   // }
 
