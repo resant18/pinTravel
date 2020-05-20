@@ -5169,7 +5169,7 @@ var Slider = function Slider(props) {
       content: slide,
       activeSlide: activeSlide
     });
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), props.slides.length > 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slide-button tool-button prev",
     onClick: prevSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -5179,7 +5179,7 @@ var Slider = function Slider(props) {
     "aria-hidden": "true"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M17.28 24c-.57 0-1.14-.22-1.58-.66L4.5 12 15.7.66a2.21 2.21 0 013.15 0c.87.88.87 2.3 0 3.18L10.79 12l8.06 8.16c.87.88.87 2.3 0 3.18-.44.44-1 .66-1.57.66"
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }))), props.slides.length > 1 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "slide-button tool-button next",
     onClick: nextSlide
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
