@@ -56,8 +56,7 @@ class UserProfile extends React.Component {
                      <div
                         title='Create board'
                         className='create-board item'
-                        onClick={
-                           
+                        onClick={                           
                            this.showModal({ name: 'create-board' })
                         }
                      >

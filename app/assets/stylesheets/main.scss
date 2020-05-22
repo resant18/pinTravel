@@ -182,11 +182,12 @@
 .board-edit-button {
     position: absolute;
     right: 0;
-    bottom: 0;    
-    width: 40px !important;
-    height: 40px !important;
-    &:hover, &:focus {             
-        background-color: #d1d1d1;                     
+    bottom: 0;        
+    &:hover, &:focus {    
+        box-shadow: none !important;      
+        background-color: var(--color-light-gray) !important;
+        // box-shadow: 0 0 0 4px rgba(0,132,255,.5);                             
+        outline: 0;                        
     }
 }
 

@@ -9,6 +9,7 @@ class BoardEditForm extends React.Component {
       this.handleEditBoardCover = this.handleEditBoardCover.bind(this);      
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleDelete = this.handleDelete.bind(this);
+      this.handleCloseForm = this.handleCloseForm.bind(this);
    }
 
    update(field) {
@@ -64,18 +65,27 @@ class BoardEditForm extends React.Component {
       }
    }
 
+   handleCloseForm(e) {
+      e.preventDefault();
+
+      this.props.hideModal();
+   }
+   
+
    render() {
       const isCreateButtonDisabled = this.state.name === "" ? true : false;
       const editFormStyle = this.state.showEditCover ? { backgroundColor: "rgba(0,0,0,.4)" } : {};
 
       return (
          <div>
-            {this.state.showEditCover && <BoardEditCover onShow={this.handleEditBoardCover} boardpins={this.props.boardpins} />}
+            {this.state.showEditCover && (
+               <BoardEditCover onShow={this.handleEditBoardCover} boardpins={this.props.boardpins} />
+            )}
 
             <div aria-label='Edit' style={editFormStyle} className='board-form-box'>
                <div className='header'>
                   <h1>Edit your board</h1>
-                  <button style={editFormStyle} className='close-btn' onClick={this.props.hideModal}>
+                  <button style={editFormStyle} className='close-btn' onClick={this.handleCloseForm}>
                      <svg height='20' width='20' viewBox='0 0 24 24' aria-hidden='true' aria-label='' role='img'>
                         <path d='M15.18 12l7.16-7.16c.88-.88.88-2.3 0-3.18-.88-.88-2.3-.88-3.18 0L12 8.82 4.84 1.66c-.88-.88-2.3-.88-3.18 0-.88.88-.88 2.3 0 3.18L8.82 12l-7.16 7.16c-.88.88-.88 2.3 0 3.18.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66L12 15.18l7.16 7.16c.44.44 1.01.66 1.59.66.58 0 1.15-.22 1.59-.66.88-.88.88-2.3 0-3.18L15.18 12z'></path>
                      </svg>
@@ -97,12 +107,23 @@ class BoardEditForm extends React.Component {
                         <div className='error-text'>{this.renderErrors()}</div>
                      </div>
 
-                     <div className='board-field'>
+                     {/* <div className='board-field'>
                         <p>Cover</p>
-                        <button className='form-button' onClick={ () => this.handleEditBoardCover(true) } >
+                        <button className='form-button' onClick={() => this.handleEditBoardCover(true)}>
                            Change
                         </button>
-                     </div>
+                        <div className='cover-picture-box'>
+                           <svg                              
+                              height='24'
+                              width='24'
+                              viewBox='0 0 24 24'
+                              aria-label='Add cover photo'
+                              role='img'
+                           >
+                              <path d='M22 10h-8V2a2 2 0 0 0-4 0v8H2a2 2 0 0 0 0 4h8v8a2 2 0 0 0 4 0v-8h8a2 2 0 0 0 0-4'></path>
+                           </svg>
+                        </div>
+                     </div> */}
 
                      <div className='board-field board-visibility'>
                         <p>Visibility</p>
@@ -135,7 +156,7 @@ class BoardEditForm extends React.Component {
                               id='cancel-btn'
                               className='form-button cancel-btn'
                               tabIndex='1'
-                              onClick={this.props.hideModal}
+                              onClick={this.handleCloseForm}
                            >
                               Cancel
                            </button>

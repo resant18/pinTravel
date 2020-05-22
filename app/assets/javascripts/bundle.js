@@ -1103,6 +1103,7 @@ function (_React$Component) {
     _this.handleEditBoardCover = _this.handleEditBoardCover.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    _this.handleCloseForm = _this.handleCloseForm.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -1175,10 +1176,14 @@ function (_React$Component) {
       }
     }
   }, {
+    key: "handleCloseForm",
+    value: function handleCloseForm(e) {
+      e.preventDefault();
+      this.props.hideModal();
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
-
       var isCreateButtonDisabled = this.state.name === "" ? true : false;
       var editFormStyle = this.state.showEditCover ? {
         backgroundColor: "rgba(0,0,0,.4)"
@@ -1195,7 +1200,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit your board"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         style: editFormStyle,
         className: "close-btn",
-        onClick: this.props.hideModal
+        onClick: this.handleCloseForm
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
         height: "20",
         width: "20",
@@ -1221,13 +1226,6 @@ function (_React$Component) {
       }), this.renderBoardNameValidationError(), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "error-text"
       }, this.renderErrors())), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "board-field"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Cover"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "form-button",
-        onClick: function onClick() {
-          return _this3.handleEditBoardCover(true);
-        }
-      }, "Change")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "board-field board-visibility"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Visibility"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "secret"
@@ -1256,7 +1254,7 @@ function (_React$Component) {
         id: "cancel-btn",
         className: "form-button cancel-btn",
         tabIndex: "1",
-        onClick: this.props.hideModal
+        onClick: this.handleCloseForm
       }, "Cancel"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         id: "save-btn",
         className: "form-button save-btn ${createButtonStyle}",
@@ -1542,7 +1540,6 @@ function (_React$Component) {
   }, {
     key: "toggleEdit",
     value: function toggleEdit(e) {
-      e.preventDefault();
       this.setState({
         editable: !this.state.editable
       });
@@ -1557,7 +1554,8 @@ function (_React$Component) {
           className: "tool-button board-edit-button",
           type: "button",
           style: {
-            width: '40px'
+            width: '40px',
+            height: '40px'
           }
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
           className: "svg",
@@ -1575,6 +1573,7 @@ function (_React$Component) {
   }, {
     key: "showModal",
     value: function showModal(e) {
+      e.preventDefault();
       this.props.showModal({
         name: 'edit-board',
         selectedData: this.props.board.id
@@ -1606,7 +1605,9 @@ function (_React$Component) {
       var pinsData = Object.values(pins);
       var pinCount = pinsData.length;
       if (!board) return null;
+      console.log("render");
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: board.id,
         className: "board-item-content",
         onMouseEnter: this.toggleEdit,
         onMouseLeave: this.toggleEdit
@@ -5045,7 +5046,8 @@ __webpack_require__.r(__webpack_exports__);
 var Slide = function Slide(_ref) {
   var content = _ref.content,
       slideId = _ref.slideId,
-      activeSlide = _ref.activeSlide;
+      activeSlide = _ref.activeSlide,
+      handleSelectedSlide = _ref.handleSelectedSlide;
   var divStyle = {
     width: '236px',
     height: '100%',
@@ -5057,7 +5059,8 @@ var Slide = function Slide(_ref) {
     opacity: slideId !== activeSlide ? '0.5' : null
   };
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: divStyle
+    style: divStyle,
+    onClick: handleSelectedSlide
   });
 };
 

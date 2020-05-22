@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Slide = ({ content, slideId, activeSlide }) => {   
+const Slide = ({ content, slideId, activeSlide, handleSelectedSlide }) => {   
    const divStyle = {
       width: '236px',
       height: '100%',
@@ -13,7 +13,7 @@ const Slide = ({ content, slideId, activeSlide }) => {
    };   
 
    return (
-      <div style={divStyle}></div>
+      <div style={divStyle} onClick={handleSelectedSlide}></div>
    )
       
 }
