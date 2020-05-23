@@ -1179,6 +1179,7 @@ function (_React$Component) {
     key: "handleCloseForm",
     value: function handleCloseForm(e) {
       e.preventDefault();
+      e.stopPropagation();
       this.props.hideModal();
     }
   }, {
@@ -1604,8 +1605,8 @@ function (_React$Component) {
           pins = _this$props.pins;
       var pinsData = Object.values(pins);
       var pinCount = pinsData.length;
-      if (!board) return null;
-      console.log("render");
+      if (!board) return null; // console.log("render");
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: board.id,
         className: "board-item-content",
@@ -2896,7 +2897,7 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       if (this.props.currentUser.username) {
-        console.log("fetching pins from navbar component");
+        // console.log("fetching pins from navbar component");
         this.props.fetchUser(this.props.currentUser.username);
       }
     }
@@ -5221,8 +5222,8 @@ var SliderContent = function SliderContent(props) {
     height: "100%",
     width: "".concat(props.width, "px"),
     display: "flex"
-  };
-  console.log(sliderContentStyle);
+  }; // console.log(sliderContentStyle);
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: sliderContentStyle
   }, props.children);
@@ -5334,7 +5335,7 @@ function (_React$Component) {
       var _this4 = this;
 
       if (this.state.dropDownOpen) {
-        console.log('render dropdown menu');
+        // console.log('render dropdown menu');
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "profile-menu-list",
           ref: function ref(node) {
@@ -6153,10 +6154,10 @@ var configureStore = function configureStore() {
   var hostname = window && window.location && window.location.hostname; // store for testing environment
 
   if (/locahost/.test(hostname)) {
-    return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
+    return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a)));
   } // store for production environment    
   else {
-      return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__["composeWithDevTools"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], redux_logger__WEBPACK_IMPORTED_MODULE_2___default.a)));
+      return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_root_reducer__WEBPACK_IMPORTED_MODULE_3__["default"], preloadedState, Object(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"]));
     }
 };
 

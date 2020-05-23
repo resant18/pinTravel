@@ -48,7 +48,7 @@ class UserProfile extends React.Component {
 
    renderDropDown() {
       if (this.state.dropDownOpen) {
-         console.log('render dropdown menu');
+         // console.log('render dropdown menu');
          return (
             <div id='profile-menu-list' ref={node => (this.node = node)} className='profile-add-board-pin drop-down'>
                <div className='frame'>

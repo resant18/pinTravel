@@ -9,7 +9,7 @@ const SliderContent = (props) => {
       display: `flex`
    }   
 
-   console.log(sliderContentStyle);
+   // console.log(sliderContentStyle);
 
    return (
       <div style={sliderContentStyle}>

@@ -79,7 +79,7 @@ class BoardIndexItem extends React.Component {
         
         if ( !board ) return null;                
 
-        console.log("render");
+        // console.log("render");
 
         return (
             <div key={board.id} className='board-item-content'
