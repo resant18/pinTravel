@@ -10,11 +10,11 @@ const configureStore = (preloadedState = {}) => {
   const hostname = window && window.location && window.location.hostname;
   
   // store for testing environment
-  if (/locahost/.test(hostname)) {
+  if (/localhost/.test(hostname)) {    
     return createStore(rootReducer, preloadedState, composeWithDevTools(applyMiddleware(thunk, logger)));        
   } 
   // store for production environment    
-  else {  
+  else {      
     return createStore(rootReducer, preloadedState, applyMiddleware(thunk));    
   }
 }
