@@ -66,11 +66,9 @@ class BoardEditForm extends React.Component {
    }
 
    handleCloseForm(e) {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault();      
 
-      this.props.hideModal();
-      
+      this.props.hideModal();      
    }
    
 

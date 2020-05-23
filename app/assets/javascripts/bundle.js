@@ -1179,7 +1179,6 @@ function (_React$Component) {
     key: "handleCloseForm",
     value: function handleCloseForm(e) {
       e.preventDefault();
-      e.stopPropagation();
       this.props.hideModal();
     }
   }, {
@@ -1465,7 +1464,8 @@ function (_React$Component) {
     _this.state = {
       editable: false
     };
-    _this.toggleEdit = _this.toggleEdit.bind(_assertThisInitialized(_this));
+    _this.showEdit = _this.showEdit.bind(_assertThisInitialized(_this));
+    _this.hideEdit = _this.hideEdit.bind(_assertThisInitialized(_this));
     _this.showModal = _this.showModal.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -1539,10 +1539,17 @@ function (_React$Component) {
       })));
     }
   }, {
-    key: "toggleEdit",
-    value: function toggleEdit(e) {
+    key: "showEdit",
+    value: function showEdit(e) {
       this.setState({
-        editable: !this.state.editable
+        editable: true
+      });
+    }
+  }, {
+    key: "hideEdit",
+    value: function hideEdit(e) {
+      this.setState({
+        editable: false
       });
     }
   }, {
@@ -1610,8 +1617,8 @@ function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: board.id,
         className: "board-item-content",
-        onMouseEnter: this.toggleEdit,
-        onMouseLeave: this.toggleEdit
+        onMouseEnter: this.showEdit,
+        onMouseLeave: this.hideEdit
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/".concat(this.props.username, "/boards/").concat(board.id)
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

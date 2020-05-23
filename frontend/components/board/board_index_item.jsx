@@ -8,7 +8,8 @@ class BoardIndexItem extends React.Component {
             editable: false
         }
                 
-        this.toggleEdit = this.toggleEdit.bind(this);  
+        this.showEdit = this.showEdit.bind(this);  
+        this.hideEdit = this.hideEdit.bind(this);  
         this.showModal = this.showModal.bind(this);              
     }   
 
@@ -34,12 +35,15 @@ class BoardIndexItem extends React.Component {
         )
     }    
     
-
-    toggleEdit(e) {
-        this.setState({ editable: !(this.state.editable) });
+    showEdit(e) {
+        this.setState({ editable: true });
     }
 
-    displayEdit() {        
+    hideEdit(e) {        
+        this.setState({ editable: false });
+    }
+
+    displayEdit() {                        
         if (this.state.editable && this.props.permitted) {
             return (
                 <button
@@ -58,7 +62,8 @@ class BoardIndexItem extends React.Component {
     }
 
     showModal(e) {    
-        e.preventDefault();    
+        e.preventDefault();  
+        
         this.props.showModal({ name: 'edit-board', selectedData: this.props.board.id });
     }
 
@@ -83,8 +88,9 @@ class BoardIndexItem extends React.Component {
 
         return (
             <div key={board.id} className='board-item-content'
-                onMouseEnter={this.toggleEdit}
-                onMouseLeave={this.toggleEdit}>
+                onMouseEnter={this.showEdit}
+                onMouseLeave={this.hideEdit}
+            >
             
                 <Link to={`/${this.props.username}/boards/${board.id}`} >
                     <div className='board-item-box'>
